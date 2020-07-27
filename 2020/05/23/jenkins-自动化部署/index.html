@@ -1,0 +1,1131 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Jenkins + 码云 自动部署 PHP 项目, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="description" content="一个后端小菜鸟的进击之路">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Jenkins + 码云 自动部署 PHP 项目 | 道法自然</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">道法自然</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">道法自然</div>
+        <div class="logo-desc">
+            
+            一个后端小菜鸟的进击之路
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1502354304971856.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Jenkins + 码云 自动部署 PHP 项目</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/持续集成/">
+                                <span class="chip bg-color">持续集成</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/持续集成/" class="post-category">
+                                持续集成
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-05-23
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-06-01
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    9 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>Jenkins 是一款由 <a href="https://zh.wikipedia.org/wiki/Java" target="_blank" rel="noopener">Java</a> 编写的<a href="https://zh.wikipedia.org/wiki/开源" target="_blank" rel="noopener">开源</a>的<a href="https://zh.wikipedia.org/wiki/持续集成" target="_blank" rel="noopener">持续集成</a>工具。在与 <a href="https://zh.wikipedia.org/wiki/Oracle" target="_blank" rel="noopener">Oracle</a> 发生争执后，项目从 <a href="https://zh.wikipedia.org/wiki/Hudson_(软件)" target="_blank" rel="noopener">Hudson</a> 项目<a href="https://zh.wikipedia.org/wiki/复刻_(软件工程)" target="_blank" rel="noopener">复刻</a>。这个关系就跟 MySQL 和 MariaDB 关系一样。只能说 <a href="https://zh.wikipedia.org/wiki/Oracle" target="_blank" rel="noopener">Oracle</a> 故事真多！！！</p>
+<p>Jenkins 提供了软件开发的持续集成服务。它运行在 Servlet 容器中（例如 Apache Tomcat）。</p>
+<p>它支持<a href="https://zh.wikipedia.org/wiki/软件配置管理" target="_blank" rel="noopener">软件配置管理</a>（SCM）工具（包括 <a href="https://zh.wikipedia.org/w/index.php?title=AccuRev_SCM&action=edit&redlink=1" target="_blank" rel="noopener">AccuRev SCM</a>、<a href="https://zh.wikipedia.org/wiki/CVS" target="_blank" rel="noopener">CVS</a>、<a href="https://zh.wikipedia.org/wiki/Subversion" target="_blank" rel="noopener">Subversion</a>、<a href="https://zh.wikipedia.org/wiki/Git" target="_blank" rel="noopener">Git</a>、<a href="https://zh.wikipedia.org/w/index.php?title=Perforce&action=edit&redlink=1" target="_blank" rel="noopener">Perforce</a>、<a href="https://zh.wikipedia.org/w/index.php?title=Clearcase&action=edit&redlink=1" target="_blank" rel="noopener">Clearcase</a> 和 <a href="https://zh.wikipedia.org/w/index.php?title=Rational_Team_Concert&action=edit&redlink=1" target="_blank" rel="noopener">RTC</a>），可以执行基于<a href="https://zh.wikipedia.org/wiki/Apache_Ant" target="_blank" rel="noopener">Apache Ant</a> 和 <a href="https://zh.wikipedia.org/wiki/Apache_Maven" target="_blank" rel="noopener">Apache Maven</a> 的项目，以及任意的 <a href="https://zh.wikipedia.org/wiki/Shell脚本" target="_blank" rel="noopener">Shell脚本</a> 和 Windows <a href="https://zh.wikipedia.org/wiki/批次檔" target="_blank" rel="noopener">批处理命令</a>。可以通过各种手段触发构建。例如提交给版本控制系统时被触发，也可以通过类似 <a href="https://zh.wikipedia.org/wiki/Cron" target="_blank" rel="noopener">Cron</a> 的机制调度，也可以在其他的构建已经完成时，还可以通过一个特定的 <a href="https://zh.wikipedia.org/wiki/URL" target="_blank" rel="noopener">URL</a> 进行请求。</p>
+<h4 id="持续集成是什么？"><a href="#持续集成是什么？" class="headerlink" title="持续集成是什么？"></a>持续集成是什么？</h4><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><p>互联网软件的开发和发布，已经形成了一套标准流程，最重要的组成部分就是持续集成（Continuous integration，简称 CI）。</p>
+<p><strong>持续集成指的是，频繁地（一天多次）将代码集成到主干。</strong></p>
+<p>它的好处主要有两个。</p>
+<ol>
+<li><strong>快速发现错误。</strong>每完成一点更新，就集成到主干，可以快速发现错误，定位错误也比较容易。</li>
+<li><strong>防止分支大幅偏离主干。</strong>如果不是经常集成，主干又在不断更新，会导致以后集成的难度变大，甚至难以集成。</li>
+</ol>
+<p><strong>持续集成的目的，就是让产品可以快速迭代，同时还能保持高质量。</strong>它的核心措施是，代码集成到主干之前，必须通过自动化测试。只要有一个测试用例失败，就不能集成。</p>
+<p>Martin Fowler 说过，”持续集成并不能消除 Bug，而是让它们非常容易发现和改正。”</p>
+<p>与持续集成相关的，还有两个概念，分别是持续交付和持续部署。</p>
+<h5 id="持续交付"><a href="#持续交付" class="headerlink" title="持续交付"></a>持续交付</h5><p><strong>持续交付（Continuous delivery）指的是，频繁地将软件的新版本，交付给质量团队或者用户，以供评审。</strong>如果评审通过，代码就进入生产阶段。</p>
+<p>持续交付可以看作持续集成的下一步。它强调的是，不管怎么更新，软件是随时随地可以交付的。</p>
+<h5 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h5><p><strong>持续部署（continuous deployment）是持续交付的下一步，指的是代码通过评审以后，自动部署到生产环境。</strong></p>
+<p>持续部署的目标是，代码在任何时刻都是可部署的，可以进入生产阶段。</p>
+<h5 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h5><h6 id="1、提交"><a href="#1、提交" class="headerlink" title="1、提交"></a>1、提交</h6><p>流程的第一步，是开发者向代码仓库提交代码。所有后面的步骤都始于本地代码的一次提交（commit）。</p>
+<h6 id="2、测试（第一轮）"><a href="#2、测试（第一轮）" class="headerlink" title="2、测试（第一轮）"></a>2、测试（第一轮）</h6><p>代码仓库对 commit 操作配置了钩子（hook），只要提交代码或者合并进主干，就会跑自动化测试。</p>
+<p>测试有好几种。</p>
+<ul>
+<li>单元测试：针对函数或模块的测试</li>
+<li>集成测试：针对整体产品的某个功能的测试，又称功能测试</li>
+<li>端对端测试：从用户界面直达数据库的全链路测试</li>
+</ul>
+<p>第一轮至少要跑单元测试。</p>
+<h6 id="3、构建"><a href="#3、构建" class="headerlink" title="3、构建"></a>3、构建</h6><p>通过第一轮测试，代码就可以合并进主干，就算可以交付了。</p>
+<p>交付后，就先进行构建（build），再进入第二轮测试。所谓构建，指的是将源码转换为可以运行的实际代码，比如安装依赖，配置各种资源（样式表、JS脚本、图片）等等。</p>
+<p>常用的构建工具如下。</p>
+<ul>
+<li><a href="http://jenkins-ci.org/" target="_blank" rel="noopener">Jenkins</a></li>
+<li><a href="https://travis-ci.com/" target="_blank" rel="noopener">Travis</a></li>
+<li><a href="https://www.codeship.io/" target="_blank" rel="noopener">Codeship</a></li>
+<li><a href="http://stridercd.com/" target="_blank" rel="noopener">Strider</a></li>
+</ul>
+<p>Jenkins 和 Strider 是开源软件，Travis 和 Codeship 对于开源项目可以免费使用。它们都会将构建和测试，在一次运行中执行完成。</p>
+<h6 id="4、测试（第二轮）"><a href="#4、测试（第二轮）" class="headerlink" title="4、测试（第二轮）"></a>4、测试（第二轮）</h6><p>构建完成，就要进行第二轮测试。如果第一轮已经涵盖了所有测试内容，第二轮可以省略，当然，这时构建步骤也要移到第一轮测试前面。</p>
+<p>第二轮是全面测试，单元测试和集成测试都会跑，有条件的话，也要做端对端测试。所有测试以自动化为主，少数无法自动化的测试用例，就要人工跑。</p>
+<p>需要强调的是，新版本的每一个更新点都必须测试到。如果测试的覆盖率不高，进入后面的部署阶段后，很可能会出现严重的问题。</p>
+<h6 id="5、部署"><a href="#5、部署" class="headerlink" title="5、部署"></a>5、部署</h6><p>通过了第二轮测试，当前代码就是一个可以直接部署的版本（artifact）。将这个版本的所有文件打包（ <code>tar filename.tar</code> ）存档，发到生产服务器。</p>
+<p>生产服务器将打包文件，解包成本地的一个目录，再将运行路径的符号链接（symlink）指向这个目录，然后重新启动应用。这方面的部署工具有 <a href="http://www.ansible.com/" target="_blank" rel="noopener">Ansible</a>，<a href="https://www.chef.io/chef/" target="_blank" rel="noopener">Chef</a>，<a href="https://puppetlabs.com/" target="_blank" rel="noopener">Puppet</a> 等。</p>
+<h6 id="6、回滚"><a href="#6、回滚" class="headerlink" title="6、回滚"></a>6、回滚</h6><p>一旦当前版本发生问题，就要回滚到上一个版本的构建结果。最简单的做法就是修改一下符号链接，指向上一个版本的目录。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h4 id="Java-JDK，是-Jenkins-必备，如已安装请忽略，当前安装都以-Centos-为标准"><a href="#Java-JDK，是-Jenkins-必备，如已安装请忽略，当前安装都以-Centos-为标准" class="headerlink" title="Java JDK，是 Jenkins 必备，如已安装请忽略，当前安装都以 Centos 为标准"></a>Java JDK，是 Jenkins 必备，如已安装请忽略，当前安装都以 Centos 为标准</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 1、查看是否已安装 </span>
+java -version
+
+<span class="token comment" spellcheck="true"># 2、如没有安装，安装 JDK</span>
+yum <span class="token function">install</span> java-1.8.0-openjdk-devel.x86_64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Jenkins-软件源"><a href="#Jenkins-软件源" class="headerlink" title="Jenkins  软件源"></a>Jenkins  软件源</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">wget</span> -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+<span class="token function">sudo</span> rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+yum <span class="token function">install</span> jenkins<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>到此 Jenkins 就算已经安装好，但是安装好了还不算完事，还需要对 Jenkins 进行一些配置，看项目需求而定。</p>
+<h4 id="Jenkins-配置"><a href="#Jenkins-配置" class="headerlink" title="Jenkins 配置"></a>Jenkins 配置</h4><p>修改 Jenkins 当中默认的用户，修改成 root 用户，和 Jenkins 默认监听的端口，Jenkins 默认监听的 8080，如跟自己的一些软件有冲突，也可以自定义监听的端口。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">vim /etc/sysconfig/jenkins
+
+<span class="token comment" spellcheck="true">#  29  行，JENKINS_USER="jenkins"</span>
+JENKINS_USER<span class="token operator">=</span><span class="token string">"root"</span>
+
+<span class="token comment" spellcheck="true"># 58 行，JENKINS_PORT="8080"</span>
+JENKINS_PORT<span class="token operator">=</span><span class="token string">"xxxx"</span>
+
+<span class="token comment" spellcheck="true"># 保存，重启 Jenkins</span>
+<span class="token function">service</span> jenkins restart
+
+<span class="token comment" spellcheck="true"># 修改权限</span>
+<span class="token function">chown</span> -R root:root /var/log/jenkins
+
+<span class="token function">chown</span> -R root:root /var/lib/jenkins
+
+<span class="token function">chown</span> -R root:root /var/cache/jenkins
+
+<span class="token comment" spellcheck="true"># 修改 /etc/init.d/jenkins</span>
+
+candidates<span class="token operator">=</span><span class="token string">" 
+/etc/alternatives/java 
+/usr/lib/jvm/java-1.8.0/bin/java 
+/usr/lib/jvm/jre-1.8.0/bin/java 
+/usr/lib/jvm/java-1.7.0/bin/java 
+/usr/lib/jvm/jre-1.7.0/bin/java 
+/usr/lib/jvm/java-11.0/bin/java 
+/usr/lib/jvm/jre-11.0/bin/java 
+/usr/lib/jvm/java-11-openjdk-amd64 
+/usr/bin/java 
+"</span>
+<span class="token comment" spellcheck="true"># 在里面加上自己的 JDK 路径，如果是 yum 安装 那么就在 /usr/lib/jvm 当中</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Jenkins 基本的四个命令</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 查看状态</span>
+<span class="token function">service</span> jenkins status
+
+<span class="token comment" spellcheck="true"># 启动 </span>
+<span class="token function">service</span> jenkins start
+
+<span class="token comment" spellcheck="true"># 重启</span>
+<span class="token function">service</span> jenkins restart
+
+<span class="token comment" spellcheck="true"># 停止</span>
+<span class="token function">service</span> jenkins stop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>正常的状态</p>
+<pre class="line-numbers language-bash"><code class="language-bash">● jenkins.service - LSB: Jenkins Automation Server
+   Loaded: loaded <span class="token punctuation">(</span>/etc/rc.d/init.d/jenkins<span class="token punctuation">;</span> bad<span class="token punctuation">;</span> vendor preset: disabled<span class="token punctuation">)</span>
+   Active: active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since Sun 2020-05-24 19:38:08 CST<span class="token punctuation">;</span> 2h 45min ago
+     Docs: man:systemd-sysv-generator<span class="token punctuation">(</span>8<span class="token punctuation">)</span>
+  Process: 11681 ExecStop<span class="token operator">=</span>/etc/rc.d/init.d/jenkins stop <span class="token punctuation">(</span>code<span class="token operator">=</span>exited, status<span class="token operator">=</span>0/SUCCESS<span class="token punctuation">)</span>
+  Process: 11738 ExecStart<span class="token operator">=</span>/etc/rc.d/init.d/jenkins start <span class="token punctuation">(</span>code<span class="token operator">=</span>exited, status<span class="token operator">=</span>0/SUCCESS<span class="token punctuation">)</span>
+   CGroup: /system.slice/jenkins.service
+           └─11759 /etc/alternatives/java -Dcom.sun.akuma.Daemon<span class="token operator">=</span>daemonized -Djava.awt.headless<span class="token operator">=</span>true -DJENKINS_HOME<span class="token operator">=</span>/var/lib/jenkins -jar /usr/lib/jenkins/<span class="token punctuation">..</span>.
+
+May 24 19:38:08 iZ8vbhj6wlgflm1cdhbzbnZ systemd<span class="token punctuation">[</span>1<span class="token punctuation">]</span>: Starting LSB: Jenkins Automation Server<span class="token punctuation">..</span>.
+May 24 19:38:08 iZ8vbhj6wlgflm1cdhbzbnZ runuser<span class="token punctuation">[</span>11743<span class="token punctuation">]</span>: pam_unix<span class="token punctuation">(</span>runuser:session<span class="token punctuation">)</span>: session opened <span class="token keyword">for</span> user root by <span class="token punctuation">(</span>uid<span class="token operator">=</span>0<span class="token punctuation">)</span>
+May 24 19:38:08 iZ8vbhj6wlgflm1cdhbzbnZ systemd<span class="token punctuation">[</span>1<span class="token punctuation">]</span>: Started LSB: Jenkins Automation Server.
+May 24 19:38:08 iZ8vbhj6wlgflm1cdhbzbnZ jenkins<span class="token punctuation">[</span>11738<span class="token punctuation">]</span>: Starting Jenkins <span class="token punctuation">[</span>  OK  <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Dokcer-安装"><a href="#Dokcer-安装" class="headerlink" title="Dokcer 安装"></a>Dokcer 安装</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 1、拉取 Jenkins 镜像</span>
+docker pull jenkins/jenkins:lts
+
+<span class="token comment" spellcheck="true"># 2、创建映射目录</span>
+<span class="token function">mkdir</span> /opt/jenkins
+<span class="token function">chmod</span> -R 777 jenkins
+
+<span class="token comment" spellcheck="true"># 3、创建容器</span>
+docker run -p 8080:8080 -p 50000:50000 -v /opt/jenkins:/var/jenkins_home -d jenkins/jenkins:lts
+
+<span class="token comment" spellcheck="true"># 创建容器的一些命令，这里就不过多说了，有性趣可以看我那篇 Docker 文章</span>
+<span class="token comment" spellcheck="true"># 官方 Dokcer 安装 Jenkins 教程地址：https://github.com/jenkinsci/docker/blob/master/README.md</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Web-配置"><a href="#Web-配置" class="headerlink" title="Web 配置"></a>Web 配置</h4><p>在那我们不管是 Docker 搭建好了或者原生安装，<a href="http://ip:port" target="_blank" rel="noopener">http://ip:port</a> 就可以访问 Jenkens 了，如果访问不通怎么办？</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 首先看服务器内外是否有返回内容</span>
+curl 127.0.0.1:prot
+
+<span class="token comment" spellcheck="true"># 出现以下说明已经搭建好了 Jenkins，如果服务器 IP 不能访问，绝大的问题在服务商的安全组规则，阿里云为例。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/%E6%88%AA%E5%9B%BE%E5%BD%95%E5%B1%8F_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20200524220622.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-24_22-13.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-24_22-14.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-24_22-17.png" alt></p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 原生安装获取密码</span>
+<span class="token function">cat</span> /var/jenkins_home/secrets/initialAdminPassword
+
+<span class="token comment" spellcheck="true"># Dokcer 安装获取密码，刚才映射目录里面获取</span>
+<span class="token function">cat</span> /opt/jenkins/secrets/initialAdminPassword
+
+<span class="token comment" spellcheck="true"># 到此安装 Jenkins 前部步骤就已完成，Dokcer 因为是打包好了的可以省去我们很多事情，原生安装就稍微麻烦一些，不过这个都看自己如何去使用了。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-25_10-03.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-25_10-04.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-25_10-07.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-25_10-08.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-25_10-13.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-25_10-13_1.png" alt></p>
+<h4 id="设置中文"><a href="#设置中文" class="headerlink" title="设置中文"></a>设置中文</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_14-52.png" alt></p>
+<p>在可选插件里面搜索：Locale、Localization 插件并且安装</p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-00.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-01.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-02.png" alt></p>
+<p>找到 <strong>Locale</strong> 设置默认为 zh_CH 并且强制使用此语言</p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-05.png" alt></p>
+<blockquote>
+<p>如果更新了什么插件重启了，中文化又不完整了咋办？不用换，先到系统设置里面把 zh_CN 删了，再把下面勾选的强制也关了，然后在把 Locale 关闭重启，之后开启 Locale 在设置 zh_CN 和勾选强制！！！</p>
+</blockquote>
+<h3 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h3><h4 id="1、安装插件"><a href="#1、安装插件" class="headerlink" title="1、安装插件"></a>1、安装插件</h4><p>Git Parameter  + Gitee Plugin + Publish Over SSH，插件安装就是这样样子</p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_10-22.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_10-23.png" alt></p>
+<h4 id="2、码云配置"><a href="#2、码云配置" class="headerlink" title="2、码云配置"></a>2、码云配置</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-55.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-31_18-07.png" alt></p>
+<ul>
+<li>链接名称：随便填…</li>
+<li>Gitee 域名 URL：<a href="https://gitee.com" target="_blank" rel="noopener">https://gitee.com</a></li>
+<li>证书令牌：添加 -&gt; jenkins </li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_16-14.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_16-08.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_16-11.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_16-15.png" alt></p>
+<h4 id="3、SSH-设置"><a href="#3、SSH-设置" class="headerlink" title="3、SSH 设置"></a>3、SSH 设置</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-06-01_21-12.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-06-01_21-13.png" alt></p>
+<h4 id="4、创建一个项目"><a href="#4、创建一个项目" class="headerlink" title="4、创建一个项目"></a>4、创建一个项目</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-07.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-31_19-45.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_16-50.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_16-51.png" alt></p>
+<p>触发 HOOK ，在码云项目找到 Settings -&gt; WebHooks -&gt; add</p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_17-02.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_17-08.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-06-01_21-17.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-06-01_21-19.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-06-01_21-25.png" alt></p>
+<blockquote>
+<p>参考地址：</p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html</a></p>
+</blockquote>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">道法自然</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://daixianjin.github.io/2020/05/23/jenkins-自动化部署/">https://daixianjin.github.io/2020/05/23/jenkins-自动化部署/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">道法自然</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/持续集成/">
+                                    <span class="chip bg-color">持续集成</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '1ba192f17fa97b79e2f8',
+        clientSecret: '141c79b0d56b6d05fbf84eabc1263790c39cbd9f',
+        repo: 'daixianjin.github.io',
+        owner: 'daixianjin',
+        admin: "daixianjin",
+        id: '2020-05-23T21-44-15',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/06/02/Laravel-队列/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-队列">
+                        
+                        <span class="card-title">Laravel-队列</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘要Laravel 队列为不同的队列后台服务提供了统一的 API，比如 Beanstalk, Amazon SQS, Redis, 甚至是关系型数据库。队列可以使你延迟处理一些耗时的任务，比如发送邮件。延迟这些耗时的任务会大幅提高你的应用对
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Laravel/" class="post-category">
+                                    Laravel
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/29/Golang-笔记/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/golang_tutorial_coverage.jpg" class="responsive-img" alt="Golang-学习笔记">
+                        
+                        <span class="card-title">Golang-学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘要Go 是一门全新的语言。尽管它从现有的语言中借鉴了许多理念，但其与众不同的特性， 使得使用 Go 编程在本质上就不同于其它语言。做为 PHP 开发人员，第二门语言选 Go 的同撩还是比较多，从此可以论证 Go 还是非常值得学习！
+Go 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Go/" class="post-category">
+                                    Go
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Go/">
+                        <span class="chip bg-color">Go</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">道法自然</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">52.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "08";
+                    var startDate = "1";
+                    var startHour = "14";
+                    var startMinute = "14";
+                    var startSecond = "37";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/daixianjin" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:boyi6868@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=562275977" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 562275977" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

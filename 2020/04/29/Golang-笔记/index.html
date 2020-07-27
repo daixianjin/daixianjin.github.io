@@ -1,0 +1,1123 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Golang-学习笔记, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="description" content="一个后端小菜鸟的进击之路">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Golang-学习笔记 | 道法自然</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">道法自然</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">道法自然</div>
+        <div class="logo-desc">
+            
+            一个后端小菜鸟的进击之路
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/golang_tutorial_coverage.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Golang-学习笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Go/">
+                                <span class="chip bg-color">Go</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Go/" class="post-category">
+                                Go
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-29
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-05-21
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    13 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>Go 是一门全新的语言。尽管它从现有的语言中借鉴了许多理念，但其与众不同的特性， 使得使用 Go 编程在本质上就不同于其它语言。做为 PHP 开发人员，第二门语言选 Go 的同撩还是比较多，从此可以论证 Go 还是非常值得学习！</p>
+<p><strong>Go 特性对比大多数语言：</strong></p>
+<ol>
+<li>为了简化设计，不支持函数重载和操作符重载</li>
+<li>为了避免在 C/C++ 开发中的一些 Bug 和混乱，不支持隐式转换</li>
+<li>Go 语言通过另一种途径实现面向对象设计（结构）来放弃类和类型的继承，尽管在接口的使用方面可以实现类似变体类型的功能，但本身不支持变体类型</li>
+<li>不支持动态加载代码</li>
+<li>不支持动态链接库</li>
+<li>不支持泛型</li>
+<li>通过 recover 和 panic 来替代异常机制</li>
+<li>不支持断言</li>
+<li>不支持静态变量</li>
+</ol>
+<h4 id="GO-语言很特别"><a href="#GO-语言很特别" class="headerlink" title="GO 语言很特别"></a>GO 语言很特别</h4><p>没有 “对象”，没有继承、多态，没有泛型，没有 try/catch</p>
+<p>有接口，函数式编程，CSP 并发编程（goroutine + channel）</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>从 Go 语言中文网：<a href="https://studygolang.com/dl" target="_blank" rel="noopener">Go 中文社区</a> 上下载合适的 二进制发行版，根据自己操作系统而定二进制文件</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">tar</span> -xzf go1.13.6.linux-amd64.tar.gz -C /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>建立软链接</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/go/bin/* /usr/bin/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>测试</p>
+<pre class="line-numbers language-bash"><code class="language-bash">go version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果没有出现问题，那么就算装好了。接下来就是设置 Go 的开发环境了</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 如果是zsh,就把/.bashrc 改成 /.zshr</span>
+<span class="token function">sudo</span> vim <span class="token variable">$HOME</span>/.bashrc
+
+<span class="token function">export</span> GOROOT<span class="token operator">=</span>/usr/local/go   <span class="token comment" spellcheck="true"># 表示 Go 在你的电脑上的安装位置，有些安装包会自动设置默认的 goroot</span>
+<span class="token function">export</span> GOPATH<span class="token operator">=</span><span class="token variable">$HOME</span>/go-work   <span class="token comment" spellcheck="true"># 默认安装包的路径,根据自己需要来选择位置</span>
+<span class="token function">export</span> PATH<span class="token operator">=</span><span class="token variable">$PATH</span><span class="token keyword">:</span><span class="token variable">$GOROOT</span>/bin:<span class="token variable">$GOPATH</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使配置文件生效，这里有个大坑，千万别用 fish 里面执行它一直报错，人都差点搞死了</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">source</span> <span class="token variable">$HOME</span>/.bashrc　<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>可运行 go env 查看 Go 环境变量</p>
+<pre class="line-numbers language-bash"><code class="language-bash">go <span class="token function">env</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="国际惯例"><a href="#国际惯例" class="headerlink" title="国际惯例"></a>国际惯例</h3><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"你好世界"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Go 语言的代码通过<strong>包</strong>（package）组织，包类似于其它语言里的库（libraries）或者模块（modules）。也就是说程序一开始，就要声明这个程序属于哪个包。一个包由位于单个目录下的一个或多个<code>.go</code>源代码文件组成, 目录定义包的作用。每个源文件都以一条<code>package</code>声明语句开始，紧跟着一系列导入（import）的包，之后是存储在这个文件里的程序语句。</p>
+<h4 id="特殊的-main-包"><a href="#特殊的-main-包" class="headerlink" title="特殊的 main 包"></a>特殊的 main 包</h4><p>main 包比较特殊，它定义了一个独立可执行的程序，它不是一个库！它是整个程序执行的入口。main 包当中的 main 函数就是我们所说整个程序执行的入口了，一般 main 函数当中会调用其它很多函数完成工作。</p>
+<h4 id="需要遵循的规定"><a href="#需要遵循的规定" class="headerlink" title="需要遵循的规定"></a>需要遵循的规定</h4><p>首先要注意一点，package 先 ，import 后，它们不能颠倒位置，package 只能有一个而不能多个，import 可以有多个。其次如果说 import 导入多个包，那么你都必须去使用导入的包，不然编译无法通过，这正是遵循了 Go 的格言：“没有不必要的代码！“。Go 的语法要求特别的严格，在 package 和 import 之后，才可以定义 函数、常亮、变量、类型的声明语句。它们没有顺序要求，可以随心所欲来！Go 语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。如：for，if 等。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响 Go 代码的正确解析。</p>
+<h4 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h4><p>Go 是一门编译型语言，Go 语言的工具链将源代码及其依赖转换成计算机的机器指令（译注：静态编译）。 Go 语言提供的工具都通过一个单独的命令 Go 调用，Go 命令有一系列子命令。最简单的一个子命令就是 run。这个命令编译一个或多个以 <code>.go</code> 结尾的源文件，链接库文件，并运行最终生成的可执行文件。</p>
+<p>编译并运行源文件</p>
+<pre class="line-numbers language-bash"><code class="language-bash">go run hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>编译生成一个可执行文件，在 Windows 下会生成一个 <code>.exe</code>文件，OS X  和 Linux 下会成才一个二进制文件，可以直接运行，Go 编译后不依附环境，但是需要相同的平台才能运行。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">go build hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="下载并安装包"><a href="#下载并安装包" class="headerlink" title="下载并安装包"></a>下载并安装包</h4><p>根据要求和实际情况从互联网上下载或更新指定的代码包及其依赖包，并对它们进行编译和安装，安装的目录就是 GOPATH 环境变量设置的目录当中，但是依赖 Git 或 SVN 等工具进行下载。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">go get -u github.com/gin-gonic/gin
+
+<span class="token comment" spellcheck="true"># 附加参数</span>
+<span class="token comment" spellcheck="true"># -v 显示操作流程的日志及信息，方便检查错误</span>
+<span class="token comment" spellcheck="true"># -u 下载丢失的包，但不会更新已经存在的包</span>
+<span class="token comment" spellcheck="true"># -d 只下载，不安装</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>参考地址：</p>
+<p>Go 圣经：<a href="https://books.studygolang.com/gopl-zh/ch1/ch1-01.html" target="_blank" rel="noopener">https://books.studygolang.com/gopl-zh/ch1/ch1-01.html</a> ，之后所有都为 Go 圣经参考。</p>
+</blockquote>
+<h3 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h3><h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p>Go 语言中的函数名、变量名、常量名、类型名、语句标号和包名等所有的命名，都遵循一个简单的命名规则：一个名字必须以一个字母（Unicode字母）或下划线开头，后面可以跟任意数量的字母、数字或下划线。</p>
+<p>Go 语言中类似 if 和 switch 的关键字有25个；关键字不能用于自定义名字，只能在特定语法结构中使用。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">break      default       func     interface   select
+case       defer         go       map         struct
+chan       else          goto     package     switch
+const      fallthrough   if       range       type
+continue   for           import   return      var<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此外，还有大约 30 多个预定义的名字，比如 int 和 true 等，主要对应内建的常量、类型和函数。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">内建常量</span><span class="token punctuation">:</span>  true false iota nil
+
+<span class="token key atrule">内建类型</span><span class="token punctuation">:</span>  int int8 int16 int32 int64
+          uint uint8 uint16 uint32 uint64 uintptr
+          float32 float64 complex128 complex64
+          bool byte rune string error
+
+<span class="token key atrule">内建函数</span><span class="token punctuation">:</span>  make len cap new append copy close delete
+          complex real imag
+          panic recover<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这些内部预先定义的名字并不是关键字，你可以在定义中重新使用它们。在一些特殊的场景中重新定义它们也是有意义的，但是也要注意避免过度而引起语义混乱。</p>
+<p>当标识符（包括常量、变量、类型、函数名、结构字段等等）以一个大写字母开头，如：Echo，那么使用这种形式的标识符的对象就可以被外部包的代码所使用（客户端程序需要先 import 导入这个包），这被称为<code>导出</code>（像面向对象语言中的 public ）；标识符如果以小写字母开头，则对包外是不可见的，但是他们在整个包的内部是可见并且可用的（像面向对象语言中的 private ）。</p>
+<p>名字的长度没有逻辑限制，但是 Go 语言的风格是尽量使用短小的名字。如果一个名字的作用域比较大，生命周期也比较长，那么用长的名字将会更有意义。Go 在习惯上推荐使用驼峰命令法。</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>Go 是一门强类型语言，但是 Go 也提供了隐式声明，在我的认知当中，只要声明时没有类型只有表达式，那么就属于隐式声明。</p>
+<h5 id="var-声明变量"><a href="#var-声明变量" class="headerlink" title="var 声明变量"></a>var 声明变量</h5><p>语法：类型和表达式可以省略其中一个，但不能二个都省略。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">var 变量名字 类型 = 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果省略的是<code>类型</code>信息，那么将根据初始化表达式来推导变量的类型信息。</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 隐式声明</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span>
+
+fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>reflect<span class="token punctuation">.</span><span class="token function">TypeOf</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 1 int </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果初始化<code>表达式</code>被省略，那么将用零值初始化该变量。Go 在声明变量时，内存当中就已经对这个变量进行了初始化操作。数值类型变量对应的零值是 0，布尔类型变量对应的零值是 false，字符串类型对应的零值是空字符串，接口或引用类型（包括 slice、指针、map、chan 和函数）变量对应的零值是 nil。数组或结构体等聚合类型对应的零值是每个元素或字段都是对应该类型的零值。</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">var</span> a <span class="token builtin">string</span>
+<span class="token keyword">var</span> b <span class="token builtin">int</span>
+<span class="token keyword">var</span> c <span class="token builtin">float32</span>
+
+fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// ""、0、0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>零值初始化机制可以确保每个声明的变量总是有一个良好定义的值，因此在 Go 语言中不存在未初始化的变量。这个特性可以简化很多代码，而且可以在没有增加额外工作的前提下确保边界条件下的合理行为。另外需要注意一点，当声明一个变量，那么当前程序中就必须去使用这个变量，否则报错。还是 Go 的格言：没有不必要的代码。</p>
+<p>Go 声明变量非常多元化，除了以上声明变量的方法，还有以下声明变量的方法：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 一组声明多个，省略表达式</span>
+<span class="token keyword">var</span> a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c <span class="token builtin">int</span> <span class="token comment" spellcheck="true">// 0、0、0 int int int</span>
+
+<span class="token comment" spellcheck="true">// 一组声明多个，省略类型</span>
+<span class="token keyword">var</span> a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"你好世界"</span><span class="token punctuation">,</span><span class="token number">3.1415</span> <span class="token comment" spellcheck="true">// int string float64</span>
+
+<span class="token comment" spellcheck="true">// 分组声明</span>
+<span class="token keyword">var</span> <span class="token punctuation">(</span>
+    a <span class="token builtin">int</span>
+    b <span class="token operator">=</span> <span class="token string">"你好世界"</span>
+    c <span class="token operator">=</span> <span class="token number">3.1415</span>
+    d <span class="token punctuation">,</span>e <span class="token builtin">bool</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span class="token boolean">false</span>
+<span class="token punctuation">)</span>  
+<span class="token comment" spellcheck="true">// int string float64 bool bool</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>函数返回值初始化变量，注意：<strong>在包级别声明的变量会在 main 入口函数执行前完成初始化</strong>，<strong>局部变量将在声明语句被执行到的时候完成初始化</strong>。</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">var</span> f<span class="token punctuation">,</span> err <span class="token operator">=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 返回一个文件和一个错误</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="简洁声明变量"><a href="#简洁声明变量" class="headerlink" title="简洁声明变量"></a>简洁声明变量</h5><p>Go 语言当中除了 var 来声明变量，还可以使用 <code>:=</code>来声明变量，更加的简洁。我也喜欢把 <code>:=</code>叫做隐式声明变量。</p>
+<p>语法：不能省略任何的东西，因为它已经是最简洁的声明方式了。请记住<code>:=</code>是一个变量声明语句，而<code>=</code>是一个变量赋值操作。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">变量名字 <span class="token punctuation">:</span>= 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>它也支持一组多个声明，<strong>但是没有分组声明</strong>。</p>
+<pre class="line-numbers language-go"><code class="language-go">a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"你好世界"</span><span class="token punctuation">,</span><span class="token boolean">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>它也可以使用函数返回值初始化变量。</p>
+<pre class="line-numbers language-go"><code class="language-go">f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 返回一个文件和一个错误</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>简洁声明还有个奇妙的地方，简短变量声明左边的变量可能并不是全部都是刚刚声明的。如果有一些已经在相同的词法域声明过了，那么简短变量声明语句对这些已经声明过的变量就只有赋值行为了。在下面的代码中，第一个语句声明了 in 和 err 两个变量。在第二个语句只声明了out 一个变量，然后对已经声明的 err 进行了赋值操作，var 并不可以有类似的操作。<strong>但是简短变量声明语句中必须至少要声明一个新的变量，下面的代码将不能编译通过</strong>。</p>
+<pre class="line-numbers language-go"><code class="language-go">in<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>infile<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">// ...</span>
+out<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span>outfile<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h5 id="它们的作用域"><a href="#它们的作用域" class="headerlink" title="它们的作用域"></a>它们的作用域</h5><p><code>var</code> 声明可以在包内部声明（ import 下），简洁声明不可以在包内部声明（ import 下）。<code>var</code> 在包内部声明的变量全局可以使用，而简洁声明只有在其声明的内部使用。</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">var</span> a <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">100</span> <span class="token comment" spellcheck="true">// 全局可以使用</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    b <span class="token operator">:=</span> <span class="token number">100</span> <span class="token comment" spellcheck="true">// 只能在 main 函数当中使用</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>var</code> 声明和简洁声明，如果是在相同的作用域下他们不能声明相同变量，如在相同的函数体当中。如果 var 是在包内部声明，在函数体内部使用简洁声明一个相同的变量，那么此时就是赋值。<strong>相同作用域下不能存在二个相同的变量！</strong></p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> a <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">100</span>
+    a <span class="token operator">:=</span> <span class="token number">10000</span> <span class="token comment" spellcheck="true">// 错误声明</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// ...</span>
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">var</span> a <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">100</span> <span class="token comment" spellcheck="true">// 全局变量</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    a <span class="token operator">:=</span> <span class="token number">100000</span> <span class="token comment" spellcheck="true">// 局部变量，他们作用域完全不一样，此时正确声明</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><p>首先要了解，值传递和引用传递，这二个的区别。</p>
+<p>值传递又称拷贝传值，就是将一个变量的值复制一个给另外一个变量。此时二个变量的值相同，但是此时的二个变量又是互相独立的存在，操作其中任何一个变量，另外一个变量都不会受到其影响。</p>
+<pre class="line-numbers language-go"><code class="language-go">a <span class="token operator">:=</span> <span class="token number">100</span>
+b <span class="token operator">:=</span> a
+a<span class="token operator">++</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果：a = 101 ，b = 100</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果可以发现他们的内存地址完全不一样，都是独立的存在</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>指针（引用传递）就是将一个数据的内存空间地址拷贝一个传递给另一个变量，此时二个变量的内存空间地址都指向一个地址，改变其中一个值另外一个值也会受到影响而改变。在变量前面加上一个<code>&amp;</code>符号就是取这个变量的内存地址。如需要使用指针，Go 当非常简单执行要在变量前面加上 <code>*</code>即可表示指针，另外 Go 的指针不支持指针的运算！</p>
+<pre class="line-numbers language-go"><code class="language-go">a <span class="token operator">:=</span> <span class="token number">100</span>
+b <span class="token operator">:=</span> <span class="token operator">&amp;</span>a
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token operator">*</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果 a = 100，b = 100</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果可以发现他们的内存地址完全一致</span>
+<span class="token comment" spellcheck="true">// ...</span>
+<span class="token operator">*</span>b <span class="token operator">=</span> <span class="token operator">*</span>b <span class="token operator">+</span> <span class="token number">100</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token operator">*</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果 a = 200，b = 200</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果可以发现他们的内存地址完全一致</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>任何类型的指针的零值都是 nil。如果 p 指向某个有效变量，那么<code>p != nil</code>测试为真。指针之间也是可以进行相等测试的，只有当它们指向同一个变量或全部是 nil 时才相等。</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">var</span> x<span class="token punctuation">,</span> y <span class="token builtin">int</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x <span class="token operator">==</span> <span class="token operator">&amp;</span>x<span class="token punctuation">,</span> <span class="token operator">&amp;</span>x <span class="token operator">==</span> <span class="token operator">&amp;</span>y<span class="token punctuation">,</span> <span class="token operator">&amp;</span>x <span class="token operator">==</span> <span class="token boolean">nil</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "true false false"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Go 语言当中，返回函数中局部变量也是安全的，但每次返回的结果都不同。</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">b</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+    a <span class="token operator">:=</span> <span class="token number">1</span>
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>a
+<span class="token punctuation">}</span>
+
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>学习当中…</p>
+</blockquote>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">道法自然</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://daixianjin.github.io/2020/04/29/Golang-笔记/">https://daixianjin.github.io/2020/04/29/Golang-笔记/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">道法自然</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Go/">
+                                    <span class="chip bg-color">Go</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '1ba192f17fa97b79e2f8',
+        clientSecret: '141c79b0d56b6d05fbf84eabc1263790c39cbd9f',
+        repo: 'daixianjin.github.io',
+        owner: 'daixianjin',
+        admin: "daixianjin",
+        id: '2020-04-29T13-57-59',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/05/23/jenkins-自动化部署/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1502354304971856.png" class="responsive-img" alt="Jenkins + 码云 自动部署 PHP 项目">
+                        
+                        <span class="card-title">Jenkins + 码云 自动部署 PHP 项目</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘要Jenkins 是一款由 Java 编写的开源的持续集成工具。在与 Oracle 发生争执后，项目从 Hudson 项目复刻。这个关系就跟 MySQL 和 MariaDB 关系一样。只能说 Oracle 故事真多！！！
+Jenkins 
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-23
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/持续集成/" class="post-category">
+                                    持续集成
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/持续集成/">
+                        <span class="chip bg-color">持续集成</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/20/搭建免费的图床/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1573462520_5dc921f8018f2.jpeg" class="responsive-img" alt="利用 Github + PicGo + JsDelivr 搭建免费高速图床">
+                        
+                        <span class="card-title">利用 Github + PicGo + JsDelivr 搭建免费高速图床</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘要以前使用的微博图床，我使用 Manjaro 18 版本的时候 Chrome 插件好好的可以使用，但是有一次重新装了一次系统后凉了，也找不到解决方法，放弃了。SM.SM 虽然免费使用，也是现在一直使用的图床，但是最近出来了收费模式，突然感
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/网络/" class="post-category">
+                                    网络
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/网络/">
+                        <span class="chip bg-color">网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">道法自然</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">52.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "08";
+                    var startDate = "1";
+                    var startHour = "14";
+                    var startMinute = "14";
+                    var startSecond = "37";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/daixianjin" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:boyi6868@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=562275977" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 562275977" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
