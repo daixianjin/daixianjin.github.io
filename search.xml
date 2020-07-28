@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>MySQL-唯一索引与 NULL</title>
+      <link href="/2020/07/28/MySQL-%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E4%B8%8ENULL/"/>
+      <url>/2020/07/28/MySQL-%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E4%B8%8ENULL/</url>
+      
+        <content type="html"><![CDATA[<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>有没有遇到这样的情况，手机号码、邮箱账号、用户账号、都说登陆的账号。而为了简化用户的操作，用户可以选择手机号码或邮箱账号，那么也就说他们之中有一个会为空。当给这三个字段唯一索引时，可以确定的就是用户账号肯定不为空，其他二个可能为空而给定了空字符串。注册完成第一个账号，完全没问题，在注册第二个账号时，会提示索引重复。“我没有重复的呀！”，唯一索引，只可有一行空字符串，多一行就会报错索引重复。那么又在想我给默认 NULL 呢？默认 NULL 当然可以，NULL 可以多行，但是 NUll 会导致索引很麻烦，此方案也不可选。</p><h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>手机号码和邮箱账号，默认为空字符串。他们都使用普通索引。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>MySQL 在唯一索引中允许存在值为 NULL 的字段。NULL 值在 MySQL 可以代表是任意值，并且在有字段值为 NULL 时，不会参与校验这个组合的唯一索引，所以可能插入业务上不允许重复的数据，导致脏数据。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mysql-datetime和timestamp</title>
+      <link href="/2020/07/28/MySQL-datetime%E5%92%8Ctimestamp/"/>
+      <url>/2020/07/28/MySQL-datetime%E5%92%8Ctimestamp/</url>
+      
+        <content type="html"><![CDATA[<h3 id="datetime"><a href="#datetime" class="headerlink" title="datetime"></a>datetime</h3><p>保存格式为 YYYYMMDDHHMMSS（年月日时分秒）的整数，所以，<strong>它与时区无关</strong>，存入的是什么值就是什么值，<strong>不会根据当前时区进行转换</strong>。</p><p>存储范围：从 <code>1000-01-01 00:00:00</code> 到 <code>9999-12-31 23:59:59</code></p><p>长度：8 个字节，datetime(n), n 不是存储长度，而是显示的小数位数，即使小数位数是 0，存储是也是存储的6位小数，仅仅显示 0 位而已。</p><p>显示：显示日期和时间。</p><h3 id="timestamp"><a href="#timestamp" class="headerlink" title="timestamp"></a>timestamp</h3><p>存入的是自 1970-01-01 午夜(格林尼治标准时间)以来的秒数，它和 unix 时间戳相同。所以它与时区有关，查询时转为相应的时区时间。比如，存储的是 1970-01-01 00:00:00，客户端是北京，那么就加8个时区的小时 1970-01-01 08:00:00。</p><p>存储范围：<code>&#39;1970-01-01 00:00:01&#39;</code> UTC to<code>&#39;2038-01-19 03:14:07&#39;</code> </p><p>可以当做时间戳使用，在更新时，自动更新，这一列只能由系统自动更新，不能由 sql 更新，这个在乐观锁时有广泛的应用。</p><p>长度：4字节，因为存储长度的原因，决定了它支持的范围的比 datetime 的要小。</p><p>显示：显示日期和时间。</p><blockquote><p>原文地址：</p><p><a href="https://blog.csdn.net/wangjun5159/article/details/48010563" target="_blank" rel="noopener">https://blog.csdn.net/wangjun5159/article/details/48010563</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Laravel-权限管理</title>
+      <link href="/2020/07/28/Laravel-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/"/>
+      <url>/2020/07/28/Laravel-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>我们常说的 RBAC 就是基于角色的权限访问控制（Role-Based Access Control），我们会利用用户，角色和权限的关系，决定用户能做什么事，不能做什么事。在 RBAC 我们首先需要了解：</p><p>用户（User）—— 拥有角色的主体；<br>角色（Role）—— 一定数量的权限的集合；<br>权限 （Permission）—— 是否可以做具体的某个操作。</p><p>具体的权限是判断是否能做某件事的决定因素，<strong>一个角色可以拥有多个权限</strong>，<strong>角色和权限之间是多对多的关系</strong>。给用户赋予某个角色，用户就可以得到角色拥有的所有权限，用户就可以干某件事，<strong>同样用户与角色也是多对多的关系</strong>。总结一下就是用户可以有多个角色，角色可以有多个权限，用户的任意一个角色中拥有某个权限，他就可以做这个权限对应的事。</p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在 Laravel 当中，权限管理有一个非常优秀的扩展包，<a href="https://packagist.org/packages/spatie/laravel-permission" target="_blank" rel="noopener">spatie/laravel-permission</a>。当权限管理的包还有很多，这个都是看个人的选择。</p><pre class="line-numbers language-bash"><code class="language-bash">composer require spatie/laravel-permission<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>生成数据库迁移文件：</p><pre class="line-numbers language-bash"><code class="language-bash">php artisan vendor:publish --provider<span class="token operator">=</span><span class="token string">"Spatie\Permission\PermissionServiceProvider"</span> --tag<span class="token operator">=</span><span class="token string">"migrations"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Laravel </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Laravel-扩展包 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>PHP-OpCache</title>
       <link href="/2020/06/10/PHP-OpCache/"/>
       <url>/2020/06/10/PHP-OpCache/</url>
@@ -11,6 +86,18 @@
         <content type="html"><![CDATA[<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>它是由 PHP 官方公司 Zend 开发的一款免费使用的 PHP 优化加速拓展。将 PHP Code 预编译生成的脚本文件 OPcode 缓存在共享内存中供以后反复使用，从而避免了从磁盘读取代码再次编译的时间消耗。同时，它还应用了一些代码优化模式，使得代码执行更快。从而加速 PHP 应用响应。</p><p>实现 OPcache 的一个缺点是每次更改任何 PHP 代码时你都不得不去清除缓存。</p>]]></content>
       
       
+      <categories>
+          
+          <category> PHP </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PHP </tag>
+            
+        </tags>
       
     </entry>
     
