@@ -8,7 +8,7 @@
       <link href="/2020/07/28/MySQL-%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E4%B8%8ENULL/"/>
       <url>/2020/07/28/MySQL-%E5%94%AF%E4%B8%80%E7%B4%A2%E5%BC%95%E4%B8%8ENULL/</url>
       
-        <content type="html"><![CDATA[<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>有没有遇到这样的情况，手机号码、邮箱账号、用户账号、都说登陆的账号。而为了简化用户的操作，用户可以选择手机号码或邮箱账号，那么也就说他们之中有一个会为空。当给这三个字段唯一索引时，可以确定的就是用户账号肯定不为空，其他二个可能为空而给定了空字符串。注册完成第一个账号，完全没问题，在注册第二个账号时，会提示索引重复。“我没有重复的呀！”，唯一索引，只可有一行空字符串，多一行就会报错索引重复。那么又在想我给默认 NULL 呢？默认 NULL 当然可以，NULL 可以多行，但是 NUll 会导致索引很麻烦，此方案也不可选。</p><h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>手机号码和邮箱账号，默认为空字符串。他们都使用普通索引。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>MySQL 在唯一索引中允许存在值为 NULL 的字段。NULL 值在 MySQL 可以代表是任意值，并且在有字段值为 NULL 时，不会参与校验这个组合的唯一索引，所以可能插入业务上不允许重复的数据，导致脏数据。</p>]]></content>
+        <content type="html"><![CDATA[<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>有没有遇到这样的情况，手机号码、邮箱账号、用户账号、都说登陆的账号。而为了简化用户的操作，用户可以选择手机号码或邮箱账号，那么也就说他们之中有一个会为空。当给这三个字段唯一索引时，可以确定的就是用户账号肯定不为空，其他二个可能为空而给定了空字符串。注册完成第一个账号，完全没问题，在注册第二个账号时，会提示索引重复。“我没有重复的呀！”，唯一索引，只可有一行空字符串，多一行就会报错索引重复。那么又在想我给默认 NULL 呢？</p><p><strong>默认 NULL 当然可以，NULL 可以多行，但是 NUll 会导致索引很麻烦，此方案也不可选</strong>，<strong>NULL 在 MySQL 当中会在空间长度为 1 ，而空字符串是不会占空间，长度为 0 。</strong></p><h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>手机号码和邮箱账号，默认为空字符串。他们都使用普通索引。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>MySQL 在唯一索引中允许存在值为 NULL 的字段。NULL 值在 MySQL 可以代表是任意值，NULL 其实并不是空值，而是要占用空间，所以 MySQL 在进行比较的时候，NULL 会参与字段比较，所以对效率有一部分影响，而且B 树索引时不会存储 NULL 值的，所以如果索引的字段可以为 NULL，索引的效率会下降很多。</p>]]></content>
       
       
       <categories>
@@ -29,7 +29,7 @@
     
     
     <entry>
-      <title>Mysql-datetime和timestamp</title>
+      <title>Mysql-datetime 和 timestamp</title>
       <link href="/2020/07/28/MySQL-datetime%E5%92%8Ctimestamp/"/>
       <url>/2020/07/28/MySQL-datetime%E5%92%8Ctimestamp/</url>
       
