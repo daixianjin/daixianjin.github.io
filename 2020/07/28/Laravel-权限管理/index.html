@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel-扩展包/">
-                                <span class="chip bg-color">Laravel-扩展包</span>
+                            <a href="/tags/Laravel/">
+                                <span class="chip bg-color">Laravel</span>
                             </a>
                         
                     </div>
@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-28
+                    2020-07-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    320
+                    547
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -405,10 +405,60 @@
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>我们常说的 RBAC 就是基于角色的权限访问控制（Role-Based Access Control），我们会利用用户，角色和权限的关系，决定用户能做什么事，不能做什么事。在 RBAC 我们首先需要了解：</p>
 <p>用户（User）—— 拥有角色的主体；<br>角色（Role）—— 一定数量的权限的集合；<br>权限 （Permission）—— 是否可以做具体的某个操作。</p>
 <p>具体的权限是判断是否能做某件事的决定因素，<strong>一个角色可以拥有多个权限</strong>，<strong>角色和权限之间是多对多的关系</strong>。给用户赋予某个角色，用户就可以得到角色拥有的所有权限，用户就可以干某件事，<strong>同样用户与角色也是多对多的关系</strong>。总结一下就是用户可以有多个角色，角色可以有多个权限，用户的任意一个角色中拥有某个权限，他就可以做这个权限对应的事。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在 Laravel 当中，权限管理有一个非常优秀的扩展包，<a href="https://packagist.org/packages/spatie/laravel-permission" target="_blank" rel="noopener">spatie/laravel-permission</a>。当权限管理的包还有很多，这个都是看个人的选择。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">composer require spatie/laravel-permission<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>生成数据库迁移文件：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">php artisan vendor:publish --provider<span class="token operator">=</span><span class="token string">"Spatie\Permission\PermissionServiceProvider"</span> --tag<span class="token operator">=</span><span class="token string">"migrations"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="路由-Action-属性做标记"><a href="#路由-Action-属性做标记" class="headerlink" title="路由 Action 属性做标记"></a>路由 Action 属性做标记</h3><p>思路：把路由的 Action 属性拿来做标记，就相当于我们给这个路由贴上自己的标签。它属于哪一类，它的作用是什么，一目了然。让不知道的人看下它的信息就可以知道其的作用。当然可以不是所有的路由都去给它贴上一个标签，公共部分那么就不需要去区分，不做权限的记录。</p>
+<pre class="line-numbers language-PHP"><code class="language-PHP">Route::get('role',['title' => '获取角色列表' ,'as' => 'role.query','uses' => 'RoleController@queryRoleList']);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="刷新权限"><a href="#刷新权限" class="headerlink" title="刷新权限"></a>刷新权限</h3><p>上面把路由作为了标记，随时入库权限表。</p>
+<pre class="line-numbers language-php"><code class="language-php">        <span class="token variable">$routes</span> <span class="token operator">=</span> <span class="token function">app</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">routes</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getRoutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token variable">$data</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$routes</span> <span class="token keyword">as</span> <span class="token variable">$route</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$route</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">action</span><span class="token punctuation">[</span><span class="token string">'as'</span><span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token boolean">false</span> <span class="token operator">===</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token variable">$route</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">action</span><span class="token punctuation">[</span><span class="token string">'title'</span><span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token boolean">false</span> <span class="token operator">===</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token variable">$data</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+                    <span class="token string">'name'</span>          <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$route</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">action</span><span class="token punctuation">[</span><span class="token string">'as'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    <span class="token string">'title'</span>                 <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$route</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">action</span><span class="token punctuation">[</span><span class="token string">'title'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token variable">$result</span> <span class="token operator">=</span> Permission<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'title'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$result</span> <span class="token operator">=</span> <span class="token function">array_filter</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">,</span>
+                <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token variable">$v</span><span class="token punctuation">)</span> <span class="token keyword">use</span> <span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> <span class="token operator">!</span> <span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$v</span><span class="token punctuation">,</span> <span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            Permission<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            Permission<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="权限验证中间件"><a href="#权限验证中间件" class="headerlink" title="权限验证中间件"></a>权限验证中间件</h3><p>给与用户权限后，那么用户访问路由时，进行权限的验证。</p>
+<pre class="line-numbers language-php"><code class="language-php">    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">handle</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">,</span> Closure <span class="token variable">$next</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$result</span> <span class="token operator">=</span> UserRole<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'id'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">role</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">'competence'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">competence</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token function">ApiExceptionError</span><span class="token punctuation">(</span><span class="token function">trans</span><span class="token punctuation">(</span><span class="token string">'message.permissions.error'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">array_search</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">route</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">json_decode</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token variable">$next</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'code'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">,</span>
+                <span class="token string">'mes'</span>  <span class="token operator">=</span><span class="token operator">></span> <span class="token function">trans</span><span class="token punctuation">(</span><span class="token string">'message.permissions.error'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'date'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">''</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">403</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -472,8 +522,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel-扩展包/">
-                                    <span class="chip bg-color">Laravel-扩展包</span>
+                                <a href="/tags/Laravel/">
+                                    <span class="chip bg-color">Laravel</span>
                                 </a>
                             
                         </div>
@@ -780,7 +830,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">53.4k</span>&nbsp;字
+                class="white-color">53.7k</span>&nbsp;字
             
             
             
