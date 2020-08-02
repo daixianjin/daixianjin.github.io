@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-本地语言包, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Laravel-模型过滤, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-本地语言包 | 道法自然</title>
+    <title>Laravel-模型过滤 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -229,7 +229,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-本地语言包</h1>
+                    <h1 class="description center-align post-title">Laravel-模型过滤</h1>
                 </div>
             </div>
         </div>
@@ -371,21 +371,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-10-11
+                    2020-08-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2020-08-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    240
+                    276
                 </div>
                 
 
@@ -402,12 +402,235 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>Laravel 自身的语言包为英文，我们本地化开发都希望为中文，当然也有不需要中文的这个看自己项目的选择行来说，我做的项目一般都是本地化。所以本地化是不可缺少的一块。今天的主角就是 [<a href="https://packagist.org/packages/caouecs/" target="_blank" rel="noopener">caouecs/</a><a href="https://packagist.org/packages/caouecs/laravel-lang#dev-master" target="_blank" rel="noopener">laravel-lang</a>] ,支持 N 多国家语言包。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>$ composer require caouecs/laravel-lang</code></pre><blockquote>
-<p>请根据自己项目使用的 Laravel 版本选择分支，不同的分支对应 Laravel 不同的版本。</p>
-</blockquote>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>laravel-lang 使用非常简单，在我们 Composer 安装好这个扩展包以后，在 verdor 依赖包目录当中找到 <code>caouecs/laravel-lang</code>把里面的 zh-CN 复制到 <code>resources/lang</code>下面。修改 <code>config/app.php</code></p>
-<pre><code>&#39;locale&#39; =&gt; &#39;zh-CN&#39;,</code></pre><p>到此完成了 Laravel 语言包的替换，现在使用就是本地化了（如：表单验证），当然有无法替换的地方可以自行去修改语言包。</p>
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在一个项目当中，列表数据的搜索往往是比较常见的一种功能，也是一个难处理的功能，反正我觉得特别难处理。一个列表搜索可能就会写很多，也可以越加越多，特别难复用之后代码越来越多的冗余。我在的处理比较笨，那就在一个服务层里面写上所有可能用到的搜索条件，以下是代码的展示（请勿嘲笑）：</p>
+<pre class="line-numbers language-PHP"><code class="language-PHP">        public function searchService(object $query)
+    {
+        $page  = request('page', 1);
+        $limit = request('limit', 20);
+        $query = $query::query();
+
+        if ($mobile = request('mobile'))
+        {
+            $query->where([
+                'mobile' => $mobile
+            ]);
+        }
+
+        if ($inviteMobile = request('invite_mobile'))
+        {
+            $query->where([
+                'id' => User::where([
+                        'mobile' => $inviteMobile
+                    ])->select('id')->first()->id
+            ]);
+        }
+
+        if ($address = request('address'))
+        {
+            $query->where([
+                'address' => $address
+            ]);
+        }
+
+        if ($erhAddress = request('eth_address'))
+        {
+            $query->where([
+                'eth_address' => $erhAddress
+            ]);
+        }
+
+        if ($googleKey = request('google_key'))
+        {
+            $query->where([
+                'google_key' => $googleKey
+            ]);
+        }
+
+        if (in_array($googleStatus = request('google_status',3),[0,1]))
+        {
+            $query->where([
+                'google_status' => $googleStatus
+            ]);
+        }
+
+        if ($nickname = request('nickname'))
+        {
+            $query->where([
+                'nickname' => $nickname
+            ]);
+        }
+
+        if ($identity = request('user_identity'))
+        {
+            $query->where([
+                'user_identity' => $identity
+            ]);
+        }
+
+        if ($inviteCode = request('invite_code'))
+        {
+            $query->where([
+                'invite_code' => $inviteCode
+            ]);
+        }
+
+        if (in_array($status = request('status',3),[0,1]))
+        {
+            $query->where([
+                'status' => $status
+            ]);
+        }
+
+        if($time = request('created_at'))
+        {
+            $time = explode(' ',$time);
+            if (count($time) != 4) ApiExceptionError('日期错误');
+            $endTime = $time[3] == '00:00:00' ? '23:59:59' : $time[3];
+            $query->whereDate('created_at','>=',$time[0])
+                ->whereDate('created_at','<=',$time[2])
+                ->whereTime('created_at','>=',$time[1])
+                ->whereTime('created_at','<=',$endTime);
+        }
+
+        ... 此次省略 N 个
+
+        return $query->paginate($limit, ['*'], 'page', $page)
+            ->toArray();
+    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Eloquentfilter"><a href="#Eloquentfilter" class="headerlink" title="Eloquentfilter"></a>Eloquentfilter</h3><p><a href="https://packagist.org/packages/tucker-eric/eloquentfilter" target="_blank" rel="noopener">Eloquentfilter</a> 一种有说服力的过滤 Laravel 模型及其关系的方法的扩展包，能很好的帮助我们处理好条件搜索的各种问题，而且也可能很好做到的复用。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre class="line-numbers language-bash"><code class="language-bash">composer require tucker-eric/eloquentfilter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在 <code>config/app.php</code> 配置文件中注册服务提供者:</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token string">'providers'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+    EloquentFilter\ServiceProvider::class,
+<span class="token punctuation">]</span>,<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>使用 publish 命令将包配置文件复制到本地配置文件:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">php artisan vendor:publish --provider<span class="token operator">=</span><span class="token string">"EloquentFilter\ServiceProvider"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>发布配置文件后，会在 config 目录当中看见生成的配置文件 <code>config/eloquentfilter.php</code></p>
+<pre class="line-numbers language-PHP"><code class="language-PHP"># 设置模型的命令空间，如果要改到自己模型目录当中可以这样
+
+'namespace' => "App\\ModelFilters\\",
+
+# 修改到 Models 目录下
+
+'namespace' => "App\\Models\Filters\\",<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h4><p>扩展已经提供了生成模板的命令，执行命令后会自动生成对应的 Filter。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">php artisan model:filter UserFilter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>所有过滤器的默认名称空间是 <code>App ModelFilters</code>，每个 Model 都希望过滤器类名遵循 { $ModelName } 过滤器变数命名原则，而不管模型在哪个名称空间。下面是一个基于默认变数命名原则的模型和它们各自的过滤器的例子。</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>ModelFilter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>App\User</code></td>
+<td><code>App\ModelFilters\UserFilter</code></td>
+</tr>
+<tr>
+<td><code>App\FrontEnd\PrivatePost</code></td>
+<td><code>App\ModelFilters\PrivatePostFilter</code></td>
+</tr>
+<tr>
+<td><code>App\FrontEnd\Public\GuestPost</code></td>
+<td><code>App\ModelFilters\GuestPostFilter</code></td>
+</tr>
+</tbody></table>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>已经生成好了 Filter 之后改如何去使用呢？</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Model</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">EloquentFilter<span class="token punctuation">\</span>Filterable</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Database<span class="token punctuation">\</span>Eloquent<span class="token punctuation">\</span>Model</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">UserRole</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">use</span> <span class="token package">Filterable</span><span class="token punctuation">;</span> <span class="token shell-comment comment"># use 扩展提供的 trait</span>
+
+    <span class="token keyword">protected</span> <span class="token variable">$guarded</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token shell-comment comment"># 创建一个公共的方法并引入创建的 Filter</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">modelFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">provideFilter</span><span class="token punctuation">(</span>\<span class="token package">App<span class="token punctuation">\</span>Model<span class="token punctuation">\</span>Filters<span class="token punctuation">\</span>UserFilter</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以下是定义模型使用 Filter ，创建 Filter 肯定是要拿来过滤搜索。</p>
+<pre class="line-numbers language-PHP"><code class="language-PHP"><?php
+
+namespace App\Model\Filters;
+
+use EloquentFilter\ModelFilter;
+
+class UserFilter extends ModelFilter
+{
+    use CommonFilter; # 使用一个 trait 定义一些公共的条件
+    /**
+    * Related Models that have ModelFilters as well as the method on the ModelFilter
+    * As [relationMethod => [input_key1, input_key2]].
+    *
+    * @var array
+    */
+    public $relations = [''];
+        protected $blacklist = ['name']; # 黑名单，禁止使用的方法 $this->blacklistMethod() 扩展包提供的添加黑名单，$this->whitelistMethod() 扩展包提供的删除黑名单。嘿嘿，白色，黑色 政治不正确哦，哈哈哈哈哈哈哈哈哈！
+
+        # 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段
+    public function name($name)
+    {
+        return $this->whereLike('role_name',$name); 
+    }
+
+      # 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段
+    public function introduction($introduction)
+    {
+        return $this->whereLike('introduction',$introduction);
+    }
+
+    # 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段
+    public function role($role)
+    {
+        # 如果字段的以 _id 结尾可以省略 _id ,如果你不想这样可以 protected $drop_id = false;
+        return $this->whereLike('role_id',$role);
+    }
+
+    # 看着这里注意：setup 很特殊，只要定义了 setup 那么他都会每次使用这个 filter 的时候都会去执行一次
+    public function setup()
+    {
+        return $this->with('roles')
+    }
+
+    # $this->input('x') # 获取前端传递的某个字段
+    # $this->push('x','xx') # 如果在 setup 方法中调用，则添加要过滤的值。如果调用其他方法，则只会过滤关系
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Controllers</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Request</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Requests</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>User</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>ModelFilters<span class="token punctuation">\</span>Admin<span class="token punctuation">\</span>UserFilter</span> <span class="token keyword">as</span> AdminFilter<span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>ModelFilters<span class="token punctuation">\</span>User<span class="token punctuation">\</span>UserFilter</span> <span class="token keyword">as</span> BasicUserFilter<span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Auth</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">UserController</span> <span class="token keyword">extends</span> <span class="token class-name">Controller</span>
+<span class="token punctuation">{</span>      
+      <span class="token shell-comment comment"># 使用方法1</span>
+      <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">test1</span><span class="token punctuation">(</span>Request <span class="token variable">$request</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+                User<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+      <span class="token shell-comment comment"># 使用方法2，可以通过传递要用作 filter() 方法的第二个参数的筛选器来动态定义筛选器。动态定义过滤器将比为模型定义的任何其他过滤器采用先例。  </span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">test2</span><span class="token punctuation">(</span>Request <span class="token variable">$request</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$userFilter</span> <span class="token operator">=</span> Auth<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">isAdmin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> AdminFilter<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span> <span class="token punctuation">:</span> BasicUserFilter<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> User<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token variable">$userFilter</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="通过关系过滤"><a href="#通过关系过滤" class="headerlink" title="通过关系过滤"></a>通过关系过滤</h4><p>未完待续…</p>
 
             </div>
             <hr/>
@@ -433,7 +656,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://daixianjin.github.io/2019/10/11/Laravel-本地语言包/">https://daixianjin.github.io/2019/10/11/Laravel-本地语言包/</a>
+                    <a href="https://daixianjin.github.io/2020/08/01/Laravel-模型过滤/">https://daixianjin.github.io/2020/08/01/Laravel-模型过滤/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -514,7 +737,7 @@
         repo: 'daixianjin.github.io',
         owner: 'daixianjin',
         admin: "daixianjin",
-        id: '2019-10-11T10-42-29',
+        id: '2020-08-01T21-17-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -538,79 +761,28 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/10/24/Laravel-定时任务/">
+                <a href="/2020/08/01/Laravel-模型过滤/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-定时任务">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-模型过滤">
                         
-                        <span class="card-title">Laravel-定时任务</span>
+                        <span class="card-title">Laravel-模型过滤</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要在我们项目当中，有时候需要定时去处理一些特定的业务。过去，你可能需要在服务器上为每一个调度任务去创建 Cron 入口。但是这种方式很快会变得不友好，因为这些任务调度不在源代码中，并且你每次都需要通过 SSH 链接登录到服务器中才能增加 
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-24
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Laravel/" class="post-category">
-                                    Laravel
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Laravel/">
-                        <span class="chip bg-color">Laravel</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/09/26/Laravel-Fractal/">
-                    <div class="card-image">
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-Fractal">
-                        
-                        <span class="card-title">Laravel-Fractal</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            摘要我们想返回的数据做格式化一般情况下我们就在逻辑层当中操作，这样复用性很差基本就是复制粘贴。使用了  Fractal 之后我们就可以统一一些数据返回的规范，复用性非常高。
-
-PHP 领域广受欢迎的 API 数据输出格式转换器
-
-支持 单个
+                            摘要在一个项目当中，列表数据的搜索往往是比较常见的一种功能，也是一个难处理的功能，反正我觉得特别难处理。一个列表搜索可能就会写很多，也可以越加越多，特别难复用之后代码越来越多的冗余。我在的处理比较笨，那就在一个服务层里面写上所有可能用到的搜
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-01
                             </span>
                         <span class="publish-author">
                             
@@ -624,11 +796,60 @@ PHP 领域广受欢迎的 API 数据输出格式转换器
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/Laravel-扩展包/">
                         <span class="chip bg-color">Laravel-扩展包</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/28/MySQL-唯一索引与NULL/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1495798711725561.png" class="responsive-img" alt="MySQL-唯一索引与 NULL">
+                        
+                        <span class="card-title">MySQL-唯一索引与 NULL</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘要有没有遇到这样的情况，手机号码、邮箱账号、用户账号、都说登陆的账号。而为了简化用户的操作，用户可以选择手机号码或邮箱账号，那么也就说他们之中有一个会为空。当给这三个字段唯一索引时，可以确定的就是用户账号肯定不为空，其他二个可能为空而给定
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
