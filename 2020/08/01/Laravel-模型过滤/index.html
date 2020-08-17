@@ -385,7 +385,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.3k
+                    3.2k
                 </div>
                 
 
@@ -403,102 +403,103 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在一个项目当中，列表数据的搜索往往是比较常见的一种功能，也是一个难处理的功能，反正我觉得特别难处理。一个列表搜索可能就会写很多，也可以越加越多，特别难复用之后代码越来越多的冗余。我在的处理比较笨，那就在一个服务层里面写上所有可能用到的搜索条件，以下是代码的展示（请勿嘲笑）：</p>
-<pre><code>&lt;?php  
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>  
 
-        public function searchService(object $query)
-    {
-        $page  = request(&#39;page&#39;, 1);
-        $limit = request(&#39;limit&#39;, 20);
-        $query = $query::query();
+        <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">searchService</span><span class="token punctuation">(</span>object <span class="token variable">$query</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$page</span>  <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'page'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$limit</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'limit'</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$query</span> <span class="token operator">=</span> <span class="token variable">$query</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        if ($mobile = request(&#39;mobile&#39;))
-        {
-            $query-&gt;where([
-                &#39;mobile&#39; =&gt; $mobile
-            ]);
-        }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$mobile</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'mobile'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'mobile'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$mobile</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        if ($inviteMobile = request(&#39;invite_mobile&#39;))
-        {
-            $query-&gt;where([
-                &#39;id&#39; =&gt; User::where([
-                    &#39;mobile&#39; =&gt; $inviteMobile
-                ])-&gt;select(&#39;id&#39;)-&gt;first()-&gt;id
-            ]);
-        }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$inviteMobile</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'invite_mobile'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'id'</span> <span class="token operator">=</span><span class="token operator">></span> User<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                    <span class="token string">'mobile'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$inviteMobile</span>
+                <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">id</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        if ($address = request(&#39;address&#39;))
-        {
-            $query-&gt;where([
-                &#39;address&#39; =&gt; $address
-            ]);
-        }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$address</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'address'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'address'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$address</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        if ($erhAddress = request(&#39;eth_address&#39;))
-        {
-            $query-&gt;where([
-                &#39;eth_address&#39; =&gt; $erhAddress
-            ]);
-        }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$erhAddress</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'eth_address'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'eth_address'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$erhAddress</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        if ($googleKey = request(&#39;google_key&#39;))
-        {
-            $query-&gt;where([
-                &#39;google_key&#39; =&gt; $googleKey
-            ]);
-        }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$googleKey</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'google_key'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'google_key'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$googleKey</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        if (in_array($googleStatus = request(&#39;google_status&#39;,3),[0,1]))
-        {
-            $query-&gt;where([
-                &#39;google_status&#39; =&gt; $googleStatus
-            ]);
-        }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$googleStatus</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'google_status'</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'google_status'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$googleStatus</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        if ($nickname = request(&#39;nickname&#39;))
-        {
-            $query-&gt;where([
-                &#39;nickname&#39; =&gt; $nickname
-            ]);
-        }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$nickname</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'nickname'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'nickname'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$nickname</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        if ($identity = request(&#39;user_identity&#39;))
-        {
-            $query-&gt;where([
-                &#39;user_identity&#39; =&gt; $identity
-            ]);
-        }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$identity</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'user_identity'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'user_identity'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$identity</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        if ($inviteCode = request(&#39;invite_code&#39;))
-        {
-            $query-&gt;where([
-                &#39;invite_code&#39; =&gt; $inviteCode
-            ]);
-        }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$inviteCode</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'invite_code'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'invite_code'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$inviteCode</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        if (in_array($status = request(&#39;status&#39;,3),[0,1]))
-        {
-            $query-&gt;where([
-                &#39;status&#39; =&gt; $status
-            ]);
-        }
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$status</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'status'</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'status'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$status</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        if($time = request(&#39;created_at&#39;))
-        {
-            $time = explode(&#39; &#39;,$time);
-            if (count($time) != 4) ApiExceptionError(&#39;日期错误&#39;);
-            $endTime = $time[3] == &#39;00:00:00&#39; ? &#39;23:59:59&#39; : $time[3];
-            $query-&gt;whereDate(&#39;created_at&#39;,&#39;&gt;=&#39;,$time[0])
-                -&gt;whereDate(&#39;created_at&#39;,&#39;&lt;=&#39;,$time[2])
-                -&gt;whereTime(&#39;created_at&#39;,&#39;&gt;=&#39;,$time[1])
-                -&gt;whereTime(&#39;created_at&#39;,&#39;&lt;=&#39;,$endTime);
-        }
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$time</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token variable">$time</span> <span class="token operator">=</span> <span class="token function">explode</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$time</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token function">ApiExceptionError</span><span class="token punctuation">(</span><span class="token string">'日期错误'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token variable">$endTime</span> <span class="token operator">=</span> <span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'00:00:00'</span> <span class="token operator">?</span> <span class="token string">'23:59:59'</span> <span class="token punctuation">:</span> <span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">whereDate</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'>='</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token operator">-</span><span class="token operator">></span><span class="token function">whereDate</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'&lt;='</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token operator">-</span><span class="token operator">></span><span class="token function">whereTime</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'>='</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token operator">-</span><span class="token operator">></span><span class="token function">whereTime</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'&lt;='</span><span class="token punctuation">,</span><span class="token variable">$endTime</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        ... 此次省略 N 个
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 此次省略 N 个
 
-        return $query-&gt;paginate($limit, [&#39;*&#39;], &#39;page&#39;, $page)
-            -&gt;toArray();
-    }</code></pre><h3 id="Eloquentfilter"><a href="#Eloquentfilter" class="headerlink" title="Eloquentfilter"></a>Eloquentfilter</h3><p><a href="https://packagist.org/packages/tucker-eric/eloquentfilter" target="_blank" rel="noopener">Eloquentfilter</a> 一种有说服力的过滤 Laravel 模型及其关系的方法的扩展包，能很好的帮助我们处理好条件搜索的各种问题，而且也可能很好做到的复用。</p>
+        <span class="token keyword">return</span> <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">paginate</span><span class="token punctuation">(</span><span class="token variable">$limit</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'*'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'page'</span><span class="token punctuation">,</span> <span class="token variable">$page</span><span class="token punctuation">)</span>
+            <span class="token operator">-</span><span class="token operator">></span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Eloquentfilter"><a href="#Eloquentfilter" class="headerlink" title="Eloquentfilter"></a>Eloquentfilter</h3><p><a href="https://packagist.org/packages/tucker-eric/eloquentfilter" target="_blank" rel="noopener">Eloquentfilter</a> 一种有说服力的过滤 Laravel 模型及其关系的方法的扩展包，能很好的帮助我们处理好条件搜索的各种问题，而且也可能很好做到的复用。</p>
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre class="line-numbers language-bash"><code class="language-bash">composer require tucker-eric/eloquentfilter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在 <code>config/app.php</code> 配置文件中注册服务提供者:</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token string">'providers'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
@@ -558,52 +559,53 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以下是定义模型使用 Filter ，创建 Filter 肯定是要拿来过滤搜索。</p>
-<pre><code>&lt;?php
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
-namespace App\Model\Filters;
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Model<span class="token punctuation">\</span>Filters</span><span class="token punctuation">;</span>
 
-use EloquentFilter\ModelFilter;
+<span class="token keyword">use</span> <span class="token package">EloquentFilter<span class="token punctuation">\</span>ModelFilter</span><span class="token punctuation">;</span>
 
-class UserFilter extends ModelFilter
-{
-    use CommonFilter; # 使用一个 trait 定义一些公共的条件
-    /**
+<span class="token keyword">class</span> <span class="token class-name">UserFilter</span> <span class="token keyword">extends</span> <span class="token class-name">ModelFilter</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">use</span> <span class="token package">CommonFilter</span><span class="token punctuation">;</span> <span class="token shell-comment comment"># 使用一个 trait 定义一些公共的条件</span>
+    <span class="token comment" spellcheck="true">/**
     * Related Models that have ModelFilters as well as the method on the ModelFilter
-    * As [relationMethod =&gt; [input_key1, input_key2]].
+    * As [relationMethod => [input_key1, input_key2]].
     *
     * @var array
-    */
-    public $relations = [&#39;&#39;];
-        protected $blacklist = [&#39;name&#39;]; # 黑名单，禁止使用的方法 $this-&gt;blacklistMethod() 扩展包提供的添加黑名单，$this-&gt;whitelistMethod() 扩展包提供的删除黑名单。嘿嘿，白色，黑色 政治不正确哦，哈哈哈哈哈哈哈哈哈！
+    */</span>
+    <span class="token keyword">public</span> <span class="token variable">$relations</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">''</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">protected</span> <span class="token variable">$blacklist</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token shell-comment comment"># 黑名单，禁止使用的方法 $this->blacklistMethod() 扩展包提供的添加黑名单，$this->whitelistMethod() 扩展包提供的删除黑名单。嘿嘿，白色，黑色 政治不正确哦，哈哈哈哈哈哈哈哈哈！</span>
 
-        # 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段
-    public function name($name)
-    {
-        return $this-&gt;whereLike(&#39;role_name&#39;,$name); 
-    }
+        <span class="token shell-comment comment"># 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">whereLike</span><span class="token punctuation">(</span><span class="token string">'role_name'</span><span class="token punctuation">,</span><span class="token variable">$name</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
 
-      # 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段
-    public function introduction($introduction)
-    {
-        return $this-&gt;whereLike(&#39;introduction&#39;,$introduction);
-    }
+      <span class="token shell-comment comment"># 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">introduction</span><span class="token punctuation">(</span><span class="token variable">$introduction</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">whereLike</span><span class="token punctuation">(</span><span class="token string">'introduction'</span><span class="token punctuation">,</span><span class="token variable">$introduction</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    # 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段
-    public function role($role)
-    {
-        # 如果字段的以 _id 结尾可以省略 _id ,如果你不想这样可以 protected $drop_id = false;
-        return $this-&gt;whereLike(&#39;role_id&#39;,$role);
-    }
+    <span class="token shell-comment comment"># 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">role</span><span class="token punctuation">(</span><span class="token variable">$role</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token shell-comment comment"># 如果字段的以 _id 结尾可以省略 _id ,如果你不想这样可以 protected $drop_id = false;</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">whereLike</span><span class="token punctuation">(</span><span class="token string">'role_id'</span><span class="token punctuation">,</span><span class="token variable">$role</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    # 看着这里注意：setup 很特殊，只要定义了 setup 那么他都会每次使用这个 filter 的时候都会去执行一次
-    public function setup()
-    {
-        return $this-&gt;with(&#39;roles&#39;)
-    }
+    <span class="token shell-comment comment"># 看着这里注意：setup 很特殊，只要定义了 setup 那么他都会每次使用这个 filter 的时候都会去执行一次</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">with</span><span class="token punctuation">(</span><span class="token string">'roles'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
 
-    # $this-&gt;input(&#39;x&#39;) # 获取前端传递的某个字段
-    # $this-&gt;push(&#39;x&#39;,&#39;xx&#39;) # 如果在 setup 方法中调用，则添加要过滤的值。如果调用其他方法，则只会过滤关系
-}</code></pre><pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+    <span class="token shell-comment comment"># $this->input(</span><span class="token string">'x'</span><span class="token punctuation">)</span> <span class="token shell-comment comment"># 获取前端传递的某个字段</span>
+    <span class="token shell-comment comment"># $this->push(</span><span class="token string">'x'</span><span class="token punctuation">,</span><span class="token string">'xx'</span><span class="token punctuation">)</span> <span class="token shell-comment comment"># 如果在 setup 方法中调用，则添加要过滤的值。如果调用其他方法，则只会过滤关系</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
 <span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Controllers</span><span class="token punctuation">;</span>
 
@@ -1400,7 +1402,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">57.2k</span>&nbsp;字
+                class="white-color">57.1k</span>&nbsp;字
             
             
             
