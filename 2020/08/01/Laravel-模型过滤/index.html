@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-08-02
+                    2020-08-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    276
+                    255
                 </div>
                 
 
@@ -403,7 +403,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在一个项目当中，列表数据的搜索往往是比较常见的一种功能，也是一个难处理的功能，反正我觉得特别难处理。一个列表搜索可能就会写很多，也可以越加越多，特别难复用之后代码越来越多的冗余。我在的处理比较笨，那就在一个服务层里面写上所有可能用到的搜索条件，以下是代码的展示（请勿嘲笑）：</p>
-<pre class="line-numbers language-PHP"><code class="language-PHP">        public function searchService(object $query)
+<pre class="line-numbers language-PHP"><code class="language-PHP"><?php  
+
+        public function searchService(object $query)
     {
         $page  = request('page', 1);
         $limit = request('limit', 20);
@@ -420,8 +422,8 @@
         {
             $query->where([
                 'id' => User::where([
-                        'mobile' => $inviteMobile
-                    ])->select('id')->first()->id
+                    'mobile' => $inviteMobile
+                ])->select('id')->first()->id
             ]);
         }
 
@@ -496,7 +498,7 @@
 
         return $query->paginate($limit, ['*'], 'page', $page)
             ->toArray();
-    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="Eloquentfilter"><a href="#Eloquentfilter" class="headerlink" title="Eloquentfilter"></a>Eloquentfilter</h3><p><a href="https://packagist.org/packages/tucker-eric/eloquentfilter" target="_blank" rel="noopener">Eloquentfilter</a> 一种有说服力的过滤 Laravel 模型及其关系的方法的扩展包，能很好的帮助我们处理好条件搜索的各种问题，而且也可能很好做到的复用。</p>
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre class="line-numbers language-bash"><code class="language-bash">composer require tucker-eric/eloquentfilter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在 <code>config/app.php</code> 配置文件中注册服务提供者:</p>
@@ -630,7 +632,405 @@ class UserFilter extends ModelFilter
         <span class="token keyword">return</span> User<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token variable">$userFilter</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="通过关系过滤"><a href="#通过关系过滤" class="headerlink" title="通过关系过滤"></a>通过关系过滤</h4><p>未完待续…</p>
+<h4 id="通过关系过滤"><a href="#通过关系过滤" class="headerlink" title="通过关系过滤"></a>通过关系过滤</h4><p>其实就是模型关联，举个简单的🌰：假如用户和角色是一对一，角色有角色的名称</p>
+<p>现在有个需求，就是通过搜索角色名称查询出用户，现在的数据结构这：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;success&quot;,
+    &quot;data&quot;: {
+        &quot;data&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;uid&quot;: &quot;2af04c60-d78c-11ea-ada2-3b19d33d4b22&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;boyi6868@163.com&quot;,
+                &quot;username&quot;: &quot;boyi6868&quot;,
+                &quot;google_status&quot;: 1,
+                &quot;google_key&quot;: &quot;X55ERBFUJRMZAP6PWQMY5A3PUMLYQ4CLRQ3CLEL3K72LAKLYSISCAGZWC5DL3QCA&quot;,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:26:00&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 08:15:21&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;uid&quot;: &quot;dc643e80-d78d-11ea-b343-d17dbdf776b7&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;abdul.becker@krajcik.net&quot;,
+                &quot;username&quot;: &quot;Dr. Alexandro Moen&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;uid&quot;: &quot;dc9406b0-d78d-11ea-bc67-ff4416fdb6a7&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;buckridge.raina@hotmail.com&quot;,
+                &quot;username&quot;: &quot;Agustin Bogan&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 4,
+                &quot;uid&quot;: &quot;dca3fee0-d78d-11ea-959c-29ea7bbc8023&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;umayer@yahoo.com&quot;,
+                &quot;username&quot;: &quot;Mr. Rico Walsh&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 5,
+                &quot;uid&quot;: &quot;dcb3ba10-d78d-11ea-9699-2d7b3d45b6b9&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;juanita34@cole.net&quot;,
+                &quot;username&quot;: &quot;Dr. Tyree Bednar&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 6,
+                &quot;uid&quot;: &quot;dcc3b140-d78d-11ea-bce0-a56cef20050c&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;kara.dach@swift.com&quot;,
+                &quot;username&quot;: &quot;Erin Abshire&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 7,
+                &quot;uid&quot;: &quot;dcd2df80-d78d-11ea-ae70-c1b527fa12fc&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;devan.grady@yahoo.com&quot;,
+                &quot;username&quot;: &quot;Abbie Crona&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 8,
+                &quot;uid&quot;: &quot;dce248c0-d78d-11ea-be1c-4f69f3e57beb&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;tmoen@schroeder.com&quot;,
+                &quot;username&quot;: &quot;Marielle Ernser&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 9,
+                &quot;uid&quot;: &quot;dcf29ca0-d78d-11ea-8191-170a814a5d37&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;kromaguera@schimmel.com&quot;,
+                &quot;username&quot;: &quot;Jaydon Mertz&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 10,
+                &quot;uid&quot;: &quot;dd029040-d78d-11ea-baf2-e3152a4f7558&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;kamren.cormier@hotmail.com&quot;,
+                &quot;username&quot;: &quot;Myrl Koepp&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 11,
+                &quot;uid&quot;: &quot;dd125db0-d78d-11ea-b7af-316788adee55&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;reichel.lela@yahoo.com&quot;,
+                &quot;username&quot;: &quot;Dr. Anastacio Abernathy Jr.&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 12,
+                &quot;uid&quot;: &quot;dd221620-d78d-11ea-aec7-b3c06b5e1d30&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;bkonopelski@luettgen.info&quot;,
+                &quot;username&quot;: &quot;Miss Mattie Baumbach DDS&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 13,
+                &quot;uid&quot;: &quot;dd317060-d78d-11ea-9bfa-b1aace9a9939&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;hoeger.keyshawn@yahoo.com&quot;,
+                &quot;username&quot;: &quot;Mrs. Keara Shields Sr.&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 1,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;role_name&quot;: &quot;个人&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 14,
+                &quot;uid&quot;: &quot;dd415c30-d78d-11ea-9524-ad8181d0f16d&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;hoeger.gustave@damore.com&quot;,
+                &quot;username&quot;: &quot;Dr. Kaleigh Kuhlman V&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 2,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;role_name&quot;: &quot;店家&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 15,
+                &quot;uid&quot;: &quot;dd58ce50-d78d-11ea-973f-9f9ae3a97408&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;malika00@yahoo.com&quot;,
+                &quot;username&quot;: &quot;Janie Reilly&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 2,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;role_name&quot;: &quot;店家&quot;
+                }
+            }
+        ],
+        &quot;total&quot;: 101
+    }
+}</code></pre><p>这时候 filter 提供的模型关联过滤就很好用了，请看以下操作：</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token shell-comment comment"># 用户模型，我们关联角色，角色模型可以不做任何操作</span>
+<span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">{</span>
+      <span class="token keyword">use</span> <span class="token package">Filterable</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">roles</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">hasOne</span><span class="token punctuation">(</span>Role<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token shell-comment comment"># 角色的 Filter ，我们只查询角色名称</span>
+<span class="token keyword">class</span> <span class="token class-name">UserRoleFilter</span> <span class="token keyword">extends</span> <span class="token class-name">ModelFilter</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+    * Related Models that have ModelFilters as well as the method on the ModelFilter
+    * As [relationMethod => [input_key1, input_key2]].
+    *
+    * @var array
+    */</span>
+    <span class="token keyword">public</span> <span class="token variable">$relations</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">whereLike</span><span class="token punctuation">(</span><span class="token string">'role_name'</span><span class="token punctuation">,</span><span class="token variable">$name</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token shell-comment comment"># 用户 Filter，可以试用 $this->related(),但是我个人还是喜欢使用 $relations 数组</span>
+<span class="token keyword">class</span> <span class="token class-name">UserFilter</span> <span class="token keyword">extends</span> <span class="token class-name">ModelFilter</span>
+<span class="token punctuation">{</span>
+      <span class="token shell-comment comment"># roles 也就是用户模型当中模型关联，name 也就是 角色 Filter 当中的搜索字段</span>
+    <span class="token keyword">public</span> <span class="token variable">$relations</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'roles'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>现在来搜索现在角色是 店家 的所有用户结果：</p>
+<pre><code>{
+    &quot;code&quot;: 0,
+    &quot;msg&quot;: &quot;success&quot;,
+    &quot;data&quot;: {
+        &quot;data&quot;: [
+            {
+                &quot;id&quot;: 14,
+                &quot;uid&quot;: &quot;dd415c30-d78d-11ea-9524-ad8181d0f16d&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;hoeger.gustave@damore.com&quot;,
+                &quot;username&quot;: &quot;Dr. Kaleigh Kuhlman V&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 2,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;role_name&quot;: &quot;店家&quot;
+                }
+            },
+            {
+                &quot;id&quot;: 15,
+                &quot;uid&quot;: &quot;dd58ce50-d78d-11ea-973f-9f9ae3a97408&quot;,
+                &quot;team_id&quot;: 1,
+                &quot;mobile&quot;: &quot;&quot;,
+                &quot;email&quot;: &quot;malika00@yahoo.com&quot;,
+                &quot;username&quot;: &quot;Janie Reilly&quot;,
+                &quot;google_status&quot;: 0,
+                &quot;google_key&quot;: null,
+                &quot;role&quot;: 2,
+                &quot;identity&quot;: null,
+                &quot;status&quot;: 1,
+                &quot;deleted_at&quot;: null,
+                &quot;created_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;updated_at&quot;: &quot;2020-08-06 02:38:18&quot;,
+                &quot;roles&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;role_name&quot;: &quot;店家&quot;
+                }
+            }
+        ],
+        &quot;total&quot;: 2
+    }
+}</code></pre><blockquote>
+<p>官方文档：<a href="http://tucker-eric.github.io/EloquentFilter/，Filter" target="_blank" rel="noopener">http://tucker-eric.github.io/EloquentFilter/，Filter</a> 的使用大概就如此了，还是比较简单的开箱即用。</p>
+</blockquote>
+<h3 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h3><p>不依赖扩展包，自己手写一个 Filter 的思路。</p>
+<p>未完待续…</p>
 
             </div>
             <hr/>
