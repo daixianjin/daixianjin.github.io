@@ -385,14 +385,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    255
+                    3.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    17 分
                 </div>
                 
 
@@ -403,103 +403,102 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在一个项目当中，列表数据的搜索往往是比较常见的一种功能，也是一个难处理的功能，反正我觉得特别难处理。一个列表搜索可能就会写很多，也可以越加越多，特别难复用之后代码越来越多的冗余。我在的处理比较笨，那就在一个服务层里面写上所有可能用到的搜索条件，以下是代码的展示（请勿嘲笑）：</p>
-<pre class="line-numbers language-PHP"><code class="language-PHP"><?php  
+<pre><code>&lt;?php  
 
         public function searchService(object $query)
     {
-        $page  = request('page', 1);
-        $limit = request('limit', 20);
+        $page  = request(&#39;page&#39;, 1);
+        $limit = request(&#39;limit&#39;, 20);
         $query = $query::query();
 
-        if ($mobile = request('mobile'))
+        if ($mobile = request(&#39;mobile&#39;))
         {
-            $query->where([
-                'mobile' => $mobile
+            $query-&gt;where([
+                &#39;mobile&#39; =&gt; $mobile
             ]);
         }
 
-        if ($inviteMobile = request('invite_mobile'))
+        if ($inviteMobile = request(&#39;invite_mobile&#39;))
         {
-            $query->where([
-                'id' => User::where([
-                    'mobile' => $inviteMobile
-                ])->select('id')->first()->id
+            $query-&gt;where([
+                &#39;id&#39; =&gt; User::where([
+                    &#39;mobile&#39; =&gt; $inviteMobile
+                ])-&gt;select(&#39;id&#39;)-&gt;first()-&gt;id
             ]);
         }
 
-        if ($address = request('address'))
+        if ($address = request(&#39;address&#39;))
         {
-            $query->where([
-                'address' => $address
+            $query-&gt;where([
+                &#39;address&#39; =&gt; $address
             ]);
         }
 
-        if ($erhAddress = request('eth_address'))
+        if ($erhAddress = request(&#39;eth_address&#39;))
         {
-            $query->where([
-                'eth_address' => $erhAddress
+            $query-&gt;where([
+                &#39;eth_address&#39; =&gt; $erhAddress
             ]);
         }
 
-        if ($googleKey = request('google_key'))
+        if ($googleKey = request(&#39;google_key&#39;))
         {
-            $query->where([
-                'google_key' => $googleKey
+            $query-&gt;where([
+                &#39;google_key&#39; =&gt; $googleKey
             ]);
         }
 
-        if (in_array($googleStatus = request('google_status',3),[0,1]))
+        if (in_array($googleStatus = request(&#39;google_status&#39;,3),[0,1]))
         {
-            $query->where([
-                'google_status' => $googleStatus
+            $query-&gt;where([
+                &#39;google_status&#39; =&gt; $googleStatus
             ]);
         }
 
-        if ($nickname = request('nickname'))
+        if ($nickname = request(&#39;nickname&#39;))
         {
-            $query->where([
-                'nickname' => $nickname
+            $query-&gt;where([
+                &#39;nickname&#39; =&gt; $nickname
             ]);
         }
 
-        if ($identity = request('user_identity'))
+        if ($identity = request(&#39;user_identity&#39;))
         {
-            $query->where([
-                'user_identity' => $identity
+            $query-&gt;where([
+                &#39;user_identity&#39; =&gt; $identity
             ]);
         }
 
-        if ($inviteCode = request('invite_code'))
+        if ($inviteCode = request(&#39;invite_code&#39;))
         {
-            $query->where([
-                'invite_code' => $inviteCode
+            $query-&gt;where([
+                &#39;invite_code&#39; =&gt; $inviteCode
             ]);
         }
 
-        if (in_array($status = request('status',3),[0,1]))
+        if (in_array($status = request(&#39;status&#39;,3),[0,1]))
         {
-            $query->where([
-                'status' => $status
+            $query-&gt;where([
+                &#39;status&#39; =&gt; $status
             ]);
         }
 
-        if($time = request('created_at'))
+        if($time = request(&#39;created_at&#39;))
         {
-            $time = explode(' ',$time);
-            if (count($time) != 4) ApiExceptionError('日期错误');
-            $endTime = $time[3] == '00:00:00' ? '23:59:59' : $time[3];
-            $query->whereDate('created_at','>=',$time[0])
-                ->whereDate('created_at','<=',$time[2])
-                ->whereTime('created_at','>=',$time[1])
-                ->whereTime('created_at','<=',$endTime);
+            $time = explode(&#39; &#39;,$time);
+            if (count($time) != 4) ApiExceptionError(&#39;日期错误&#39;);
+            $endTime = $time[3] == &#39;00:00:00&#39; ? &#39;23:59:59&#39; : $time[3];
+            $query-&gt;whereDate(&#39;created_at&#39;,&#39;&gt;=&#39;,$time[0])
+                -&gt;whereDate(&#39;created_at&#39;,&#39;&lt;=&#39;,$time[2])
+                -&gt;whereTime(&#39;created_at&#39;,&#39;&gt;=&#39;,$time[1])
+                -&gt;whereTime(&#39;created_at&#39;,&#39;&lt;=&#39;,$endTime);
         }
 
         ... 此次省略 N 个
 
-        return $query->paginate($limit, ['*'], 'page', $page)
-            ->toArray();
-    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Eloquentfilter"><a href="#Eloquentfilter" class="headerlink" title="Eloquentfilter"></a>Eloquentfilter</h3><p><a href="https://packagist.org/packages/tucker-eric/eloquentfilter" target="_blank" rel="noopener">Eloquentfilter</a> 一种有说服力的过滤 Laravel 模型及其关系的方法的扩展包，能很好的帮助我们处理好条件搜索的各种问题，而且也可能很好做到的复用。</p>
+        return $query-&gt;paginate($limit, [&#39;*&#39;], &#39;page&#39;, $page)
+            -&gt;toArray();
+    }</code></pre><h3 id="Eloquentfilter"><a href="#Eloquentfilter" class="headerlink" title="Eloquentfilter"></a>Eloquentfilter</h3><p><a href="https://packagist.org/packages/tucker-eric/eloquentfilter" target="_blank" rel="noopener">Eloquentfilter</a> 一种有说服力的过滤 Laravel 模型及其关系的方法的扩展包，能很好的帮助我们处理好条件搜索的各种问题，而且也可能很好做到的复用。</p>
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre class="line-numbers language-bash"><code class="language-bash">composer require tucker-eric/eloquentfilter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在 <code>config/app.php</code> 配置文件中注册服务提供者:</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token string">'providers'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
@@ -559,7 +558,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以下是定义模型使用 Filter ，创建 Filter 肯定是要拿来过滤搜索。</p>
-<pre class="line-numbers language-PHP"><code class="language-PHP"><?php
+<pre><code>&lt;?php
 
 namespace App\Model\Filters;
 
@@ -570,42 +569,41 @@ class UserFilter extends ModelFilter
     use CommonFilter; # 使用一个 trait 定义一些公共的条件
     /**
     * Related Models that have ModelFilters as well as the method on the ModelFilter
-    * As [relationMethod => [input_key1, input_key2]].
+    * As [relationMethod =&gt; [input_key1, input_key2]].
     *
     * @var array
     */
-    public $relations = [''];
-        protected $blacklist = ['name']; # 黑名单，禁止使用的方法 $this->blacklistMethod() 扩展包提供的添加黑名单，$this->whitelistMethod() 扩展包提供的删除黑名单。嘿嘿，白色，黑色 政治不正确哦，哈哈哈哈哈哈哈哈哈！
+    public $relations = [&#39;&#39;];
+        protected $blacklist = [&#39;name&#39;]; # 黑名单，禁止使用的方法 $this-&gt;blacklistMethod() 扩展包提供的添加黑名单，$this-&gt;whitelistMethod() 扩展包提供的删除黑名单。嘿嘿，白色，黑色 政治不正确哦，哈哈哈哈哈哈哈哈哈！
 
         # 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段
     public function name($name)
     {
-        return $this->whereLike('role_name',$name); 
+        return $this-&gt;whereLike(&#39;role_name&#39;,$name); 
     }
 
       # 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段
     public function introduction($introduction)
     {
-        return $this->whereLike('introduction',$introduction);
+        return $this-&gt;whereLike(&#39;introduction&#39;,$introduction);
     }
 
     # 看着这里注意：！！方法名 ！！就是前段传递的搜索的字段
     public function role($role)
     {
         # 如果字段的以 _id 结尾可以省略 _id ,如果你不想这样可以 protected $drop_id = false;
-        return $this->whereLike('role_id',$role);
+        return $this-&gt;whereLike(&#39;role_id&#39;,$role);
     }
 
     # 看着这里注意：setup 很特殊，只要定义了 setup 那么他都会每次使用这个 filter 的时候都会去执行一次
     public function setup()
     {
-        return $this->with('roles')
+        return $this-&gt;with(&#39;roles&#39;)
     }
 
-    # $this->input('x') # 获取前端传递的某个字段
-    # $this->push('x','xx') # 如果在 setup 方法中调用，则添加要过滤的值。如果调用其他方法，则只会过滤关系
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+    # $this-&gt;input(&#39;x&#39;) # 获取前端传递的某个字段
+    # $this-&gt;push(&#39;x&#39;,&#39;xx&#39;) # 如果在 setup 方法中调用，则添加要过滤的值。如果调用其他方法，则只会过滤关系
+}</code></pre><pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
 <span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Controllers</span><span class="token punctuation">;</span>
 
@@ -1402,7 +1400,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">54.2k</span>&nbsp;字
+                class="white-color">57.2k</span>&nbsp;字
             
             
             
