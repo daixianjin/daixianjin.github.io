@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-21
+                    2020-08-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    14 分
                 </div>
                 
 
@@ -425,15 +425,44 @@
 <pre class="line-numbers language-bash"><code class="language-bash">go version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如果没有出现问题，那么就算装好了。接下来就是设置 Go 的开发环境了</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 如果是zsh,就把/.bashrc 改成 /.zshr</span>
-<span class="token function">sudo</span> vim <span class="token variable">$HOME</span>/.bashrc
+<span class="token function">sudo</span> vim ~/.bashrc
 
 <span class="token function">export</span> GOROOT<span class="token operator">=</span>/usr/local/go   <span class="token comment" spellcheck="true"># 表示 Go 在你的电脑上的安装位置，有些安装包会自动设置默认的 goroot</span>
 <span class="token function">export</span> GOPATH<span class="token operator">=</span><span class="token variable">$HOME</span>/go-work   <span class="token comment" spellcheck="true"># 默认安装包的路径,根据自己需要来选择位置</span>
 <span class="token function">export</span> PATH<span class="token operator">=</span><span class="token variable">$PATH</span><span class="token keyword">:</span><span class="token variable">$GOROOT</span>/bin:<span class="token variable">$GOPATH</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使配置文件生效，这里有个大坑，千万别用 fish 里面执行它一直报错，人都差点搞死了</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">source</span> <span class="token variable">$HOME</span>/.bashrc　<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">source</span> ~/.bashrc　<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>可运行 go env 查看 Go 环境变量</p>
 <pre class="line-numbers language-bash"><code class="language-bash">go <span class="token function">env</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>GOPATH 现在的 Go 语言来说不晓得也没关系，现在官方推荐 Go module 跟 Composer 有点相像！</p>
+</blockquote>
+<h3 id="Go-Module"><a href="#Go-Module" class="headerlink" title="Go Module"></a>Go Module</h3><p>Go module 是 Go 官方自带的 Go 依赖管理库，在 1.13 版本正式推荐使用。Go module 可以将某个项目(文件夹)下的所有依赖整理成一个 go.mod 文件，里面写入了依赖的版本等。使用 Go module 之后我们可不用将代码放置在 src下了。</p>
+<p>开启 Go module，开启代理</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">export</span> GO111MODULE<span class="token operator">=</span>on
+
+<span class="token function">export</span> GOPROXY<span class="token operator">=</span>https://goproxy.cn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>初始化项目</p>
+<pre class="line-numbers language-bash"><code class="language-bash">go mod init 项目名称<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>检查依赖</p>
+<pre class="line-numbers language-bash"><code class="language-bash">go mod tidy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>tidy会检测该文件夹目录下所有引入的依赖,写入 go.mod 文件，写入后你会发现 go.mod 文件有所变动。</p>
+<p>下载依赖</p>
+<pre class="line-numbers language-bash"><code class="language-bash">go mod download<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果你没有设置 GOPROXY 为国内镜像,这步百分百会夯住到死，此时会将依赖全部下载至 GOPATH 下,会在根目录下生成 go.sum 文件, 该文件是依赖的详细依赖, 但是我们开头说了，我们的项目是没有放到 GOPATH 下的,那么我们下载至 GOPATH 下是无用的,照样找不到这些包</p>
+<p>导入依赖</p>
+<pre class="line-numbers language-bash"><code class="language-bash">go mod vendor<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>执行此命令，会将刚才下载至 GOPATH 下的依赖转移至该项目根目录下的 vendor(自动新建) 文件夹下。</p>
+<p>常用命令</p>
+<pre class="line-numbers language-bash"><code class="language-bash">go mod init  <span class="token comment" spellcheck="true"># 初始化go.mod</span>
+go mod tidy  <span class="token comment" spellcheck="true"># 更新依赖文件</span>
+go mod download  <span class="token comment" spellcheck="true"># 下载依赖文件</span>
+go mod vendor  <span class="token comment" spellcheck="true"># 将依赖转移至本地的vendor文件</span>
+go mod edit  <span class="token comment" spellcheck="true"># 手动修改依赖文件</span>
+go mod graph  <span class="token comment" spellcheck="true"># 打印依赖图</span>
+go mod verify  <span class="token comment" spellcheck="true"># 校验依赖</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Goland 设置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/20200818223505.png" alt></p>
 <h3 id="国际惯例"><a href="#国际惯例" class="headerlink" title="国际惯例"></a>国际惯例</h3><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token string">"fmt"</span>
@@ -950,7 +979,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">57.1k</span>&nbsp;字
+                class="white-color">57.8k</span>&nbsp;字
             
             
             

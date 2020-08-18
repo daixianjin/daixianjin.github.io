@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2020-08-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.5k
+                    3.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    15 分
                 </div>
                 
 
@@ -511,14 +511,17 @@ sudo apt-get remove docker docker-engine docker.io
 2、安装扩展
 sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
 
-3、中科大源 GPG 密钥
-curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+3. 为国内的 azure 仓库添加 GPG Key
+curl -fsSL https://mirror.azure.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
 
-4、更新
-apt update install
+4. 添加 docker 仓库到 Apt 源
+sudo add-apt-repository &quot;deb [arch=amd64] https://mirror.azure.cn/docker-ce/linux/ubuntu bionic stable&quot;
 
-5、安装
-apt install docker-ce</code></pre><h4 id="2、centos"><a href="#2、centos" class="headerlink" title="2、centos"></a>2、centos</h4><pre><code>1、若安装过先删除，若无忽略
+5. 再次更新包列表
+sudo apt update
+
+6、安装
+sudo apt install docker-ce</code></pre><h4 id="2、centos"><a href="#2、centos" class="headerlink" title="2、centos"></a>2、centos</h4><pre><code>1、若安装过先删除，若无忽略
 sudo yum remove docker docker-common docker-selinux docker-engine
 
 2、安装扩展
@@ -543,7 +546,17 @@ vim /etc/docker/daemon.json
 # 如果 etc/docker 下不存在 daemon.json，新建一个即可
 
 3、重启 docker
-systemctl restart docker</code></pre><h3 id="MySQL-安装"><a href="#MySQL-安装" class="headerlink" title="MySQL 安装"></a>MySQL 安装</h3><h4 id="1、从-Dockerhub-拉取-MySQL-镜像"><a href="#1、从-Dockerhub-拉取-MySQL-镜像" class="headerlink" title="1、从 Dockerhub 拉取 MySQL 镜像"></a>1、从 Dockerhub 拉取 MySQL 镜像</h4><pre><code>docker pull mysql</code></pre><h4 id="2、创建容器"><a href="#2、创建容器" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code>docker run -p 3306:3306 --name mysql -v /xxx:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -d --privileged=true mysql</code></pre><table>
+systemctl restart docker</code></pre><h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><p>最开始使用容器，容器之间的互联都是使用 <code>--link</code>现在不在推荐使用。随着 Docker 网络的完善，强烈建议大家将容器加入自定义的 Docker 网络来连接多个容器，而不是使用 <code>--link</code> 参数。</p>
+<p>查看网络：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">docker network <span class="token function">ls</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>bridge 网络表示所有 Docker 安装中都存在的 docker0 网络。除非使用 <strong>docker run –net=<network></network></strong>选项另行指定，否则 Docker 守护进程默认情况下会将容器连接到此网络。在主机上使用 <strong>ifconfig</strong> 命令，可以看到此网桥是主机的网络堆栈的一部分。</li>
+<li>none 网络在一个特定于容器的网络堆栈上添加了一个容器。该容器缺少网络接口。</li>
+<li>host 网络在主机网络堆栈上添加一个容器。您可以发现，容器中的网络配置与主机相同。</li>
+</ul>
+<p>创建新网络：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">docker network create -d bridge name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="MySQL-安装"><a href="#MySQL-安装" class="headerlink" title="MySQL 安装"></a>MySQL 安装</h3><h4 id="1、从-Dockerhub-拉取-MySQL-镜像"><a href="#1、从-Dockerhub-拉取-MySQL-镜像" class="headerlink" title="1、从 Dockerhub 拉取 MySQL 镜像"></a>1、从 Dockerhub 拉取 MySQL 镜像</h4><pre><code>docker pull mysql</code></pre><h4 id="2、创建容器"><a href="#2、创建容器" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code>docker run -p 3306:3306 --name mysql --network name -v /xxx:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -d --privileged=true mysql</code></pre><table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -599,8 +612,8 @@ mysql&gt;grant 权限 on *.* to &#39;帐号&#39;@&#39;%&#39; WITH GRANT OPTION;
 port=3306
 default_authentication_plugin=mysql_native_password
 
-# 退出容器，重启容器
-systemctl restart mysql</code></pre><h3 id="PHP-FPM-安装"><a href="#PHP-FPM-安装" class="headerlink" title="PHP-FPM 安装"></a>PHP-FPM 安装</h3><h4 id="1、从-Dockerhub-拉取-PHP-镜像"><a href="#1、从-Dockerhub-拉取-PHP-镜像" class="headerlink" title="1、从 Dockerhub 拉取 PHP 镜像"></a>1、从 Dockerhub 拉取 PHP 镜像</h4><pre><code>docker pull php:fpm</code></pre><h4 id="2、创建容器-1"><a href="#2、创建容器-1" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code># 创建容器并且关联 MySQL
+# 重启容器
+docker restart mysql</code></pre><h3 id="PHP-FPM-安装"><a href="#PHP-FPM-安装" class="headerlink" title="PHP-FPM 安装"></a>PHP-FPM 安装</h3><h4 id="1、从-Dockerhub-拉取-PHP-镜像"><a href="#1、从-Dockerhub-拉取-PHP-镜像" class="headerlink" title="1、从 Dockerhub 拉取 PHP 镜像"></a>1、从 Dockerhub 拉取 PHP 镜像</h4><pre><code>docker pull php:fpm</code></pre><h4 id="2、创建容器-1"><a href="#2、创建容器-1" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code># 创建容器并且关联 MySQL
 docker run --name php-fpm -p 9000:9000 --link mysql -v /宿主机存放代码的目录:/var/www/html -it -d php:fpm</code></pre><table>
 <thead>
 <tr>
@@ -621,8 +634,8 @@ docker run --name php-fpm -p 9000:9000 --link mysql -v /宿主机存放代码的
 <td align="center">端口映射，将容器的 9000 端口映射到主机的 9000 端口</td>
 </tr>
 <tr>
-<td align="center">–link</td>
-<td align="center">连接 Mysql 容器，对应我们创建的容器名称</td>
+<td align="center">–network</td>
+<td align="center">选择网络</td>
 </tr>
 <tr>
 <td align="center">-v</td>
@@ -663,8 +676,8 @@ docker-php-ext-enable mysqli
 # php.ini
 这个镜像给我们打包的配置文件，分开发和生产二个配置文件，在 /usr/local/etc/php 当中
 
-# 重启 docker
-systemctl restart docker</code></pre><h3 id="Nginx-安装"><a href="#Nginx-安装" class="headerlink" title="Nginx 安装"></a>Nginx 安装</h3><h4 id="1、从-Dockerhub-拉取-Nginx-镜像"><a href="#1、从-Dockerhub-拉取-Nginx-镜像" class="headerlink" title="1、从 Dockerhub 拉取 Nginx 镜像"></a>1、从 Dockerhub 拉取 Nginx 镜像</h4><pre><code>docker pull nginx</code></pre><h4 id="2、创建容器-2"><a href="#2、创建容器-2" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code>docker run --name nginx_80 -p 80:80 --link php-fpm -v /宿主机存放代码的目录:/usr/share/nginx/html -d nginx</code></pre><table>
+# 重启容器
+docker restart php-fpm</code></pre><h3 id="Nginx-安装"><a href="#Nginx-安装" class="headerlink" title="Nginx 安装"></a>Nginx 安装</h3><h4 id="1、从-Dockerhub-拉取-Nginx-镜像"><a href="#1、从-Dockerhub-拉取-Nginx-镜像" class="headerlink" title="1、从 Dockerhub 拉取 Nginx 镜像"></a>1、从 Dockerhub 拉取 Nginx 镜像</h4><pre><code>docker pull nginx</code></pre><h4 id="2、创建容器-2"><a href="#2、创建容器-2" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code>docker run --name nginx_80 -p 80:80 --network shen -v /宿主机存放代码的目录:/usr/share/nginx/html -d nginx</code></pre><table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -684,8 +697,8 @@ systemctl restart docker</code></pre><h3 id="Nginx-安装"><a href="#Nginx-安�
 <td align="center">端口映射，将容器的 80 端口映射到主机的 80 端口</td>
 </tr>
 <tr>
-<td align="center">–link</td>
-<td align="center">连接 PHP 容器，对应我们创建的容器名称</td>
+<td align="center">–network</td>
+<td align="center">选择网络</td>
 </tr>
 <tr>
 <td align="center">-v</td>
@@ -1177,7 +1190,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">57.1k</span>&nbsp;字
+                class="white-color">57.8k</span>&nbsp;字
             
             
             
