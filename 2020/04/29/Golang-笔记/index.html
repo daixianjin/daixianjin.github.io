@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-08-18
+                    2020-08-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4k
+                    4.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    15 分
                 </div>
                 
 
@@ -473,7 +473,7 @@ go mod verify  <span class="token comment" spellcheck="true"># 校验依赖</spa
 <p>Go 语言的代码通过<strong>包</strong>（package）组织，包类似于其它语言里的库（libraries）或者模块（modules）。也就是说程序一开始，就要声明这个程序属于哪个包。一个包由位于单个目录下的一个或多个<code>.go</code>源代码文件组成, 目录定义包的作用。每个源文件都以一条<code>package</code>声明语句开始，紧跟着一系列导入（import）的包，之后是存储在这个文件里的程序语句。</p>
 <h4 id="特殊的-main-包"><a href="#特殊的-main-包" class="headerlink" title="特殊的 main 包"></a>特殊的 main 包</h4><p>main 包比较特殊，它定义了一个独立可执行的程序，它不是一个库！它是整个程序执行的入口。main 包当中的 main 函数就是我们所说整个程序执行的入口了，一般 main 函数当中会调用其它很多函数完成工作。</p>
 <h4 id="需要遵循的规定"><a href="#需要遵循的规定" class="headerlink" title="需要遵循的规定"></a>需要遵循的规定</h4><p>首先要注意一点，package 先 ，import 后，它们不能颠倒位置，package 只能有一个而不能多个，import 可以有多个。其次如果说 import 导入多个包，那么你都必须去使用导入的包，不然编译无法通过，这正是遵循了 Go 的格言：“没有不必要的代码！“。Go 的语法要求特别的严格，在 package 和 import 之后，才可以定义 函数、常亮、变量、类型的声明语句。它们没有顺序要求，可以随心所欲来！Go 语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。如：for，if 等。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响 Go 代码的正确解析。</p>
-<h4 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h4><p>Go 是一门编译型语言，Go 语言的工具链将源代码及其依赖转换成计算机的机器指令（译注：静态编译）。 Go 语言提供的工具都通过一个单独的命令 Go 调用，Go 命令有一系列子命令。最简单的一个子命令就是 run。这个命令编译一个或多个以 <code>.go</code> 结尾的源文件，链接库文件，并运行最终生成的可执行文件。</p>
+<h4 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h4><p>Go 是一门编译型语言，Go 语言的工具链将源代码及其依赖转换成计算机的机器指令（译注：静态编译）。 Go 语言提供的工具都通过一个单独的命令 Go 调用，Go 命令有一系列子命令。最简单的一个子命令就是 run。这个命令编译一个或多个以 <code>.go</code> 结尾的源文件，链接库文件，并运行最终生成的可执行文件。注意：Go 语言编译代码是一行一行的编译，所以一行只能写一句代码，不能一行写多句代码，否则报错！</p>
 <p>编译并运行源文件</p>
 <pre class="line-numbers language-bash"><code class="language-bash">go run hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>编译生成一个可执行文件，在 Windows 下会生成一个 <code>.exe</code>文件，OS X  和 Linux 下会成才一个二进制文件，可以直接运行，Go 编译后不依附环境，但是需要相同的平台才能运行。</p>
@@ -489,6 +489,15 @@ go mod verify  <span class="token comment" spellcheck="true"># 校验依赖</spa
 <p>参考地址：</p>
 <p>Go 圣经：<a href="https://books.studygolang.com/gopl-zh/ch1/ch1-01.html" target="_blank" rel="noopener">https://books.studygolang.com/gopl-zh/ch1/ch1-01.html</a> ，之后所有都为 Go 圣经参考。</p>
 </blockquote>
+<h3 id="Go-转义符"><a href="#Go-转义符" class="headerlink" title="Go 转义符"></a>Go 转义符</h3><p>常用的转义字符有以下几个:</p>
+<ol>
+<li>\t: 表示一个制表符(tab), 通常可以使用它进行排版; </li>
+<li>\n: 表示一个换行符; </li>
+<li>\: 表示一个反斜线; </li>
+<li>&quot;: 表示一个”; </li>
+<li>\r: 表示一个回车(从当前行的最前面开始输出,覆盖以前的内容); </li>
+</ol>
+<h3 id="Go-fmt"><a href="#Go-fmt" class="headerlink" title="Go fmt"></a>Go fmt</h3><p>gofmt -w dev.go</p>
 <h3 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h3><h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p>Go 语言中的函数名、变量名、常量名、类型名、语句标号和包名等所有的命名，都遵循一个简单的命名规则：一个名字必须以一个字母（Unicode字母）或下划线开头，后面可以跟任意数量的字母、数字或下划线。</p>
 <p>Go 语言中类似 if 和 switch 的关键字有25个；关键字不能用于自定义名字，只能在特定语法结构中使用。</p>
 <pre class="line-numbers language-yaml"><code class="language-yaml">break      default       func     interface   select
@@ -979,7 +988,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">59.3k</span>&nbsp;字
+                class="white-color">72.2k</span>&nbsp;字
             
             
             
