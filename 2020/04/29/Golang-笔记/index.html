@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-08-26
+                    2020-09-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.1k
+                    4.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    16 分
                 </div>
                 
 
@@ -403,67 +403,132 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>Go 是一门全新的语言。尽管它从现有的语言中借鉴了许多理念，但其与众不同的特性， 使得使用 Go 编程在本质上就不同于其它语言。做为 PHP 开发人员，第二门语言选 Go 的同撩还是比较多，从此可以论证 Go 还是非常值得学习！</p>
-<p><strong>Go 特性对比大多数语言：</strong></p>
-<ol>
-<li>为了简化设计，不支持函数重载和操作符重载</li>
-<li>为了避免在 C/C++ 开发中的一些 Bug 和混乱，不支持隐式转换</li>
-<li>Go 语言通过另一种途径实现面向对象设计（结构）来放弃类和类型的继承，尽管在接口的使用方面可以实现类似变体类型的功能，但本身不支持变体类型</li>
-<li>不支持动态加载代码</li>
-<li>不支持动态链接库</li>
-<li>不支持泛型</li>
-<li>通过 recover 和 panic 来替代异常机制</li>
-<li>不支持断言</li>
-<li>不支持静态变量</li>
-</ol>
-<h4 id="GO-语言很特别"><a href="#GO-语言很特别" class="headerlink" title="GO 语言很特别"></a>GO 语言很特别</h4><p>没有 “对象”，没有继承、多态，没有泛型，没有 try/catch</p>
-<p>有接口，函数式编程，CSP 并发编程（goroutine + channel）</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>从 Go 语言中文网：<a href="https://studygolang.com/dl" target="_blank" rel="noopener">Go 中文社区</a> 上下载合适的 二进制发行版，根据自己操作系统而定二进制文件</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">tar</span> -xzf go1.13.6.linux-amd64.tar.gz -C /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>建立软链接</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/go/bin/* /usr/bin/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>测试</p>
-<pre class="line-numbers language-bash"><code class="language-bash">go version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如果没有出现问题，那么就算装好了。接下来就是设置 Go 的开发环境了</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 如果是zsh,就把/.bashrc 改成 /.zshr</span>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h5 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 从 Go 语言中文网：https://studygolang.com/dl 根据自己系统下载 Go 软件包</span>
+<span class="token function">sudo</span> <span class="token function">tar</span> -xzf go1.13.6.linux-amd64.tar.gz -C /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h5 id="2、建立软链接"><a href="#2、建立软链接" class="headerlink" title="2、建立软链接"></a>2、建立软链接</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/go/bin/* /usr/bin/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="3、测试"><a href="#3、测试" class="headerlink" title="3、测试"></a>3、测试</h5><pre class="line-numbers language-bash"><code class="language-bash">go version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="4、配置环境变量"><a href="#4、配置环境变量" class="headerlink" title="4、配置环境变量"></a>4、配置环境变量</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Linux 如果是zsh,就把/.bashrc 改成 /.zshr</span>
 <span class="token function">sudo</span> vim ~/.bashrc
 
 <span class="token function">export</span> GOROOT<span class="token operator">=</span>/usr/local/go   <span class="token comment" spellcheck="true"># 表示 Go 在你的电脑上的安装位置，有些安装包会自动设置默认的 goroot</span>
-<span class="token function">export</span> GOPATH<span class="token operator">=</span><span class="token variable">$HOME</span>/go-work   <span class="token comment" spellcheck="true"># 默认安装包的路径,根据自己需要来选择位置</span>
-<span class="token function">export</span> PATH<span class="token operator">=</span><span class="token variable">$PATH</span><span class="token keyword">:</span><span class="token variable">$GOROOT</span>/bin:<span class="token variable">$GOPATH</span>/bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>使配置文件生效，这里有个大坑，千万别用 fish 里面执行它一直报错，人都差点搞死了</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">source</span> ~/.bashrc　<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>可运行 go env 查看 Go 环境变量</p>
-<pre class="line-numbers language-bash"><code class="language-bash">go <span class="token function">env</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<span class="token function">export</span> GOPATH<span class="token operator">=</span><span class="token variable">$HOME</span>/go-work   <span class="token comment" spellcheck="true"># 默认安装包的路径,把默认路径换成自己的路径</span>
+<span class="token function">export</span> PATH<span class="token operator">=</span><span class="token variable">$PATH</span><span class="token keyword">:</span><span class="token variable">$GOROOT</span>/bin:<span class="token variable">$GOPATH</span>/bin
+
+<span class="token comment" spellcheck="true"># 如果没有出现问题，那么就算装好了。接下来就是设置 Go 的开发环境了</span>
+
+<span class="token comment" spellcheck="true"># 使配置文件生效，这里有个大坑，千万别用 fish 里面执行它一直报错，人都差点搞死了</span>
+<span class="token function">source</span> ~/.bashrc　
+
+<span class="token comment" spellcheck="true"># mac os</span>
+
+<span class="token comment" spellcheck="true"># 设置环境变量</span>
+vim ~/.bash_profile
+<span class="token function">export</span> GOPATH<span class="token operator">=</span>/Users/daixianjin/Desktop/go
+<span class="token function">export</span> GOBIN<span class="token operator">=</span><span class="token variable">$GOPATH</span>/bin
+<span class="token function">export</span> PATH<span class="token operator">=</span><span class="token variable">$PATH</span><span class="token keyword">:</span><span class="token variable">$GOBIN</span>
+<span class="token function">export</span> GOMODCACHE<span class="token operator">=</span>/Users/daixianjin/Desktop/go/pkg
+
+<span class="token comment" spellcheck="true"># 立即生效</span>
+<span class="token function">source</span> .bash_profile
+
+<span class="token comment" spellcheck="true"># 发现关闭终端后立马失效，在 ~/.zshrc 文件最后，增加一行：</span>
+<span class="token function">source</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="5、查看环境变量"><a href="#5、查看环境变量" class="headerlink" title="5、查看环境变量"></a>5、查看环境变量</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># go env 查看 Go 环境变量</span>
+go <span class="token function">env</span>
+
+GO111MODULE<span class="token operator">=</span><span class="token string">""</span>
+GOARCH<span class="token operator">=</span><span class="token string">"amd64"</span>
+GOBIN<span class="token operator">=</span><span class="token string">"/Users/daixianjin/Desktop/go/bin"</span>
+GOCACHE<span class="token operator">=</span><span class="token string">"/Users/daixianjin/Library/Caches/go-build"</span>
+GOENV<span class="token operator">=</span><span class="token string">"/Users/daixianjin/Library/Application Support/go/env"</span>
+GOEXE<span class="token operator">=</span><span class="token string">""</span>
+GOFLAGS<span class="token operator">=</span><span class="token string">""</span>
+GOHOSTARCH<span class="token operator">=</span><span class="token string">"amd64"</span>
+GOHOSTOS<span class="token operator">=</span><span class="token string">"darwin"</span>
+GOINSECURE<span class="token operator">=</span><span class="token string">""</span>
+GOMODCACHE<span class="token operator">=</span><span class="token string">"/Users/daixianjin/Desktop/go/pkg"</span>
+GONOPROXY<span class="token operator">=</span><span class="token string">""</span>
+GONOSUMDB<span class="token operator">=</span><span class="token string">""</span>
+GOOS<span class="token operator">=</span><span class="token string">"darwin"</span>
+GOPATH<span class="token operator">=</span><span class="token string">"/Users/daixianjin/Desktop/go"</span>
+GOPRIVATE<span class="token operator">=</span><span class="token string">""</span>
+GOPROXY<span class="token operator">=</span><span class="token string">"https://proxy.golang.org,direct"</span>
+GOROOT<span class="token operator">=</span><span class="token string">"/usr/local/go"</span>
+GOSUMDB<span class="token operator">=</span><span class="token string">"sum.golang.org"</span>
+GOTMPDIR<span class="token operator">=</span><span class="token string">""</span>
+GOTOOLDIR<span class="token operator">=</span><span class="token string">"/usr/local/go/pkg/tool/darwin_amd64"</span>
+GCCGO<span class="token operator">=</span><span class="token string">"gccgo"</span>
+AR<span class="token operator">=</span><span class="token string">"ar"</span>
+CC<span class="token operator">=</span><span class="token string">"clang"</span>
+CXX<span class="token operator">=</span><span class="token string">"clang++"</span>
+CGO_ENABLED<span class="token operator">=</span><span class="token string">"1"</span>
+GOMOD<span class="token operator">=</span><span class="token string">""</span>
+CGO_CFLAGS<span class="token operator">=</span><span class="token string">"-g -O2"</span>
+CGO_CPPFLAGS<span class="token operator">=</span><span class="token string">""</span>
+CGO_CXXFLAGS<span class="token operator">=</span><span class="token string">"-g -O2"</span>
+CGO_FFLAGS<span class="token operator">=</span><span class="token string">"-g -O2"</span>
+CGO_LDFLAGS<span class="token operator">=</span><span class="token string">"-g -O2"</span>
+PKG_CONFIG<span class="token operator">=</span><span class="token string">"pkg-config"</span>
+GOGCCFLAGS<span class="token operator">=</span><span class="token string">"-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/var/folders/jg/7hbx9k8d18qdp5z6f0ddlsr00000gp/T/go-build606674752=/tmp/go-build -gno-record-gcc-switches -fno-common"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>GOPATH 现在的 Go 语言来说不晓得也没关系，现在官方推荐 Go module 跟 Composer 有点相像！</p>
 </blockquote>
-<h3 id="Go-Module"><a href="#Go-Module" class="headerlink" title="Go Module"></a>Go Module</h3><p>Go module 是 Go 官方自带的 Go 依赖管理库，在 1.13 版本正式推荐使用。Go module 可以将某个项目(文件夹)下的所有依赖整理成一个 go.mod 文件，里面写入了依赖的版本等。使用 Go module 之后我们可不用将代码放置在 src下了。</p>
-<p>开启 Go module，开启代理</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">export</span> GO111MODULE<span class="token operator">=</span>on
+<h4 id="Go-Module"><a href="#Go-Module" class="headerlink" title="Go Module"></a>Go Module</h4><p>Go module 是 Go 官方自带的 Go 依赖管理库（感觉跟 Composer 很像），在 1.13 版本正式推荐使用。Go module 可以将某个项目(文件夹)下的所有依赖整理成一个 go.mod 文件，里面写入了依赖的版本等。使用 Go module 之后我们可不用将代码放置在 src下了。</p>
+<h5 id="1、开启-Go-module，开启代理"><a href="#1、开启-Go-module，开启代理" class="headerlink" title="1、开启 Go module，开启代理"></a>1、开启 Go module，开启代理</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 设置环境变量，开启 Go module</span>
+<span class="token function">export</span> GO111MODULE<span class="token operator">=</span>on
 
-<span class="token function">export</span> GOPROXY<span class="token operator">=</span>https://goproxy.cn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>初始化项目</p>
-<pre class="line-numbers language-bash"><code class="language-bash">go mod init 项目名称<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>检查依赖</p>
-<pre class="line-numbers language-bash"><code class="language-bash">go mod tidy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>tidy会检测该文件夹目录下所有引入的依赖,写入 go.mod 文件，写入后你会发现 go.mod 文件有所变动。</p>
-<p>下载依赖</p>
-<pre class="line-numbers language-bash"><code class="language-bash">go mod download<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如果你没有设置 GOPROXY 为国内镜像,这步百分百会夯住到死，此时会将依赖全部下载至 GOPATH 下,会在根目录下生成 go.sum 文件, 该文件是依赖的详细依赖, 但是我们开头说了，我们的项目是没有放到 GOPATH 下的,那么我们下载至 GOPATH 下是无用的,照样找不到这些包</p>
-<p>导入依赖</p>
-<pre class="line-numbers language-bash"><code class="language-bash">go mod vendor<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>执行此命令，会将刚才下载至 GOPATH 下的依赖转移至该项目根目录下的 vendor(自动新建) 文件夹下。</p>
-<p>常用命令</p>
-<pre class="line-numbers language-bash"><code class="language-bash">go mod init  <span class="token comment" spellcheck="true"># 初始化go.mod</span>
+<span class="token comment" spellcheck="true"># 换成国内代理，如果不换，你会体验到什么是超级漫长的等待...</span>
+<span class="token function">export</span> GOPROXY<span class="token operator">=</span>https://goproxy.cn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="2、初始化项目"><a href="#2、初始化项目" class="headerlink" title="2、初始化项目"></a>2、初始化项目</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 随便在任何一个位置创建一个新的项目</span>
+<span class="token function">mkdir</span> learn
+
+<span class="token comment" spellcheck="true"># 初始化,会在当前目录下生成一个 go.mod 文件并且为空</span>
+go mod init learn
+
+<span class="token comment" spellcheck="true"># 检查依赖，tidy 会检测该文件夹目录下所有引入的依赖,拉取缺少的模块，移除不用的模块</span>
+go mod tidy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/YXnld7.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/suQjZ4.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/F6CxaN.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/TZw9bM.png" alt></p>
+<blockquote>
+<p>当然，可以不用 tidy 检查依赖，直接 <code>go build main.go</code> 或者 <code>go run main.go</code> 也会自动把依赖导入好，所以 go module 你值得拥有官方都在推了，那还等什么用起来。</p>
+</blockquote>
+<h5 id="3、导入依赖"><a href="#3、导入依赖" class="headerlink" title="3、导入依赖"></a>3、导入依赖</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 导入依赖</span>
+go mod vendor
+
+<span class="token comment" spellcheck="true"># 执行此命令，会将刚才下载至 GOPATH 下的依赖转移至该项目根目录下的 vendor(自动新建) 文件夹下</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/JwlZWl.png" alt></p>
+<h5 id="4、升级"><a href="#4、升级" class="headerlink" title="4、升级"></a>4、升级</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 将会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号， y是次要版本号)</span>
+go get -u 
+
+<span class="token comment" spellcheck="true"># 将会升级到最新的修订版本</span>
+go get -u<span class="token operator">=</span>patch 
+
+<span class="token comment" spellcheck="true"># 将会升级到指定的版本号 version</span>
+go get package@version <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="5、常用命令"><a href="#5、常用命令" class="headerlink" title="5、常用命令"></a>5、常用命令</h5><pre class="line-numbers language-bash"><code class="language-bash">go mod init  <span class="token comment" spellcheck="true"># 初始化 go.mod</span>
 go mod tidy  <span class="token comment" spellcheck="true"># 更新依赖文件</span>
-go mod download  <span class="token comment" spellcheck="true"># 下载依赖文件</span>
-go mod vendor  <span class="token comment" spellcheck="true"># 将依赖转移至本地的vendor文件</span>
+go mod download  <span class="token comment" spellcheck="true"># 下载依赖的 module 到本地 cache</span>
+go mod vendor  <span class="token comment" spellcheck="true"># 将依赖转移至本地的 vendor 文件</span>
 go mod edit  <span class="token comment" spellcheck="true"># 手动修改依赖文件</span>
 go mod graph  <span class="token comment" spellcheck="true"># 打印依赖图</span>
 go mod verify  <span class="token comment" spellcheck="true"># 校验依赖</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>Goland 设置</p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/20200818223505.png" alt></p>
-<h3 id="国际惯例"><a href="#国际惯例" class="headerlink" title="国际惯例"></a>国际惯例</h3><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
+<h5 id="6、Goland-设置-Go-module"><a href="#6、Goland-设置-Go-module" class="headerlink" title="6、Goland 设置 Go module"></a>6、Goland 设置 Go module</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/20200818223505.png" alt></p>
+<h4 id="Go-fmt"><a href="#Go-fmt" class="headerlink" title="Go fmt"></a>Go fmt</h4><h5 id="1、手动代码格式"><a href="#1、手动代码格式" class="headerlink" title="1、手动代码格式"></a>1、手动代码格式</h5><p>Go 的代码风格我非常喜欢，人人代码风格都一致就非常舒服了。不需要去争论代码风格上面的各种问题，也不需要去适用同事的风格。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 代码风格格式化，但是只是格式化输出</span>
+gofmt dev.go
+
+<span class="token comment" spellcheck="true"># 代码风格格式化，直接格式整个项目的代码，并且重新编排项目代码</span>
+gofmt -w dev.go<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="2、Goland-设置-Go-fmt"><a href="#2、Goland-设置-Go-fmt" class="headerlink" title="2、Goland 设置 Go fmt"></a>2、Goland 设置 Go fmt</h5><p>首先，得保证安装了一个叫做 ”File Watchers” 的插件，并设置为启用状态：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/oTQO1A.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/S88pdN.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/5QBrf8.png" alt></p>
+<blockquote>
+<p>配置好了 Go fmt 按 command + s 保存后，代码自动格式化。非常舒服！</p>
+</blockquote>
+<h3 id="国际惯例"><a href="#国际惯例" class="headerlink" title="国际惯例"></a>国际惯例</h3><h5 id="1、你好世界"><a href="#1、你好世界" class="headerlink" title="1、你好世界"></a>1、你好世界</h5><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token string">"fmt"</span>
 
@@ -471,23 +536,15 @@ go mod verify  <span class="token comment" spellcheck="true"># 校验依赖</spa
     fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"你好世界"</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Go 语言的代码通过<strong>包</strong>（package）组织，包类似于其它语言里的库（libraries）或者模块（modules）。也就是说程序一开始，就要声明这个程序属于哪个包。一个包由位于单个目录下的一个或多个<code>.go</code>源代码文件组成, 目录定义包的作用。每个源文件都以一条<code>package</code>声明语句开始，紧跟着一系列导入（import）的包，之后是存储在这个文件里的程序语句。</p>
-<h4 id="特殊的-main-包"><a href="#特殊的-main-包" class="headerlink" title="特殊的 main 包"></a>特殊的 main 包</h4><p>main 包比较特殊，它定义了一个独立可执行的程序，它不是一个库！它是整个程序执行的入口。main 包当中的 main 函数就是我们所说整个程序执行的入口了，一般 main 函数当中会调用其它很多函数完成工作。</p>
-<h4 id="需要遵循的规定"><a href="#需要遵循的规定" class="headerlink" title="需要遵循的规定"></a>需要遵循的规定</h4><p>首先要注意一点，package 先 ，import 后，它们不能颠倒位置，package 只能有一个而不能多个，import 可以有多个。其次如果说 import 导入多个包，那么你都必须去使用导入的包，不然编译无法通过，这正是遵循了 Go 的格言：“没有不必要的代码！“。Go 的语法要求特别的严格，在 package 和 import 之后，才可以定义 函数、常亮、变量、类型的声明语句。它们没有顺序要求，可以随心所欲来！Go 语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。如：for，if 等。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响 Go 代码的正确解析。</p>
-<h4 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h4><p>Go 是一门编译型语言，Go 语言的工具链将源代码及其依赖转换成计算机的机器指令（译注：静态编译）。 Go 语言提供的工具都通过一个单独的命令 Go 调用，Go 命令有一系列子命令。最简单的一个子命令就是 run。这个命令编译一个或多个以 <code>.go</code> 结尾的源文件，链接库文件，并运行最终生成的可执行文件。注意：Go 语言编译代码是一行一行的编译，所以一行只能写一句代码，不能一行写多句代码，否则报错！</p>
-<p>编译并运行源文件</p>
-<pre class="line-numbers language-bash"><code class="language-bash">go run hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="2、特殊的-main-包"><a href="#2、特殊的-main-包" class="headerlink" title="2、特殊的 main 包"></a>2、特殊的 main 包</h5><p>main 包比较特殊，他定义了一个独立可执行的程序，他不是一个库！他是整个程序执行的入口。main 包当中的 main 函数就是整个程序执行的入口了，也就是 main 主函数，一般 main 主函数当中会调用其它很多函数完成工作。</p>
+<h5 id="3、需要遵循的规定"><a href="#3、需要遵循的规定" class="headerlink" title="3、需要遵循的规定"></a>3、需要遵循的规定</h5><p>首先要注意一点，package 先 ，import 后，他们不能颠倒位置，package 只能有一个而不能多个，import 可以有多个。其次如果说 import 导入多个包，那么你都必须去使用导入的包，不然编译无法通过，这正是遵循了 Go 的格言：“没有不必要的代码！“。Go 的语法要求特别的严格，在 package 和 import 之后，才可以定义 函数、常亮、变量、类型的声明语句。程序语句他们没有顺序要求，可以随心所欲来！Go 语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。如：for，if 等。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响 Go 代码的正确解析。</p>
+<h5 id="4、编译程序"><a href="#4、编译程序" class="headerlink" title="4、编译程序"></a>4、编译程序</h5><p>Go 是一门编译型语言，Go 语言的工具链将源代码及其依赖转换成计算机的机器指令（译注：静态编译）。 Go 语言提供的工具都通过一个单独的命令 Go 调用，Go 命令有一系列子命令。最简单的一个子命令就是 run。这个命令编译一个或多个以 <code>.go</code> 结尾的源文件，链接库文件，并运行最终生成的可执行文件。注意：Go 语言编译代码是一行一行的编译，所以一行只能写一句代码，不能一行写多句代码，否则报错！</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 编译并运行源文件</span>
+go run hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>编译生成一个可执行文件，在 Windows 下会生成一个 <code>.exe</code>文件，OS X  和 Linux 下会成才一个二进制文件，可以直接运行，Go 编译后不依附环境，但是需要相同的平台才能运行。</p>
 <pre class="line-numbers language-bash"><code class="language-bash">go build hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h4 id="下载并安装包"><a href="#下载并安装包" class="headerlink" title="下载并安装包"></a>下载并安装包</h4><p>根据要求和实际情况从互联网上下载或更新指定的代码包及其依赖包，并对它们进行编译和安装，安装的目录就是 GOPATH 环境变量设置的目录当中，但是依赖 Git 或 SVN 等工具进行下载。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">go get -u github.com/gin-gonic/gin
-
-<span class="token comment" spellcheck="true"># 附加参数</span>
-<span class="token comment" spellcheck="true"># -v 显示操作流程的日志及信息，方便检查错误</span>
-<span class="token comment" spellcheck="true"># -u 下载丢失的包，但不会更新已经存在的包</span>
-<span class="token comment" spellcheck="true"># -d 只下载，不安装</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>参考地址：  </p>
-<p>Go 圣经：<a href="https://books.studygolang.com/gopl-zh/ch1/ch1-01.html" target="_blank" rel="noopener">https://books.studygolang.com/gopl-zh/ch1/ch1-01.html</a> ，之后所有都为 Go 圣经参考。</p>
+<p> 如果使用了 Go module 那么<code>go build main.go</code> 或者 <code>go run main.go</code> 会自动把依赖导入好。</p>
 </blockquote>
 <h3 id="Go-转义符"><a href="#Go-转义符" class="headerlink" title="Go 转义符"></a>Go 转义符</h3><p>常用的转义字符有以下几个:</p>
 <ol>
@@ -497,7 +554,6 @@ go mod verify  <span class="token comment" spellcheck="true"># 校验依赖</spa
 <li>&quot;: 表示一个”; </li>
 <li>\r: 表示一个回车(从当前行的最前面开始输出,覆盖以前的内容); </li>
 </ol>
-<h3 id="Go-fmt"><a href="#Go-fmt" class="headerlink" title="Go fmt"></a>Go fmt</h3><p>gofmt -w dev.go</p>
 <h3 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h3><h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p>Go 语言中的函数名、变量名、常量名、类型名、语句标号和包名等所有的命名，都遵循一个简单的命名规则：一个名字必须以一个字母（Unicode字母）或下划线开头，后面可以跟任意数量的字母、数字或下划线。</p>
 <p>Go 语言中类似 if 和 switch 的关键字有25个；关键字不能用于自定义名字，只能在特定语法结构中使用。</p>
 <pre class="line-numbers language-yaml"><code class="language-yaml">break      default       func     interface   select
@@ -988,7 +1044,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">75.2k</span>&nbsp;字
+                class="white-color">75.4k</span>&nbsp;字
             
             
             

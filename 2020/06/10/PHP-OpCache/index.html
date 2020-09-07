@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-28
+                    2020-09-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    139
+                    211
                 </div>
                 
 
@@ -402,9 +402,22 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>它是由 PHP 官方公司 Zend 开发的一款免费使用的 PHP 优化加速拓展。将 PHP Code 预编译生成的脚本文件 OPcode 缓存在共享内存中供以后反复使用，从而避免了从磁盘读取代码再次编译的时间消耗。同时，它还应用了一些代码优化模式，使得代码执行更快。从而加速 PHP 应用响应。</p>
-<p>实现 OPcache 的一个缺点是每次更改任何 PHP 代码时你都不得不去清除缓存。</p>
-
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>它是由 PHP 官方公司 Zend 开发的一款免费使用的 PHP 优化加速拓展。将 PHP Code 预编译生成的脚本文件 OPcode 缓存在共享内存中供以后反复使用，从而避免了从磁盘读取代码再次编译的时间消耗。同时，它还应用了一些代码优化模式，使得代码执行更快。从而加速 PHP 应用响应。opcache.enable=1</p>
+<p>PHP官方推荐推荐:<a href="https://www.php.net/manual/zh/opcache.installation.php" target="_blank" rel="noopener">https://www.php.net/manual/zh/opcache.installation.php</a></p>
+<pre><code>opcache.enable=1
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=4000
+opcache.revalidate_freq=60
+opcache.fast_shutdown=1 ;(在PHP 7.2.0中被移除，会自动开启)
+opcache.enable_cli=1</code></pre><p>推荐：</p>
+<p>find . -type f -print | grep php | wc -l 查看项目文件数量</p>
+<pre><code>opcache.enable=1
+opcache.memory_consumption=64
+opcache.interned_strings_buffer=16
+opcache.max_accelerated_files=4000
+opcache.revalidate_freq=0
+opcache.validate_timestamps  开发环境为 1，生产环境为 0</code></pre>
             </div>
             <hr/>
 
@@ -775,7 +788,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">75.2k</span>&nbsp;字
+                class="white-color">75.4k</span>&nbsp;字
             
             
             
