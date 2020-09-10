@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-27
+                    2020-09-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    6 分
                 </div>
                 
 
@@ -529,7 +529,45 @@ Job<span class="token punctuation">:</span><span class="token punctuation">:</sp
 Job<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">delay</span><span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">addMinutes</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token shell-comment comment"># 以上都是代码调用队列</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="使用队列"><a href="#使用队列" class="headerlink" title="使用队列"></a>使用队列</h3><h3 id="守护进程程序"><a href="#守护进程程序" class="headerlink" title="守护进程程序"></a>守护进程程序</h3><p>未完待续。。。</p>
+<h3 id="守护进程程序"><a href="#守护进程程序" class="headerlink" title="守护进程程序"></a>守护进程程序</h3><p>Supervisor (<a href="http://supervisord.org/" target="_blank" rel="noopener">http://supervisord.org</a>) 是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> supervisor<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>当安装完成之后会在 <code>/etc/supervisor</code>文件目录当中，此时不需要去修改任何的配置文件。</p>
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> /etc/supervisor/conf.d
+
+<span class="token function">touch</span> queue.conf
+
+<span class="token punctuation">[</span>program:queue<span class="token punctuation">]</span>
+process_name<span class="token operator">=</span>%<span class="token punctuation">(</span>program_name<span class="token punctuation">)</span>s_%<span class="token punctuation">(</span>process_num<span class="token punctuation">)</span>02d
+command<span class="token operator">=</span>/usr/local/bin/php /var/www/html/artisan queue:work redis --sleep<span class="token operator">=</span>3 --tries<span class="token operator">=</span>3
+autostart<span class="token operator">=</span>true
+autorestart<span class="token operator">=</span>true
+user<span class="token operator">=</span>root
+numprocs<span class="token operator">=</span>8
+redirect_stderr<span class="token operator">=</span>true
+stdout_logfile<span class="token operator">=</span>/etc/supervisor/redis.log
+stopwaitsecs<span class="token operator">=</span>3600<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>需要注意几点：</p>
+<ul>
+<li>command  执行的全部必须绝对路径执行<ul>
+<li>不建议使用 queue:list 推荐使用 queue:work </li>
+<li>驱动 redis 或者其他自行定义</li>
+<li>sleep 当任务在队列中可用时，worker 将继续处理任务，中间没有任何延迟。然而， sleep 选项决定了如果没有新的 worker 可用，worker 将”sleep” 多长时间 (以秒为单位)。在休眠时，worker 将不处理任何新任务 —— 这些任务将在 worker 再次醒来后处理</li>
+<li>tries 指定任务可尝试的最大次数</li>
+</ul>
+</li>
+<li>user 需要更加当前用户而定</li>
+<li>numprocs 进程数量，我一直用的 8 个进程</li>
+<li>stdout_logfile 日志</li>
+</ul>
+<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre class="line-numbers language-bash"><code class="language-bash">supervisord -c /etc/supervisor/supervisord.conf
+
+supervisorctl reread
+supervisorctl update
+supervisorctl start all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h4><pre class="line-numbers language-bash"><code class="language-bash">supervisorctl stop all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>注意，修改了队列那么一定要重启！！</p>
+</blockquote>
 
             </div>
             <hr/>
@@ -901,7 +939,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">75.4k</span>&nbsp;字
+                class="white-color">76k</span>&nbsp;字
             
             
             

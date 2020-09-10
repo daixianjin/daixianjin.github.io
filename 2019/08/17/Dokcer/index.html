@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-08-18
+                    2020-09-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.7k
+                    3.8k
                 </div>
                 
 
@@ -505,23 +505,26 @@
 <td align="center">映射文件，宿主机容器文件同步</td>
 </tr>
 </tbody></table>
-<h3 id="安装-Docker-ce"><a href="#安装-Docker-ce" class="headerlink" title="安装 Docker-ce"></a>安装 Docker-ce</h3><h4 id="1、ubuntu"><a href="#1、ubuntu" class="headerlink" title="1、ubuntu"></a>1、ubuntu</h4><pre><code>1、若安装过先删除，若无忽略
+<h3 id="安装-Docker-ce"><a href="#安装-Docker-ce" class="headerlink" title="安装 Docker-ce"></a>安装 Docker-ce</h3><h4 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h4><pre><code>1、若安装过先删除，若无忽略
 sudo apt-get remove docker docker-engine docker.io
 
 2、安装扩展
 sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
 
-3. 为国内的 azure 仓库添加 GPG Key
-curl -fsSL https://mirror.azure.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+3、信任 GPG
+curl -fsSL https://mirrors.huaweicloud.com/docker-ce/linux/debian/gpg | sudo apt-key add -
 
-4. 添加 docker 仓库到 Apt 源
-sudo add-apt-repository &quot;deb [arch=amd64] https://mirror.azure.cn/docker-ce/linux/ubuntu bionic stable&quot;
+4、添加仓库
+sudo add-apt-repository &quot;deb [arch=amd64] https://mirrors.huaweicloud.com/docker-ce/linux/debian $(lsb_release -cs) stable&quot;
 
-5. 再次更新包列表
-sudo apt update
+5、安装
+apt install docker-ce
 
-6、安装
-sudo apt install docker-ce</code></pre><h4 id="2、centos"><a href="#2、centos" class="headerlink" title="2、centos"></a>2、centos</h4><pre><code>1、若安装过先删除，若无忽略
+6、以上还没安装好，那肯定要这样了
+wget https://mirrors.huaweicloud.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+
+apt install containerd.io-1.2.6-3.3.el7.x86_64.rpm
+apt install docker-ce</code></pre><h4 id="centos"><a href="#centos" class="headerlink" title="centos"></a>centos</h4><pre><code>1、若安装过先删除，若无忽略
 sudo yum remove docker docker-common docker-selinux docker-engine
 
 2、安装扩展
@@ -535,7 +538,13 @@ sudo sed -i &#39;s+download.docker.com+mirrors.huaweicloud.com/docker-ce+&#39; /
 
 5、更新索引文件并安装
 sudo yum makecache fast
-sudo yum install docker-ce</code></pre><h4 id="3、dockerhub-国内源"><a href="#3、dockerhub-国内源" class="headerlink" title="3、dockerhub 国内源"></a>3、dockerhub 国内源</h4><pre><code>1、编辑配置文件
+sudo yum install docker-ce
+
+6、以上还没安装好，那肯定要这样了
+wget https://mirrors.huaweicloud.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+
+yum install containerd.io-1.2.6-3.3.el7.x86_64.rpm
+yum install docker-ce</code></pre><h4 id="dockerhub-国内源"><a href="#dockerhub-国内源" class="headerlink" title="dockerhub 国内源"></a>dockerhub 国内源</h4><pre><code>1、编辑配置文件
 vim /etc/docker/daemon.json
 
 2、添加中科大源
@@ -613,8 +622,7 @@ port=3306
 default_authentication_plugin=mysql_native_password
 
 # 重启容器
-docker restart mysql</code></pre><h3 id="PHP-FPM-安装"><a href="#PHP-FPM-安装" class="headerlink" title="PHP-FPM 安装"></a>PHP-FPM 安装</h3><h4 id="1、从-Dockerhub-拉取-PHP-镜像"><a href="#1、从-Dockerhub-拉取-PHP-镜像" class="headerlink" title="1、从 Dockerhub 拉取 PHP 镜像"></a>1、从 Dockerhub 拉取 PHP 镜像</h4><pre><code>docker pull php:fpm</code></pre><h4 id="2、创建容器-1"><a href="#2、创建容器-1" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code># 创建容器并且关联 MySQL
-docker run --name php-fpm -p 9000:9000 --link mysql -v /宿主机存放代码的目录:/var/www/html -it -d php:fpm</code></pre><table>
+docker restart mysql</code></pre><h3 id="PHP-FPM-安装"><a href="#PHP-FPM-安装" class="headerlink" title="PHP-FPM 安装"></a>PHP-FPM 安装</h3><h4 id="1、从-Dockerhub-拉取-PHP-镜像"><a href="#1、从-Dockerhub-拉取-PHP-镜像" class="headerlink" title="1、从 Dockerhub 拉取 PHP 镜像"></a>1、从 Dockerhub 拉取 PHP 镜像</h4><pre><code>docker pull php:fpm</code></pre><h4 id="2、创建容器-1"><a href="#2、创建容器-1" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code>docker run --name php -p 9000:9000 --network name -v /宿主机存放代码的目录:/var/www/html -it -d php:fpm</code></pre><table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -651,7 +659,7 @@ docker run --name php-fpm -p 9000:9000 --link mysql -v /宿主机存放代码的
 </tr>
 </tbody></table>
 <h4 id="3、基本配置-1"><a href="#3、基本配置-1" class="headerlink" title="3、基本配置"></a>3、基本配置</h4><pre><code># 进入容器
-docker exec -it php-fpm bash
+docker exec -it php bash
 
 # 中科大源,然后下载需要的软件
 sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
@@ -677,7 +685,7 @@ docker-php-ext-enable mysqli
 这个镜像给我们打包的配置文件，分开发和生产二个配置文件，在 /usr/local/etc/php 当中
 
 # 重启容器
-docker restart php-fpm</code></pre><h3 id="Nginx-安装"><a href="#Nginx-安装" class="headerlink" title="Nginx 安装"></a>Nginx 安装</h3><h4 id="1、从-Dockerhub-拉取-Nginx-镜像"><a href="#1、从-Dockerhub-拉取-Nginx-镜像" class="headerlink" title="1、从 Dockerhub 拉取 Nginx 镜像"></a>1、从 Dockerhub 拉取 Nginx 镜像</h4><pre><code>docker pull nginx</code></pre><h4 id="2、创建容器-2"><a href="#2、创建容器-2" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code>docker run --name nginx_80 -p 80:80 --network shen -v /宿主机存放代码的目录:/usr/share/nginx/html -d nginx</code></pre><table>
+docker restart php</code></pre><h3 id="Nginx-安装"><a href="#Nginx-安装" class="headerlink" title="Nginx 安装"></a>Nginx 安装</h3><h4 id="1、从-Dockerhub-拉取-Nginx-镜像"><a href="#1、从-Dockerhub-拉取-Nginx-镜像" class="headerlink" title="1、从 Dockerhub 拉取 Nginx 镜像"></a>1、从 Dockerhub 拉取 Nginx 镜像</h4><pre><code>docker pull nginx</code></pre><h4 id="2、创建容器-2"><a href="#2、创建容器-2" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code>docker run --name nginx -p 80:80 --network name -v /宿主机存放代码的目录:/usr/share/nginx/html -d nginx</code></pre><table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -738,24 +746,6 @@ server {
         try_files $uri $uri/ /index.php?$query_string;
     }
 
-    # 自定义错误页面
-    #error_page  404              /404.html;
-
-    # redirect server error pages to the static page /50x.html
-    #
-    #error_page   500 502 503 504  /50x.html;
-    #location = /50x.html {
-    #    root   /usr/share/nginx/html;
-    #}
-
-    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-    #
-    #location ~ \.php$ {
-    #    proxy_pass   http://127.0.0.1;
-    #}
-
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-
     # 正则匹配到 PHP 文件请求 ，扔给 FastCGI 
     location ~ \.php$ {
         root           /var/www/html/dao/public;
@@ -764,17 +754,10 @@ server {
         include        fastcgi_params;
         fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
-
-    # deny access to .htaccess files, if Apache&#39;s document root
-    # concurs with nginx&#39;s one
-    #
-    #location ~ /\.ht {
-    #    deny  all;
-    #}
 }
 
 # 重启 nginx
-docker restart nginx_80</code></pre><h3 id="memcached"><a href="#memcached" class="headerlink" title="memcached"></a>memcached</h3><pre><code>docker pull memcached
+docker restart nginx</code></pre><h3 id="memcached"><a href="#memcached" class="headerlink" title="memcached"></a>memcached</h3><pre><code>docker pull memcached
 
 #实例容器,启动memcached：
 docker run --name memcached -p 11211:11211 -m 64m -d memcached
@@ -786,18 +769,13 @@ apt update
 #安装 memcached 的时候会去少依赖，根据下面评论安装即可搞定</code></pre><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><pre><code>docker pull redis
 
 #实例容器,启动redis
-docker run --name redis -p 6379:6379  -d redis redis-server --appendonly yes
+docker run --name redis -p 6379:6379 --network name -d redis redis-server --appendonly yes --requirepass &quot;mypassword&quot;
 
 # 中科大源,然后下载需要的软件
 sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
 apt update
 
-# redis5以后 没有配置文件，需要自己去 redis 官方下载一个想对应的版本把里面的配置文件复制出来</code></pre><p><img src="https://i.loli.net/2019/09/26/16iHMtqA8BYZEeQ.png" alt></p>
-<p><img src="https://i.loli.net/2019/09/26/JLyaowZkuSvNzmX.png" alt></p>
-<blockquote>
-<p>参考地址：</p>
-<p><a href="https://zhuanlan.zhihu.com/p/53260098" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/53260098</a></p>
-</blockquote>
+# redis5以后 没有配置文件，需要自己去 redis 官方下载一个想对应的版本把里面的配置文件复制出来</code></pre><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/eHkRhu.png" alt></p>
 <h3 id="踩坑的路"><a href="#踩坑的路" class="headerlink" title="踩坑的路"></a>踩坑的路</h3><p>细心成就王者，这句话不是没有道理的呀！</p>
 <h4 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h4><p>在之前也一直没有去执行过 Laravel 的 migrate 命令。今天在想要写一个朋友给的项目的时候，需要创建表，夸夸一顿操作。结果就是：<code>could not find driver</code></p>
 <p>找不到驱动，下意识的就去看 <code>config/database.php</code>配置文件去了，认真的检查了一遍没有问题啊！然后又去<code>.env</code>看连接的信息是否哪里有问题，没问题啊！！！心里又在想是不是扩展没打开，马上 exec 到 Dokcer 的容器当中 PHP -m 查看 PDO 相关的扩展是不是没有。（其实问题已经出现了）</p>
@@ -805,7 +783,7 @@ apt update
 <p>’你去 Docker 里面运行一下  php artisan migrate ‘，恍然大悟！！！赶快 exec 到容器当中，执行了一下命令。。。成功了我靠搞半天原来是这样！！！因为宿主机没有这个环境，使用的都是 Docker 里面的环境，还在搞半天搞出一朵花来也运行不了！当然你要是同步 Docker 的环境就完全没有问题了。</p>
 <h4 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h4><p>今天又跳坑里面了，自己想答一个 MySQL 的读写分离，创建了一个容器，绑定了端口 3307 结果第三方软件一直连接不上。</p>
 <p>宿主机绑定了 3307 端口，但是 MySQL 忘记修改端口了，MySQL 默认使用的 3306。</p>
-<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><p>今天在线上搭建了 Dcoker 的环境，全部搭好后，Git 拉了代码，因为是忽略 Composer 的所以需要自己安装，在我本地容器里面安装 Composer 异常简单，直接执行上面的三个命令即可，可线上的容器里面 Curl 死活不行，最终没办法只能下载包安装了。</p>
+<h4 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h4><p>今天在线上搭建了 Dcoker 的环境，全部搭好后，Git 拉了代码，因为是忽略 Composer 的所以需要自己安装，在我本地容器里面安装 Composer 异常简单，直接执行上面的三个命令即可，可线上的容器里面 Curl 死活不行，最终没办法只能下载包安装了。</p>
 <pre><code>1、到 composer 官方下载一个版本的包，通过 git 上传到服务器上面去
 
 2、进入容器，找到刚上传的包 
@@ -816,7 +794,8 @@ chmod 777 /usr/local/bin/composer
 
 4、安装，会出现 git token 问题，复制连接，到 github 设置 token
 
-5、安装 git ，解决问题</code></pre>
+5、安装 git ，解决问题</code></pre><h4 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h4><p>最近在搞公司的 Dokcerfile 因为没接触过 Dockerfile 不太了解吃了个大亏，在 Dockerfile 当中 CMD 是创建容器就启动的命令，相当于初始化当然 CMD 命令只能有一个而不能有多个。</p>
+
             </div>
             <hr/>
 
@@ -1190,7 +1169,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">75.4k</span>&nbsp;字
+                class="white-color">76k</span>&nbsp;字
             
             
             
