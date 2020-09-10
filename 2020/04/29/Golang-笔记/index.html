@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-08
+                    2020-09-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.4k
+                    5.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    19 分
                 </div>
                 
 
@@ -421,11 +421,11 @@
 </ol>
 </li>
 </ul>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h5 id="1、下载"><a href="#1、下载" class="headerlink" title="1、下载"></a>1、下载</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 从 Go 语言中文网：https://studygolang.com/dl 根据自己系统下载 Go 软件包</span>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h5 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 从 Go 语言中文网：https://studygolang.com/dl 根据自己系统下载 Go 软件包</span>
 <span class="token function">sudo</span> <span class="token function">tar</span> -xzf go1.13.6.linux-amd64.tar.gz -C /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h5 id="2、建立软链接"><a href="#2、建立软链接" class="headerlink" title="2、建立软链接"></a>2、建立软链接</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/go/bin/* /usr/bin/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h5 id="3、测试"><a href="#3、测试" class="headerlink" title="3、测试"></a>3、测试</h5><pre class="line-numbers language-bash"><code class="language-bash">go version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h5 id="4、配置环境变量"><a href="#4、配置环境变量" class="headerlink" title="4、配置环境变量"></a>4、配置环境变量</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Linux 如果是zsh,就把/.bashrc 改成 /.zshr</span>
+<h5 id="建立软链接"><a href="#建立软链接" class="headerlink" title="建立软链接"></a>建立软链接</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/go/bin/* /usr/bin/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><pre class="line-numbers language-bash"><code class="language-bash">go version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Linux 如果是zsh,就把/.bashrc 改成 /.zshr</span>
 <span class="token function">sudo</span> vim ~/.bashrc
 
 <span class="token function">export</span> GOROOT<span class="token operator">=</span>/usr/local/go   <span class="token comment" spellcheck="true"># 表示 Go 在你的电脑上的安装位置，有些安装包会自动设置默认的 goroot</span>
@@ -437,9 +437,7 @@
 <span class="token comment" spellcheck="true"># 使配置文件生效，这里有个大坑，千万别用 fish 里面执行它一直报错，人都差点搞死了</span>
 <span class="token function">source</span> ~/.bashrc　
 
-<span class="token comment" spellcheck="true"># mac os</span>
-
-<span class="token comment" spellcheck="true"># 设置环境变量</span>
+<span class="token comment" spellcheck="true"># mac os 设置环境变量</span>
 vim ~/.bash_profile
 <span class="token function">export</span> GOPATH<span class="token operator">=</span>/Users/daixianjin/Desktop/go
 <span class="token function">export</span> GOBIN<span class="token operator">=</span><span class="token variable">$GOPATH</span>/bin
@@ -450,8 +448,8 @@ vim ~/.bash_profile
 <span class="token function">source</span> .bash_profile
 
 <span class="token comment" spellcheck="true"># 发现关闭终端后立马失效，在 ~/.zshrc 文件最后，增加一行：</span>
-<span class="token function">source</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="5、查看环境变量"><a href="#5、查看环境变量" class="headerlink" title="5、查看环境变量"></a>5、查看环境变量</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># go env 查看 Go 环境变量</span>
+<span class="token function">source</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="查看环境变量"><a href="#查看环境变量" class="headerlink" title="查看环境变量"></a>查看环境变量</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># go env 查看 Go 环境变量</span>
 go <span class="token function">env</span>
 
 GO111MODULE<span class="token operator">=</span><span class="token string">""</span>
@@ -489,15 +487,15 @@ CGO_LDFLAGS<span class="token operator">=</span><span class="token string">"-g -
 PKG_CONFIG<span class="token operator">=</span><span class="token string">"pkg-config"</span>
 GOGCCFLAGS<span class="token operator">=</span><span class="token string">"-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/var/folders/jg/7hbx9k8d18qdp5z6f0ddlsr00000gp/T/go-build606674752=/tmp/go-build -gno-record-gcc-switches -fno-common"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>GOPATH 现在的 Go 语言来说不晓得也没关系，现在官方推荐 Go module 跟 Composer 有点相像！</p>
+<p>GOPATH 对于现在的 Go 语言来说不晓得也没关系，现在官方推荐 Go module 跟 Composer 有点相像！</p>
 </blockquote>
 <h4 id="Go-Module"><a href="#Go-Module" class="headerlink" title="Go Module"></a>Go Module</h4><p>Go module 是 Go 官方自带的 Go 依赖管理库（感觉跟 Composer 很像），在 1.13 版本正式推荐使用。Go module 可以将某个项目(文件夹)下的所有依赖整理成一个 go.mod 文件，里面写入了依赖的版本等。使用 Go module 之后我们可不用将代码放置在 src下了。</p>
-<h5 id="1、开启-Go-module，开启代理"><a href="#1、开启-Go-module，开启代理" class="headerlink" title="1、开启 Go module，开启代理"></a>1、开启 Go module，开启代理</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 设置环境变量，开启 Go module</span>
+<h5 id="开启-Go-module，开启代理"><a href="#开启-Go-module，开启代理" class="headerlink" title="开启 Go module，开启代理"></a>开启 Go module，开启代理</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 设置环境变量，开启 Go module</span>
 <span class="token function">export</span> GO111MODULE<span class="token operator">=</span>on
 
 <span class="token comment" spellcheck="true"># 换成国内代理，如果不换，你会体验到什么是超级漫长的等待...</span>
 <span class="token function">export</span> GOPROXY<span class="token operator">=</span>https://goproxy.cn<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="2、初始化项目"><a href="#2、初始化项目" class="headerlink" title="2、初始化项目"></a>2、初始化项目</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 随便在任何一个位置创建一个新的项目</span>
+<h5 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 随便在任何一个位置创建一个新的项目</span>
 <span class="token function">mkdir</span> learn
 
 <span class="token comment" spellcheck="true"># 初始化,会在当前目录下生成一个 go.mod 文件并且为空</span>
@@ -512,12 +510,12 @@ go mod tidy<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <blockquote>
 <p>当然，可以不用 tidy 检查依赖，直接 <code>go build main.go</code> 或者 <code>go run main.go</code> 也会自动把依赖导入好，所以 go module 你值得拥有官方都在推了，那还等什么用起来。</p>
 </blockquote>
-<h5 id="3、导入依赖"><a href="#3、导入依赖" class="headerlink" title="3、导入依赖"></a>3、导入依赖</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 导入依赖</span>
+<h5 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 导入依赖</span>
 go mod vendor
 
 <span class="token comment" spellcheck="true"># 执行此命令，会将刚才下载至 GOPATH 下的依赖转移至该项目根目录下的 vendor(自动新建) 文件夹下</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/JwlZWl.png" alt></p>
-<h5 id="4、升级"><a href="#4、升级" class="headerlink" title="4、升级"></a>4、升级</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 将会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号， y是次要版本号)</span>
+<h5 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 将会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号， y是次要版本号)</span>
 go get -u 
 
 <span class="token comment" spellcheck="true"># 将会升级到最新的修订版本</span>
@@ -525,28 +523,28 @@ go get -u<span class="token operator">=</span>patch
 
 <span class="token comment" spellcheck="true"># 将会升级到指定的版本号 version</span>
 go get package@version <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="5、常用命令"><a href="#5、常用命令" class="headerlink" title="5、常用命令"></a>5、常用命令</h5><pre class="line-numbers language-bash"><code class="language-bash">go mod init  <span class="token comment" spellcheck="true"># 初始化 go.mod</span>
+<h5 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h5><pre class="line-numbers language-bash"><code class="language-bash">go mod init  <span class="token comment" spellcheck="true"># 初始化 go.mod</span>
 go mod tidy  <span class="token comment" spellcheck="true"># 更新依赖文件</span>
 go mod download  <span class="token comment" spellcheck="true"># 下载依赖的 module 到本地 cache</span>
 go mod vendor  <span class="token comment" spellcheck="true"># 将依赖转移至本地的 vendor 文件</span>
 go mod edit  <span class="token comment" spellcheck="true"># 手动修改依赖文件</span>
 go mod graph  <span class="token comment" spellcheck="true"># 打印依赖图</span>
 go mod verify  <span class="token comment" spellcheck="true"># 校验依赖</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="6、Goland-设置-Go-module"><a href="#6、Goland-设置-Go-module" class="headerlink" title="6、Goland 设置 Go module"></a>6、Goland 设置 Go module</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/20200818223505.png" alt></p>
-<h4 id="Go-fmt"><a href="#Go-fmt" class="headerlink" title="Go fmt"></a>Go fmt</h4><h5 id="1、手动代码格式"><a href="#1、手动代码格式" class="headerlink" title="1、手动代码格式"></a>1、手动代码格式</h5><p>Go 的代码风格我非常喜欢，人人代码风格都一致就非常舒服了。不需要去争论代码风格上面的各种问题，也不需要去适用同事的风格。</p>
+<h5 id="Goland-设置-Go-module"><a href="#Goland-设置-Go-module" class="headerlink" title="Goland 设置 Go module"></a>Goland 设置 Go module</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/20200818223505.png" alt></p>
+<h4 id="Go-fmt"><a href="#Go-fmt" class="headerlink" title="Go fmt"></a>Go fmt</h4><h5 id="手动代码格式"><a href="#手动代码格式" class="headerlink" title="手动代码格式"></a>手动代码格式</h5><p>Go 的代码风格我非常喜欢，人人代码风格都一致就非常舒服了。不需要去争论代码风格上面的各种问题，也不需要去适用同事的风格。</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 代码风格格式化，但是只是格式化输出</span>
 gofmt dev.go
 
 <span class="token comment" spellcheck="true"># 代码风格格式化，直接格式整个项目的代码，并且重新编排项目代码</span>
 gofmt -w dev.go<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="2、Goland-设置-Go-fmt"><a href="#2、Goland-设置-Go-fmt" class="headerlink" title="2、Goland 设置 Go fmt"></a>2、Goland 设置 Go fmt</h5><p>首先，得保证安装了一个叫做 ”File Watchers” 的插件，并设置为启用状态：</p>
+<h5 id="Goland-设置-Go-fmt"><a href="#Goland-设置-Go-fmt" class="headerlink" title="Goland 设置 Go fmt"></a>Goland 设置 Go fmt</h5><p>首先，得保证安装了一个叫做 ”File Watchers” 的插件，并设置为启用状态：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/oTQO1A.png" alt></p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/S88pdN.png" alt></p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/5QBrf8.png" alt></p>
 <blockquote>
 <p>配置好了 Go fmt 按 command + s 保存后，代码自动格式化。非常舒服！</p>
 </blockquote>
-<h3 id="国际惯例"><a href="#国际惯例" class="headerlink" title="国际惯例"></a>国际惯例</h3><h5 id="1、你好世界"><a href="#1、你好世界" class="headerlink" title="1、你好世界"></a>1、你好世界</h5><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
+<h3 id="国际惯例"><a href="#国际惯例" class="headerlink" title="国际惯例"></a>国际惯例</h3><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token string">"fmt"</span>
 
@@ -554,15 +552,27 @@ gofmt -w dev.go<span aria-hidden="true" class="line-numbers-rows"><span></span><
     fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"你好世界"</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Go 语言的代码通过<strong>包</strong>（package）组织，包类似于其它语言里的库（libraries）或者模块（modules）。也就是说程序一开始，就要声明这个程序属于哪个包。一个包由位于单个目录下的一个或多个<code>.go</code>源代码文件组成, 目录定义包的作用。每个源文件都以一条<code>package</code>声明语句开始，紧跟着一系列导入（import）的包，之后是存储在这个文件里的程序语句。</p>
+<h4 id="包的概念"><a href="#包的概念" class="headerlink" title="包的概念"></a>包的概念</h4><p>从以上可得知 Go 语言其实就是包组成，那么包的概念就必须清晰明了，这是 Go 语言开头的第一步。首先来看下一个包的结构：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/WcSzRC.png" alt></p>
+<p>这是一个简单结构，先刨除 src 不看。可以看见 <code>main.go</code> 和 <code>route.go</code>他们二个属于 <code>learn01</code>这个包那么也就是，一个包由位于单个目录下的一个或多个<code>.go</code>源代码文件组成。而 <code>admin.go</code> 和 <code>user.go</code> 他们二个属于<code>api</code>这个包。Go 语言的包其实就是这么简单理解就好。</p>
+<h5 id="相同包之间可以互相使用"><a href="#相同包之间可以互相使用" class="headerlink" title="相同包之间可以互相使用"></a>相同包之间可以互相使用</h5><p>在理解这句话之前要先了解 Go 的一个机制。在 Go 语言当中大写开头（Age）就是表示导出包，可以被外部调用也就是 PHP 当中的 public，而小写开头（name）表示，不可以被外界调用也就相当于 PHP 当中的 private 不可以被外部所调用。包之间要相互使用那么就需要 import 要使用的包。</p>
+<blockquote>
+<p>注意：比如 main.go 要调用 route.go 的方法。可以不管大小写和 import 都可以直接相互调用，因为他们属于相当的包 learn01 下，所以他们之间互相调用不需要关注大小写和 import 。</p>
+</blockquote>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/YRlXBi.png" alt></p>
+<blockquote>
+<p>注意：如果 main.go 要调用 api 当中的 admin.go 和 user.go 那么他首先需要 import 其次如果 admin.go 和 user.go 当中存在小写方法，那么 main.go 无法调用他们之间的小写方法（对外不可调用）。另外需要注意，同一个包下面，他们 package 包名需要一致。同个包当中的全局变量，全局常量，方法等等都是公用。总之一句话，同一个包下面他们相当于一个大文件分开，实则其实都是这个大文件。</p>
+</blockquote>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/1cHB6F.png" alt></p>
-<h5 id="2、特殊的-main-包"><a href="#2、特殊的-main-包" class="headerlink" title="2、特殊的 main 包"></a>2、特殊的 main 包</h5><p>main 包比较特殊，他定义了一个独立可执行的程序，他不是一个库！他是整个程序执行的入口。main 包当中的 main 函数就是整个程序执行的入口了，也就是 main 主函数，一般 main 主函数当中会调用其它很多函数完成工作。</p>
-<h5 id="3、需要遵循的规定"><a href="#3、需要遵循的规定" class="headerlink" title="3、需要遵循的规定"></a>3、需要遵循的规定</h5><p>首先要注意一点，package 先 ，import 后，他们不能颠倒位置，package 只能有一个而不能多个，import 可以有多个。其次如果说 import 导入多个包，那么你都必须去使用导入的包，不然编译无法通过，这正是遵循了 Go 的格言：“没有不必要的代码！“。Go 的语法要求特别的严格，在 package 和 import 之后，才可以定义 函数、常亮、变量、类型的声明语句。程序语句他们没有顺序要求，可以随心所欲来！Go 语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。如：for，if 等。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响 Go 代码的正确解析。</p>
-<h5 id="4、编译程序"><a href="#4、编译程序" class="headerlink" title="4、编译程序"></a>4、编译程序</h5><p>Go 是一门编译型语言，Go 语言的工具链将源代码及其依赖转换成计算机的机器指令（译注：静态编译）。 Go 语言提供的工具都通过一个单独的命令 Go 调用，Go 命令有一系列子命令。最简单的一个子命令就是 run。这个命令编译一个或多个以 <code>.go</code> 结尾的源文件，链接库文件，并运行最终生成的可执行文件。注意：Go 语言编译代码是一行一行的编译，所以一行只能写一句代码，不能一行写多句代码，否则报错！</p>
+<h5 id="特殊的-main-源文件"><a href="#特殊的-main-源文件" class="headerlink" title="特殊的 main 源文件"></a>特殊的 main 源文件</h5><p>上面第一个国际惯例就是一个 main 源文件，main 源文件比较特殊，他定义了一个独立可执行的程序，他不是一个包！他是整个程序执行的入口。main 源文件当中的 main 函数就是整个程序执行的入口了，也就是 main 主函数，一般 main 主函数当中会调用其它很多函数完成工作。<strong>只有 main 源文件才可以被编译，其他都属于包只能被 import，相同目录下 main 源文件可以有多个，但是 main 源文件当中的 main 主函数有且只能有一个！！！</strong></p>
+<h5 id="特殊的-init-函数"><a href="#特殊的-init-函数" class="headerlink" title="特殊的 init 函数"></a>特殊的 init 函数</h5><p>每个源文件都可以包含一个 init 函数，这个 init 函数在 main 主函数调用之前就会自动被 Go 运行框架调用。</p>
+<h5 id="需要遵循的规定"><a href="#需要遵循的规定" class="headerlink" title="需要遵循的规定"></a>需要遵循的规定</h5><p>首先要注意一点，package 先 ，import 后，他们不能颠倒位置，package 只能有一个而不能多个，import 可以有多个。其次如果说 import 导入多个包，那么你都必须去使用导入的包，不然编译无法通过，这正是遵循了 Go 的格言：“没有不必要的代码！“。Go 的语法要求特别的严格，在 package 和 import 之后，才可以定义 函数、常亮、变量、类型的声明语句。程序语句他们没有顺序要求，可以随心所欲来！Go 语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。如：for，if 等。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响 Go 代码的正确解析。</p>
+<h4 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h4><p>Go 是一门编译型语言，Go 语言的工具链将源代码及其依赖转换成计算机的机器指令（译注：静态编译）。 Go 语言提供的工具都通过一个单独的命令 Go 调用，Go 命令有一系列子命令。最简单的一个子命令就是 run。这个命令编译一个或多个以 <code>.go</code> 结尾的源文件，链接库文件，并运行最终生成的可执行文件。注意：Go 语言编译代码是一行一行的编译，所以一行只能写一句代码，不能一行写多句代码，否则报错！</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 编译并运行源文件</span>
 go run hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>编译生成一个可执行文件，在 Windows 下会生成一个 <code>.exe</code>文件，OS X  和 Linux 下会成才一个二进制文件，可以直接运行，Go 编译后不依附环境，但是需要相同的平台才能运行。</p>
-<pre class="line-numbers language-bash"><code class="language-bash">go build hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 编译成可执行的二进制文件</span>
+go build hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <blockquote>
 <p> 如果使用了 Go module 那么<code>go build main.go</code> 或者 <code>go run main.go</code> 会自动把依赖导入好。</p>
 </blockquote>
@@ -574,7 +584,7 @@ go run hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span><
 <li>&quot;: 表示一个”; </li>
 <li>\r: 表示一个回车(从当前行的最前面开始输出,覆盖以前的内容); </li>
 </ol>
-<h3 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h3><h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p>Go 语言中的函数名、变量名、常量名、类型名、语句标号和包名等所有的命名，都遵循一个简单的命名规则：一个名字必须以一个字母（Unicode字母）或下划线开头，后面可以跟任意数量的字母、数字或下划线。</p>
+<h3 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h3><h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p>Go 语言中的函数名、变量名、常量名、类型名、语句标号和包名等所有的命名，都遵循一个简单的命名规则：<strong>一个名字必须以一个字母（Unicode字母）或下划线开头，后面可以跟任意数量的字母、数字或下划线。</strong></p>
 <p>Go 语言中类似 if 和 switch 的关键字有25个；关键字不能用于自定义名字，只能在特定语法结构中使用。</p>
 <pre class="line-numbers language-yaml"><code class="language-yaml">break      default       func     interface   select
 case       defer         go       map         struct
@@ -593,17 +603,16 @@ continue   for           import   return      var<span aria-hidden="true" class=
           complex real imag
           panic recover<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这些内部预先定义的名字并不是关键字，你可以在定义中重新使用它们。在一些特殊的场景中重新定义它们也是有意义的，但是也要注意避免过度而引起语义混乱。</p>
+<blockquote>
 <p>当标识符（包括常量、变量、类型、函数名、结构字段等等）以一个大写字母开头，如：Echo，那么使用这种形式的标识符的对象就可以被外部包的代码所使用（客户端程序需要先 import 导入这个包），这被称为<code>导出</code>（像面向对象语言中的 public ）；标识符如果以小写字母开头，则对包外是不可见的，但是他们在整个包的内部是可见并且可用的（像面向对象语言中的 private ）。</p>
+</blockquote>
 <p>名字的长度没有逻辑限制，但是 Go 语言的风格是尽量使用短小的名字。如果一个名字的作用域比较大，生命周期也比较长，那么用长的名字将会更有意义。Go 在习惯上推荐使用驼峰命令法。</p>
-<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>Go 是一门强类型语言，但是 Go 也提供了隐式声明，在我的认知当中，只要声明时没有类型只有表达式，那么就属于隐式声明。</p>
-<h5 id="var-声明变量"><a href="#var-声明变量" class="headerlink" title="var 声明变量"></a>var 声明变量</h5><p>语法：类型和表达式可以省略其中一个，但不能二个都省略。</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml">var 变量名字 类型 = 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如果省略的是<code>类型</code>信息，那么将根据初始化表达式来推导变量的类型信息。</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 隐式声明</span>
-<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span>
-
-fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>reflect<span class="token punctuation">.</span><span class="token function">TypeOf</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 1 int </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果初始化<code>表达式</code>被省略，那么将用零值初始化该变量。Go 在声明变量时，内存当中就已经对这个变量进行了初始化操作。数值类型变量对应的零值是 0，布尔类型变量对应的零值是 false，字符串类型对应的零值是空字符串，接口或引用类型（包括 slice、指针、map、chan 和函数）变量对应的零值是 nil。数组或结构体等聚合类型对应的零值是每个元素或字段都是对应该类型的零值。</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>Go 是一门强类型语言，但是 Go 也提供了类型推导，在我的认知当中，只要声明时没有类型只有表达式，那么就属于类型推导。</p>
+<h5 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h5><p>语法：类型和表达式可以省略其中一个，但不能二个都省略。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">var 变量名字 <span class="token punctuation">[</span>类型<span class="token punctuation">]</span> = 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果省略的是<code>类型</code>信息，那么将根据初始化表达式值来推导变量的类型信息。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">var a = 1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果初始化<code>表达式</code>被省略，那么将用零值初始化该变量，因为在 Go 在声明变量时，<strong>内存当中就已经对这个变量进行了初始化操作</strong>。数值类型变量对应的零值是 0，布尔类型变量对应的零值是 false，字符串类型对应的零值是空字符串，接口或引用类型（包括 slice、指针、map、chan 和函数）变量对应的零值是 nil。数组或结构体等聚合类型对应的零值是每个元素或字段都是对应该类型的零值。</p>
 <pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">var</span> a <span class="token builtin">string</span>
 <span class="token keyword">var</span> b <span class="token builtin">int</span>
 <span class="token keyword">var</span> c <span class="token builtin">float32</span>
@@ -619,26 +628,19 @@ fmt<span class="token punctuation">.</span><span class="token function">Print</s
 
 <span class="token comment" spellcheck="true">// 分组声明</span>
 <span class="token keyword">var</span> <span class="token punctuation">(</span>
-    a <span class="token builtin">int</span>
+      a <span class="token builtin">int</span>
     b <span class="token operator">=</span> <span class="token string">"你好世界"</span>
     c <span class="token operator">=</span> <span class="token number">3.1415</span>
     d <span class="token punctuation">,</span>e <span class="token builtin">bool</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span class="token boolean">false</span>
 <span class="token punctuation">)</span>  
 <span class="token comment" spellcheck="true">// int string float64 bool bool</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>函数返回值初始化变量，注意：<strong>在包级别声明的变量会在 main 入口函数执行前完成初始化</strong>，<strong>局部变量将在声明语句被执行到的时候完成初始化</strong>。</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">var</span> f<span class="token punctuation">,</span> err <span class="token operator">=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 返回一个文件和一个错误</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h5 id="简洁声明变量"><a href="#简洁声明变量" class="headerlink" title="简洁声明变量"></a>简洁声明变量</h5><p>Go 语言当中除了 var 来声明变量，还可以使用 <code>:=</code>来声明变量，更加的简洁。我也喜欢把 <code>:=</code>叫做隐式声明变量。</p>
+<p>注意：<strong>在包级别声明的变量（全局变量）会在 main 入口函数执行前完成初始化</strong>，<strong>局部变量将在声明语句被执行到的时候完成初始化</strong>。</p>
+<h5 id="类型推导"><a href="#类型推导" class="headerlink" title="类型推导"></a>类型推导</h5><p>Go 语言当中除了 <code>var</code> 来声明变量，还可以使用 <code>:=</code>来声明变量，更加的简洁。<code>:=</code>也叫做类型推导声明变量。</p>
 <p>语法：不能省略任何的东西，因为它已经是最简洁的声明方式了。请记住<code>:=</code>是一个变量声明语句，而<code>=</code>是一个变量赋值操作。</p>
 <pre class="line-numbers language-yaml"><code class="language-yaml">变量名字 <span class="token punctuation">:</span>= 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>它也支持一组多个声明，<strong>但是没有分组声明</strong>。</p>
-<pre class="line-numbers language-go"><code class="language-go">a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"你好世界"</span><span class="token punctuation">,</span><span class="token boolean">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>它也可以使用函数返回值初始化变量。</p>
-<pre class="line-numbers language-go"><code class="language-go">f<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 返回一个文件和一个错误</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>简洁声明还有个奇妙的地方，简短变量声明左边的变量可能并不是全部都是刚刚声明的。如果有一些已经在相同的词法域声明过了，那么简短变量声明语句对这些已经声明过的变量就只有赋值行为了。在下面的代码中，第一个语句声明了 in 和 err 两个变量。在第二个语句只声明了out 一个变量，然后对已经声明的 err 进行了赋值操作，var 并不可以有类似的操作。<strong>但是简短变量声明语句中必须至少要声明一个新的变量，下面的代码将不能编译通过</strong>。</p>
-<pre class="line-numbers language-go"><code class="language-go">in<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>infile<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">// ...</span>
-out<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Create</span><span class="token punctuation">(</span>outfile<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h5 id="它们的作用域"><a href="#它们的作用域" class="headerlink" title="它们的作用域"></a>它们的作用域</h5><p><code>var</code> 声明可以在包内部声明（ import 下），简洁声明不可以在包内部声明（ import 下）。<code>var</code> 在包内部声明的变量全局可以使用，而简洁声明只有在其声明的内部使用。</p>
+<pre class="line-numbers language-go"><code class="language-go">变量名字，变量名字，变量名字 <span class="token operator">:=</span> 表达式，表达式，表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><p><code>var</code> 声明可以在包内部声明（ import 下），简洁声明不可以在包内部声明（ import 下）。<code>var</code> 在包内部声明的变量全局可以使用，而简洁声明只有在其声明的内部使用。</p>
 <pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token string">"fmt"</span>
@@ -663,6 +665,21 @@ out<span class="token punctuation">,</span> err <span class="token operator">:=<
 <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     a <span class="token operator">:=</span> <span class="token number">100000</span> <span class="token comment" spellcheck="true">// 局部变量，他们作用域完全不一样，此时正确声明</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>常量使用 <code>const</code>修饰，代表永远只读，不能修改。常量是在编译期间就已确定其值，之后永远不可修改！常量只能修饰 boolean，number（int 相关类型、浮点类型、complex）和 string，但是常量的表达式也是一些特定的内建函数，因为常量只要在声明时能确定其值，那么就属于有效定义的常量。</p>
+<p>语法：类型可以省略，因为可以表达式的值自动类型推导，但是表达式不可省略，<strong>定义常量时常量的表达式的值必须是在编译时就可以确定的值，否则编译无法通过。</strong></p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">const 常量名称 <span class="token punctuation">[</span>类型<span class="token punctuation">]</span> = 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>分组声明：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">const</span><span class="token punctuation">(</span>
+    a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  b <span class="token operator">=</span> <span class="token string">'string'</span><span class="token punctuation">,</span>
+  c <span class="token operator">=</span> <span class="token boolean">true</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>枚举声明：第一个 iota 等于 0，每当 iota 在新的一行被使用时，它的值都会自动加 1；所以 a=0, b=1, c=2 可以简写为如下形式</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">const</span> <span class="token punctuation">(</span>
+    a <span class="token operator">=</span> <span class="token boolean">iota</span>
+    b
+    c
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><p>首先要了解，值传递和引用传递，这二个的区别。</p>
 <p>值传递又称拷贝传值，就是将一个变量的值复制一个给另外一个变量。此时二个变量的值相同，但是此时的二个变量又是互相独立的存在，操作其中任何一个变量，另外一个变量都不会受到其影响。</p>
 <pre class="line-numbers language-go"><code class="language-go">a <span class="token operator">:=</span> <span class="token number">100</span>
@@ -691,6 +708,23 @@ fmt<span class="token punctuation">.</span><span class="token function">Println<
 <span class="token punctuation">}</span>
 
 fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p> 在 PHP 当中函数属于一等公民，毫无例外在 Go 语言当中函数也是属于一等公民，所以说函数是相当重要的角色。</p>
+<h5 id="声明函数"><a href="#声明函数" class="headerlink" title="声明函数"></a>声明函数</h5><pre class="line-numbers language-yaml"><code class="language-yaml">fun name (参数列表) (返回值列表) <span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>例子：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 无返回值，无参数</span>
+fun <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 有参数，有一个返回值</span>
+fun <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 有多个参数，有多个返回值</span>
+<span class="token keyword">func</span> <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token builtin">int</span> <span class="token punctuation">,</span>b <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>学习当中…</p>
 </blockquote>
@@ -1064,7 +1098,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">76k</span>&nbsp;字
+                class="white-color">76.7k</span>&nbsp;字
             
             
             
