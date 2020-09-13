@@ -378,7 +378,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-10
+                    2020-09-13
                 </div>
                 
 
@@ -555,16 +555,21 @@ gofmt -w dev.go<span aria-hidden="true" class="line-numbers-rows"><span></span><
 <h4 id="包的概念"><a href="#包的概念" class="headerlink" title="包的概念"></a>包的概念</h4><p>从以上可得知 Go 语言其实就是包组成，那么包的概念就必须清晰明了，这是 Go 语言开头的第一步。首先来看下一个包的结构：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/WcSzRC.png" alt></p>
 <p>这是一个简单结构，先刨除 src 不看。可以看见 <code>main.go</code> 和 <code>route.go</code>他们二个属于 <code>learn01</code>这个包那么也就是，一个包由位于单个目录下的一个或多个<code>.go</code>源代码文件组成。而 <code>admin.go</code> 和 <code>user.go</code> 他们二个属于<code>api</code>这个包。Go 语言的包其实就是这么简单理解就好。</p>
-<h5 id="相同包之间可以互相使用"><a href="#相同包之间可以互相使用" class="headerlink" title="相同包之间可以互相使用"></a>相同包之间可以互相使用</h5><p>在理解这句话之前要先了解 Go 的一个机制。在 Go 语言当中大写开头（Age）就是表示导出包，可以被外部调用也就是 PHP 当中的 public，而小写开头（name）表示，不可以被外界调用也就相当于 PHP 当中的 private 不可以被外部所调用。包之间要相互使用那么就需要 import 要使用的包。</p>
-<blockquote>
-<p>注意：比如 main.go 要调用 route.go 的方法。可以不管大小写和 import 都可以直接相互调用，因为他们属于相当的包 learn01 下，所以他们之间互相调用不需要关注大小写和 import 。</p>
-</blockquote>
+<h5 id="相同包之间可以互相使用"><a href="#相同包之间可以互相使用" class="headerlink" title="相同包之间可以互相使用"></a>相同包之间可以互相使用</h5><p>在理解这句话之前要先了解 Go 的一些机制。</p>
+<ul>
+<li><p>同一个包的包名必须一致，另外同个包当中的全局变量，全局常量，方法等等都是公用。相当于是一个大源文件，然后拆分成多个源文件，实则都是这个大源文件。</p>
+</li>
+<li><p>在 Go 语言当中大写开头（Age）就是表示导出包，可以被外部调用也就相当于 PHP 当中的 public，而小写开头（name）表示，不可以被外界调用也就相当于 PHP 当中的 private 不可以被外部所调用。包之间要相互使用那么就必须 import 要使用的包。</p>
+</li>
+<li><p>同一个包之间相互使用不需要 import 和关注大小写的问题，比如 main.go 要调用 route.go 的方法，因为他们都在相同目录下，并且都属于 main 包。</p>
+</li>
+</ul>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/YRlXBi.png" alt></p>
 <blockquote>
-<p>注意：如果 main.go 要调用 api 当中的 admin.go 和 user.go 那么他首先需要 import 其次如果 admin.go 和 user.go 当中存在小写方法，那么 main.go 无法调用他们之间的小写方法（对外不可调用）。另外需要注意，同一个包下面，他们 package 包名需要一致。同个包当中的全局变量，全局常量，方法等等都是公用。总之一句话，同一个包下面他们相当于一个大文件分开，实则其实都是这个大文件。</p>
+<p>注意：如果 main.go 要调用 api 当中的 admin.go 和 user.go 那么他首先需要 import 其次如果 admin.go 和 user.go 当中存在小写方法，那么 main.go 无法调用他们之间的小写方法。</p>
 </blockquote>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/1cHB6F.png" alt></p>
-<h5 id="特殊的-main-源文件"><a href="#特殊的-main-源文件" class="headerlink" title="特殊的 main 源文件"></a>特殊的 main 源文件</h5><p>上面第一个国际惯例就是一个 main 源文件，main 源文件比较特殊，他定义了一个独立可执行的程序，他不是一个包！他是整个程序执行的入口。main 源文件当中的 main 函数就是整个程序执行的入口了，也就是 main 主函数，一般 main 主函数当中会调用其它很多函数完成工作。<strong>只有 main 源文件才可以被编译，其他都属于包只能被 import，相同目录下 main 源文件可以有多个，但是 main 源文件当中的 main 主函数有且只能有一个！！！</strong></p>
+<h5 id="特殊的-main-包"><a href="#特殊的-main-包" class="headerlink" title="特殊的 main 包"></a>特殊的 main 包</h5><p>上面国际惯例的列子就是一个 main 包，main 包在 Go 语言当中是一个特殊的存在，实际意义上他并不是一个包不能被 import，他定义了一个独立可执行的程序。main 包当中的 main 函数就是整个程序执行的入口了，也就是 main 主函数，一般 main 主函数当中会调用其它很多函数完成工作。<strong>只有 main 包才可以被编译，其他都属于包只能被 import，相同目录下 main 包可以有多个，但是 main 包当中的 main 主函数有且只能有一个！！！</strong></p>
 <h5 id="特殊的-init-函数"><a href="#特殊的-init-函数" class="headerlink" title="特殊的 init 函数"></a>特殊的 init 函数</h5><p>每个源文件都可以包含一个 init 函数，这个 init 函数在 main 主函数调用之前就会自动被 Go 运行框架调用。</p>
 <h5 id="需要遵循的规定"><a href="#需要遵循的规定" class="headerlink" title="需要遵循的规定"></a>需要遵循的规定</h5><p>首先要注意一点，package 先 ，import 后，他们不能颠倒位置，package 只能有一个而不能多个，import 可以有多个。其次如果说 import 导入多个包，那么你都必须去使用导入的包，不然编译无法通过，这正是遵循了 Go 的格言：“没有不必要的代码！“。Go 的语法要求特别的严格，在 package 和 import 之后，才可以定义 函数、常亮、变量、类型的声明语句。程序语句他们没有顺序要求，可以随心所欲来！Go 语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。如：for，if 等。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响 Go 代码的正确解析。</p>
 <h4 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h4><p>Go 是一门编译型语言，Go 语言的工具链将源代码及其依赖转换成计算机的机器指令（译注：静态编译）。 Go 语言提供的工具都通过一个单独的命令 Go 调用，Go 命令有一系列子命令。最简单的一个子命令就是 run。这个命令编译一个或多个以 <code>.go</code> 结尾的源文件，链接库文件，并运行最终生成的可执行文件。注意：Go 语言编译代码是一行一行的编译，所以一行只能写一句代码，不能一行写多句代码，否则报错！</p>
@@ -665,7 +670,7 @@ fmt<span class="token punctuation">.</span><span class="token function">Print</s
 <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     a <span class="token operator">:=</span> <span class="token number">100000</span> <span class="token comment" spellcheck="true">// 局部变量，他们作用域完全不一样，此时正确声明</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>常量使用 <code>const</code>修饰，代表永远只读，不能修改。常量是在编译期间就已确定其值，之后永远不可修改！常量只能修饰 boolean，number（int 相关类型、浮点类型、complex）和 string，但是常量的表达式也是一些特定的内建函数，因为常量只要在声明时能确定其值，那么就属于有效定义的常量。</p>
+<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>常量使用 <code>const</code>修饰，代表永远只读，不能修改。常量是在编译期间就已确定其值，之后永远不可修改！常量只能修饰 boolean，number（int 相关类型、浮点类型、complex）和 string，常量的表达式的值也是可以一些特定的内建函数，因为常量只要在声明时能确定其值，那么就属于有效定义的常量。</p>
 <p>语法：类型可以省略，因为可以表达式的值自动类型推导，但是表达式不可省略，<strong>定义常量时常量的表达式的值必须是在编译时就可以确定的值，否则编译无法通过。</strong></p>
 <pre class="line-numbers language-yaml"><code class="language-yaml">const 常量名称 <span class="token punctuation">[</span>类型<span class="token punctuation">]</span> = 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>分组声明：</p>
@@ -681,7 +686,7 @@ fmt<span class="token punctuation">.</span><span class="token function">Print</s
     c
 <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><p>首先要了解，值传递和引用传递，这二个的区别。</p>
-<p>值传递又称拷贝传值，就是将一个变量的值复制一个给另外一个变量。此时二个变量的值相同，但是此时的二个变量又是互相独立的存在，操作其中任何一个变量，另外一个变量都不会受到其影响。</p>
+<p>值传递又称拷贝传值，就是将一个变量的值复制一个给另外一个变量。此时二个变量的值相同，但是此时的二个变量又是互相独立的存在，操作其中任何一个变量，另外一个变量都不会受到其影响。Go 语言当中都是值传递，只有使用指针之后才是引用传递。</p>
 <pre class="line-numbers language-go"><code class="language-go">a <span class="token operator">:=</span> <span class="token number">100</span>
 b <span class="token operator">:=</span> a
 a<span class="token operator">++</span>
