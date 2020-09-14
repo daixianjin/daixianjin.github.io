@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-13
+                    2020-09-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.1k
+                    7.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    19 分
+                    27 分
                 </div>
                 
 
@@ -581,14 +581,88 @@ go build hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span
 <blockquote>
 <p> 如果使用了 Go module 那么<code>go build main.go</code> 或者 <code>go run main.go</code> 会自动把依赖导入好。</p>
 </blockquote>
-<h3 id="Go-转义符"><a href="#Go-转义符" class="headerlink" title="Go 转义符"></a>Go 转义符</h3><p>常用的转义字符有以下几个:</p>
-<ol>
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/ST6956.png" alt></p>
+<p>特殊：%v 可以代表任意类型</p>
+<p>实例：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 实例一</span>
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    age <span class="token operator">:=</span> <span class="token number">24</span>
+    name <span class="token operator">:=</span> <span class="token string">"小明"</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"姓名是：%d 年龄是：%s"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 结果：姓名是：24 年龄是：小明</span>
+
+<span class="token comment" spellcheck="true">// 实例二</span>
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    age <span class="token operator">:=</span> <span class="token number">24</span>
+    name <span class="token operator">:=</span> <span class="token string">"小明"</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"姓名是：%v 年龄是：%v"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 结果：姓名是：24 年龄是：小明</span>
+
+<span class="token comment" spellcheck="true">// 实例三，标准变量输出</span>
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    age <span class="token operator">:=</span> <span class="token number">24</span>
+    name <span class="token operator">:=</span> <span class="token string">"小明"</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"姓名是：%v 年龄是：%v"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+
+    str <span class="token operator">:=</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"姓名是：%v 年龄是：%v"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 结果：姓名是：24 年龄是：小明姓名是：24 年龄是：小明</span>
+
+<span class="token comment" spellcheck="true">// 实例四：标准输入</span>
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> age <span class="token builtin">int</span>
+    <span class="token keyword">var</span> name <span class="token builtin">string</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"请输入年龄："</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>age<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"请输入姓名："</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>name<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"年龄-%v 姓名-%v"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 结果：</span>
+<span class="token comment" spellcheck="true">// 请输入年龄：24</span>
+<span class="token comment" spellcheck="true">// 请输入姓名：道法自然</span>
+<span class="token comment" spellcheck="true">// 年龄-24 姓名-道法自然</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>转义符</p>
+<p>常用的转义字符有以下几个:</p>
+<ul>
 <li>\t: 表示一个制表符(tab), 通常可以使用它进行排版; </li>
 <li>\n: 表示一个换行符; </li>
-<li>\: 表示一个反斜线; </li>
-<li>&quot;: 表示一个”; </li>
+<li>: 表示一个反斜线; </li>
+<li>“: 表示一个”; </li>
 <li>\r: 表示一个回车(从当前行的最前面开始输出,覆盖以前的内容); </li>
-</ol>
+</ul>
+<p>实例：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"你好世界 \n我很好"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 结果：</span>
+<span class="token comment" spellcheck="true">// 你好世界 </span>
+<span class="token comment" spellcheck="true">// 我很好</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h3><h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p>Go 语言中的函数名、变量名、常量名、类型名、语句标号和包名等所有的命名，都遵循一个简单的命名规则：<strong>一个名字必须以一个字母（Unicode字母）或下划线开头，后面可以跟任意数量的字母、数字或下划线。</strong></p>
 <p>Go 语言中类似 if 和 switch 的关键字有25个；关键字不能用于自定义名字，只能在特定语法结构中使用。</p>
 <pre class="line-numbers language-yaml"><code class="language-yaml">break      default       func     interface   select
@@ -670,8 +744,8 @@ fmt<span class="token punctuation">.</span><span class="token function">Print</s
 <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     a <span class="token operator">:=</span> <span class="token number">100000</span> <span class="token comment" spellcheck="true">// 局部变量，他们作用域完全不一样，此时正确声明</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>常量使用 <code>const</code>修饰，代表永远只读，不能修改。常量是在编译期间就已确定其值，之后永远不可修改！常量只能修饰 boolean，number（int 相关类型、浮点类型、complex）和 string，常量的表达式的值也是可以一些特定的内建函数，因为常量只要在声明时能确定其值，那么就属于有效定义的常量。</p>
-<p>语法：类型可以省略，因为可以表达式的值自动类型推导，但是表达式不可省略，<strong>定义常量时常量的表达式的值必须是在编译时就可以确定的值，否则编译无法通过。</strong></p>
+<h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>常量使用 <code>const</code>修饰，<strong>代表永远只读，不能修改。常量是在编译期间就已确定其值，之后永远不可修改</strong>！常量只能修饰 数字类型（包括整型，浮点型，和复数类型）、布尔类型、字符串类型等。常量的表达式的值也是可以一些特定的内建函数，因为常量只要在声明时能确定其值，那么就属于有效定义的常量。</p>
+<h5 id="声明常量"><a href="#声明常量" class="headerlink" title="声明常量"></a>声明常量</h5><p>语法：类型可以省略，因为可以表达式的值自动类型推导，但是表达式不可省略，<strong>定义常量时常量的表达式的值必须是在编译时就可以确定的值，否则编译无法通过。</strong></p>
 <pre class="line-numbers language-yaml"><code class="language-yaml">const 常量名称 <span class="token punctuation">[</span>类型<span class="token punctuation">]</span> = 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>分组声明：</p>
 <pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">const</span><span class="token punctuation">(</span>
@@ -679,12 +753,133 @@ fmt<span class="token punctuation">.</span><span class="token function">Print</s
   b <span class="token operator">=</span> <span class="token string">'string'</span><span class="token punctuation">,</span>
   c <span class="token operator">=</span> <span class="token boolean">true</span>
 <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>枚举声明：第一个 iota 等于 0，每当 iota 在新的一行被使用时，它的值都会自动加 1；所以 a=0, b=1, c=2 可以简写为如下形式</p>
+<h5 id="类型推导-1"><a href="#类型推导-1" class="headerlink" title="类型推导"></a>类型推导</h5><p>语法：注意：常量跟变量的推导类型不一样，常量是 <code>=</code> 而变量是 <code>:=</code>不能搞混了。</p>
+<pre class="line-numbers language-yam"><code class="language-yam">const 常量名称 = 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="枚举声明"><a href="#枚举声明" class="headerlink" title="枚举声明"></a>枚举声明</h5><p>语法：第一个 iota 等于 0，<strong>每当 iota 在新的一行被使用时，它的值都会自动加 1</strong>；所以 a=0, b=1, c=2 可以简写为如下形式</p>
 <pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">const</span> <span class="token punctuation">(</span>
     a <span class="token operator">=</span> <span class="token boolean">iota</span>
     b
     c
 <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="作用域-1"><a href="#作用域-1" class="headerlink" title="作用域"></a>作用域</h5><p>常量可以在包内（import）下面，或函数内部声明常量，当然他们二个现在的作用域完全不一样，包内属于全局常量而函数内就是局部常量。</p>
+<h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><h5 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h5><p>bool 默认为 float，并且布尔型的值只可以是 true 或者 false，两个类型相同的值可以使用相等 == 或者不等 != 运算符来进行比较并获得一个布尔型的值。</p>
+<h5 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h5><p>整数：</p>
+<ul>
+<li>int8（-128 -&gt; 127）</li>
+<li>int16（-32768 -&gt; 32767）</li>
+<li>int32（-2,147,483,648 -&gt; 2,147,483,647）</li>
+<li>int64（-9,223,372,036,854,775,808 -&gt; 9,223,372,036,854,775,807）</li>
+</ul>
+<p>无符号整数：</p>
+<ul>
+<li>uint8（0 -&gt; 255）</li>
+<li>uint16（0 -&gt; 65,535）</li>
+<li>uint32（0 -&gt; 4,294,967,295）</li>
+<li>uint64（0 -&gt; 18,446,744,073,709,551,615）</li>
+</ul>
+<p>浮点型（IEEE-754 标准）：</p>
+<ul>
+<li>float32（+- 1e-45 -&gt; +- 3.4 * 1e38）</li>
+<li>float64（+- 5  1e-324 -&gt; 107  1e308）</li>
+</ul>
+<p>复数</p>
+<ul>
+<li>complex64 (32 位实数和虚数)</li>
+<li>complex128 (64 位实数和虚数)</li>
+<li>复数表示：2 + 2i</li>
+</ul>
+<p>int 型是计算最快的一种类型。整型的零值为 0，浮点型的零值为 0.0。float32 精确到小数点后 7 位，float64 精确到小数点后 15 位。由于精确度的缘故，你在使用 == 或者 != 来比较浮点数时应当非常小心。你最好在正式使用前测试对于精确度要求较高的运算。</p>
+<h5 id="字符类型"><a href="#字符类型" class="headerlink" title="字符类型"></a>字符类型</h5><p>byte 严格来说，这并不是 Go 语言的一个类型，字符只是整数的特殊用例。byte 类型是 uint8 的别名，对于只占用 1 个字节的传统 ASCII 编码的字符来说，完全没有问题。例如：var ch byte = ‘A’；字符使用单引号括起来。字符类型 <code>‘’</code> 表示，输出的是 ascll 码的数值。</p>
+<h5 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h5><p>string 字符串类型 <code>“”</code> 表示。字符串是 UTF-8 字符的一个序列（当字符为 ASCII 码时则占用 1 个字节，其它字符根据需要占用 2-4 个字节）。UTF-8 是被广泛使用的编码格式，是文本文件的标准编码，其它包括 XML 和 JSON 在内，也都使用该编码。由于该编码对占用字节长度的不定性，Go 中的字符串也可能根据需要占用 1 至 4 个字节（示例见第 4.6 节），这与其它语言如 C++、Java 或者 Python 不同（Java 始终使用 2 个字节）。Go 这样做的好处是不仅减少了内存和硬盘空间占用，同时也不用像其它语言那样需要对使用 UTF-8 字符集的文本进行编码和解码。<br>字符串是一种值类型，且值不可变，即创建某个文本后你无法再次修改这个文本的内容；更深入地讲，字符串是字节的定长数组。</p>
+<h4 id="基本运算符"><a href="#基本运算符" class="headerlink" title="基本运算符"></a>基本运算符</h4><h5 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/fqPo01.png" alt>  <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/N1h2bN.png" alt></p>
+<blockquote>
+<p>Go 语言当中，没有：– a ++a ，这样操作。不像 PHP <strong>符号在前那么就是先运算在赋值</strong>，<strong>如果符号在后那么就是先赋值在运算</strong>，Go 当中只写在后面，只表示自增或者自减。</p>
+</blockquote>
+<h5 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/GX6PLE.png" alt></p>
+<h5 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/qAOcIU.png" alt></p>
+<h5 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/qkFzxT.png" alt></p>
+<h5 id="其他运算符"><a href="#其他运算符" class="headerlink" title="其他运算符"></a>其他运算符</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/suW9Ix.png" alt></p>
+<h5 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/X2tsoT.png" alt></p>
+<ul>
+<li>sizeof 是获取变量占内存的大小，unsafe.Sizeof(a)</li>
+</ul>
+<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><h4 id="if-结构"><a href="#if-结构" class="headerlink" title="if 结构"></a>if 结构</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/8svyaT.png" alt></p>
+<h4 id="if-else-结构"><a href="#if-else-结构" class="headerlink" title="if-else 结构"></a>if-else 结构</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/cFYUQ3.png" alt></p>
+<h4 id="if-else-if-结构"><a href="#if-else-if-结构" class="headerlink" title="if-else-if 结构"></a>if-else-if 结构</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/lk35QJ.png" alt></p>
+<h4 id="switch-结构"><a href="#switch-结构" class="headerlink" title="switch 结构"></a>switch 结构</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/TaL8yA.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/jzPAcA.png" alt></p>
+<blockquote>
+<p>如果 switch 的 case 当中存在 fallthrough 关键词那么不会退出 switch 而会继续执行下面的 case。</p>
+</blockquote>
+<h4 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/QIC5wp.png" alt></p>
+<blockquote>
+<p>初始化，循环条件，迭代，都可以省略</p>
+</blockquote>
+<h5 id="基于条件判断的迭代"><a href="#基于条件判断的迭代" class="headerlink" title="基于条件判断的迭代"></a>基于条件判断的迭代</h5><p>for 结构的第二种形式是没有头部的条件判断迭代（类似其它语言中的 while 循环），基本形式为：for 条件语句 {}。</p>
+<p>您也可以认为这是没有初始化语句和修饰语句的 for 结构，因此 ;; 便是多余的了。</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> i <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">5</span>
+
+    <span class="token keyword">for</span> i <span class="token operator">>=</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+        i <span class="token operator">=</span> i <span class="token operator">-</span> <span class="token number">1</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"The variable i is now: %d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="无限循环"><a href="#无限循环" class="headerlink" title="无限循环"></a>无限循环</h5><p>条件语句是可以被省略的，如 i:=0; ; i++ 或 for { } 或 for ;; { }（;; 会在使用 gofmt 时被移除）：这些循环的本质就是无限循环。最后一个形式也可以被改写为 for true { }，但一般情况下都会直接写 for { }。</p>
+<p>如果 for 循环的头部没有条件语句，那么就会认为条件永远为 true，因此循环体内必须有相关的条件判断以确保会在某个时刻退出循环。</p>
+<p>想要直接退出循环体，可以使用 break 语句（第 5.5 节）或 return 语句直接返回（第 6.1 节）。</p>
+<p>但这两者之间有所区别，break 只是退出当前的循环体，而 return 语句提前对函数进行返回，不会执行后续的代码。</p>
+<p>无限循环的经典应用是服务器，用于不断等待和接受新的请求。</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">for</span> t<span class="token punctuation">,</span> err <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token function">Token</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">==</span> <span class="token boolean">nil</span><span class="token punctuation">;</span> t<span class="token punctuation">,</span> err <span class="token operator">=</span> p<span class="token punctuation">.</span><span class="token function">Token</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h5 id="for-range-结构"><a href="#for-range-结构" class="headerlink" title="for-range 结构"></a>for-range 结构</h5><p>这是 Go 特有的一种的迭代结构，您会发现它在许多情况下都非常有用。它可以迭代任何一个集合（包括数组和 map）。语法上很类似其它语言中 foreach 语句，但您依旧可以获得每次迭代所对应的索引。一般形式为：for ix, val := range coll { }。</p>
+<p>要注意的是，val 始终为集合中对应索引的值拷贝，因此它一般只具有只读性质，对它所做的任何修改都不会影响到集合中原有的值（译者注：如果 val 为指针，则会产生指针的拷贝，依旧可以修改集合中的原值）。一个字符串是 Unicode 编码的字符（或称之为 rune）集合，因此您也可以用它迭代字符串：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    str <span class="token operator">:=</span> <span class="token string">"Go is a beautiful language!"</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"The length of str is: %d\n"</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> pos<span class="token punctuation">,</span> char <span class="token operator">:=</span> <span class="token keyword">range</span> str <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"Character on position %d is: %c \n"</span><span class="token punctuation">,</span> pos<span class="token punctuation">,</span> char<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 结果</span>
+The length of str is<span class="token punctuation">:</span> <span class="token number">27</span>
+Character on position <span class="token number">0</span> is<span class="token punctuation">:</span> G 
+Character on position <span class="token number">1</span> is<span class="token punctuation">:</span> o 
+Character on position <span class="token number">2</span> is<span class="token punctuation">:</span>   
+Character on position <span class="token number">3</span> is<span class="token punctuation">:</span> i 
+Character on position <span class="token number">4</span> is<span class="token punctuation">:</span> s 
+Character on position <span class="token number">5</span> is<span class="token punctuation">:</span>   
+Character on position <span class="token number">6</span> is<span class="token punctuation">:</span> a 
+Character on position <span class="token number">7</span> is<span class="token punctuation">:</span>   
+Character on position <span class="token number">8</span> is<span class="token punctuation">:</span> b 
+Character on position <span class="token number">9</span> is<span class="token punctuation">:</span> e 
+Character on position <span class="token number">10</span> is<span class="token punctuation">:</span> a 
+Character on position <span class="token number">11</span> is<span class="token punctuation">:</span> u 
+Character on position <span class="token number">12</span> is<span class="token punctuation">:</span> t 
+Character on position <span class="token number">13</span> is<span class="token punctuation">:</span> i 
+Character on position <span class="token number">14</span> is<span class="token punctuation">:</span> f 
+Character on position <span class="token number">15</span> is<span class="token punctuation">:</span> u 
+Character on position <span class="token number">16</span> is<span class="token punctuation">:</span> l 
+Character on position <span class="token number">17</span> is<span class="token punctuation">:</span>   
+Character on position <span class="token number">18</span> is<span class="token punctuation">:</span> l 
+Character on position <span class="token number">19</span> is<span class="token punctuation">:</span> a 
+Character on position <span class="token number">20</span> is<span class="token punctuation">:</span> n 
+Character on position <span class="token number">21</span> is<span class="token punctuation">:</span> g 
+Character on position <span class="token number">22</span> is<span class="token punctuation">:</span> u 
+Character on position <span class="token number">23</span> is<span class="token punctuation">:</span> a 
+Character on position <span class="token number">24</span> is<span class="token punctuation">:</span> g 
+Character on position <span class="token number">25</span> is<span class="token punctuation">:</span> e 
+Character on position <span class="token number">26</span> is<span class="token punctuation">:</span> <span class="token operator">!</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><p>首先要了解，值传递和引用传递，这二个的区别。</p>
 <p>值传递又称拷贝传值，就是将一个变量的值复制一个给另外一个变量。此时二个变量的值相同，但是此时的二个变量又是互相独立的存在，操作其中任何一个变量，另外一个变量都不会受到其影响。Go 语言当中都是值传递，只有使用指针之后才是引用传递。</p>
 <pre class="line-numbers language-go"><code class="language-go">a <span class="token operator">:=</span> <span class="token number">100</span>
@@ -1103,7 +1298,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">76.7k</span>&nbsp;字
+                class="white-color">78.7k</span>&nbsp;字
             
             
             
