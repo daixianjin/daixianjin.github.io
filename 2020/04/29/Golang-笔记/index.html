@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-14
+                    2020-09-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.1k
+                    6.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    27 分
+                    26 分
                 </div>
                 
 
@@ -402,37 +402,22 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>Go 是一门全新的语言。尽管它从现有的语言中借鉴了许多理念，但其与众不同的特性， 使得使用 Go 编程在本质上就不同于其它语言。做为 PHP 开发人员，第二门语言选 Go 的同撩还是比较多，从此可以论证 Go 还是非常值得学习！</p>
-<h3 id="语言特性"><a href="#语言特性" class="headerlink" title="语言特性"></a>语言特性</h3><ul>
-<li>垃圾回收（GC）<ol>
-<li>内存自动回收，虽然说 C 是内存王者，一套程序开发下来可以精确的去管理内存，但是如果有一天用了一个内存却没有手动去回收内存，那么当这套程序的内存超过了计算机物理内存他就会直接被 KILL 掉。</li>
-<li>只需要 new 分配内存，不需要释放内存</li>
-</ol>
-</li>
-<li>天然并发<ol>
-<li>从语言面支持并发，非常简单</li>
-<li>goroute，轻量级线程，创建成千上五个 goroute 成为可能 </li>
-</ol>
-</li>
-<li>channel<ol>
-<li>管道，类似 unix/linux 中的 pipe</li>
-<li>多个 goroute 之间通过 channel 进行通信</li>
-<li>支持任何类型</li>
-</ol>
-</li>
-</ul>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h5 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 从 Go 语言中文网：https://studygolang.com/dl 根据自己系统下载 Go 软件包</span>
-<span class="token function">sudo</span> <span class="token function">tar</span> -xzf go1.13.6.linux-amd64.tar.gz -C /usr/local<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h5 id="建立软链接"><a href="#建立软链接" class="headerlink" title="建立软链接"></a>建立软链接</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/go/bin/* /usr/bin/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><pre class="line-numbers language-bash"><code class="language-bash">go version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 从 Go 语言中文网：https://studygolang.com/dl 根据自己系统下载 Go 软件包</span>
+<span class="token function">sudo</span> <span class="token function">tar</span> -xzf go1.13.6.linux-amd64.tar.gz -C /usr/local
+
+<span class="token comment" spellcheck="true"># 建立软连接</span>
+<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/go/bin/* /usr/bin/
+
+<span class="token comment" spellcheck="true"># 测试</span>
+go version
+
+<span class="token comment" spellcheck="true"># go version go1.15 darwin/amd64 , 正常情况下就可以看见这样信息</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Linux 如果是zsh,就把/.bashrc 改成 /.zshr</span>
 <span class="token function">sudo</span> vim ~/.bashrc
 
 <span class="token function">export</span> GOROOT<span class="token operator">=</span>/usr/local/go   <span class="token comment" spellcheck="true"># 表示 Go 在你的电脑上的安装位置，有些安装包会自动设置默认的 goroot</span>
 <span class="token function">export</span> GOPATH<span class="token operator">=</span><span class="token variable">$HOME</span>/go-work   <span class="token comment" spellcheck="true"># 默认安装包的路径,把默认路径换成自己的路径</span>
 <span class="token function">export</span> PATH<span class="token operator">=</span><span class="token variable">$PATH</span><span class="token keyword">:</span><span class="token variable">$GOROOT</span>/bin:<span class="token variable">$GOPATH</span>/bin
-
-<span class="token comment" spellcheck="true"># 如果没有出现问题，那么就算装好了。接下来就是设置 Go 的开发环境了</span>
 
 <span class="token comment" spellcheck="true"># 使配置文件生效，这里有个大坑，千万别用 fish 里面执行它一直报错，人都差点搞死了</span>
 <span class="token function">source</span> ~/.bashrc　
@@ -448,11 +433,11 @@ vim ~/.bash_profile
 <span class="token function">source</span> .bash_profile
 
 <span class="token comment" spellcheck="true"># 发现关闭终端后立马失效，在 ~/.zshrc 文件最后，增加一行：</span>
-<span class="token function">source</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">source</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="查看环境变量"><a href="#查看环境变量" class="headerlink" title="查看环境变量"></a>查看环境变量</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># go env 查看 Go 环境变量</span>
 go <span class="token function">env</span>
 
-GO111MODULE<span class="token operator">=</span><span class="token string">""</span>
+GO111MODULE<span class="token operator">=</span><span class="token string">"on"</span>
 GOARCH<span class="token operator">=</span><span class="token string">"amd64"</span>
 GOBIN<span class="token operator">=</span><span class="token string">"/Users/daixianjin/Desktop/go/bin"</span>
 GOCACHE<span class="token operator">=</span><span class="token string">"/Users/daixianjin/Library/Caches/go-build"</span>
@@ -468,7 +453,7 @@ GONOSUMDB<span class="token operator">=</span><span class="token string">""</spa
 GOOS<span class="token operator">=</span><span class="token string">"darwin"</span>
 GOPATH<span class="token operator">=</span><span class="token string">"/Users/daixianjin/Desktop/go"</span>
 GOPRIVATE<span class="token operator">=</span><span class="token string">""</span>
-GOPROXY<span class="token operator">=</span><span class="token string">"https://proxy.golang.org,direct"</span>
+GOPROXY<span class="token operator">=</span><span class="token string">"https://goproxy.cn"</span>
 GOROOT<span class="token operator">=</span><span class="token string">"/usr/local/go"</span>
 GOSUMDB<span class="token operator">=</span><span class="token string">"sum.golang.org"</span>
 GOTMPDIR<span class="token operator">=</span><span class="token string">""</span>
@@ -478,19 +463,19 @@ AR<span class="token operator">=</span><span class="token string">"ar"</span>
 CC<span class="token operator">=</span><span class="token string">"clang"</span>
 CXX<span class="token operator">=</span><span class="token string">"clang++"</span>
 CGO_ENABLED<span class="token operator">=</span><span class="token string">"1"</span>
-GOMOD<span class="token operator">=</span><span class="token string">""</span>
+GOMOD<span class="token operator">=</span><span class="token string">"/dev/null"</span>
 CGO_CFLAGS<span class="token operator">=</span><span class="token string">"-g -O2"</span>
 CGO_CPPFLAGS<span class="token operator">=</span><span class="token string">""</span>
 CGO_CXXFLAGS<span class="token operator">=</span><span class="token string">"-g -O2"</span>
 CGO_FFLAGS<span class="token operator">=</span><span class="token string">"-g -O2"</span>
 CGO_LDFLAGS<span class="token operator">=</span><span class="token string">"-g -O2"</span>
 PKG_CONFIG<span class="token operator">=</span><span class="token string">"pkg-config"</span>
-GOGCCFLAGS<span class="token operator">=</span><span class="token string">"-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/var/folders/jg/7hbx9k8d18qdp5z6f0ddlsr00000gp/T/go-build606674752=/tmp/go-build -gno-record-gcc-switches -fno-common"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+GOGCCFLAGS<span class="token operator">=</span><span class="token string">"-fPIC -m64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=/var/folders/jg/7hbx9k8d18qdp5z6f0ddlsr00000gp/T/go-build058590651=/tmp/go-build -gno-record-gcc-switches -fno-common"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>GOPATH 对于现在的 Go 语言来说不晓得也没关系，现在官方推荐 Go module 跟 Composer 有点相像！</p>
 </blockquote>
 <h4 id="Go-Module"><a href="#Go-Module" class="headerlink" title="Go Module"></a>Go Module</h4><p>Go module 是 Go 官方自带的 Go 依赖管理库（感觉跟 Composer 很像），在 1.13 版本正式推荐使用。Go module 可以将某个项目(文件夹)下的所有依赖整理成一个 go.mod 文件，里面写入了依赖的版本等。使用 Go module 之后我们可不用将代码放置在 src下了。</p>
-<h5 id="开启-Go-module，开启代理"><a href="#开启-Go-module，开启代理" class="headerlink" title="开启 Go module，开启代理"></a>开启 Go module，开启代理</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 设置环境变量，开启 Go module</span>
+<h5 id="开启"><a href="#开启" class="headerlink" title="开启"></a>开启</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 设置环境变量，开启 Go module</span>
 <span class="token function">export</span> GO111MODULE<span class="token operator">=</span>on
 
 <span class="token comment" spellcheck="true"># 换成国内代理，如果不换，你会体验到什么是超级漫长的等待...</span>
@@ -508,7 +493,7 @@ go mod tidy<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/F6CxaN.png" alt></p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/TZw9bM.png" alt></p>
 <blockquote>
-<p>当然，可以不用 tidy 检查依赖，直接 <code>go build main.go</code> 或者 <code>go run main.go</code> 也会自动把依赖导入好，所以 go module 你值得拥有官方都在推了，那还等什么用起来。</p>
+<p>当然，可以不用 tidy 检查依赖，直接 <code>go build main.go</code> 或者 <code>go run main.go</code> 也会自动把依赖导入好，所以 go module 你值得拥有，官方都在推了，那还等什么赶快用起来。</p>
 </blockquote>
 <h5 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h5><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 导入依赖</span>
 go mod vendor
@@ -531,7 +516,7 @@ go mod edit  <span class="token comment" spellcheck="true"># 手动修改依赖�
 go mod graph  <span class="token comment" spellcheck="true"># 打印依赖图</span>
 go mod verify  <span class="token comment" spellcheck="true"># 校验依赖</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="Goland-设置-Go-module"><a href="#Goland-设置-Go-module" class="headerlink" title="Goland 设置 Go module"></a>Goland 设置 Go module</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/20200818223505.png" alt></p>
-<h4 id="Go-fmt"><a href="#Go-fmt" class="headerlink" title="Go fmt"></a>Go fmt</h4><h5 id="手动代码格式"><a href="#手动代码格式" class="headerlink" title="手动代码格式"></a>手动代码格式</h5><p>Go 的代码风格我非常喜欢，人人代码风格都一致就非常舒服了。不需要去争论代码风格上面的各种问题，也不需要去适用同事的风格。</p>
+<h4 id="Go-fmt"><a href="#Go-fmt" class="headerlink" title="Go fmt"></a>Go fmt</h4><h5 id="手动代码格式"><a href="#手动代码格式" class="headerlink" title="手动代码格式"></a>手动代码格式</h5><p>代码格式工具，我个人觉得非常好，不需要再去争论代码风格上面的各种问题了，也不需要去适用同事的风格。</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 代码风格格式化，但是只是格式化输出</span>
 gofmt dev.go
 
@@ -880,6 +865,7 @@ Character on position <span class="token number">23</span> is<span class="token 
 Character on position <span class="token number">24</span> is<span class="token punctuation">:</span> g 
 Character on position <span class="token number">25</span> is<span class="token punctuation">:</span> e 
 Character on position <span class="token number">26</span> is<span class="token punctuation">:</span> <span class="token operator">!</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Break-与-continue"><a href="#Break-与-continue" class="headerlink" title="Break 与 continue"></a>Break 与 continue</h4><p>Break 跳出循环，continue 跳过本次循环</p>
 <h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><p>首先要了解，值传递和引用传递，这二个的区别。</p>
 <p>值传递又称拷贝传值，就是将一个变量的值复制一个给另外一个变量。此时二个变量的值相同，但是此时的二个变量又是互相独立的存在，操作其中任何一个变量，另外一个变量都不会受到其影响。Go 语言当中都是值传递，只有使用指针之后才是引用传递。</p>
 <pre class="line-numbers language-go"><code class="language-go">a <span class="token operator">:=</span> <span class="token number">100</span>
@@ -908,8 +894,9 @@ fmt<span class="token punctuation">.</span><span class="token function">Println<
 <span class="token punctuation">}</span>
 
 fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p> 在 PHP 当中函数属于一等公民，毫无例外在 Go 语言当中函数也是属于一等公民，所以说函数是相当重要的角色。</p>
-<h5 id="声明函数"><a href="#声明函数" class="headerlink" title="声明函数"></a>声明函数</h5><pre class="line-numbers language-yaml"><code class="language-yaml">fun name (参数列表) (返回值列表) <span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p> 在 PHP 当中函数属于一等公民，毫无例外在 Go 语言当中函数也是属于一等公民，所以说函数是相当重要的角色。</p>
+<p>语法：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">fun name (参数列表) (返回值列表) <span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>例子：</p>
 <pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 无返回值，无参数</span>
 fun <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -925,7 +912,24 @@ fun <span class="token function">add</span><span class="token punctuation">(</sp
 <span class="token keyword">func</span> <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token builtin">int</span> <span class="token punctuation">,</span>b <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
+<h5 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/4fCeOY.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/weHf7t.png" alt></p>
+<p>语法：</p>
+<pre class="line-numbers language-yam"><code class="language-yam">func () (返回值列表) {}
+
+# 匿名函数返回值
+func test () func() int {
+    vat x int
+
+    return func() int {
+            x++
+            return x
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/J8GIj9.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/mllUai.png" alt></p>
+<h5 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/Ci2Se2.png" alt></p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><blockquote>
 <p>学习当中…</p>
 </blockquote>
 
@@ -1298,7 +1302,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">78.7k</span>&nbsp;字
+                class="white-color">81.5k</span>&nbsp;字
             
             
             
