@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-Google 验证, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Golang-基本结构与类型, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-Google 验证 | 道法自然</title>
+    <title>Golang-基本结构与类型 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/iWBw2F.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-Google 验证</h1>
+                    <h1 class="description center-align post-title">Golang-基本结构与类型</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel-扩展包/">
-                                <span class="chip bg-color">Laravel-扩展包</span>
+                            <a href="/tags/Golang/">
+                                <span class="chip bg-color">Golang</span>
                             </a>
                         
                     </div>
@@ -358,8 +358,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Laravel/" class="post-category">
-                                Laravel
+                            <a href="/categories/Golang-学习笔记/" class="post-category">
+                                Golang-学习笔记
                             </a>
                         
                     </div>
@@ -371,28 +371,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-18
+                    2020-09-16
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2020-09-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    449
+                    2.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    9 分
                 </div>
                 
 
@@ -402,45 +402,145 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>对于一些项目敏感操作来说验证用户都是属于必备的一个环节，当然验证的方式很多，确实很多！Google 验证，在我看来是验证当中的一种不错的选择，毕竟一次操作终身可行，而且 Google 自身就帮我们处理好了验证码有效期。（每30秒刷新一次），签名算法安全可靠！Laravel 做为 PHP 目前使用率最高的框架，当然也有他的 Google 验证扩展包。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><a href="https://packagist.org/packages/pragmarx/" target="_blank" rel="noopener">pragmarx/</a>google2fa-laravel</p>
-<pre><code># 扩展 Imagick 开启
-composer require pragmarx/google2fa-laravel</code></pre><p><a href="https://packagist.org/packages/bacon/" target="_blank" rel="noopener">bacon/</a>bacon-qr-code</p>
-<pre><code># 扩展 iconv 开启
-# dasprid/enum
-composer require bacon/bacon-qr-code</code></pre><h4 id="安装-Imagick-扩展"><a href="#安装-Imagick-扩展" class="headerlink" title="安装 Imagick 扩展"></a>安装 Imagick 扩展</h4><pre><code>apt-get install imagemagick
-convert -version 使用这个命令检测是否安装成功，如果成功的话会有imagemagick版本号。
-apt-get install libmagickwand-dev</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>生成 Google2FA 配置文件，文件存在位置 config/google2fa.php，命令如下：</p>
-<pre><code>php artisan vendor:publish --provider=&quot;PragmaRX\Google2FALaravel\ServiceProvider&quot;</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>生成 Secret Key</p>
-<pre><code>use PragmaRX\Google2FA\Google2FA;
+                <h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><p>Go 语言中的函数名、变量名、常量名、类型名、语句标号和包名等所有的命名，都遵循一个简单的命名规则：<strong>一个名字必须以一个字母（Unicode字母）或下划线开头，后面可以跟任意数量的字母、数字或下划线。</strong></p>
+<p>Go 语言中类似 if 和 switch 的关键字有25个；关键字不能用于自定义名字，只能在特定语法结构中使用。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">break      default       func     interface   select
+case       defer         go       map         struct
+chan       else          goto     package     switch
+const      fallthrough   if       range       type
+continue   for           import   return      var<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此外，还有大约 30 多个预定义的名字，比如 int 和 true 等，主要对应内建的常量、类型和函数。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">内建常量</span><span class="token punctuation">:</span>  true false iota nil
 
-$google2fa = new Google2FA();
-$secretKey = $google2fa-&gt;generateSecretKey(64);
+<span class="token key atrule">内建类型</span><span class="token punctuation">:</span>  int int8 int16 int32 int64
+          uint uint8 uint16 uint32 uint64 uintptr
+          float32 float64 complex128 complex64
+          bool byte rune string error
 
-# 这里的 Key 就是我们需要验证的 Key</code></pre><p>获取二维码地址</p>
-<pre><code>$company = &#39;&#39;; // 公司名称
-$holder = &#39;&#39;; // 用户标示，可以是邮箱或者名称等
-$qrcodeUrl = $google2fa-&gt;getQRCodeUrl($company, $holder, $secretKey);</code></pre><p>生成二维码图片</p>
-<pre><code>// 图片路径
-$filePath = sha1($secretKey) .&#39;.png&#39;;
-
-// 生成图片
-$renderer = new ImageRenderer(
-   new RendererStyle(200),
-   new ImagickImageBackEnd()
-);
-$writer = new Writer($renderer);
-$writer-&gt;writeFile($qrcodeUrl, $filePath);</code></pre><p><img src="https://i.loli.net/2019/11/18/hTlsNIDrVp5qmFz.png" alt></p>
-<p>最后，通过使用 Google Authenticator 应用程序来扫描二维码，扫描完毕之后，就会生成一组 6 位的数字密码。</p>
-<h3 id="身份验证"><a href="#身份验证" class="headerlink" title="身份验证"></a>身份验证</h3><pre><code>$google2fa = new Google2FA();
-$verify = $google2fa-&gt;verifyKey($secretKey, $request-&gt;input(&#39;code&#39;));
-if ($verify) {
-    return true;  // 验证成功
-}
-return false;</code></pre><blockquote>
-<p>参考地址：</p>
-<p><a href="https://www.raymondwu.net/2018/05/14/Laravel-利用Google2FA实现双因子认证/" target="_blank" rel="noopener">https://www.raymondwu.net/2018/05/14/Laravel-%E5%88%A9%E7%94%A8Google2FA%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%9B%A0%E5%AD%90%E8%AE%A4%E8%AF%81/</a></p>
+<span class="token key atrule">内建函数</span><span class="token punctuation">:</span>  make len cap new append copy close delete
+          complex real imag
+          panic recover<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这些内部预先定义的名字并不是关键字，你可以在定义中重新使用它们。在一些特殊的场景中重新定义它们也是有意义的，但是也要注意避免过度而引起语义混乱。</p>
+<blockquote>
+<p>当标识符（包括常量、变量、类型、函数名、结构字段等等）以一个大写字母开头，如：Echo，那么使用这种形式的标识符的对象就可以被外部包的代码所使用（需要先 import 导入这个包），这被称为<code>导出</code>（像面向对象语言中的 public ）；标识符如果以小写字母开头，则对包外是不可见的，但是他们在整个包的内部是可见并且可用的（像面向对象语言中的 private ）。名字的长度没有逻辑限制，但是 Go 语言的风格是尽量使用短小的名字。如果一个名字的作用域比较大，生命周期也比较长，那么用长的名字将会更有意义。Go 在习惯上推荐使用驼峰命令法。</p>
 </blockquote>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>Go 是一门强类型语言，但是 Go 也提供了类型推导，在我的认知当中，只要声明时没有类型只有表达式，那么就属于类型推导。</p>
+<h4 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h4><p>语法：类型和表达式可以省略其中一个，但不能二个都省略。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">var 变量名字 <span class="token punctuation">[</span>类型<span class="token punctuation">]</span> = 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果省略的是<code>类型</code>信息，那么将根据初始化表达式值来推导变量的类型信息。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">var a = 1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果初始化<code>表达式</code>被省略，那么将用零值初始化该变量，因为在 Go 在声明变量时，<strong>内存当中就已经对这个变量进行了初始化操作</strong>。数值类型变量对应的零值是 0，布尔类型变量对应的零值是 false，字符串类型对应的零值是空字符串，接口或引用类型（包括 slice、指针、map、chan 和函数）变量对应的零值是 nil。数组或结构体等聚合类型对应的零值是每个元素或字段都是对应该类型的零值。</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">var</span> a <span class="token builtin">string</span>
+<span class="token keyword">var</span> b <span class="token builtin">int</span>
+<span class="token keyword">var</span> c <span class="token builtin">float32</span>
+
+fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// ""、0、0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>零值初始化机制可以确保每个声明的变量总是有一个良好定义的值，因此在 Go 语言中不存在未初始化的变量。这个特性可以简化很多代码，而且可以在没有增加额外工作的前提下确保边界条件下的合理行为。另外需要注意一点，当声明一个变量，那么当前程序中就必须去使用这个变量，否则报错。还是 Go 的格言：没有不必要的代码。</p>
+<p>Go 声明变量非常多元化，除了以上声明变量的方法，还有以下声明变量的方法：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 一组声明多个，省略表达式</span>
+<span class="token keyword">var</span> a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c <span class="token builtin">int</span> <span class="token comment" spellcheck="true">// 0、0、0 int int int</span>
+
+<span class="token comment" spellcheck="true">// 一组声明多个，省略类型</span>
+<span class="token keyword">var</span> a<span class="token punctuation">,</span>b<span class="token punctuation">,</span>c <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token string">"你好世界"</span><span class="token punctuation">,</span><span class="token number">3.1415</span> <span class="token comment" spellcheck="true">// int string float64</span>
+
+<span class="token comment" spellcheck="true">// 分组声明</span>
+<span class="token keyword">var</span> <span class="token punctuation">(</span>
+      a <span class="token builtin">int</span>
+    b <span class="token operator">=</span> <span class="token string">"你好世界"</span>
+    c <span class="token operator">=</span> <span class="token number">3.1415</span>
+    d <span class="token punctuation">,</span>e <span class="token builtin">bool</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span class="token boolean">false</span>
+<span class="token punctuation">)</span>  
+<span class="token comment" spellcheck="true">// int string float64 bool bool</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注意：<strong>在包级别声明的变量（全局变量）会在 main 入口函数执行前完成初始化</strong>，<strong>局部变量将在声明语句被执行到的时候完成初始化</strong>。</p>
+<h4 id="类型推导"><a href="#类型推导" class="headerlink" title="类型推导"></a>类型推导</h4><p>Go 语言当中除了 <code>var</code> 来声明变量，还可以使用 <code>:=</code>来声明变量，更加的简洁。<code>:=</code>也叫做类型推导声明变量。</p>
+<p>语法：不能省略任何的东西，因为它已经是最简洁的声明方式了。请记住<code>:=</code>是一个变量声明语句，而<code>=</code>是一个变量赋值操作。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">变量名字 <span class="token punctuation">:</span>= 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>它也支持一组多个声明，<strong>但是没有分组声明</strong>。</p>
+<pre class="line-numbers language-go"><code class="language-go">变量名字，变量名字，变量名字 <span class="token operator">:=</span> 表达式，表达式，表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p><code>var</code> 声明可以在包内部声明（ import 下），简洁声明不可以在包内部声明（ import 下）。<code>var</code> 在包内部声明的变量全局可以使用，而简洁声明只有在其声明的内部使用。</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">var</span> a <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">100</span> <span class="token comment" spellcheck="true">// 全局可以使用</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    b <span class="token operator">:=</span> <span class="token number">100</span> <span class="token comment" spellcheck="true">// 只能在 main 函数当中使用</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>var</code> 声明和简洁声明，如果是在相同的作用域下他们不能声明相同变量，如在相同的函数体当中。如果 var 是在包内部声明，在函数体内部使用简洁声明一个相同的变量，那么此时就是赋值。<strong>相同作用域下不能存在二个相同的变量！</strong></p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> a <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">100</span>
+    a <span class="token operator">:=</span> <span class="token number">10000</span> <span class="token comment" spellcheck="true">// 错误声明</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// ...</span>
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">var</span> a <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">100</span> <span class="token comment" spellcheck="true">// 全局变量</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    a <span class="token operator">:=</span> <span class="token number">100000</span> <span class="token comment" spellcheck="true">// 局部变量，他们作用域完全不一样，此时正确声明</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>常量使用 <code>const</code>修饰，<strong>代表永远只读，不能修改。常量是在编译期间就已确定其值，之后永远不可修改</strong>！常量只能修饰 数字类型（包括整型，浮点型，和复数类型）、布尔类型、字符串类型等。常量的表达式的值也是可以一些特定的内建函数，因为常量只要在声明时能确定其值，那么就属于有效定义的常量。</p>
+<h4 id="声明常量"><a href="#声明常量" class="headerlink" title="声明常量"></a>声明常量</h4><p>语法：类型可以省略，因为可以表达式的值自动类型推导，但是表达式不可省略，<strong>定义常量时常量的表达式的值必须是在编译时就可以确定的值，否则编译无法通过。</strong></p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">const 常量名称 <span class="token punctuation">[</span>类型<span class="token punctuation">]</span> = 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>分组声明：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">const</span><span class="token punctuation">(</span>
+    a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  b <span class="token operator">=</span> <span class="token string">'string'</span><span class="token punctuation">,</span>
+  c <span class="token operator">=</span> <span class="token boolean">true</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="类型推导-1"><a href="#类型推导-1" class="headerlink" title="类型推导"></a>类型推导</h4><p>语法：注意：常量跟变量的推导类型不一样，常量是 <code>=</code> 而变量是 <code>:=</code>不能搞混了。</p>
+<pre class="line-numbers language-yam"><code class="language-yam">const 常量名称 = 表达式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="枚举声明"><a href="#枚举声明" class="headerlink" title="枚举声明"></a>枚举声明</h4><p>语法：第一个 iota 等于 0，<strong>每当 iota 在新的一行被使用时，它的值都会自动加 1</strong>；所以 a=0, b=1, c=2 可以简写为如下形式</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">const</span> <span class="token punctuation">(</span>
+    a <span class="token operator">=</span> <span class="token boolean">iota</span>
+    b
+    c
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="作用域-1"><a href="#作用域-1" class="headerlink" title="作用域"></a>作用域</h4><p>常量可以在包内（import）下面，或函数内部声明常量，当然他们二个现在的作用域完全不一样，包内属于全局常量而函数内就是局部常量。</p>
+<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><h4 id="布尔类型"><a href="#布尔类型" class="headerlink" title="布尔类型"></a>布尔类型</h4><p>bool 默认为 float，并且布尔型的值只可以是 true 或者 false，两个类型相同的值可以使用相等 == 或者不等 != 运算符来进行比较并获得一个布尔型的值。</p>
+<h4 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h4><p>整数：</p>
+<ul>
+<li>int8（-128 -&gt; 127）</li>
+<li>int16（-32768 -&gt; 32767）</li>
+<li>int32（-2,147,483,648 -&gt; 2,147,483,647）</li>
+<li>int64（-9,223,372,036,854,775,808 -&gt; 9,223,372,036,854,775,807）</li>
+</ul>
+<p>无符号整数：</p>
+<ul>
+<li>uint8（0 -&gt; 255）</li>
+<li>uint16（0 -&gt; 65,535）</li>
+<li>uint32（0 -&gt; 4,294,967,295）</li>
+<li>uint64（0 -&gt; 18,446,744,073,709,551,615）</li>
+</ul>
+<p>浮点型（IEEE-754 标准）：</p>
+<ul>
+<li>float32（+- 1e-45 -&gt; +- 3.4 * 1e38）</li>
+<li>float64（+- 5  1e-324 -&gt; 107  1e308）</li>
+</ul>
+<p>复数</p>
+<ul>
+<li>complex64 (32 位实数和虚数)</li>
+<li>complex128 (64 位实数和虚数)</li>
+<li>复数表示：2 + 2i</li>
+</ul>
+<p>int 型是计算最快的一种类型。整型的零值为 0，浮点型的零值为 0.0。float32 精确到小数点后 7 位，float64 精确到小数点后 15 位。由于精确度的缘故，你在使用 == 或者 != 来比较浮点数时应当非常小心。你最好在正式使用前测试对于精确度要求较高的运算。</p>
+<h4 id="字符类型"><a href="#字符类型" class="headerlink" title="字符类型"></a>字符类型</h4><p>byte 严格来说，这并不是 Go 语言的一个类型，字符只是整数的特殊用例。byte 类型是 uint8 的别名，对于只占用 1 个字节的传统 ASCII 编码的字符来说，完全没有问题。例如：var ch byte = ‘A’；字符使用单引号括起来。字符类型 <code>‘’</code> 表示，输出的是 ascll 码的数值。</p>
+<h4 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h4><p>string 字符串类型 <code>“”</code> 表示。字符串是 UTF-8 字符的一个序列（当字符为 ASCII 码时则占用 1 个字节，其它字符根据需要占用 2-4 个字节）。UTF-8 是被广泛使用的编码格式，是文本文件的标准编码，其它包括 XML 和 JSON 在内，也都使用该编码。由于该编码对占用字节长度的不定性，Go 中的字符串也可能根据需要占用 1 至 4 个字节（示例见第 4.6 节），这与其它语言如 C++、Java 或者 Python 不同（Java 始终使用 2 个字节）。Go 这样做的好处是不仅减少了内存和硬盘空间占用，同时也不用像其它语言那样需要对使用 UTF-8 字符集的文本进行编码和解码。<br>字符串是一种值类型，且值不可变，即创建某个文本后你无法再次修改这个文本的内容；更深入地讲，字符串是字节的定长数组。</p>
+<h3 id="基本运算符"><a href="#基本运算符" class="headerlink" title="基本运算符"></a>基本运算符</h3><h4 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/fqPo01.png" alt>  <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/N1h2bN.png" alt></p>
+<blockquote>
+<p>Go 语言当中，没有：– a ++a ，这样操作。不像 PHP <strong>符号在前那么就是先运算在赋值</strong>，<strong>如果符号在后那么就是先赋值在运算</strong>，Go 当中只写在后面，只表示自增或者自减。</p>
+</blockquote>
+<h4 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/GX6PLE.png" alt></p>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/qAOcIU.png" alt></p>
+<h4 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/qkFzxT.png" alt></p>
+<h4 id="其他运算符"><a href="#其他运算符" class="headerlink" title="其他运算符"></a>其他运算符</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/suW9Ix.png" alt></p>
+<h4 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/X2tsoT.png" alt></p>
+<ul>
+<li>sizeof 是获取变量占内存的大小，unsafe.Sizeof(a)</li>
+</ul>
 
             </div>
             <hr/>
@@ -466,7 +566,7 @@ return false;</code></pre><blockquote>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://daixianjin.github.io/2019/11/18/Laravel-Goog验证/">https://daixianjin.github.io/2019/11/18/Laravel-Goog验证/</a>
+                    <a href="https://daixianjin.github.io/2020/09/16/Golang-基本结构与类型/">https://daixianjin.github.io/2020/09/16/Golang-基本结构与类型/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -504,8 +604,8 @@ return false;</code></pre><blockquote>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel-扩展包/">
-                                    <span class="chip bg-color">Laravel-扩展包</span>
+                                <a href="/tags/Golang/">
+                                    <span class="chip bg-color">Golang</span>
                                 </a>
                             
                         </div>
@@ -547,7 +647,7 @@ return false;</code></pre><blockquote>
         repo: 'daixianjin.github.io',
         owner: 'daixianjin',
         admin: "daixianjin",
-        id: '2019-11-18T18-03-33',
+        id: '2020-09-16T20-55-32',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -571,45 +671,48 @@ return false;</code></pre><blockquote>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/12/16/Laravel-Xss-攻击过滤/">
+                <a href="/2020/09/16/Golang-基本结构与类型/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-XSS 攻击过滤">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/iWBw2F.jpg" class="responsive-img" alt="Golang-基本结构与类型">
                         
-                        <span class="card-title">Laravel-XSS 攻击过滤</span>
+                        <span class="card-title">Golang-基本结构与类型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要XSS 攻击，XSS 是跨站脚本攻击(Cross Site Scripting)，为不和层叠样式表(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为XSS。恶意攻击者往 Web 页面里插入恶意 
+                            命名Go 语言中的函数名、变量名、常量名、类型名、语句标号和包名等所有的命名，都遵循一个简单的命名规则：一个名字必须以一个字母（Unicode字母）或下划线开头，后面可以跟任意数量的字母、数字或下划线。
+Go 语言中类似 if 和 swit
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Laravel/" class="post-category">
-                                    Laravel
+                            <a href="/categories/Golang-学习笔记/" class="post-category">
+                                    Golang-学习笔记
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Golang/">
+                        <span class="chip bg-color">Golang</span>
                     </a>
                     
                 </div>
@@ -623,30 +726,31 @@ return false;</code></pre><blockquote>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/14/PHP-RSA对称加密解密/">
+                <a href="/2020/09/16/Golang学习笔记-你好Golang/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/800595_YUT9XJ3EP373F4D.png" class="responsive-img" alt="PHP-RSA加密解密">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/qUbbdd.jpg" class="responsive-img" alt="Golang-环境搭建">
                         
-                        <span class="card-title">PHP-RSA加密解密</span>
+                        <span class="card-title">Golang-环境搭建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要RSA 加密是一种非对称加密。可以在不直接传递密钥的情况下，完成解密。这能够确保信息的安全性，避免了直接传递密钥所造成的被破解的风险。是由一对密钥来进行加解密的过程，分别称为公钥和私钥。两者之间有数学相关，该加密算法的原理就是对一极大整
+                            摘要Go 是一门全新的语言。尽管它从现有的语言中借鉴了许多理念，但其与众不同的特性， 使得使用 Go 编程在本质上就不同于其它语言。做为 PHP 开发人员，第二门语言选 Go 的同撩还是比较多，从此可以论证 Go 还是非常值得学习！
+语言特
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-16
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/PHP/" class="post-category">
-                                    PHP
+                            <a href="/categories/Golang-学习笔记/" class="post-category">
+                                    Golang-学习笔记
                                 </a>
                             
                             
@@ -656,8 +760,8 @@ return false;</code></pre><blockquote>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/PHP/">
-                        <span class="chip bg-color">PHP</span>
+                    <a href="/tags/Golang/">
+                        <span class="chip bg-color">Golang</span>
                     </a>
                     
                 </div>
