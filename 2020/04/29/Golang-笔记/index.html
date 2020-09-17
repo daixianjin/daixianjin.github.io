@@ -385,7 +385,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    672
+                    522
                 </div>
                 
 
@@ -402,10 +402,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h3><ul>
-<li><h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3></li>
-</ul>
-<h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><p>首先要了解，值传递和引用传递，这二个的区别。</p>
+                <h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><p>首先要了解，值传递和引用传递，这二个的区别。</p>
 <p>值传递又称拷贝传值，就是将一个变量的值复制一个给另外一个变量。此时二个变量的值相同，但是此时的二个变量又是互相独立的存在，操作其中任何一个变量，另外一个变量都不会受到其影响。Go 语言当中都是值传递，只有使用指针之后才是引用传递。</p>
 <pre class="line-numbers language-go"><code class="language-go">a <span class="token operator">:=</span> <span class="token number">100</span>
 b <span class="token operator">:=</span> a
@@ -433,41 +430,6 @@ fmt<span class="token punctuation">.</span><span class="token function">Println<
 <span class="token punctuation">}</span>
 
 fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p> 在 PHP 当中函数属于一等公民，毫无例外在 Go 语言当中函数也是属于一等公民，所以说函数是相当重要的角色。</p>
-<p>语法：</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml">fun name (参数列表) (返回值列表) <span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>例子：</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 无返回值，无参数</span>
-fun <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">// 有参数，有一个返回值</span>
-fun <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
-
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">// 有多个参数，有多个返回值</span>
-<span class="token keyword">func</span> <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token builtin">int</span> <span class="token punctuation">,</span>b <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/4fCeOY.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/weHf7t.png" alt></p>
-<p>语法：</p>
-<pre class="line-numbers language-yam"><code class="language-yam">func () (返回值列表) {}
-
-# 匿名函数返回值
-func test () func() int {
-    vat x int
-
-    return func() int {
-            x++
-            return x
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/J8GIj9.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/mllUai.png" alt></p>
-<h5 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/Ci2Se2.png" alt></p>
 <h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><blockquote>
 <p>学习当中…</p>
 </blockquote>
@@ -841,7 +803,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">78.8k</span>&nbsp;字
+                class="white-color">79.1k</span>&nbsp;字
             
             
             

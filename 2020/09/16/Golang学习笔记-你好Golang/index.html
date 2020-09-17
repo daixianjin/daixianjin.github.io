@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-16
+                    2020-09-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    12 分
                 </div>
                 
 
@@ -415,7 +415,7 @@
 <ul>
 <li><p>从语言面支持并发，非常简单</p>
 </li>
-<li><p>goroute，轻量级线程，创建成千上五个 goroute 成为可能 </p>
+<li><p>goroute，轻量级<strong>协程</strong>，创建成千上五个 goroute 成为可能 </p>
 </li>
 </ul>
 </li>
@@ -562,10 +562,10 @@ gofmt -w dev.go<span aria-hidden="true" class="line-numbers-rows"><span></span><
     fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"你好世界"</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>Go 语言的代码通过<strong>包</strong>（package）组织，包类似于其它语言里的库（libraries）或者模块（modules）。也就是说程序一开始，就要声明这个程序属于哪个包。一个包由位于单个目录下的一个或多个<code>.go</code>源代码文件组成, 目录定义包的作用。每个源文件都以一条<code>package</code>声明语句开始，紧跟着一系列导入（import）的包，之后是存储在这个文件里的程序语句。</p>
-<h4 id="包的概念"><a href="#包的概念" class="headerlink" title="包的概念"></a>包的概念</h4><p>从以上可得知 Go 语言其实就是包组成，那么包的概念就必须清晰明了，这是 Go 语言开头的第一步。首先来看下一个包的结构：</p>
+<h3 id="包的概念"><a href="#包的概念" class="headerlink" title="包的概念"></a>包的概念</h3><p>从以上可得知 Go 语言其实就是包组成，那么包的概念就必须清晰明了，这是 Go 语言开头的第一步。首先来看下一个包的结构：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/JwaPtb.png" alt></p>
 <p>这是一个简单结构，先刨除 src 不看。可以看见 <code>a.go</code> 和 <code>b.go</code>他们二个在 <code>learn07</code>目录下，那么也就是一个包由位于单个目录下的一个或多个<code>.go</code>源代码文件组成。而 另外二个<code>a.go</code> 和 <code>b.go</code> 他们二个在<code>api</code>目录下也就是相同道理。虽然说他们都叫<code>a 和 b</code>但他们完全是属于二个不通的目录，Go 语言的包其实就是这么简单理解就好。</p>
-<h5 id="包的调用"><a href="#包的调用" class="headerlink" title="包的调用"></a>包的调用</h5><p>在理解包的调用之前先了解 Go 的一些机制。</p>
+<h4 id="包的调用"><a href="#包的调用" class="headerlink" title="包的调用"></a>包的调用</h4><p>在理解包的调用之前先了解 Go 的一些机制。</p>
 <ul>
 <li><p>同一个包的包名必须一致，另外同个包当中的全局变量，全局常量，方法等等都是公用。相当于是一个大源文件，然后拆分成多个源文件，实则都是这个大源文件。</p>
 </li>
@@ -578,10 +578,10 @@ gofmt -w dev.go<span aria-hidden="true" class="line-numbers-rows"><span></span><
 <blockquote>
 <p>从上面可以看到 a 和 b 同属于 main 包，所以他们相互之间调用无需 import 也不需关注大写小写是否可以被调用的问题，但是编译时必须把使用的包全部编译否则报错。如果 <code>learn07</code>下面的 a.go 要调用 <code>api</code> 当中的 a.go 和 b.go 那么他首先需要 import 其次如果 a.go 和 b.go 当中存在小写方法，那么<code>learn07</code>下面的 a.go 也无法调用他们之间的小写方法。</p>
 </blockquote>
-<h5 id="特殊的-main-包"><a href="#特殊的-main-包" class="headerlink" title="特殊的 main 包"></a>特殊的 main 包</h5><p>main 包在 Go 语言当中是一个特殊的存在，实际意义上他并不是一个包不能被 import，他定义了一个独立可执行的程序。main 包当中的 main 函数就是整个程序执行的入口了，也叫 main 主函数，一般 main 主函数当中会调用其它很多函数完成工作。<strong>只有 main 包才可以被编译，其他都包只能被 import，相同目录下 main 包可以有多个，但是 main 包当中的 main 主函数有且只能有一个！！！</strong></p>
-<h5 id="特殊的-init-函数"><a href="#特殊的-init-函数" class="headerlink" title="特殊的 init 函数"></a>特殊的 init 函数</h5><p>每个包当中都可以包含一个 init 函数，这个 init 函数在 main 主函数调用之前就会自动被 Go 运行框架调用。</p>
-<h5 id="需要遵循的规定"><a href="#需要遵循的规定" class="headerlink" title="需要遵循的规定"></a>需要遵循的规定</h5><p>首先要注意一点，package 先 ，import 后，<strong>他们不能颠倒位置</strong>，package <strong>只能有一个而不能多个</strong>，import 可以有多个。其次如果说 import 导入了包，那么你都必须去使用导入的包，不然编译无法通过，这正是遵循了 Go 的格言：“没有不必要的代码！“。Go 的语法要求特别的严格，在 package 和 import 之后，才可以定义 函数、常亮、变量、类型的程序声明语句。程序声明语句他们没有顺序要求，可以随心所欲来！Go 语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。如：for，if 等。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响 Go 代码的正确解析。</p>
-<h4 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h4><p>Go 是一门编译型语言，Go 语言的工具链将源代码及其依赖转换成计算机的机器指令（译注：静态编译）。 Go 语言提供的工具都通过一个单独的命令 Go 调用，Go 命令有一系列子命令。最简单的一个子命令就是 run。这个命令编译一个或多个以 <code>.go</code> 结尾的源文件，链接库文件，并运行最终生成的可执行文件。注意：Go 语言编译代码是一行一行的编译，所以一行只能写一句代码，不能一行写多句代码，否则报错！</p>
+<h4 id="特殊的-main-包"><a href="#特殊的-main-包" class="headerlink" title="特殊的 main 包"></a>特殊的 main 包</h4><p>main 包在 Go 语言当中是一个特殊的存在，实际意义上他并不是一个包不能被 import，他定义了一个独立可执行的程序。main 包当中的 main 函数就是整个程序执行的入口了，也叫 main 主函数，一般 main 主函数当中会调用其它很多函数完成工作。<strong>只有 main 包才可以被编译，其他都包只能被 import，相同目录下 main 包可以有多个，但是 main 包当中的 main 主函数有且只能有一个，并且 main 主函数不能有参数与返回值！！！</strong></p>
+<h4 id="特殊的-init-函数"><a href="#特殊的-init-函数" class="headerlink" title="特殊的 init 函数"></a>特殊的 init 函数</h4><p>每个包当中都可以包含一个 init 函数，这个 init 函数在 main 主函数调用之前就会自动被 Go 运行框架调用，init 的优先级高于 main 主函数，init 函数跟 main 函数一样不能有参数和返回值。</p>
+<h4 id="需要遵循的规定"><a href="#需要遵循的规定" class="headerlink" title="需要遵循的规定"></a>需要遵循的规定</h4><p>首先要注意一点，package 先 ，import 后，<strong>他们不能颠倒位置</strong>，package <strong>只能有一个而不能多个</strong>，import 可以有多个。其次如果说 import 导入了包，那么你都必须去使用导入的包，不然编译无法通过，这正是遵循了 Go 的格言：“没有不必要的代码！“。Go 的语法要求特别的严格，在 package 和 import 之后，才可以定义 函数、常亮、变量、类型的程序声明语句。程序声明语句他们没有顺序要求，可以随心所欲来！Go 语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。如：for，if 等。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响 Go 代码的正确解析。</p>
+<h3 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h3><p>Go 是一门编译型语言，Go 语言的工具链将源代码及其依赖转换成计算机的机器指令（译注：静态编译）。 Go 语言提供的工具都通过一个单独的命令 Go 调用，Go 命令有一系列子命令。最简单的一个子命令就是 run。这个命令编译一个或多个以 <code>.go</code> 结尾的源文件，链接库文件，并运行最终生成的可执行文件。注意：Go 语言编译代码是一行一行的编译，所以一行只能写一句代码，不能一行写多句代码，否则报错！</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 编译并运行源文件</span>
 go run hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>编译生成一个可执行文件，在 Windows 下会生成一个 <code>.exe</code>文件，OS X  和 Linux 下会成才一个二进制文件，可以直接运行，Go 编译后不依附环境，但是需要相同的平台才能运行。</p>
@@ -592,9 +592,8 @@ go build hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span
 </blockquote>
 <h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/ST6956.png" alt></p>
 <p><strong>特殊：%v 可以代表任意类型</strong></p>
-<p>实例：</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 实例一</span>
-<span class="token keyword">package</span> main
+<p>实例一：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token string">"fmt"</span>
 
@@ -602,11 +601,11 @@ go build hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span
     age <span class="token operator">:=</span> <span class="token number">24</span>
     name <span class="token operator">:=</span> <span class="token string">"小明"</span>
     fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"姓名是：%d 年龄是：%s"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// 结果：姓名是：24 年龄是：小明</span>
-
-<span class="token comment" spellcheck="true">// 实例二</span>
-<span class="token keyword">package</span> main
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果：</p>
+<pre class="line-numbers language-yam"><code class="language-yam">姓名是：24 年龄是：小明<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>实例二：</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token string">"fmt"</span>
 
@@ -614,45 +613,42 @@ go build hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span
     age <span class="token operator">:=</span> <span class="token number">24</span>
     name <span class="token operator">:=</span> <span class="token string">"小明"</span>
     fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"姓名是：%v 年龄是：%v"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// 结果：姓名是：24 年龄是：小明</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">姓名是：24 年龄是：小明<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>实例三：标准变量输出</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
-<span class="token comment" spellcheck="true">// 实例三，标准变量输出</span>
-<span class="token keyword">package</span> main
-
-<span class="token keyword">import</span> <span class="token punctuation">(</span>
-    <span class="token string">"fmt"</span>
-<span class="token punctuation">)</span>
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
 
 <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     age <span class="token operator">:=</span> <span class="token number">24</span>
-    name <span class="token operator">:=</span> <span class="token string">"小明"</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"姓名是：%v 年龄是：%v"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
-
-    str <span class="token operator">:=</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"姓名是：%v 年龄是：%v"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// 结果：姓名是：24 年龄是：小明姓名是：24 年龄是：小明</span>
-
-<span class="token comment" spellcheck="true">// 实例四：标准输入</span>
-<span class="token keyword">package</span> main
+    name <span class="token operator">:=</span> <span class="token string">"道法自然"</span>
+    result <span class="token operator">:=</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"年龄-%v 姓名-%v"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"变量赋值标准输出: %v 现在变量的类型 %T"</span><span class="token punctuation">,</span> result<span class="token punctuation">,</span> result<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">变量赋值标准输出</span><span class="token punctuation">:</span> 年龄<span class="token punctuation">-</span>24 姓名<span class="token punctuation">-</span>道法自然 现在变量的类型 string<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>实例四：标准输入</p>
+<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
 <span class="token keyword">import</span> <span class="token string">"fmt"</span>
 
 <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> age <span class="token builtin">int</span>
     <span class="token keyword">var</span> name <span class="token builtin">string</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"请输入年龄："</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"\n 请输入您的年龄："</span><span class="token punctuation">)</span>
     fmt<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>age<span class="token punctuation">)</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"请输入姓名："</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"\n 请输入您的姓名："</span><span class="token punctuation">)</span>
     fmt<span class="token punctuation">.</span><span class="token function">Scan</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>name<span class="token punctuation">)</span>
-    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"年龄-%v 姓名-%v"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// 结果：</span>
-<span class="token comment" spellcheck="true">// 请输入年龄：24</span>
-<span class="token comment" spellcheck="true">// 请输入姓名：道法自然</span>
-<span class="token comment" spellcheck="true">// 年龄-24 姓名-道法自然</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>转义符</p>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"\n 您输入的年龄为：%v 您输入的姓名为：%v"</span><span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果：</p>
+<pre class="line-numbers language-yam"><code class="language-yam">请输入您的年龄：24
+
+请输入您的姓名：道法自然
+
+您输入的年龄为：24 您输入的姓名为：道法自然<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>常用的转义字符有以下几个:</p>
 <ul>
 <li>\t: 表示一个制表符(tab), 通常可以使用它进行排版; </li>
@@ -668,10 +664,10 @@ go build hello.go<span aria-hidden="true" class="line-numbers-rows"><span></span
 
 <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     fmt<span class="token punctuation">.</span><span class="token function">Print</span><span class="token punctuation">(</span><span class="token string">"你好世界 \n我很好"</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// 结果：</span>
-<span class="token comment" spellcheck="true">// 你好世界 </span>
-<span class="token comment" spellcheck="true">// 我很好</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">你好世界 
+我很好<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -1042,7 +1038,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">78.8k</span>&nbsp;字
+                class="white-color">79.1k</span>&nbsp;字
             
             
             
