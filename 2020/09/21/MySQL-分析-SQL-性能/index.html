@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Golang-学习笔记, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="MySQL-分析 SQL 性能, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Golang-学习笔记 | 道法自然</title>
+    <title>MySQL-分析 SQL 性能 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/golang_tutorial_coverage.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1495798711725561.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Golang-学习笔记</h1>
+                    <h1 class="description center-align post-title">MySQL-分析 SQL 性能</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Go/">
-                                <span class="chip bg-color">Go</span>
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
                             </a>
                         
                     </div>
@@ -358,8 +358,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Go/" class="post-category">
-                                Go
+                            <a href="/categories/MySQL/" class="post-category">
+                                MySQL
                             </a>
                         
                     </div>
@@ -371,28 +371,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-29
+                    2020-09-21
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-16
+                    2020-09-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    522
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 
@@ -402,36 +402,100 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><p>首先要了解，值传递和引用传递，这二个的区别。</p>
-<p>值传递又称拷贝传值，就是将一个变量的值复制一个给另外一个变量。此时二个变量的值相同，但是此时的二个变量又是互相独立的存在，操作其中任何一个变量，另外一个变量都不会受到其影响。Go 语言当中都是值传递，只有使用指针之后才是引用传递。</p>
-<pre class="line-numbers language-go"><code class="language-go">a <span class="token operator">:=</span> <span class="token number">100</span>
-b <span class="token operator">:=</span> a
-a<span class="token operator">++</span>
-fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果：a = 101 ，b = 100</span>
-fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果可以发现他们的内存地址完全不一样，都是独立的存在</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>指针（引用传递）就是将一个数据的内存空间地址拷贝一个传递给另一个变量，此时二个变量的内存空间地址都指向一个地址，改变其中一个值另外一个值也会受到影响而改变。在变量前面加上一个<code>&amp;</code>符号就是取这个变量的内存地址。如需要使用指针，Go 当非常简单执行要在变量前面加上 <code>*</code>即可表示指针，另外 Go 的指针不支持指针的运算！</p>
-<pre class="line-numbers language-go"><code class="language-go">a <span class="token operator">:=</span> <span class="token number">100</span>
-b <span class="token operator">:=</span> <span class="token operator">&amp;</span>a
-fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token operator">*</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果 a = 100，b = 100</span>
-fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果可以发现他们的内存地址完全一致</span>
-<span class="token comment" spellcheck="true">// ...</span>
-<span class="token operator">*</span>b <span class="token operator">=</span> <span class="token operator">*</span>b <span class="token operator">+</span> <span class="token number">100</span>
-fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token operator">*</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果 a = 200，b = 200</span>
-fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 结果可以发现他们的内存地址完全一致</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>任何类型的指针的零值都是 nil。如果 p 指向某个有效变量，那么<code>p != nil</code>测试为真。指针之间也是可以进行相等测试的，只有当它们指向同一个变量或全部是 nil 时才相等。</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">var</span> x<span class="token punctuation">,</span> y <span class="token builtin">int</span>
-fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x <span class="token operator">==</span> <span class="token operator">&amp;</span>x<span class="token punctuation">,</span> <span class="token operator">&amp;</span>x <span class="token operator">==</span> <span class="token operator">&amp;</span>y<span class="token punctuation">,</span> <span class="token operator">&amp;</span>x <span class="token operator">==</span> <span class="token boolean">nil</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// "true false false"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>Go 语言当中，返回函数中局部变量也是安全的，但每次返回的结果都不同。</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>分析 SQL 语句性能是每个项目都必定经历的一个阶段，分析 SQL 可以依靠 MySQL 自身提供的功能帮助我们分析 SQL 当然也有第三方工具，看个人习惯于熟悉程度而定。慢查询日志和 profiles 都是 MySQL 自身提供的 SQL 工具非常实用。Performance Schema explain</p>
+<h3 id="慢查询日志"><a href="#慢查询日志" class="headerlink" title="慢查询日志"></a>慢查询日志</h3><p>慢查询日志是 <strong>MySQL 提供记录超过时间限定 SQL 语句的一个日志功能</strong>，通常我们优化数据库第一点就先看看慢查询日志，有利于我们进行 SQL 的分析。默认是没有开启慢查询日志！不建议在生成环境开启，开启之后也会消耗一些性能，可以把生成环境数据拷贝到测试服在进行慢查询日志操作。慢查询日志开启方式有：临时与永久，开启永久慢查询需要重启服务，推荐临时开启!!!</p>
+<pre class="line-numbers language-mysql"><code class="language-mysql"># 查看是否开启了慢查询
+show variables like 'slow_query_log%';
 
-<span class="token keyword">func</span> <span class="token function">b</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
-    a <span class="token operator">:=</span> <span class="token number">1</span>
-    <span class="token keyword">return</span> <span class="token operator">&amp;</span>a
-<span class="token punctuation">}</span>
+# 查看默认触发记录的时间 单位：秒  默认10秒
+show variables like 'long_query_time';<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/UkOQ52.png" alt></p>
+<h4 id="临时开启"><a href="#临时开启" class="headerlink" title="临时开启"></a>临时开启</h4><pre class="line-numbers language-mysql"><code class="language-mysql"># 开启
+set global slow_query_log = 1;  
 
-fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><blockquote>
-<p>学习当中…</p>
+# 修改触发时间
+set long_query_time = 10;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="永久开启"><a href="#永久开启" class="headerlink" title="永久开启"></a>永久开启</h4><pre class="line-numbers language-mysql"><code class="language-mysql"># 修改配置 mysql 下的配置文件,开启慢查询
+slow_query_log = 1
+
+# 慢查询日志记录的位置
+log-slow-queries = "/var//lib/mysql/slow.log"
+
+# 触发的时间
+long_query_time = 1 
+
+# 不记录没有使用索引的日志
+log-queries-not-using-indexes
+
+### 注意:修改完毕配置文件后，一定要重启 mysql 服务，才能配置生效<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/00wCeX.png" alt></p>
+<h4 id="日志查看"><a href="#日志查看" class="headerlink" title="日志查看"></a>日志查看</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/MFDHaB.png" alt></p>
+<ul>
+<li>Time：当前数据库时间</li>
+<li>User@Host：数据库用户的一些信息</li>
+<li>Id：是执行查询的线程 Id</li>
+<li>Query_time：执行 SQL 所需要的时间，单位秒</li>
+<li>Lock_time：执行查询对记录锁定的时间</li>
+<li>Rows_sent：查询返回的行数</li>
+<li>Rows_examined：为了返回查询的数据所读取的行数</li>
+</ul>
+<h4 id="分析日志工具"><a href="#分析日志工具" class="headerlink" title="分析日志工具"></a>分析日志工具</h4><ul>
+<li>mysqldumpslow</li>
+<li>mysqlsla</li>
+</ul>
+<p>分析 SQL 还是得 MySQL 自身提供的计划任务（Explain）来模拟执行 SQL 然后从中观察结果。</p>
+<h3 id="精准时间记录"><a href="#精准时间记录" class="headerlink" title="精准时间记录"></a>精准时间记录</h3><p>使用mysql提供<code>profile</code>机制完成。<code>profile</code>记录每次执行的sql语句的具体时间，精确时间到小数点8位。</p>
+<h4 id="开启"><a href="#开启" class="headerlink" title="开启"></a>开启</h4><pre class="line-numbers language-mysql"><code class="language-mysql"># 开启profile记录
+set profiling = 1;
+
+# 关闭
+set profiling = 0;
+
+# 查看记录sql语句的执行时间
+show profiles;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/EWxsAP.png" alt></p>
+<h3 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h3><p>在工作中，我们用于捕捉性能问题最常用的就是打开慢查询，定位执行效率差的 SQL，那么当我们定位到一个 SQL以后还不算完事，我们还需要知道该 SQL 的执行计划，比如是全表扫描，还是索引扫描，这些都需要通过 explain去完成。explain 关键字可以模拟 MySQL 优化器执行 SQL 语句，可以很好的分析 SQL 语句或表结构的性能瓶颈。</p>
+<h4 id="explain-的用途"><a href="#explain-的用途" class="headerlink" title="explain 的用途"></a>explain 的用途</h4><ol>
+<li>表的读取顺序如何</li>
+<li>数据读取操作有哪些操作类型</li>
+<li>哪些索引可以使用</li>
+<li>哪些索引被实际使用</li>
+<li>表之间是如何引用</li>
+<li>每张表有多少行被优化器查询</li>
+</ol>
+<h4 id="explain-的执行效果"><a href="#explain-的执行效果" class="headerlink" title="explain 的执行效果"></a>explain 的执行效果</h4><pre class="line-numbers language-yaml"><code class="language-yaml">mysql<span class="token punctuation">></span> explain select * from `signs` where `id` = '11' \G;
+*************************** 1. row ***************************
+           <span class="token key atrule">id</span><span class="token punctuation">:</span> <span class="token number">1</span>
+  <span class="token key atrule">select_type</span><span class="token punctuation">:</span> SIMPLE
+        <span class="token key atrule">table</span><span class="token punctuation">:</span> signs
+   <span class="token key atrule">partitions</span><span class="token punctuation">:</span> <span class="token null important">NULL</span>
+         <span class="token key atrule">type</span><span class="token punctuation">:</span> const
+<span class="token key atrule">possible_keys</span><span class="token punctuation">:</span> PRIMARY
+          <span class="token key atrule">key</span><span class="token punctuation">:</span> PRIMARY
+      <span class="token key atrule">key_len</span><span class="token punctuation">:</span> <span class="token number">8</span>
+          <span class="token key atrule">ref</span><span class="token punctuation">:</span> const
+         <span class="token key atrule">rows</span><span class="token punctuation">:</span> <span class="token number">1</span>
+     <span class="token key atrule">filtered</span><span class="token punctuation">:</span> <span class="token number">100.00</span>
+        <span class="token key atrule">Extra</span><span class="token punctuation">:</span> <span class="token null important">NULL</span>
+1 row in set<span class="token punctuation">,</span> 1 warning (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="explain-的字段"><a href="#explain-的字段" class="headerlink" title="explain 的字段"></a>explain 的字段</h4><ol>
+<li>id：select 查询的序列号，包含一组数字，表示查询中执行 select 子句或操作表的顺序</li>
+<li>select_type ：查询类型</li>
+<li>table ：正在访问哪个表</li>
+<li>partitions ：匹配的分区</li>
+<li>type ：访问的类型</li>
+<li>possible_keys ：显示可能应用在这张表中的索引，一个或多个，但不一定实际使用到</li>
+<li>key ：实际使用到的索引，如果为 NULL，则没有使用索引</li>
+<li>key_len ：表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度</li>
+<li>ref ：显示索引的哪一列被使用了，如果可能的话，是一个常数，哪些列或常量被用于查找索引列上的值</li>
+<li>rows ：根据表统计信息及索引选用情况，大致估算出找到所需的记录所需读取的行数</li>
+<li>filtered ：查询的表行占表的百分比</li>
+<li>Extra ：包含不适合在其它列中显示但十分重要的额外信息</li>
+</ol>
+<p>未完待续…</p>
+<blockquote>
+<p>参考地址:</p>
+<p><a href="https://learnku.com/articles/38719" target="_blank" rel="noopener">https://learnku.com/articles/38719</a></p>
 </blockquote>
 
             </div>
@@ -458,7 +522,7 @@ fmt<span class="token punctuation">.</span><span class="token function">Println<
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://daixianjin.github.io/2020/04/29/Golang-笔记/">https://daixianjin.github.io/2020/04/29/Golang-笔记/</a>
+                    <a href="https://daixianjin.github.io/2020/09/21/MySQL-分析-SQL-性能/">https://daixianjin.github.io/2020/09/21/MySQL-分析-SQL-性能/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -496,8 +560,8 @@ fmt<span class="token punctuation">.</span><span class="token function">Println<
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Go/">
-                                    <span class="chip bg-color">Go</span>
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
                                 </a>
                             
                         </div>
@@ -539,7 +603,7 @@ fmt<span class="token punctuation">.</span><span class="token function">Println<
         repo: 'daixianjin.github.io',
         owner: 'daixianjin',
         admin: "daixianjin",
-        id: '2020-04-29T13-57-59',
+        id: '2020-09-21T15-18-39',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -563,46 +627,47 @@ fmt<span class="token punctuation">.</span><span class="token function">Println<
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/05/23/jenkins-自动化部署/">
+                <a href="/2020/09/21/MySQL-分析-SQL-性能/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1502354304971856.png" class="responsive-img" alt="Jenkins + 码云 自动部署 PHP 项目">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1495798711725561.png" class="responsive-img" alt="MySQL-分析 SQL 性能">
                         
-                        <span class="card-title">Jenkins + 码云 自动部署 PHP 项目</span>
+                        <span class="card-title">MySQL-分析 SQL 性能</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要Jenkins 是一款由 Java 编写的开源的持续集成工具。在与 Oracle 发生争执后，项目从 Hudson 项目复刻。这个关系就跟 MySQL 和 MariaDB 关系一样。只能说 Oracle 故事真多！！！
-Jenkins 
+                            摘要分析 SQL 语句性能是每个项目都必定经历的一个阶段，分析 SQL 可以依靠 MySQL 自身提供的功能帮助我们分析 SQL 当然也有第三方工具，看个人习惯于熟悉程度而定。慢查询日志和 profiles 都是 MySQL 自身提供的 S
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/持续集成/" class="post-category">
-                                    持续集成
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/持续集成/">
-                        <span class="chip bg-color">持续集成</span>
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
@@ -616,30 +681,32 @@ Jenkins
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/20/搭建免费的图床/">
+                <a href="/2020/09/16/Golang-函数/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1573462520_5dc921f8018f2.jpeg" class="responsive-img" alt="利用 Github + PicGo + JsDelivr 搭建免费高速图床">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/iWBw2F.jpg" class="responsive-img" alt="Golang-函数">
                         
-                        <span class="card-title">利用 Github + PicGo + JsDelivr 搭建免费高速图床</span>
+                        <span class="card-title">Golang-函数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要以前使用的微博图床，我使用 Manjaro 18 版本的时候 Chrome 插件好好的可以使用，但是有一次重新装了一次系统后凉了，也找不到解决方法，放弃了。SM.SM 虽然免费使用，也是现在一直使用的图床，但是最近出来了收费模式，突然感
+                            函数 在 PHP 当中函数属于一等公民，毫无例外在 Go 语言当中函数也是属于一等公民，所以说函数是相当重要的角色。Go 语言函数的特殊之处在于他可以 return 带有零个或多个参数；这些参数将作为返回值。
+Go 里面有三种类型的函数：
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-16
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/网络/" class="post-category">
-                                    网络
+                            <a href="/categories/Golang-学习笔记/" class="post-category">
+                                    Golang-学习笔记
                                 </a>
                             
                             
@@ -649,8 +716,8 @@ Jenkins
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/网络/">
-                        <span class="chip bg-color">网络</span>
+                    <a href="/tags/Golang/">
+                        <span class="chip bg-color">Golang</span>
                     </a>
                     
                 </div>
