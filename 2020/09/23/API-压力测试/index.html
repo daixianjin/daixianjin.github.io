@@ -1,0 +1,1034 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="项目压力测试, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="description" content="一个后端小菜鸟的进击之路">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>项目压力测试 | 道法自然</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">道法自然</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">道法自然</div>
+        <div class="logo-desc">
+            
+            一个后端小菜鸟的进击之路
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/kTGWvP.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">项目压力测试</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/测试/">
+                                <span class="chip bg-color">测试</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/测试/" class="post-category">
+                                测试
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-09-23
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-09-23
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    5 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>产品上线前压力测试是非常有必要的一个环节，经过压力测试可以很明确当前产品的性能的信息，当然观察点除了自身程序，另外一个重点就是服务器本身。这里采用的测试工具就是 Apache Benchmark (ab) 是 Apache 安装包中自带的压力测试工具 ，简单易用。</p>
+<h3 id="ab-原理"><a href="#ab-原理" class="headerlink" title="ab 原理"></a>ab 原理</h3><p>ab 命令会创建多个并发访问<strong>线程</strong>，模拟多个访问者同时对某一 URL 地址进行访问。它的测试目标是基于 URL ，因此，它既可以用来测试 apache 的负载压力，也可以测试 nginx、lighthttp、tomcat、IIS 等其它 Web 服务器的压力。</p>
+<p>ab 命令对发出负载的计算机要求很低，它既不会占用很高 CPU，也不会占用很多内存。但却会给目标服务器造成巨大的负载，其原理类似 CC 攻击。自己测试使用也需要注意，否则一次上太多的负载。可能造成目标服务器资源耗完，严重时甚至导致死机。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Centos</p>
+<pre class="line-numbers language-bash"><code class="language-bash">yum -y <span class="token function">install</span> httpd-tools<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Ubuntu</p>
+<pre class="line-numbers language-bash"><code class="language-bash">apt -y <span class="token function">install</span> apache2-utils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><p>在使用之前需要先了解一下压力测试的概念，这样才能更好分析。</p>
+<ul>
+<li><strong>吞吐率（Requests per second）</strong></li>
+</ul>
+<p>服务器并发处理能力的量化描述，单位是 reqs/s，指的是某个并发用户数下单位时间内处理的请求数。某个并发用户数下单位时间内能处理的最大请求数，称之为最大吞吐率。 计算公式：总请求数 / 处理完成这些请求数所花费的时间，即：<br> Request per second = Complete requests / Time taken for tests</p>
+<ul>
+<li><strong>并发连接数（The number of concurrent connections）</strong></li>
+</ul>
+<p>某个时刻服务器所接受的请求数目，简单的讲，就是一个会话。</p>
+<ul>
+<li><strong>并发用户数（The number of concurrent users，Concurrency Level）</strong></li>
+</ul>
+<p>要注意区分这个概念和并发连接数之间的区别，一个用户可能同时会产生多个会话，也即连接数。</p>
+<ul>
+<li><strong>用户平均请求等待时间（Time per request）</strong></li>
+</ul>
+<p>计算公式：处理完成所有请求数所花费的时间/ （总请求数 / 并发用户数），即<br> Time per request = Time taken for tests /（ Complete requests / Concurrency Level）</p>
+<ul>
+<li><strong>服务器平均请求等待时间（Time per request: across all concurrent requests）</strong></li>
+</ul>
+<p>计算公式：处理完成所有请求数所花费的时间 / 总请求数，即<br> Time taken for / testsComplete requests<br> 可以看到，它是吞吐率的倒数。<br> 同时，它也=用户平均请求等待时间/并发用户数，即<br> Time per request / Concurrency Level</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><pre class="line-numbers language-bash"><code class="language-bash">ab -n 1000 -c 10 path
+
+<span class="token comment" spellcheck="true"># 访问 1000 次，一共 10个并发</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="ab-常用参数的介绍"><a href="#ab-常用参数的介绍" class="headerlink" title="ab 常用参数的介绍"></a>ab 常用参数的介绍</h4><ul>
+<li>-n ：总共的请求执行数，缺省是1；</li>
+<li>-c： 并发数，缺省是1；</li>
+<li>-t：测试所进行的总时间，秒为单位，缺省50000s</li>
+<li>-T：指定的参数类型</li>
+<li>-p：POST 时的数据文件</li>
+<li>-w: 以HTML表的格式输出结果</li>
+</ul>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><pre class="line-numbers language-yaml"><code class="language-yaml">Server Software<span class="token punctuation">:</span>        nginx/1.16.1 <span class="token comment" spellcheck="true"># 服务器软件名称以及版本号</span>
+Server Hostname<span class="token punctuation">:</span>        xxxxx <span class="token comment" spellcheck="true"># 域名</span>
+Server Port<span class="token punctuation">:</span>            <span class="token number">80    </span><span class="token comment" spellcheck="true"># 端口号</span>
+
+Document Path<span class="token punctuation">:</span>          /index.php <span class="token comment" spellcheck="true"># 测试的路径</span>
+Document Length<span class="token punctuation">:</span>        32 bytes     <span class="token comment" spellcheck="true"># 测试的路径返回的文档大小</span>
+
+Concurrency Level<span class="token punctuation">:</span>      <span class="token number">100                     </span><span class="token comment" spellcheck="true"># 并发数量</span>
+Time taken for tests<span class="token punctuation">:</span>   4.307 seconds <span class="token comment" spellcheck="true"># 压力测试消耗的总时间-单位秒</span>
+Complete requests<span class="token punctuation">:</span>      <span class="token number">1000                    </span><span class="token comment" spellcheck="true"># 总访问次数</span>
+Failed requests<span class="token punctuation">:</span>        <span class="token number">0                            </span><span class="token comment" spellcheck="true"># 失败的请求数量</span>
+Total transferred<span class="token punctuation">:</span>      233000 bytes  <span class="token comment" spellcheck="true"># 传输的总数据量</span>
+HTML transferred<span class="token punctuation">:</span>       32000 bytes   <span class="token comment" spellcheck="true"># HTML文档的总数据量</span>
+Requests per second<span class="token punctuation">:</span>    232.15 <span class="token punctuation">[</span><span class="token comment" spellcheck="true">#/sec] (mean) # (平均每秒的请求数) 这个是非常重要的参数数值，服务器的吞吐量</span>
+Time per request<span class="token punctuation">:</span>       430.748 <span class="token punctuation">[</span>ms<span class="token punctuation">]</span> (mean)   <span class="token comment" spellcheck="true"># (所有并发用户都请求一次的平均时间)</span>
+Time per request<span class="token punctuation">:</span>       4.307 <span class="token punctuation">[</span>ms<span class="token punctuation">]</span> (mean<span class="token punctuation">,</span> across all concurrent requests) <span class="token comment" spellcheck="true"># (单个用户请求一次的平均时间)</span>
+Transfer rate<span class="token punctuation">:</span>          52.82 <span class="token punctuation">[</span>Kbytes/sec<span class="token punctuation">]</span> received <span class="token comment" spellcheck="true"># 每秒获取的数据长度 (传输速率，单位：KB/s)</span>
+
+Connection Times (ms) <span class="token comment" spellcheck="true"># 网络上消耗的时间的分解</span>
+              min  mean<span class="token punctuation">[</span>+/<span class="token punctuation">-</span>sd<span class="token punctuation">]</span> median   max
+<span class="token key atrule">Connect</span><span class="token punctuation">:</span>       33   41  32.5     40    1063
+<span class="token key atrule">Processing</span><span class="token punctuation">:</span>   224  337  43.4    322     545
+<span class="token key atrule">Waiting</span><span class="token punctuation">:</span>      224  337  43.4    322     545
+<span class="token key atrule">Total</span><span class="token punctuation">:</span>        349  378  52.4    363    1287
+
+Percentage of the requests served within a certain time (ms)
+  50%    363 <span class="token comment" spellcheck="true"># 50% 的请求在 363 ms 内返回</span>
+  66%    367 <span class="token comment" spellcheck="true"># 60% 的请求在 367 ms 内返回</span>
+  75%    374
+  80%    379
+  90%    404
+  95%    491
+  98%    557
+  99%    582
+ 100%   1287 (longest request)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p>除了平常的 GET 请求，其实最多的情况下还是 POST ，当然了 AB 也支持 POST 的压力测试。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">ab -n10000 -c10 -T <span class="token string">'application/json'</span> -p post.json path<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Json 格式：</p>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"title"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"text"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"text_string"</span><span class="token operator">:</span><span class="token string">"Star Wars The Black Series Credit Collection The Mandalorian Toy 6-Inch-Scale Collectible Action Figure (Amazon Exclusive)"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"primary_class"</span><span class="token operator">:</span><span class="token string">"000"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"descriptions"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token property">"text"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"text_string"</span><span class="token operator">:</span><span class="token string">" THE MANDALORIAN: The Mandalorian is battle-worn and tight-lipped, a formidable bounty hunter in an increasingly dangerous galaxy THE MANDALORIAN SERIES-INSPIRED DESIGN: Fans and collectors can imagine "</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token property">"text"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"text_string"</span><span class="token operator">:</span><span class="token string">"scenes from the Star Wars Galaxy as seen on Disney Plus with this premium The Mandalorian toy TV SERIES-BASED CHARACTER-INSPIRED ACCESSORIES: This Star Wars The Black Series action figure comes with 2"</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token property">"text"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"text_string"</span><span class="token operator">:</span><span class="token string">" The Mandalorian-inspired accessories that make great additions to any Star Wars collection PREMIUM ARTICULATION AND DETAILING: Star Wars fans and collectors can display this highly poseable, fully articulated, "</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token property">"text"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"text_string"</span><span class="token operator">:</span><span class="token string">"figure, featuring premium deco, in their action figure and vehicle collection CREDIT COLLECTION: This distinctive collection features premium deco applications inspired by the end credit images from The "</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span><span class="token property">"text"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"text_string"</span><span class="token operator">:</span><span class="token string">"Mandalorian, plus a collectible Imperial Credit accessory"</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token property">"images"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>测试机与被测试机要分开</li>
+<li>不要对线上的服务器做压力测试</li>
+<li>观察测试工具 ab 所在机器，以及被测试的前端机的 CPU、内存、网络等都不超过最高限度的 75%</li>
+</ul>
+<blockquote>
+<p>参考：</p>
+<p><a href="https://www.jianshu.com/p/43d04d8baaf7" target="_blank" rel="noopener">https://www.jianshu.com/p/43d04d8baaf7</a></p>
+<p><a href="https://blog.csdn.net/u011415782/article/details/78501799" target="_blank" rel="noopener">https://blog.csdn.net/u011415782/article/details/78501799</a></p>
+</blockquote>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">道法自然</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://daixianjin.github.io/2020/09/23/API-压力测试/">https://daixianjin.github.io/2020/09/23/API-压力测试/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">道法自然</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/测试/">
+                                    <span class="chip bg-color">测试</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '1ba192f17fa97b79e2f8',
+        clientSecret: '141c79b0d56b6d05fbf84eabc1263790c39cbd9f',
+        repo: 'daixianjin.github.io',
+        owner: 'daixianjin',
+        admin: "daixianjin",
+        id: '2020-09-23T11-19-44',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/09/23/API-压力测试/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/kTGWvP.jpg" class="responsive-img" alt="项目压力测试">
+                        
+                        <span class="card-title">项目压力测试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘要产品上线前压力测试是非常有必要的一个环节，经过压力测试可以很明确当前产品的性能的信息，当然观察点除了自身程序，另外一个重点就是服务器本身。这里采用的测试工具就是 Apache Benchmark (ab) 是 Apache 安装包中自带
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/测试/" class="post-category">
+                                    测试
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/测试/">
+                        <span class="chip bg-color">测试</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/09/21/MySQL-分析-SQL-性能/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1495798711725561.png" class="responsive-img" alt="MySQL-分析 SQL 性能">
+                        
+                        <span class="card-title">MySQL-分析 SQL 性能</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘要分析 SQL 语句性能是每个项目都必定经历的一个阶段，分析 SQL 可以依靠 MySQL 自身提供的功能帮助我们分析 SQL 当然也有第三方工具，看个人习惯于熟悉程度而定。慢查询日志和 profiles 都是 MySQL 自身提供的 S
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">道法自然</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">81.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "08";
+                    var startDate = "1";
+                    var startHour = "14";
+                    var startMinute = "14";
+                    var startSecond = "37";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/daixianjin" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:boyi6868@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=562275977" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 562275977" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
