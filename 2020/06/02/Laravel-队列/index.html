@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-10
+                    2020-09-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 
@@ -538,7 +538,7 @@ Job<span class="token punctuation">:</span><span class="token punctuation">:</sp
 
 <span class="token punctuation">[</span>program:queue<span class="token punctuation">]</span>
 process_name<span class="token operator">=</span>%<span class="token punctuation">(</span>program_name<span class="token punctuation">)</span>s_%<span class="token punctuation">(</span>process_num<span class="token punctuation">)</span>02d
-command<span class="token operator">=</span>/usr/local/bin/php /var/www/html/artisan queue:work redis --sleep<span class="token operator">=</span>3 --tries<span class="token operator">=</span>3
+command<span class="token operator">=</span>/usr/local/bin/php /var/www/html/artisan queue:work redis --quiet --delay<span class="token operator">=</span>3 --sleep<span class="token operator">=</span>3 --tries<span class="token operator">=</span>3
 autostart<span class="token operator">=</span>true
 autorestart<span class="token operator">=</span>true
 user<span class="token operator">=</span>root
@@ -559,6 +559,14 @@ stopwaitsecs<span class="token operator">=</span>3600<span aria-hidden="true" cl
 <li>numprocs 进程数量，我一直用的 8 个进程</li>
 <li>stdout_logfile 日志</li>
 </ul>
+<p>–quiet</p>
+<p>不输出任何内容，就不在需要 stdout_logfile</p>
+<p>–delay=3</p>
+<p>一个任务失败后，延迟多长时间后再重试，单位是秒。这个值的设定我个人建议不要太短，因为一个任务失败（比如网络原因），重试时间太短可能会出现连续失败的情况。</p>
+<p>–sleep=3</p>
+<p>去 Redis 中拿任务的时候，发现没有任务，休息多长时间，单位是秒。这个值的设定要看你的任务是否紧急，如果是那种非常紧急的任务，不能等待太长时间。</p>
+<p>–tries=3</p>
+<p>定义失败任务最多重试次数。这个值的设定根据任务的重要程度来确定，一般 3 次比较适合。</p>
 <h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre class="line-numbers language-bash"><code class="language-bash">supervisord -c /etc/supervisor/supervisord.conf
 
 supervisorctl reread
@@ -568,6 +576,20 @@ supervisorctl start all<span aria-hidden="true" class="line-numbers-rows"><span>
 <blockquote>
 <p>注意，修改了队列那么一定要重启！！</p>
 </blockquote>
+<h4 id="失败队列"><a href="#失败队列" class="headerlink" title="失败队列"></a>失败队列</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 查看失败队列</span>
+php artisan queue:failed
+
++----+------------+--------+---------------------------+---------------------+
+<span class="token operator">|</span> ID <span class="token operator">|</span> Connection <span class="token operator">|</span> Queue  <span class="token operator">|</span> Class                     <span class="token operator">|</span> Failed At           <span class="token operator">|</span>
++----+------------+--------+---------------------------+---------------------+
+<span class="token operator">|</span> 3  <span class="token operator">|</span> redis      <span class="token operator">|</span> dbInfo <span class="token operator">|</span> App\Jobs\SearchInfoRecord <span class="token operator">|</span> 2020-09-24 07:17:55 <span class="token operator">|</span>
+<span class="token operator">|</span> 2  <span class="token operator">|</span> redis      <span class="token operator">|</span> dbInfo <span class="token operator">|</span> App\Jobs\SearchInfoRecord <span class="token operator">|</span> 2020-09-24 07:15:43 <span class="token operator">|</span>
+<span class="token operator">|</span> 1  <span class="token operator">|</span> redis      <span class="token operator">|</span> dbInfo <span class="token operator">|</span> App\Jobs\SearchInfoRecord <span class="token operator">|</span> 2020-09-24 07:12:42 <span class="token operator">|</span>
++----+------------+--------+---------------------------+---------------------+
+
+<span class="token comment" spellcheck="true"># 记录失败队列</span>
+php artisan queue:failed-table
+php artisan migrate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -939,7 +961,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.6k</span>&nbsp;字
+                class="white-color">83.1k</span>&nbsp;字
             
             
             

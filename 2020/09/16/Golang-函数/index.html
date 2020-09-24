@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-16
+                    2020-09-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    341
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    6 分
                 </div>
                 
 
@@ -402,40 +402,160 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p> 在 PHP 当中函数属于一等公民，毫无例外在 Go 语言当中函数也是属于一等公民，所以说函数是相当重要的角色。Go 语言函数的特殊之处在于他可以 return 带有零个或多个参数；这些参数将作为返回值。</p>
+                <h3 id="基本了解"><a href="#基本了解" class="headerlink" title="基本了解"></a>基本了解</h3><p> 首先什么是函数呢？为了完成某一功能的程序指令（语句）的集合称为函数，在 Go 语言当中函数分为：自定义函数和系统函数。在 PHP 当中函数属于一等公民，毫无例外在 Go 语言当中函数也是属于一等公民，所以说函数是相当重要的角色。Go 语言函数对比 PHP 的函数的特殊之处在于他可以 return <strong>带有零个或多个参数</strong>；<strong>这些参数将作为返回值</strong>，而 PHP 做不到多返回值（返回一个数组，却还是单一返回值），别说 PHP 大多数语言都无法做到多返回值的效果。</p>
 <p>Go 里面有三种类型的函数：</p>
 <ul>
 <li>普通的带有名字的函数</li>
 <li>匿名函数或者闭包函数</li>
 <li>方法（Methods）</li>
 </ul>
-<p>除了 main ()、init () 函数外，其它所有类型的函数都可以有参数与返回值。函数参数、返回值以及它们的类型被统称为函数签名。</p>
-<p>语法：</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml">fun name (参数列表) (返回值列表) <span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>例子：</p>
-<pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 无返回值，无参数</span>
-<span class="token keyword">func</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
+<blockquote>
+<p>注意：除了  <code>main () 主函数</code>、<code>init () 初始函数</code>外，其它所有类型的函数都可以有参数与返回值。函数参数、返回值以及它们的类型被统称为函数签名。</p>
+</blockquote>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><pre class="line-numbers language-yaml"><code class="language-yaml">fun name (参数列表) (返回值列表) <span class="token punctuation">{</span>
+        执行的语句<span class="token punctuation">...</span>
+        return 然后值列表
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// 有参数，有一个返回值</span>
-<span class="token keyword">func</span> <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true"># 细节，如果没有返回值那么不用写括号，如果只有一个返回值也不用写括号，多个返回值必须有括号括起来</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    result <span class="token operator">:=</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"结果为：%d"</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// 可变参数传递</span>
-<span class="token keyword">func</span> <span class="token function">add</span> <span class="token punctuation">(</span>a <span class="token operator">...</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">func</span> <span class="token function">sum</span><span class="token punctuation">(</span>a <span class="token builtin">int</span><span class="token punctuation">,</span> b <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">结果为：30<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h4><pre class="line-numbers language-yam"><code class="language-yam">package.函数名称(参数列表)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>注意：这里 package 也就是包了，当然同一个包当中不需要加上 package 就跟上面的快速入门一样，不同包之间需要加上 package，比起 PHP<code>-&gt;</code>说实话我更喜欢 <code>.</code> 因为只需要按一个键位！</p>
+</blockquote>
+<h4 id="函数调用细节"><a href="#函数调用细节" class="headerlink" title="函数调用细节"></a>函数调用细节</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/xTk5r1.png" alt></p>
+<ul>
+<li>在调用一个函数时，会给该函数分配一个新的空间，编译器会通过自身的处理，这个新的空间和其他的栈的空间区分开来。</li>
+<li>在每个函数对应的栈中，数据空间是隔离的，不会混淆。</li>
+<li>当一个函数执行完毕后，程序会销毁这个函数对应的栈空间。</li>
+</ul>
+<h3 id="函数递归"><a href="#函数递归" class="headerlink" title="函数递归"></a>函数递归</h3><p>一个函数在函数体内又调用了本身，那么就称之为函数递归。Go 语言支持递归，但在使用递归时，需要设置退出条件，否则递归将陷入无限循环。</p>
+<h4 id="快速入门-1"><a href="#快速入门-1" class="headerlink" title="快速入门"></a>快速入门</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">test</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true">// 有多个参数，有多个返回值</span>
-<span class="token keyword">func</span> <span class="token function">add</span><span class="token punctuation">(</span>a <span class="token builtin">int</span> <span class="token punctuation">,</span>b <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span><span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">func</span> <span class="token function">test</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> n <span class="token operator">></span> <span class="token number">2</span> <span class="token punctuation">{</span>
+        n<span class="token operator">--</span>
+        <span class="token function">test</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"当前 n 的值为 %d \n"</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">当前 n 的值为 2 
+当前 n 的值为 2 
+当前 n 的值为 3 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/GI6yKg.png" alt></p>
+<h4 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h4><ul>
+<li>递归必须有退出条件，否则无限循环调用</li>
+<li>执行一个函数时，就会创建一个新的受保护的独立空间（新函数栈）</li>
+<li>函数的局部变量都是独立的，不会互相影响</li>
+<li>当一个函数执行完毕，或者遇到 return 就会返回，尊重谁调用，就将结果返回给谁，同时当函数执行完毕或者返回时，该函数本身也会自动被系统销毁</li>
+</ul>
+<h4 id="裴波那契数"><a href="#裴波那契数" class="headerlink" title="裴波那契数"></a>裴波那契数</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
 
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>函数被调用的格式如下：</p>
-<pre class="line-numbers language-yam"><code class="language-yam">[package].函数名称(参数列表)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这的 package 也就是包了，当然同一个包当中不需要加上 [package] ，不通包之间需要加上 [package]，比起 PHP<code>-&gt;</code>说实话我更喜欢 <code>.</code> 因为只需要按一个键位！</p>
-<h5 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/4fCeOY.png" alt></p>
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    result <span class="token operator">:=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"求出的裴波那契数为：%v"</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 1 1 2 3 5 8 13...</span>
+<span class="token keyword">func</span> <span class="token function">f</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">||</span> n <span class="token operator">==</span> <span class="token number">2</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">f</span><span class="token punctuation">(</span>n<span class="token number">-1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">f</span><span class="token punctuation">(</span>n<span class="token number">-2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果：</p>
+<pre><code>求出的裴波那契数为：3</code></pre><h3 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h3><p>在函数中，需要基础创建资源（比如：连接数据库，文件句柄，锁等）为了在函数执行完毕后，及时的释放资源，Go 的设计者提供了 defer （延时机制），当程序执行到 defer 时，暂时不执行会将 defer 后面的语句压入到独立的栈中。<strong>当函数执行完毕后，再从 defer 栈，按照先入后出的方式执行</strong>。</p>
+<h4 id="快速入门-2"><a href="#快速入门-2" class="headerlink" title="快速入门"></a>快速入门</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"上面都执行完成了"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">sum</span><span class="token punctuation">(</span>a <span class="token builtin">int</span><span class="token punctuation">,</span> b <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+    <span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"a 等于 %d \n"</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"b 等于 %d \n"</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+
+    result <span class="token operator">:=</span> a <span class="token operator">+</span> b
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"a + b 的和是 %d \n"</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> result
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">a + b 的和是 30 
+b 等于 20 
+a 等于 10 
+上面都执行完成了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="详解-1"><a href="#详解-1" class="headerlink" title="详解"></a>详解</h4><p>当程序执行到 defer 时，暂时不会将 defer 后面的语句执行出来，而是把他压入到 defer 栈当中。栈的特性相信大家都知道：先进后出和队列的特性完全相反。那么就会接着向下执行，执行到第三个 fmt 打印出 <code>a + b 的和是 30</code>接下 return 表示整个函数整个执行完毕了。此时，在回到 defer 栈当中把刚压入栈的取出来，先进后出的执行那么分别就是<code>b 等于 20</code>和<code>a 等于 10</code>。切记一点，defer 的语句会被压栈，执行时也是跟栈的特性一致。</p>
+<blockquote>
+<p>注意：在 defer 语句放入栈时，也会将相关的值拷贝同时入栈，看以下例子。</p>
+</blockquote>
+<h4 id="细节-1"><a href="#细节-1" class="headerlink" title="细节"></a>细节</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"上面都执行完成了"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">sum</span><span class="token punctuation">(</span>a <span class="token builtin">int</span><span class="token punctuation">,</span> b <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//  defer 语句前改变了他们，那么他们会是改变的，因为在入栈前已经改变了</span>
+  a<span class="token operator">++</span>
+    b<span class="token operator">++</span>
+    <span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"a 等于 %d \n"</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"b 等于 %d \n"</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// defer 语句后改变了他们，上面二个语句虽然在最后执行，但是在开始时就已经被压入栈了，随同一起压入的还拷贝的值，所有就算在他们之后改变了值也不会影响</span>
+  a<span class="token operator">++</span>
+    b<span class="token operator">++</span>
+    result <span class="token operator">:=</span> a <span class="token operator">+</span> b
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"a + b 的和是 %d \n"</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> result
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># defer 语句前改变了他们 结果</span>
+a + b 的和是 32 
+b 等于 21 
+a 等于 11 
+上面都执行完成了
+
+<span class="token comment" spellcheck="true"># defer 语句后改变了他们 结果</span>
+a + b 的和是 32 
+b 等于 20 
+a 等于 10 
+上面都执行完成了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="defer-的实际应用场景"><a href="#defer-的实际应用场景" class="headerlink" title="defer 的实际应用场景"></a>defer 的实际应用场景</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token comment" spellcheck="true">// 关闭文件流</span>
+<span class="token keyword">defer</span> file<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 解锁一个加锁的资源 </span>
+<span class="token keyword">defer</span> mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 关闭数据库链接</span>
+<span class="token keyword">defer</span> <span class="token function">disconnectFromDB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>详解：Go 编程中通常的做法是创建资源后，如（打开了文件，连接了数据，锁资源）可以立即执行 defer 关闭资源。在 defer 后，可继续使用创建的资源。就不需要我们时刻去关注启用了资源，在什么适合的时机关闭资源而烦心，让程序更加的简洁。</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/4fCeOY.png" alt></p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/weHf7t.png" alt></p>
 <p>语法：</p>
 <pre class="line-numbers language-yam"><code class="language-yam">func () (返回值列表) {}
@@ -449,10 +569,9 @@ func test () func() int {
             return x
     }
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/J8GIj9.png" alt></p>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/J8GIj9.png" alt></p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/mllUai.png" alt></p>
-<h5 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h5><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/Ci2Se2.png" alt></p>
-
+<h3 id="函数参数的传递方式"><a href="#函数参数的传递方式" class="headerlink" title="函数参数的传递方式"></a>函数参数的传递方式</h3>
             </div>
             <hr/>
 
@@ -831,7 +950,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.6k</span>&nbsp;字
+                class="white-color">83.1k</span>&nbsp;字
             
             
             
