@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Composer, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="单元测试, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Composer | 道法自然</title>
+    <title>单元测试 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/下载.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/jsnSOP.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Composer</h1>
+                    <h1 class="description center-align post-title">单元测试</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Composer/">
-                                <span class="chip bg-color">Composer</span>
+                            <a href="/tags/PHP/">
+                                <span class="chip bg-color">PHP</span>
                             </a>
                         
                     </div>
@@ -358,8 +358,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Composer/" class="post-category">
-                                Composer
+                            <a href="/categories/PHP/" class="post-category">
+                                PHP
                             </a>
                         
                     </div>
@@ -371,28 +371,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-09-06
+                    2020-11-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2020-11-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    7 分
                 </div>
                 
 
@@ -402,116 +402,637 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>先了解一下历史，从拷贝第三方代码到项目中(1994)，到 PEAR 安装依赖包(1999)，再到 Composer 兴起(2012)，PHP 社区经历了将近 20 年的探索。PHP 这门古老的语言，也在不断的发展更新，在 Web 领域一直发光发热。 Composer 作为目前 PHP 包依赖管理的最佳工具，值得每一位 PHP 开发人员掌握。</p>
-<h3 id="中文官网"><a href="#中文官网" class="headerlink" title="中文官网"></a>中文官网</h3><p><a href="https://www.phpcomposer.com/" target="_blank" rel="noopener">https://www.phpcomposer.com/</a></p>
-<h3 id="什么是-Composer-？"><a href="#什么是-Composer-？" class="headerlink" title="什么是 Composer ？"></a>什么是 Composer ？</h3><p>是 PHP 用来管理依赖（dependency）关系的工具。你可以在自己的项目中声明所依赖的外部工具库（libraries），Composer 会自动帮你安装这些依赖的库文件。</p>
-<h3 id="扩展和包"><a href="#扩展和包" class="headerlink" title="扩展和包"></a>扩展和包</h3><p>拓展和包是两个非常相近的概念。在 PHP 世界里，一般可以这样理解和区分两者：拓展（extension）和模块（module）等价，是用 C 语言写的功能合集。</p>
-<p>包（package）和库（library）等价，主要是用 PHP 实现的功能合集；拓展以动态链接库（.dll或.so）的形式加载，包则是通过 require/include 方式加载。绝大部分时候，两者混用不会造成理解上的困难。</p>
-<p>常见的拓展：GD、ZIP 、Memcached 、MySQLi 、 Redis 等 </p>
-<p>常见的包：PHPMailer 、PHPOffice 、HTMLPurifier 等</p>
-<h3 id="PEAR-与-PECL"><a href="#PEAR-与-PECL" class="headerlink" title="PEAR 与 PECL"></a>PEAR 与 PECL</h3><p>在 Composer 流行之前，PEAR 和 PECL 是更为 PHP 开发者所知的两个工具（社区）。PEAR 是 PHP 拓展和应用仓库（PHP Extension and Application Repository）的缩写，官网<a href="http://pear.php.net/" target="_blank" rel="noopener">http://pear.php.net</a>；PECL 是 PHP 拓展社区库（PHP Extension Community Library）的缩写，官网<a href="http://pecl.php.net/" target="_blank" rel="noopener">http://pecl.php.net</a>。</p>
-<p>两者的区别可用拓展和包来区分：PECL 托管拓展，源代码多为 C 文件，例如 APC、AMPQ 等；PEAR 托管包，功能用 PHP 实现，如 PHP CodeSniffer、HTTP Request 等；PEAR 对应 pear 命令， PECL 对应 pecl 命令，可用这两个命令安装和管理拓展和包（ pear 的 build/pickle 子命令也可以编译 PECL 中的拓展）。两者互为补充，官网以姐妹（sisters）形容两者的关系。</p>
-<p>PECL 是官方拓展的补充，目前仍处于活跃状态，一些优秀的拓展有成为官方拓展的潜质。韩天峰大神的 swoole 拓展也托管在 PECL 中，国内名气非常高。相比之下 PEAR 已是明日黄花。PEAR2 和 Pyrus（下一代的PEAR 包安装工具，基于 PHP5.3+ 构建，官网<a href="http://pear2.php.net/" target="_blank" rel="noopener">http://pear2.php.net</a>）的出现也未能挽救 PEAR 。PEAR 没落伴随着本文主角 Composer 的兴起。</p>
-<p>PEAR 的定位是“提供可复用的 PHP 组件”，以中心化的方式为开发者提供功能包。中心化发布的方式保证了代码的质量，同时带来维护上的不便：通过评审的包才能发布，包过时现象严重。PEAR 安装的包是全局的，不能为单独项目安装依赖包，非特权用户不能自行安装依赖包。其他缺点还包括糟糕的依赖管理。随着 Github 的流行和 Composer 的出现，包管理进入 Composer 时代。PEAR 已经完成其历史使命，可以安心的去了。</p>
-<h3 id="Composer"><a href="#Composer" class="headerlink" title="Composer"></a>Composer</h3><p>严格来说，Composer 的定位是依赖管理工具而非包管理器。Composer 中文网对 Composer 工作介绍如下。Composer 将这样为你解决问题：</p>
-<p>a) 你有一个项目依赖于若干个库。</p>
-<p>b) 其中一些库依赖于其他库。</p>
-<p>c) 你声明你所依赖的东西。</p>
-<p>d) Composer 会找出哪个版本的包需要安装，并安装它们（将它们下载到你的项目中）。</p>
-<p>PEAR 能做的事情，Composer 都能做（包括安装 PECL 拓展），部分还能做得更好。Composer 默认把包安装在项目目录下，普通用户就能正常使用（ Composer 官方建议不要以 root 身份执行 Composer 命令）；鼓励遵循最佳实践（即大名鼎鼎的 PSR 规范，详情见 PHP-FIG 官网<a href="https://www.php-fig.org/" target="_blank" rel="noopener">https://www.php-fig.org</a>），极大的推动 PHP 社区编码风格的规范化；Composer 是去中心化的平台，任何人均可发布代码包；发布包无需评审，包的质量由用户投票决定…作为 PEAR 的继任者，Composer 的表现经受住了社区的考验，并成为事实上的依赖管理标准工具。</p>
-<p>Composer 目前已经形成庞大的生态，在数量上，Composer 的包远超 PEAR 。由于任何人均可自由发布包且无需评审，Composer 生态中的包可能存在代码质量参差不齐、代码风格各异、后门漏洞等隐忧。另外 Composer 的依赖管理以项目为单位，一台机器上可能多次安装同一个包。但瑕不掩瑜，总体而言，Composer 极大的改变了 PHP 的开发生态，促进了代码交流和社区发展。</p>
-<h3 id="Composer-用法"><a href="#Composer-用法" class="headerlink" title="Composer 用法"></a>Composer 用法</h3><p>Composer 为管理的项目的依赖而生，项目中的 composer.json 文件是其工作的依据。该文件中最重要的部分是 require 部分，该部分告诉 Composer 期望安装的<strong>包及其版本</strong>，例如：</p>
-<pre><code>{
-    &quot;name&quot;: &quot;tinywan/easy-live&quot;,
-    &quot;description&quot;: &quot;nginx live module&quot;,
-    &quot;type&quot;: &quot;library&quot;,
-    &quot;license&quot;: &quot;MIT&quot;,
-    &quot;authors&quot;: [
-        {
-            &quot;name&quot;: &quot;Tinywan&quot;,
-            &quot;email&quot;: &quot;756684177@qq.com&quot;
-        }
-    ],
-    &quot;require&quot;: {
-        &quot;php&quot;: &quot;&gt;=7.0&quot;
-    },
-    &quot;autoload&quot;: {
-        &quot;psr-4&quot;: {
-            &quot;live\\&quot;: &quot;src&quot;
-        }
-    }
-}</code></pre><p>用 Lravel 的 composer.json  演示：</p>
-<p><img src="https://i.loli.net/2020/02/16/7aY8NL5EqGxQ3yh.png" alt="2020-02-16_13-43.png"></p>
-<p> 然后运行 composer install 命令，Composer 会自动分析依赖，安装最合适的包到 vendor 目录下。加 -v (-vv, -vvv)选项会打印命令执行过程中的详细信息。安装完毕后，vendor 目录下会生成 autoload.php 文件。在项目的入口文件中包含此文件： <strong>require DIR . “/vendor/autoload.php”</strong>;，接下来便可在项目的任何地方引用依赖包中的接口和类。</p>
-<p>除 install 命令，Composer 提供了许多其他命令管理依赖。常用的命令场景包括：查找依赖、引入依赖、安装依赖、更新依赖。分别对应的命令是：</p>
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>单元测试是什么呢？来自维基百科的一段说明：在<a href="https://zh.wikipedia.org/wiki/计算机编程" target="_blank" rel="noopener">计算机编程</a>中，<strong>单元测试</strong>（英語：Unit Testing）又称为<strong>模块测试</strong>，是针对<a href="https://zh.wikipedia.org/wiki/模組_(程式設計)" target="_blank" rel="noopener">程序模块</a>（<a href="https://zh.wikipedia.org/wiki/软件设计" target="_blank" rel="noopener">软件设计</a>的最小单位）来进行正确性检验的测试工作。程序单元是应用的最小可测试部件。在<a href="https://zh.wikipedia.org/wiki/過程化編程" target="_blank" rel="noopener">过程化编程</a>中，一个单元就是单个程序、函数、过程等；对于面向对象编程，最小单元就是方法，包括基类（超类）、抽象类、或者派生类（子类）中的方法。简单来说就是：单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作。写单元测试是每一个合格的开发人员的必备技能，它也是保证一个代码健壮性的重要手段。</p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>每一门编程语言都有自己的单元测试框架，而我们 PHP 当中用的最多最强大的单元测试工具就是 <a href="https://phpunit.de/" target="_blank" rel="noopener">PHPUnit</a> 当然也有别的单元测试框架选择自己熟悉的使用最好。在 Laravel 当中其实已经集成了 PHPUint 单元测试框架，并且其功能也大幅度的增强，所以使用的 Laravel 那么我们无需在项目中再次的 Composer PHPUnit 当然其绝对大多数框架都已经引入了 PHPUint 让我们单元测试上面来说更加的得心应手！如果没有集成那么只需要 Composer 即可。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">composer require phpunit/phpunit<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>熟悉一下在 Laravel 当中的关于测试的一些重要信息：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/1W3XTj.png" alt></p>
+<p>可以看到的 Laravel 当中已经存在一个目录 <code>tests</code> 就是用来做测试的目录， Feature 我一般理解为交互测试目录，比如模仿浏览器的操作发起 HTTP 请求进行测试，Unit 我一般理解为单元测试目录，这里就是对类或方法函数进行测试。除了 <code>tests</code>其次 <code>phpunit.xml</code> 文件为框架还提供了一些便利的辅助函数，让你可以更直观的测试你的应用程序。</p>
+<p>phpunit.xml 文件格式：</p>
+<pre class="line-numbers language-yam"><code class="language-yam"><?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+    <filter> # 这里是代码覆盖的文件
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app</directory>
+        </whitelist>
+    </filter>
+    <logging> # 这里是生成代码覆盖率的目录，需要安装 PHP xdebug 扩展
+        <log type="coverage-html" target="./public/result" lowUpperBound="35"
+             highLowerBound="70"/>
+    </logging>
+    <php> # 这里是一些环境变量
+        <server name="APP_ENV" value="testing"/>
+        <server name="BCRYPT_ROUNDS" value="4"/>
+        <server name="CACHE_DRIVER" value="array"/>
+        <server name="DB_CONNECTION" value="mysql"/>
+        <server name="DB_DATABASE" value=":memory:"/>
+        <server name="MAIL_DRIVER" value="array"/>
+        <server name="QUEUE_CONNECTION" value="sync"/>
+        <server name="SESSION_DRIVER" value="array"/>
+    </php>
+</phpunit>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面的内容是熟悉一下在 Laravel 中测试的一些目录结果与重要的文件信息，下面一些则是编写单元测试需要遵循的规范。</p>
+<p>PHPUnit 规范：</p>
+<ul>
+<li>测试类一般以 Test 结尾命名。</li>
+<li>类里面的测试方法一般以 test 开头命名。</li>
+<li>测试方法中需要使用断言方法进行判断是否与期望一致，以达到测试目的。</li>
+<li>测试类必须继承 PHPUnit\Framework\TestCase 类，但是对于 Laravel 项目来说可以忽略这点，因为框架已经对它进行一层封装。</li>
+</ul>
+<p>创建 PHPUnit：</p>
+<ul>
+<li>php artisan make:test SearchTest 创建的文件会在 Feature 目录下</li>
+<li>php artisan make:test TestTest –unit 创建的文件会在 Unit 目录下</li>
+</ul>
+<p>执行 PHPUnit：</p>
+<ul>
+<li>phpunit：执行全部</li>
+<li>phpunit –filter=执行指定文件夹或类或方法，推荐使用 –filter 执行，不然执行全部单元测试太多可能耗时久</li>
+</ul>
+<p>PHPUnit 常用断言：</p>
+<p>布尔类型</p>
 <table>
 <thead>
 <tr>
-<th align="center">命令</th>
-<th align="center">解释</th>
+<th>方法名</th>
+<th>含义</th>
+<th>参数</th>
+<th>返回值</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">composer search</td>
-<td align="center">根据关键字查找依赖包</td>
+<td>assertTrue</td>
+<td>断言为真</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td align="center">composer request</td>
-<td align="center">引入依赖，声明项目或者全局( global，用户名全局，非系统全局)依赖某个包</td>
-</tr>
-<tr>
-<td align="center">composer install</td>
-<td align="center">安装 composer.json 声明的依赖包，最终安装的依赖包版本可能取决于有无 composer.lock 文件</td>
-</tr>
-<tr>
-<td align="center">composer update</td>
-<td align="center">更新依赖到最新版本，相当于删除 composer.lock 文件后执行 composer install</td>
-</tr>
-<tr>
-<td align="center">composer info</td>
-<td align="center">查看安装的依赖包信息，与 composer show 等价</td>
-</tr>
-<tr>
-<td align="center">composer dumpautoload</td>
-<td align="center">加 -o 选项可导出优化的加载器</td>
-</tr>
-<tr>
-<td align="center">composer why(-not)</td>
-<td align="center">查看（不）安装某个包的原因</td>
+<td>assertFalse</td>
+<td>断言为假</td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
-<h3 id="Composer-加速"><a href="#Composer-加速" class="headerlink" title="Composer 加速"></a>Composer 加速</h3><p>有的时候会因为各种原因，我们使用 Composer 的时候回感觉安装的特别慢，网络问题是一个方面，我们可以使用一些国内的镜像来解决网络的问题，但是依然有些慢，因为 Composer 是单进程方式下载的，也就是说 Composer 安装完一个依赖，才回去下载并安装另一个依赖，任何网络问题都会让这个进程卡主。那么有没有一种方法让 Composer 并发下载所有依赖呢，这样整体安装速度不就会快很多吗？</p>
-<p><a href="https://github.com/hirak/prestissimo" target="_blank" rel="noopener">hirak/prestissimo</a> 就是利用这个思路来加速 Composer 的，看一下这个包的描述 ——composer parallel install plugin （Composer 并行安装插件）。</p>
-<pre><code>composer global require hirak/prestissimo</code></pre><p>切换国内阿里云镜像</p>
-<p><a href="https://developer.aliyun.com/composer" target="_blank" rel="noopener">https://developer.aliyun.com/composer</a></p>
-<pre><code>composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/</code></pre><h3 id="Composer-加载机制"><a href="#Composer-加载机制" class="headerlink" title="Composer 加载机制"></a>Composer 加载机制</h3><p>使用 Composer 最大的好处是只需最开始 require 一个 autoload.php 文件，就可以 new 你所需要的类了，不再需要传统的方式 A 文件内各种 include 跳到 B 文件又各种 include，非常头疼。</p>
-<p>Composer 的核心就是二个函数：spl_autoload_register 与 require_once</p>
-<p>spl_autoload_register — 注册给定的函数作为 __autoload 的实现</p>
-<p><strong>说明</strong></p>
-<pre><code>spl_autoload_register ([ callable $autoload_function [, bool $throw = true [, bool $prepend = false ]]] ) : bool</code></pre><p>将函数注册到 SPL __autoload 函数队列中。如果该队列中的函数尚未激活，则激活它们。</p>
-<p>如果在你的程序中已经实现了<a href="https://www.php.net/manual/zh/function.autoload.php" target="_blank" rel="noopener">__autoload()</a> 函数，它必须显式注册到<a href="https://www.php.net/manual/zh/function.autoload.php" target="_blank" rel="noopener">__autoload()</a> 队列中。因为  <strong>spl_autoload_register()</strong> 函数会将 Zend Engine 中的<a href="https://www.php.net/manual/zh/function.autoload.php" target="_blank" rel="noopener">__autoload()</a> 函数取代为 <a href="https://www.php.net/manual/zh/function.spl-autoload.php" target="_blank" rel="noopener">spl_autoload()</a> 或<a href="https://www.php.net/manual/zh/function.spl-autoload-call.php" target="_blank" rel="noopener">spl_autoload_call()</a>。</p>
-<p>如果需要多条 autoload 函数，<strong>spl_autoload_register()</strong> 满足了此类需求。 它实际上创建了 autoload 函数的队列，按定义时的顺序逐个执行。相比之下， <a href="https://www.php.net/manual/zh/function.autoload.php" target="_blank" rel="noopener">__autoload()</a> 只可以定义一次。</p>
-<p>注意：__autoload() 函数在 PHP7.2 以后就不支持了。综合起来该用那个明白来吧。</p>
-<p>一个简单的自动加载：</p>
-<pre><code>// loadclass函数不具备自动加载类的功能
-function loadclass($classname){
-    $filename = &quot;./class/&quot;.$classname.&quot;.class.php&quot;;
-    if(is_file($filename)){
-        include $filename;
+<p>NULL 类型</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>含义</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assertNull</td>
+<td>断言为NULL</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertNotNull</td>
+<td>断言非NULL</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>数字类型</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>含义</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assertEquals</td>
+<td>断言等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertNotEquals</td>
+<td>断言不等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertGreaterThan</td>
+<td>断言大于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertGreaterThanOrEqual</td>
+<td>断言大于等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertLessThan</td>
+<td>断言小于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertLessThanOrEqual</td>
+<td>断言小于等于</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>字符类型</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>含义</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assertEquals</td>
+<td>断言等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertNotEquals</td>
+<td>断言不等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertContains</td>
+<td>断言包含</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertNotContains</td>
+<td>断言不包含</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertContainsOnly</td>
+<td>断言小于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertLessThanOrEqual</td>
+<td>断言只包含</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertNotContainsOnly</td>
+<td>断言不只包含</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>数组类型</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>含义</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assertEquals</td>
+<td>断言等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertNotEquals</td>
+<td>断言不等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertArrayHasKey</td>
+<td>断言有键</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertArrayNotHasKey</td>
+<td>断言没有键</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertContains</td>
+<td>断言包含</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertNotContains</td>
+<td>断言不包含</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertContainsOnly</td>
+<td>断言只包含</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertNotContainsOnly</td>
+<td>断言不只包含</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>对象类型</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>含义</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assertAttributeContains</td>
+<td>断言属性包含</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeContainsOnly</td>
+<td>断言属性只包含</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeEquals</td>
+<td>断言属性等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeGreaterThan</td>
+<td>断言属性大于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeGreaterThanOrEqual</td>
+<td>断言属性大于等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeLessThan</td>
+<td>断言属性小于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeLessThanOrEqual</td>
+<td>断言属性小于等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeNotContains</td>
+<td>断言不包含</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeNotContainsOnly</td>
+<td>断言属性不只包含</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeNotEquals</td>
+<td>断言属性不等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeNotSame</td>
+<td>断言属性不相同</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertAttributeSame</td>
+<td>断言属性相同</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertSame</td>
+<td>断言类型和值都相同</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertNotSame</td>
+<td>断言类型或值不相同</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertObjectHasAttribute</td>
+<td>断言对象有某属性</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertObjectNotHasAttribute</td>
+<td>断言对象没有某属性</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>class 类型</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>含义</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assertClassHasAttribute</td>
+<td>断言类有某属性</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertClassHasStaticAttribute</td>
+<td>断言类有某静态属性</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertClassNotHasAttribute</td>
+<td>断言类没有某属性</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertClassNotHasStaticAttribute</td>
+<td>断言类没有某静态属性</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>文件相关</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>含义</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assertFileEquals</td>
+<td>断言文件内容等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertFileExists</td>
+<td>断言文件存在</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertFileNotEquals</td>
+<td>断言文件内容不等于</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertFileNotExists</td>
+<td>断言文件不存在</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>XML 相关</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>含义</th>
+<th>参数</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assertXmlFileEqualsXmlFile</td>
+<td>断言XML文件内容相等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertXmlFileNotEqualsXmlFile</td>
+<td>断言XML文件内容不相等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertXmlStringEqualsXmlFile</td>
+<td>断言XML字符串等于XML文件内容</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertXmlStringEqualsXmlString</td>
+<td>断言XML字符串相等</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertXmlStringNotEqualsXmlFile</td>
+<td>断言XML字符串不等于XML文件内容</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>assertXmlStringNotEqualsXmlString</td>
+<td>断言XML字符串不相等</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><pre class="line-numbers language-PHP"><code class="language-PHP"><?php
+
+namespace Tests\Unit;
+
+use PHPUnit\Framework\TestCase;
+
+class TestTest extends TestCase
+{
+    /**
+     * A basic unit test example.
+     *
+     * @return void
+     */
+    public function testExample()
+    {
+        $res = bcadd(1,2);
+
+        # 断言 $res 的结果是否等于 3
+        $this->assertEquals(3,$res);
     }
-}
-// spl_autoload_register()函数让这个 loadclass 具备了自动加载类的功能
-spl_autoload_register(&quot;loadclass&quot;);</code></pre><p>不使用 Composer 的代码执行会比使用 Composer 的代码执行更快，Composer 是自动加载，尽管是不用的库。这个效率毕竟大概是在几十ms的差距。我们可以优化自动加载，做一个项目 Composer 优化提速。</p>
-<pre class="line-numbers language-php"><code class="language-php">composer dumpautoload <span class="token operator">-</span>o<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>此命令不止针对于 Laravel 程序，适用于所有使用 <code>composer</code> 来构建的程序。此命令会把 <code>PSR-0</code> 和 <code>PSR-4</code> 转换为一个类映射表，来提高类的加载速度。</p>
-<p>当然作为 艺术家的框架，Laravel 也为我们提供了 Composer 的优化处理</p>
-<pre class="line-numbers language-php"><code class="language-php"><span class="token shell-comment comment"># 官方解释：缓存框架引导文件</span>
-php artisan optimize<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行 PHPUint 得到测试的结果：从结果当中可以看得到执行的时间，用到的内存，断言数量</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">root@b39867e03998 /v/w/h/spmvp<span class="token comment" spellcheck="true"># ./phpunit --filter=testExample</span>
+Cannot load Xdebug <span class="token punctuation">-</span> it was already loaded
+PHPUnit 8.5.8 by Sebastian Bergmann and contributors.
+
+.                                                                   1 / 1 (100%)
+
+<span class="token key atrule">Time</span><span class="token punctuation">:</span> 415 ms<span class="token punctuation">,</span> <span class="token key atrule">Memory</span><span class="token punctuation">:</span> 16.00 MB
+
+OK (1 test<span class="token punctuation">,</span> 1 assertion)
+
+Generating code coverage report in HTML format <span class="token punctuation">...</span> done <span class="token punctuation">[</span>426 ms<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查看 PHPUnit 得到的代码覆盖率结果：从结果当中可以追踪代码执行的过程，当然这我使用的是内置函数就没有追踪的代码咯</p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/s1GsJ9.png" alt></p>
+<h3 id="快速进阶"><a href="#快速进阶" class="headerlink" title="快速进阶"></a>快速进阶</h3><p>上面已经运行了一个单元测试，但是这个单元测试是最简单的单元测试，那么单元测试也算入门了，接下来进行一些进阶的操作。</p>
+<h4 id="setUp"><a href="#setUp" class="headerlink" title="setUp"></a>setUp</h4><p>我一般把他理解为测试类的构造函数，等同于 construct ，只要定义了 setUp 那么执行这个测试类那么 setUp 就会最先去执行。</p>
+<pre class="line-numbers language-PHP"><code class="language-PHP"><?php
+
+namespace Tests\Unit;
+
+use Tests\TestCase; # 注意这里哦，已经不再使用 PHPUint 的 TestCase 而是 laravel 的封装更加的强大
+
+class TestTest extends TestCase
+{
+    protected $age;
+
+    public function setUp() : void
+    {
+        $this->age = 24;
+    }
+    /**
+     * A basic unit test example.
+     *
+     * @return void
+     */
+    public function testExample()
+    {
+        $this->assertEquals(24,$this->age);
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="依赖关系-depends"><a href="#依赖关系-depends" class="headerlink" title="依赖关系(@depends)"></a>依赖关系(@depends)</h4><p>在测试类中，测试用例方法可以有依赖关系。通过依赖关系可以传一些参数到方法中；因为默认的测试用例方法是不能有参数的。</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Tests<span class="token punctuation">\</span>Unit</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">Tests<span class="token punctuation">\</span>TestCase</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">TestTest</span> <span class="token keyword">extends</span> <span class="token class-name">TestCase</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">testRes</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">assertTrue</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token string">'道法自然'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 如果使用了 '@'test 那么就不需要遵循 test 开头的规则
+     * @depends testRes
+     * @test
+     * @param string $name
+     * */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">meName</span><span class="token punctuation">(</span>string <span class="token variable">$name</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token string">'道法自然'</span><span class="token punctuation">,</span><span class="token variable">$name</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>参考地址</p>
-<p><a href="https://www.cnblogs.com/tinywan/p/8855236.html" target="_blank" rel="noopener">https://www.cnblogs.com/tinywan/p/8855236.html</a></p>
-<p><a href="https://learnku.com/courses/laravel-package/2019/hirakprestissimo/1695" target="_blank" rel="noopener">https://learnku.com/courses/laravel-package/2019/hirakprestissimo/1695</a></p>
+<p>注意：如果一个测试方法依赖另外一个测试方法，那么必须等另外一个测试方法执行完毕，依赖的这个测试方法才能执行，如果 phpunit –filter=meName 那么就相当于跳过了 testRes 。正确的执行应该是这样：phpunit –filter=TestTest</p>
 </blockquote>
+<h4 id="数据提供者-dataProvider"><a href="#数据提供者-dataProvider" class="headerlink" title="数据提供者(@dataProvider)"></a>数据提供者(@dataProvider)</h4><p>在依赖中，所依赖函数的返回值作为参数传入测试函数。除此之外，我们也可以用数据提供器来定义传入的数据。</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">Tests<span class="token punctuation">\</span>Unit</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">Tests<span class="token punctuation">\</span>TestCase</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">TestTest</span> <span class="token keyword">extends</span> <span class="token class-name">TestCase</span>
+<span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * @test
+     * @dataProvider dataProvider
+     * @param  $number
+     * */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">sumRes</span><span class="token punctuation">(</span><span class="token variable">$number</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$number2</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token variable">$sum</span> <span class="token operator">=</span> <span class="token variable">$number</span> <span class="token operator">+</span> <span class="token variable">$number2</span><span class="token punctuation">;</span>
+
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token variable">$sum</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">dataProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+       <span class="token shell-comment comment"># 数据格式得以数组形式返回</span>
+       <span class="token keyword">return</span> <span class="token punctuation">[</span>
+           <span class="token string">'number'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+       <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="测试异常-expectException"><a href="#测试异常-expectException" class="headerlink" title="测试异常 (expectException)"></a>测试异常 (expectException)</h4><p>需要在测试方法的开始处声明断言，然后执行语句。而不是调用后再声明也可以通过注释来声明 @expectedException, @expectedExceptionCode,<br>@expectedExceptionMessage, @expectedExceptionMessageRegExp</p>
+<p>PHPUnit9 推荐 expectException(), expectExceptionCode(), expectExceptionMessage(), or expectExceptionMessageMatches() </p>
+<pre class="line-numbers language-PHP"><code class="language-PHP"><?php
+
+namespace Tests\Unit;
+
+use Tests\TestCase;
+
+class TestTest extends TestCase
+{
+
+    public function testException()
+    {
+        $this->expectException(\Exception::class);
+
+        throw new \Exception('test');
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>未完待续…</p>
 
             </div>
             <hr/>
@@ -537,7 +1058,7 @@ php artisan optimize<span aria-hidden="true" class="line-numbers-rows"><span></s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://daixianjin.github.io/2019/09/06/Composer/">https://daixianjin.github.io/2019/09/06/Composer/</a>
+                    <a href="https://daixianjin.github.io/2020/11/01/单元测试/">https://daixianjin.github.io/2020/11/01/单元测试/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -575,8 +1096,8 @@ php artisan optimize<span aria-hidden="true" class="line-numbers-rows"><span></s
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Composer/">
-                                    <span class="chip bg-color">Composer</span>
+                                <a href="/tags/PHP/">
+                                    <span class="chip bg-color">PHP</span>
                                 </a>
                             
                         </div>
@@ -618,7 +1139,7 @@ php artisan optimize<span aria-hidden="true" class="line-numbers-rows"><span></s
         repo: 'daixianjin.github.io',
         owner: 'daixianjin',
         admin: "daixianjin",
-        id: '2019-09-06T21-33-31',
+        id: '2020-11-01T12-53-44',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -642,46 +1163,47 @@ php artisan optimize<span aria-hidden="true" class="line-numbers-rows"><span></s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/09/07/Laravel-日志操作/">
+                <a href="/2020/11/01/单元测试/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-日志操作">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/jsnSOP.jpg" class="responsive-img" alt="单元测试">
                         
-                        <span class="card-title">Laravel-日志操作</span>
+                        <span class="card-title">单元测试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要为了帮助你更多的了解应用程序中到底发生了什么，Laravel 提供了强大的日志服务，允许你将日志消息、系统错误日志记录到文件，甚至使用 Slack 通知到你的整个团队。
-在 Laravel 框架中，Laravel 使用 Monolog 
+                            摘要单元测试是什么呢？来自维基百科的一段说明：在计算机编程中，单元测试（英語：Unit Testing）又称为模块测试，是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作。程序单元是应用的最小可测试部件。在过程化编程中，一个单元
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-09-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Laravel/" class="post-category">
-                                    Laravel
+                            <a href="/categories/PHP/" class="post-category">
+                                    PHP
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel/">
-                        <span class="chip bg-color">Laravel</span>
+                    <a href="/tags/PHP/">
+                        <span class="chip bg-color">PHP</span>
                     </a>
                     
                 </div>
@@ -695,31 +1217,30 @@ php artisan optimize<span aria-hidden="true" class="line-numbers-rows"><span></s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/21/MySQL-存储引擎/">
+                <a href="/2020/09/23/API-压力测试/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1495798711725561.png" class="responsive-img" alt="MySQL-存储引擎">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/kTGWvP.jpg" class="responsive-img" alt="项目压力测试">
                         
-                        <span class="card-title">MySQL-存储引擎</span>
+                        <span class="card-title">项目压力测试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要
-MySQL 当中最最常用的存储引擎- Myisam 和 Innodb，他们二兄弟是 MySQL 当中最最常用的二个存储引擎了。当然 MySQL 的存储引擎不止他们二兄弟还有别的一些存储引擎，本着既存在即合理的原则，我们不能单方面的去评
+                            摘要产品上线前压力测试是非常有必要的一个环节，经过压力测试可以很明确当前产品的性能的信息，当然观察点除了自身程序，另外一个重点就是服务器本身。这里采用的测试工具就是 Apache Benchmark (ab) 是 Apache 安装包中自带
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/MySQL/" class="post-category">
-                                    MySQL
+                            <a href="/categories/测试/" class="post-category">
+                                    测试
                                 </a>
                             
                             
@@ -729,8 +1250,8 @@ MySQL 当中最最常用的存储引擎- Myisam 和 Innodb，他们二兄弟是 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
+                    <a href="/tags/测试/">
+                        <span class="chip bg-color">测试</span>
                     </a>
                     
                 </div>
