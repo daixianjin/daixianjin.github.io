@@ -378,7 +378,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-01
+                    2020-11-04
                 </div>
                 
 
@@ -417,7 +417,7 @@
 <p>与持续集成相关的，还有两个概念，分别是持续交付和持续部署。</p>
 <h5 id="持续交付"><a href="#持续交付" class="headerlink" title="持续交付"></a>持续交付</h5><p><strong>持续交付（Continuous delivery）指的是，频繁地将软件的新版本，交付给质量团队或者用户，以供评审。</strong>如果评审通过，代码就进入生产阶段。</p>
 <p>持续交付可以看作持续集成的下一步。它强调的是，不管怎么更新，软件是随时随地可以交付的。</p>
-<h5 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h5><p><strong>持续部署（continuous deployment）是持续交付的下一步，指的是代码通过评审以后，自动部署到生产环境。</strong></p>
+<h5 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h5><p><strong>持续部署（continuous deployment 简称 CD）是持续交付的下一步，指的是代码通过评审以后，自动部署到生产环境。</strong></p>
 <p>持续部署的目标是，代码在任何时刻都是可部署的，可以进入生产阶段。</p>
 <h5 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h5><h6 id="1、提交"><a href="#1、提交" class="headerlink" title="1、提交"></a>1、提交</h6><p>流程的第一步，是开发者向代码仓库提交代码。所有后面的步骤都始于本地代码的一次提交（commit）。</p>
 <h6 id="2、测试（第一轮）"><a href="#2、测试（第一轮）" class="headerlink" title="2、测试（第一轮）"></a>2、测试（第一轮）</h6><p>代码仓库对 commit 操作配置了钩子（hook），只要提交代码或者合并进主干，就会跑自动化测试。</p>
@@ -549,16 +549,13 @@ curl 127.0.0.1:prot
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-25_10-13.png" alt></p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-25_10-13_1.png" alt></p>
 <h4 id="设置中文"><a href="#设置中文" class="headerlink" title="设置中文"></a>设置中文</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_14-52.png" alt></p>
-<p>在可选插件里面搜索：Locale、Localization 插件并且安装</p>
+<p>在可选插件里面搜索：Localization 插件并且安装</p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-00.png" alt></p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-01.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-02.png" alt></p>
-<p>找到 <strong>Locale</strong> 设置默认为 zh_CH 并且强制使用此语言</p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-05.png" alt></p>
 <blockquote>
-<p>如果更新了什么插件重启了，中文化又不完整了咋办？不用换，先到系统设置里面把 zh_CN 删了，再把下面勾选的强制也关了，然后在把 Locale 关闭重启，之后开启 Locale 在设置 zh_CN 和勾选强制！！！</p>
+<p>如果更新了什么插件重启了，中文化又不完整了咋办？不用慌，先把 Localization 关闭重启，之后开启在重启!</p>
 </blockquote>
-<h3 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h3><h4 id="1、安装插件"><a href="#1、安装插件" class="headerlink" title="1、安装插件"></a>1、安装插件</h4><p>Git Parameter  + Gitee Plugin + Publish Over SSH，插件安装就是这样样子</p>
+<h3 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h3><h4 id="1、安装插件"><a href="#1、安装插件" class="headerlink" title="1、安装插件"></a>1、安装插件</h4><p>Git Parameter  + Gitee Plugin + Phing +Publish Over SSH，插件安装就是这样样子</p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_10-22.png" alt></p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_10-23.png" alt></p>
 <h4 id="2、码云配置"><a href="#2、码云配置" class="headerlink" title="2、码云配置"></a>2、码云配置</h4><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/2020-05-29_15-55.png" alt></p>
@@ -957,7 +954,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">88k</span>&nbsp;字
+                class="white-color">92.5k</span>&nbsp;字
             
             
             
