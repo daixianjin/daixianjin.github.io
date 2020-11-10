@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-权限管理, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="缓存跨域验证, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-权限管理 | 道法自然</title>
+    <title>缓存跨域验证 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/SaZV6P.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/8WLzuA.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-权限管理</h1>
+                    <h1 class="description center-align post-title">缓存跨域验证</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel/">
-                                <span class="chip bg-color">Laravel</span>
+                            <a href="/tags/HTTP/">
+                                <span class="chip bg-color">HTTP</span>
                             </a>
                         
                     </div>
@@ -358,8 +358,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Laravel/" class="post-category">
-                                Laravel
+                            <a href="/categories/HTTP/" class="post-category">
+                                HTTP
                             </a>
                         
                     </div>
@@ -371,28 +371,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-28
+                    2020-11-10
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-11
+                    2020-11-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    547
+                    311
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -402,63 +402,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>我们常说的 RBAC 就是基于角色的权限访问控制（Role-Based Access Control），我们会利用用户，角色和权限的关系，决定用户能做什么事，不能做什么事。在 RBAC 我们首先需要了解：</p>
-<p>用户（User）—— 拥有角色的主体；<br>角色（Role）—— 一定数量的权限的集合；<br>权限 （Permission）—— 是否可以做具体的某个操作。</p>
-<p>具体的权限是判断是否能做某件事的决定因素，<strong>一个角色可以拥有多个权限</strong>，<strong>角色和权限之间是多对多的关系</strong>。给用户赋予某个角色，用户就可以得到角色拥有的所有权限，用户就可以干某件事，<strong>同样用户与角色也是多对多的关系</strong>。总结一下就是用户可以有多个角色，角色可以有多个权限，用户的任意一个角色中拥有某个权限，他就可以做这个权限对应的事。</p>
-<h3 id="路由-Action-属性做标记"><a href="#路由-Action-属性做标记" class="headerlink" title="路由 Action 属性做标记"></a>路由 Action 属性做标记</h3><p>思路：把路由的 Action 属性拿来做标记，就相当于我们给这个路由贴上自己的标签。它属于哪一类，它的作用是什么，一目了然。让不知道的人看下它的信息就可以知道其的作用。当然可以不是所有的路由都去给它贴上一个标签，公共部分那么就不需要去区分，不做权限的记录。</p>
-<pre class="line-numbers language-PHP"><code class="language-PHP">Route::get('role',['title' => '获取角色列表' ,'as' => 'role.query','uses' => 'RoleController@queryRoleList']);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="刷新权限"><a href="#刷新权限" class="headerlink" title="刷新权限"></a>刷新权限</h3><p>上面把路由作为了标记，随时入库权限表。</p>
-<pre class="line-numbers language-php"><code class="language-php">        <span class="token variable">$routes</span> <span class="token operator">=</span> <span class="token function">app</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">routes</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getRoutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token variable">$data</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$routes</span> <span class="token keyword">as</span> <span class="token variable">$route</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token variable">$route</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">action</span><span class="token punctuation">[</span><span class="token string">'as'</span><span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token boolean">false</span> <span class="token operator">===</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token variable">$route</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">action</span><span class="token punctuation">[</span><span class="token string">'title'</span><span class="token punctuation">]</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token boolean">false</span> <span class="token operator">===</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                <span class="token variable">$data</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
-                    <span class="token string">'name'</span>          <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$route</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">action</span><span class="token punctuation">[</span><span class="token string">'as'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-                    <span class="token string">'title'</span>                 <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$route</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">action</span><span class="token punctuation">[</span><span class="token string">'title'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-                <span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token variable">$result</span> <span class="token operator">=</span> Permission<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token string">'title'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$result</span> <span class="token operator">=</span> <span class="token function">array_filter</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">,</span>
-                <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token variable">$v</span><span class="token punctuation">)</span> <span class="token keyword">use</span> <span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span>
-                <span class="token punctuation">{</span>
-                    <span class="token keyword">return</span> <span class="token operator">!</span> <span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$v</span><span class="token punctuation">,</span> <span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                <span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-            Permission<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            Permission<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="权限验证中间件"><a href="#权限验证中间件" class="headerlink" title="权限验证中间件"></a>权限验证中间件</h3><p>给与用户权限后，那么用户访问路由时，进行权限的验证。</p>
-<pre class="line-numbers language-php"><code class="language-php">    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">handle</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">,</span> Closure <span class="token variable">$next</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token variable">$result</span> <span class="token operator">=</span> UserRole<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-            <span class="token string">'id'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">role</span>
-        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">'competence'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">competence</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token function">ApiExceptionError</span><span class="token punctuation">(</span><span class="token function">trans</span><span class="token punctuation">(</span><span class="token string">'message.permissions.error'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">array_search</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">route</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">json_decode</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token variable">$next</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token function">response</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'code'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">,</span>
-                <span class="token string">'mes'</span>  <span class="token operator">=</span><span class="token operator">></span> <span class="token function">trans</span><span class="token punctuation">(</span><span class="token string">'message.permissions.error'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-                <span class="token string">'date'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">''</span>
-            <span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">403</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>我们都知道在前后分离的项目当中都存在 CORS 的问题，在我们每次非简单请求时，都能发现前台访问后台接口发起了二次请求，一次 options 预请求，一次正常的请求。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/vXk9ep.png" alt></p>
+<h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>其实这是一个正常的跨域操作，那么又不想每次都这样可以怎么做呢？ HTTP 已经给我们提供了一个报文参数，<code>Access-Control-Max-Age</code> 缓存机制， <strong><code>Access-Control-Max-Age</code></strong> 这个响应头表示 <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Preflight_request" target="_blank" rel="noopener">preflight request</a> （预检请求）的返回结果（即 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Allow-Methods" target="_blank" rel="noopener"><code>Access-Control-Allow-Methods</code></a> 和<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Allow-Headers" target="_blank" rel="noopener"><code>Access-Control-Allow-Headers</code></a> 提供的信息） 可以被缓存多久。</p>
+<p>返回结果可以被缓存的最长时间（秒）。</p>
+<ul>
+<li>在 Firefox 中，<a href="https://dxr.mozilla.org/mozilla-central/rev/7ae377917236b7e6111146aa9fb4c073c0efc7f4/netwerk/protocol/http/nsCORSListenerProxy.cpp#1131" target="_blank" rel="noopener">上限是24小时</a> （即 86400 秒）。</li>
+<li>在 Chromium v76 之前， <a href="https://cs.chromium.org/chromium/src/services/network/public/cpp/cors/preflight_result.cc?l=36&rcl=52002151773d8cd9ffc5f557cd7cc880fddcae3e" target="_blank" rel="noopener">上限是 10 分钟</a>（即 600 秒)。</li>
+<li>从 Chromium v76 开始，<a href="https://cs.chromium.org/chromium/src/services/network/public/cpp/cors/preflight_result.cc?l=31&rcl=49e7c0b4886cac1f3d09dc046bd528c9c811a0fa" target="_blank" rel="noopener">上限是 2 小时</a>（即 7200 秒)。</li>
+<li>Chromium 同时规定了一个默认值 5 秒。</li>
+<li>如果值为 <strong>-1</strong>，表示禁用缓存，则每次请求前都需要使用 OPTIONS 预检请求。</li>
+<li>需要注意的是 Access-Control-Max-Age 的设置针对完全一样的 url，如果 url 加上路径参数，其中一个 url 的Access-Control-Max-Age 设置对另一个 url 没有效果。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/TvV7zA.png" alt></p>
 
             </div>
             <hr/>
@@ -484,7 +440,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://daixianjin.github.io/2020/07/28/Laravel-权限管理/">https://daixianjin.github.io/2020/07/28/Laravel-权限管理/</a>
+                    <a href="https://daixianjin.github.io/2020/11/10/缓存跨域验证/">https://daixianjin.github.io/2020/11/10/缓存跨域验证/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -522,8 +478,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel/">
-                                    <span class="chip bg-color">Laravel</span>
+                                <a href="/tags/HTTP/">
+                                    <span class="chip bg-color">HTTP</span>
                                 </a>
                             
                         </div>
@@ -565,7 +521,7 @@
         repo: 'daixianjin.github.io',
         owner: 'daixianjin',
         admin: "daixianjin",
-        id: '2020-07-28T13-33-02',
+        id: '2020-11-10T19-57-05',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -589,46 +545,49 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/07/28/MySQL-datetime和timestamp/">
+                <a href="/2020/11/10/缓存跨域验证/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1495798711725561.png" class="responsive-img" alt="Mysql-datetime 和 timestamp">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/8WLzuA.jpg" class="responsive-img" alt="缓存跨域验证">
                         
-                        <span class="card-title">Mysql-datetime 和 timestamp</span>
+                        <span class="card-title">缓存跨域验证</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            datetime保存格式为 YYYYMMDDHHMMSS（年月日时分秒）的整数，所以，它与时区无关，存入的是什么值就是什么值，不会根据当前时区进行转换。
-存储范围：从 1000-01-01 00:00:00 到 9999-12-31 23:
+                            摘要我们都知道在前后分离的项目当中都存在 CORS 的问题，在我们每次非简单请求时，都能发现前台访问后台接口发起了二次请求，一次 options 预请求，一次正常的请求。
+
+方案其实这是一个正常的跨域操作，那么又不想每次都这样可以怎么做呢？
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/MySQL/" class="post-category">
-                                    MySQL
+                            <a href="/categories/HTTP/" class="post-category">
+                                    HTTP
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MySQL/">
-                        <span class="chip bg-color">MySQL</span>
+                    <a href="/tags/HTTP/">
+                        <span class="chip bg-color">HTTP</span>
                     </a>
                     
                 </div>
@@ -642,23 +601,23 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/06/10/PHP-OpCache/">
+                <a href="/2020/11/01/单元测试/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/mbsJ6K.jpg" class="responsive-img" alt="opcache">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/jsnSOP.jpg" class="responsive-img" alt="单元测试">
                         
-                        <span class="card-title">opcache</span>
+                        <span class="card-title">单元测试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要它是由 PHP 官方公司 Zend 开发的一款免费使用的 PHP 优化加速拓展。将 PHP Code 预编译生成的脚本文件 OPcode 缓存在共享内存中供以后反复使用，从而避免了从磁盘读取代码再次编译的时间消耗。同时，它还应用了一些代
+                            摘要单元测试是什么呢？来自维基百科的一段说明：在计算机编程中，单元测试（英語：Unit Testing）又称为模块测试，是针对程序模块（软件设计的最小单位）来进行正确性检验的测试工作。程序单元是应用的最小可测试部件。在过程化编程中，一个单元
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-01
                             </span>
                         <span class="publish-author">
                             
