@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-02
+                    2020-11-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 
@@ -409,40 +409,40 @@
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/1W3XTj.png" alt></p>
 <p>可以看到的 Laravel 当中已经存在一个目录 <code>tests</code> 就是用来做测试的目录， Feature 我一般理解为交互测试目录，比如模仿浏览器的操作发起 HTTP 请求进行测试，Unit 我一般理解为单元测试目录，这里就是对类或方法函数进行测试。除了 <code>tests</code>其次 <code>phpunit.xml</code> 文件为框架还提供了一些便利的辅助函数，让你可以更直观的测试你的应用程序。</p>
 <p>phpunit.xml 文件格式：</p>
-<pre class="line-numbers language-yam"><code class="language-yam"><?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+<pre class="line-numbers language-yaml"><code class="language-yaml">&lt;<span class="token punctuation">?</span>xml version="1.0" encoding="UTF<span class="token punctuation">-</span>8"<span class="token punctuation">?</span><span class="token punctuation">></span>
+&lt;phpunit xmlns<span class="token punctuation">:</span>xsi="http<span class="token punctuation">:</span>//www.w3.org/2001/XMLSchema<span class="token punctuation">-</span>instance"
+         xsi<span class="token punctuation">:</span>noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         colors="true">
-    <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
+         colors="true"<span class="token punctuation">></span>
+    &lt;testsuites<span class="token punctuation">></span>
+        &lt;testsuite name="Unit"<span class="token punctuation">></span>
+            &lt;directory suffix="Test.php"<span class="token punctuation">></span>./tests/Unit&lt;/directory<span class="token punctuation">></span>
+        &lt;/testsuite<span class="token punctuation">></span>
 
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
-        </testsuite>
-    </testsuites>
-    <filter> # 这里是代码覆盖的文件
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./app</directory>
-        </whitelist>
-    </filter>
-    <logging> # 这里是生成代码覆盖率的目录，需要安装 PHP xdebug 扩展
-        <log type="coverage-html" target="./public/result" lowUpperBound="35"
-             highLowerBound="70"/>
-    </logging>
-    <php> # 这里是一些环境变量
-        <server name="APP_ENV" value="testing"/>
-        <server name="BCRYPT_ROUNDS" value="4"/>
-        <server name="CACHE_DRIVER" value="array"/>
-        <server name="DB_CONNECTION" value="mysql"/>
-        <server name="DB_DATABASE" value=":memory:"/>
-        <server name="MAIL_DRIVER" value="array"/>
-        <server name="QUEUE_CONNECTION" value="sync"/>
-        <server name="SESSION_DRIVER" value="array"/>
-    </php>
-</phpunit>
+        &lt;testsuite name="Feature"<span class="token punctuation">></span>
+            &lt;directory suffix="Test.php"<span class="token punctuation">></span>./tests/Feature&lt;/directory<span class="token punctuation">></span>
+        &lt;/testsuite<span class="token punctuation">></span>
+    &lt;/testsuites<span class="token punctuation">></span>
+    &lt;filter<span class="token punctuation">></span> <span class="token comment" spellcheck="true"># 这里是代码覆盖的文件</span>
+        &lt;whitelist processUncoveredFilesFromWhitelist="true"<span class="token punctuation">></span>
+            &lt;directory suffix=".php"<span class="token punctuation">></span>./app&lt;/directory<span class="token punctuation">></span>
+        &lt;/whitelist<span class="token punctuation">></span>
+    &lt;/filter<span class="token punctuation">></span>
+    &lt;logging<span class="token punctuation">></span> <span class="token comment" spellcheck="true"># 这里是生成代码覆盖率的目录，需要安装 PHP xdebug 扩展</span>
+        &lt;log type="coverage<span class="token punctuation">-</span>html" target="./public/result" lowUpperBound="35"
+             highLowerBound="70"/<span class="token punctuation">></span>
+    &lt;/logging<span class="token punctuation">></span>
+    &lt;php<span class="token punctuation">></span> <span class="token comment" spellcheck="true"># 这里是一些环境变量</span>
+        &lt;server name="APP_ENV" value="testing"/<span class="token punctuation">></span>
+        &lt;server name="BCRYPT_ROUNDS" value="4"/<span class="token punctuation">></span>
+        &lt;server name="CACHE_DRIVER" value="array"/<span class="token punctuation">></span>
+        &lt;server name="DB_CONNECTION" value="mysql"/<span class="token punctuation">></span>
+        &lt;server name="DB_DATABASE" value="<span class="token punctuation">:</span>memory<span class="token punctuation">:</span>"/<span class="token punctuation">></span>
+        &lt;server name="MAIL_DRIVER" value="array"/<span class="token punctuation">></span>
+        &lt;server name="QUEUE_CONNECTION" value="sync"/<span class="token punctuation">></span>
+        &lt;server name="SESSION_DRIVER" value="array"/<span class="token punctuation">></span>
+    &lt;/php<span class="token punctuation">></span>
+&lt;/phpunit<span class="token punctuation">></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面的内容是熟悉一下在 Laravel 中测试的一些目录结果与重要的文件信息，下面一些则是编写单元测试需要遵循的规范。</p>
 <p>PHPUnit 规范：</p>
@@ -929,30 +929,30 @@ Generating code coverage report in HTML format <span class="token punctuation">.
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/s1GsJ9.png" alt></p>
 <h3 id="快速进阶"><a href="#快速进阶" class="headerlink" title="快速进阶"></a>快速进阶</h3><p>上面已经运行了一个单元测试，但是这个单元测试是最简单的单元测试，那么单元测试也算入门了，接下来进行一些进阶的操作。</p>
 <h4 id="setUp"><a href="#setUp" class="headerlink" title="setUp"></a>setUp</h4><p>我一般把他理解为测试类的构造函数，等同于 construct ，只要定义了 setUp 那么执行这个测试类那么 setUp 就会最先去执行。</p>
-<pre class="line-numbers language-PHP"><code class="language-PHP"><?php
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
-namespace Tests\Unit;
+<span class="token keyword">namespace</span> <span class="token package">Tests<span class="token punctuation">\</span>Unit</span><span class="token punctuation">;</span>
 
-use Tests\TestCase; # 注意这里哦，已经不再使用 PHPUint 的 TestCase 而是 laravel 的封装更加的强大
+<span class="token keyword">use</span> <span class="token package">Tests<span class="token punctuation">\</span>TestCase</span><span class="token punctuation">;</span> <span class="token shell-comment comment"># 注意这里哦，已经不再使用 PHPUint 的 TestCase 而是 laravel 的封装更加的强大</span>
 
-class TestTest extends TestCase
-{
-    protected $age;
+<span class="token keyword">class</span> <span class="token class-name">TestTest</span> <span class="token keyword">extends</span> <span class="token class-name">TestCase</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token variable">$age</span><span class="token punctuation">;</span>
 
-    public function setUp() : void
-    {
-        $this->age = 24;
-    }
-    /**
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">setUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> void
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">age</span> <span class="token operator">=</span> <span class="token number">24</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">/**
      * A basic unit test example.
      *
      * @return void
-     */
-    public function testExample()
-    {
-        $this->assertEquals(24,$this->age);
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">testExample</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">24</span><span class="token punctuation">,</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">age</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="依赖关系-depends"><a href="#依赖关系-depends" class="headerlink" title="依赖关系(@depends)"></a>依赖关系(@depends)</h4><p>在测试类中，测试用例方法可以有依赖关系。通过依赖关系可以传一些参数到方法中；因为默认的测试用例方法是不能有参数的。</p>
 <pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
@@ -1016,22 +1016,22 @@ class TestTest extends TestCase
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="测试异常-expectException"><a href="#测试异常-expectException" class="headerlink" title="测试异常 (expectException)"></a>测试异常 (expectException)</h4><p>需要在测试方法的开始处声明断言，然后执行语句。而不是调用后再声明也可以通过注释来声明 @expectedException, @expectedExceptionCode,<br>@expectedExceptionMessage, @expectedExceptionMessageRegExp</p>
 <p>PHPUnit9 推荐 expectException(), expectExceptionCode(), expectExceptionMessage(), or expectExceptionMessageMatches() </p>
-<pre class="line-numbers language-PHP"><code class="language-PHP"><?php
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
-namespace Tests\Unit;
+<span class="token keyword">namespace</span> <span class="token package">Tests<span class="token punctuation">\</span>Unit</span><span class="token punctuation">;</span>
 
-use Tests\TestCase;
+<span class="token keyword">use</span> <span class="token package">Tests<span class="token punctuation">\</span>TestCase</span><span class="token punctuation">;</span>
 
-class TestTest extends TestCase
-{
+<span class="token keyword">class</span> <span class="token class-name">TestTest</span> <span class="token keyword">extends</span> <span class="token class-name">TestCase</span>
+<span class="token punctuation">{</span>
 
-    public function testException()
-    {
-        $this->expectException(\Exception::class);
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">testException</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">expectException</span><span class="token punctuation">(</span>\<span class="token package">Exception</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        throw new \Exception('test');
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token punctuation">\</span>Exception</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>未完待续…</p>
 
             </div>
@@ -1404,7 +1404,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">94.3k</span>&nbsp;字
+                class="white-color">94.5k</span>&nbsp;字
             
             
             
