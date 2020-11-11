@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-10
+                    2020-11-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    9 分
                 </div>
                 
 
@@ -892,27 +892,27 @@
 <td></td>
 </tr>
 </tbody></table>
-<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><pre class="line-numbers language-PHP"><code class="language-PHP"><?php
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
-namespace Tests\Unit;
+<span class="token keyword">namespace</span> <span class="token package">Tests<span class="token punctuation">\</span>Unit</span><span class="token punctuation">;</span>
 
-use PHPUnit\Framework\TestCase;
+<span class="token keyword">use</span> <span class="token package">PHPUnit<span class="token punctuation">\</span>Framework<span class="token punctuation">\</span>TestCase</span><span class="token punctuation">;</span>
 
-class TestTest extends TestCase
-{
-    /**
+<span class="token keyword">class</span> <span class="token class-name">TestTest</span> <span class="token keyword">extends</span> <span class="token class-name">TestCase</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
      * A basic unit test example.
      *
      * @return void
-     */
-    public function testExample()
-    {
-        $res = bcadd(1,2);
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">testExample</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$res</span> <span class="token operator">=</span> <span class="token function">bcadd</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        # 断言 $res 的结果是否等于 3
-        $this->assertEquals(3,$res);
-    }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        <span class="token shell-comment comment"># 断言 $res 的结果是否等于 3</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token variable">$res</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>执行 PHPUint 得到测试的结果：从结果当中可以看得到执行的时间，用到的内存，断言数量</p>
 <pre class="line-numbers language-yaml"><code class="language-yaml">root@b39867e03998 /v/w/h/spmvp<span class="token comment" spellcheck="true"># ./phpunit --filter=testExample</span>
 Cannot load Xdebug <span class="token punctuation">-</span> it was already loaded
@@ -928,7 +928,7 @@ Generating code coverage report in HTML format <span class="token punctuation">.
 <p>查看 PHPUnit 得到的代码覆盖率结果：从结果当中可以追踪代码执行的过程，当然这我使用的是内置函数就没有追踪的代码咯</p>
 <p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/s1GsJ9.png" alt></p>
 <h3 id="快速进阶"><a href="#快速进阶" class="headerlink" title="快速进阶"></a>快速进阶</h3><p>上面已经运行了一个单元测试，但是这个单元测试是最简单的单元测试，那么单元测试也算入门了，接下来进行一些进阶的操作。</p>
-<h4 id="setUp"><a href="#setUp" class="headerlink" title="setUp"></a>setUp</h4><p>我一般把他理解为测试类的构造函数，等同于 construct ，只要定义了 setUp 那么执行这个测试类那么 setUp 就会最先去执行。</p>
+<h4 id="setUp"><a href="#setUp" class="headerlink" title="setUp"></a>setUp</h4><p>我一般把他理解为测试类的构造函数，等同于 __construct ，只要定义了 setUp 那么执行这个测试类那么 setUp 就会最先去执行。</p>
 <pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
 <span class="token keyword">namespace</span> <span class="token package">Tests<span class="token punctuation">\</span>Unit</span><span class="token punctuation">;</span>
@@ -980,7 +980,7 @@ Generating code coverage report in HTML format <span class="token punctuation">.
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>注意：如果一个测试方法依赖另外一个测试方法，那么必须等另外一个测试方法执行完毕，依赖的这个测试方法才能执行，如果 phpunit –filter=meName 那么就相当于跳过了 testRes 。正确的执行应该是这样：phpunit –filter=TestTest</p>
+<p>注意：如果一个测试方法依赖另外一个测试方法，那么必须等另外一个测试方法执行完毕，依赖的这个测试方法才能执行，如果 <code>phpunit --filter=meName</code> 那么就相当于跳过了 testRes 。正确的执行应该是这样：<code>phpunit --filter=TestTest</code></p>
 </blockquote>
 <h4 id="数据提供者-dataProvider"><a href="#数据提供者-dataProvider" class="headerlink" title="数据提供者(@dataProvider)"></a>数据提供者(@dataProvider)</h4><p>在依赖中，所依赖函数的返回值作为参数传入测试函数。除此之外，我们也可以用数据提供器来定义传入的数据。</p>
 <pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
@@ -1014,6 +1014,9 @@ Generating code coverage report in HTML format <span class="token punctuation">.
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>注意：所有的数据供给器方法的执行都是在对 <code>setUpBeforeClass</code> 静态方法的调用和第一次对 <code>setUp</code> 方法的调用之前完成的。因此，无法在数据供给器中使用创建于这两个方法内的变量。这是必须的，这样 PHPUnit 才能计算测试的总数量。</p>
+</blockquote>
 <h4 id="测试异常-expectException"><a href="#测试异常-expectException" class="headerlink" title="测试异常 (expectException)"></a>测试异常 (expectException)</h4><p>需要在测试方法的开始处声明断言，然后执行语句。而不是调用后再声明也可以通过注释来声明 @expectedException, @expectedExceptionCode,<br>@expectedExceptionMessage, @expectedExceptionMessageRegExp</p>
 <p>PHPUnit9 推荐 expectException(), expectExceptionCode(), expectExceptionMessage(), or expectExceptionMessageMatches() </p>
 <pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
@@ -1404,7 +1407,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">94.5k</span>&nbsp;字
+                class="white-color">94.6k</span>&nbsp;字
             
             
             
