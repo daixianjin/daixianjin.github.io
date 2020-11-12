@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-Artisan 自定义命令, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Golang-日期时间详解, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-Artisan 自定义命令 | 道法自然</title>
+    <title>Golang-日期时间详解 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/2qL8q1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-Artisan 自定义命令</h1>
+                    <h1 class="description center-align post-title">Golang-日期时间详解</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel/">
-                                <span class="chip bg-color">Laravel</span>
+                            <a href="/tags/Golang/">
+                                <span class="chip bg-color">Golang</span>
                             </a>
                         
                     </div>
@@ -358,8 +358,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Laravel/" class="post-category">
-                                Laravel
+                            <a href="/categories/Golang-学习笔记/" class="post-category">
+                                Golang-学习笔记
                             </a>
                         
                     </div>
@@ -371,21 +371,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-04
+                    2020-11-12
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2020-11-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    438
+                    420
                 </div>
                 
 
@@ -402,72 +402,70 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>对于每一个开发人员来说，都有自己的一套习惯，而我就比较喜欢把一个项目分层开来。各司其职，自己是什么定位就做属于自己定位的事情。当然一个一个文件创建，那么太费事情也不太方便。Laravel 为我们提供了自定义 Artisan 命令的方案， 给我提供了很大的便捷以自定义的灵活！</p>
-<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><pre class="line-numbers language-bash"><code class="language-bash">php artisan make:command AddService<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>执行该命令，将会在 <code>app\Console</code> 目录下生成 Commands 目录，同时在 <code>app\Console\Commands</code> 目录下生成 AddService.php 文件</p>
-<h3 id="创建存根目录及模板文件"><a href="#创建存根目录及模板文件" class="headerlink" title="创建存根目录及模板文件"></a>创建存根目录及模板文件</h3><p>在 <code>app\Console\Commands</code> 目录下创建 Stubs 目录，然后在在 Stubs 目录下创建 services.stub </p>
-<h3 id="编辑-services-stub"><a href="#编辑-services-stub" class="headerlink" title="编辑 services.stub"></a>编辑 services.stub</h3><pre><code>&lt;?php
+                <h3 id="基本了解"><a href="#基本了解" class="headerlink" title="基本了解"></a>基本了解</h3><p>在 PHP 当中平时关于时间的处理，不二话 Carbon 绝对是最好用的包，没有之一。有个转 Go 的哥们自己动手撸了个跟 PHP Carbon 一样使用的 Go 版本的 <a href="https://github.com/golang-module/carbon" target="_blank" rel="noopener">Carbon</a> 包，也是非常👍。</p>
+<h4 id="time-Now-获取当前时间"><a href="#time-Now-获取当前时间" class="headerlink" title="time.Now - 获取当前时间"></a>time.Now - 获取当前时间</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    t <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// time 也是一个数据类型</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"当前时间：%v,数据类型是：%T"</span><span class="token punctuation">,</span> t<span class="token punctuation">,</span> t<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-# 命名空间 自动获取等下添加的 Artisan 命令文件里面赋予的命名空间
-namespace DummyNamespace;
+<span class="token comment" spellcheck="true">// 当前时间：2020-11-12 21:30:58.701252 +0800 CST m=+0.000096590,数据类型是：time.Time</span>
 
-[可以 use 命名空间]
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    t <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"年：%v\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">Year</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"月：%v\n"</span><span class="token punctuation">,</span> <span class="token function">int</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span><span class="token function">Month</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"日：%v\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">Day</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"时：%v\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">Hour</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"分：%v\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">Minute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"秒：%v\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">Second</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-class DummyClass [可以编辑继承的父类]
-{
-    [可以定义各种方法，看自己需要]
-}</code></pre><h3 id="编辑-AddServices-php"><a href="#编辑-AddServices-php" class="headerlink" title="编辑 AddServices.php"></a>编辑 AddServices.php</h3><pre><code>&lt;?php
+<span class="token comment" spellcheck="true">// 年：2020</span>
+<span class="token comment" spellcheck="true">// 月：11</span>
+<span class="token comment" spellcheck="true">// 日：12</span>
+<span class="token comment" spellcheck="true">// 时：21</span>
+<span class="token comment" spellcheck="true">// 分：36</span>
+<span class="token comment" spellcheck="true">// 秒：40</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="time-Fomat-指定输出格式"><a href="#time-Fomat-指定输出格式" class="headerlink" title="time.Fomat - 指定输出格式"></a>time.Fomat - 指定输出格式</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    t <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment" spellcheck="true">// 格式只能是下面的格式，符合可变，数字不可变</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"年月日 时分秒：%v\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">Format</span><span class="token punctuation">(</span><span class="token string">"2006-01-02 15:04:05"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"年月日：%v\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">Format</span><span class="token punctuation">(</span><span class="token string">"2006/01/02"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"时分秒：%v\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">Format</span><span class="token punctuation">(</span><span class="token string">"15:04:05"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-namespace App\Console\Commands;
+<span class="token comment" spellcheck="true">// 年月日 时分秒：2020-11-12 21:42:40</span>
+<span class="token comment" spellcheck="true">// 年月日：2020/11/12</span>
+<span class="token comment" spellcheck="true">// 时分秒：21:42:40</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="时间常量"><a href="#时间常量" class="headerlink" title="时间常量"></a>时间常量</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">const</span> <span class="token punctuation">(</span>
+    Nanosecond  Duration <span class="token operator">=</span> <span class="token number">1</span> <span class="token comment" spellcheck="true">// 纳秒</span>
+    Microsecond          <span class="token operator">=</span> <span class="token number">1000</span> <span class="token operator">*</span> Nanosecond <span class="token comment" spellcheck="true">// 微妙</span>
+    Millisecond          <span class="token operator">=</span> <span class="token number">1000</span> <span class="token operator">*</span> Microsecond <span class="token comment" spellcheck="true">// 毫秒</span>
+    Second               <span class="token operator">=</span> <span class="token number">1000</span> <span class="token operator">*</span> Millisecond <span class="token comment" spellcheck="true">// 秒</span>
+    Minute               <span class="token operator">=</span> <span class="token number">60</span> <span class="token operator">*</span> Second                <span class="token comment" spellcheck="true">// 分</span>
+    Hour                 <span class="token operator">=</span> <span class="token number">60</span> <span class="token operator">*</span> Minute                <span class="token comment" spellcheck="true">// 时</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="time-Sleep-休眠"><a href="#time-Sleep-休眠" class="headerlink" title="time.Sleep - 休眠"></a>time.Sleep - 休眠</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"我要开始了 \n"</span><span class="token punctuation">)</span>
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"结束了"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-use Illuminate\Console\GeneratorCommand;
-class AddServices extends GeneratorCommand
-{
-    /**
-     * 控制台命令名称
-     *
-     * @var string
-     */
-    protected $name = &#39;make:service&#39;;
-    /**
-     * 控制台命令描述
-     *
-     * @var string
-     */
-    protected $description = &#39;Create a new service  class&#39;;
-    /**
-     * 生成类的类型
-     *
-     * @var string
-     */
-    protected $type = &#39;Services&#39;;
-    /**
-     * 获取生成器的存根文件
-     *
-     * @return string
-     */
-    protected function getStub()
-    {
-        return __DIR__.&#39;/Stubs/services.stub&#39;;
-    }
+<span class="token comment" spellcheck="true">// 我要开始了 </span>
+<span class="token comment" spellcheck="true">// 这里延时了一秒</span>
+<span class="token comment" spellcheck="true">// 结束了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="time-Unix-1970-开始到-t-的所有时间（秒）"><a href="#time-Unix-1970-开始到-t-的所有时间（秒）" class="headerlink" title="time.Unix - 1970 - 开始到 t 的所有时间（秒）"></a>time.Unix - 1970 - 开始到 t 的所有时间（秒）</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    t <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"到今天的秒:%v\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">Unix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-    /**
-     * 获取类的默认命名空间
-     *
-     * @param  string  $rootNamespace
-     * @return string
-     */
+<span class="token comment" spellcheck="true">// 1605189874</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="time-UnixNano-开始到-t-的所有时间（纳秒）"><a href="#time-UnixNano-开始到-t-的所有时间（纳秒）" class="headerlink" title="time.UnixNano -  开始到 t 的所有时间（纳秒）"></a>time.UnixNano -  开始到 t 的所有时间（纳秒）</h4><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    t <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"到今天的纳秒:%v\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">UnixNano</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 
-    protected function getDefaultNamespace($rootNamespace)
-    {
-        # 这里是创建的命名空间，也是文件创建的目录地址，默认是 APP 下面
-        return $rootNamespace.&#39;\Http\Services&#39;;
-    }
-}</code></pre><h3 id="注册命令"><a href="#注册命令" class="headerlink" title="注册命令"></a>注册命令</h3><p>将以下内容添加到 Kernel.php 文件的 protected $commands = [] 属性数组中，使命令生效</p>
-<pre><code>    protected $commands = [
-        //
-        \App\Console\Commands\AddServices::class
-    ];</code></pre><h3 id="测试命令"><a href="#测试命令" class="headerlink" title="测试命令"></a>测试命令</h3><pre><code>php artisan make:service TeachersService</code></pre><p><img src="https://i.loli.net/2019/09/09/MP8jLTvmNefycrt.png" alt></p>
+<span class="token comment" spellcheck="true">// 到今天的纳秒:1605189904516758000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -493,7 +491,7 @@ class AddServices extends GeneratorCommand
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://daixianjin.github.io/2019/08/04/Laravel-自定义Artisan命令/">https://daixianjin.github.io/2019/08/04/Laravel-自定义Artisan命令/</a>
+                    <a href="https://daixianjin.github.io/2020/11/12/Golang-日期时间详解/">https://daixianjin.github.io/2020/11/12/Golang-日期时间详解/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -531,8 +529,8 @@ class AddServices extends GeneratorCommand
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel/">
-                                    <span class="chip bg-color">Laravel</span>
+                                <a href="/tags/Golang/">
+                                    <span class="chip bg-color">Golang</span>
                                 </a>
                             
                         </div>
@@ -574,7 +572,7 @@ class AddServices extends GeneratorCommand
         repo: 'daixianjin.github.io',
         owner: 'daixianjin',
         admin: "daixianjin",
-        id: '2019-08-04T21-23-10',
+        id: '2020-11-12T21-21-27',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -598,45 +596,48 @@ class AddServices extends GeneratorCommand
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/08/07/Laravel-处理跨域请求/">
+                <a href="/2020/11/12/Golang-日期时间详解/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-处理跨域请求">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/2qL8q1.jpg" class="responsive-img" alt="Golang-日期时间详解">
                         
-                        <span class="card-title">Laravel-处理跨域请求</span>
+                        <span class="card-title">Golang-日期时间详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要出于安全性的原因，浏览器会限制 Script 中的跨域请求。由于 XMLHttpRequest 遵循同源策略，所有使用 XMLHttpRequest 构造 HTTP 请求的应用只能访问自己的域名，如果需要构造跨域的请求，那么开发者需要配
+                            基本了解在 PHP 当中平时关于时间的处理，不二话 Carbon 绝对是最好用的包，没有之一。有个转 Go 的哥们自己动手撸了个跟 PHP Carbon 一样使用的 Go 版本的 Carbon 包，也是非常👍。
+time.Now - 获取
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-08-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Laravel/" class="post-category">
-                                    Laravel
+                            <a href="/categories/Golang-学习笔记/" class="post-category">
+                                    Golang-学习笔记
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Golang/">
+                        <span class="chip bg-color">Golang</span>
                     </a>
                     
                 </div>
@@ -650,31 +651,31 @@ class AddServices extends GeneratorCommand
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/03/Laravel之生命周期/">
+                <a href="/2020/11/12/Golang-字符串函数详解/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-生命周期">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/jnuwag.jpg" class="responsive-img" alt="Golang-字符串函数详解">
                         
-                        <span class="card-title">Laravel-生命周期</span>
+                        <span class="card-title">Golang-字符串函数详解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要在「日常生活」中 使用任何工具时，如果理解了该工具的工作原理。那么用起来就会更加得心应手。应用开发也是如此，当你能真正懂得一个功能背后实现原理时，用起来会更加顺手，方便。
-文档存在目的是为了让你更加清晰地了解 Laravel 框架是如何
+                            基本了解跟 PHP 一样，Go 也为我们准备了很多系统函数，把我们常使用的功能都已经给我封装好了，非常的利于我们开发。下面介绍的都是属于开发中常用的字符串函数。
+len - 字符串长度统计字符串长度和数组长度，按字节，注意 Go 的编码统一
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Laravel/" class="post-category">
-                                    Laravel
+                            <a href="/categories/Golang-学习笔记/" class="post-category">
+                                    Golang-学习笔记
                                 </a>
                             
                             
@@ -684,8 +685,8 @@ class AddServices extends GeneratorCommand
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel/">
-                        <span class="chip bg-color">Laravel</span>
+                    <a href="/tags/Golang/">
+                        <span class="chip bg-color">Golang</span>
                     </a>
                     
                 </div>
