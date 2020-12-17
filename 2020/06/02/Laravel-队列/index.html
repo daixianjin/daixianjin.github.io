@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-24
+                    2020-12-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    2.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    10 分
                 </div>
                 
 
@@ -405,33 +405,128 @@
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>Laravel 队列为不同的队列后台服务提供了统一的 API，比如 Beanstalk, Amazon SQS, Redis, 甚至是关系型数据库。队列可以使你延迟处理一些耗时的任务，比如发送邮件。延迟这些耗时的任务会大幅提高你的应用对 web 请求的处理速度。<code>划重点：当修改了队列后，一点要先重启队列！！！因为队列处理器是常驻进程，他们在重启前不会应用你代码的更改。</code></p>
 <p>认识队列和栈：<a href="https://daixianjin.github.io/2020/04/14/%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%88/">点我跳转</a></p>
 <p>这里只说 Redis 的配置，其他配置没有操作过。在 Laravel 6.x 版本之前使用 Redis 我们使用最多的就是 Predis 这个扩展包，它可以不安装 Redis 扩展都可以使用 Redis，在 Laravel 6.x 以后都建议使用 PHP Redis 扩展。</p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>配置队列先看 <code>config/queue.php</code>。</p>
-<p>可以看到现在队列使用的是同步，修改为 redis 驱动，但不要直接修改配置文件里面数据，而是修改 env 里面。同步驱动的队列，适用于开发环境的测试使用。</p>
-<pre class="line-numbers language-php"><code class="language-php"> <span class="token string">'default'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'QUEUE_CONNECTION'</span><span class="token punctuation">,</span> <span class="token string">'sync'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// QUEUE_CONNECTION=sync</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>继续往下可以看到 redis 的驱动，这里可以根据项目需求而修改。</p>
-<pre class="line-numbers language-php"><code class="language-php"><span class="token shell-comment comment"># 普通 redis 队列配置</span>
-<span class="token string">'redis'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
-    <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'redis'</span><span class="token punctuation">,</span>
-    <span class="token string">'connection'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'default'</span><span class="token punctuation">,</span>
-    <span class="token string">'queue'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'default'</span><span class="token punctuation">,</span>
-    <span class="token string">'retry_after'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">90</span><span class="token punctuation">,</span>
-    <span class="token string">'block_for'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">5</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>driver：驱动谁</li>
-<li>connection：连接驱动里的谁</li>
-<li>queue：队列名称</li>
-<li>retry_after：定义任务在执行以后多少秒后释放回队列，如果设定为 90 ，任务在运行 90 秒后还未完成，那么将释放回队列而不是删除。</li>
-<li>block_for：阻塞，在遍历 worker 循环和重新轮询 Redis 数据库之前，驱动程序需要等待多长时间才能使任务变得可用，为 0 表示一直阻塞，知道某一个任务变得可用。</li>
-</ul>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>配置队列先看 <code>config/queue.php</code>，强烈的建议不要直接修改配置文件里面数据，我们应当养成一个习惯，配置文件都应当<code>配置文件 =&gt; ENV 环境变量</code>不取其中一种，而是二者结合使用。</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+
+<span class="token keyword">return</span> <span class="token punctuation">[</span>
+
+    <span class="token comment" spellcheck="true">/*
+    |--------------------------------------------------------------------------
+    | 队列的驱动程序
+    |--------------------------------------------------------------------------
+    |
+        | Laravel 队列提供了可以跨各种不同队列后台的统一 API，例如 Beanstalk、Amazon SQS、Redis、MySQL
+        | sync 表示同步的意思，一般性都是本地测试使用，切勿在线上使用 sync 的驱动方式
+    |
+    */</span>
+
+    <span class="token string">'default'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'QUEUE_CONNECTION'</span><span class="token punctuation">,</span> <span class="token string">'sync'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token comment" spellcheck="true">/*
+    |--------------------------------------------------------------------------
+    | 队列连接
+    |--------------------------------------------------------------------------
+    |
+        | 在这里，以为每个服务器配置连接信息。如以下的驱动程序
+    |
+    | 驱动: "sync", "database", "beanstalkd", "sqs", "redis", "null"（抛弃不要在使用了）
+    |
+    */</span>
+
+    <span class="token string">'connections'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+
+        <span class="token string">'sync'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'sync'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+        <span class="token string">'database'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'database'</span><span class="token punctuation">,</span>
+            <span class="token string">'table'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'jobs'</span><span class="token punctuation">,</span>
+            <span class="token string">'queue'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'default'</span><span class="token punctuation">,</span>
+            <span class="token string">'retry_after'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">90</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+        <span class="token string">'beanstalkd'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'beanstalkd'</span><span class="token punctuation">,</span>
+            <span class="token string">'host'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'localhost'</span><span class="token punctuation">,</span>
+            <span class="token string">'queue'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'default'</span><span class="token punctuation">,</span>
+            <span class="token string">'retry_after'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">90</span><span class="token punctuation">,</span>
+            <span class="token string">'block_for'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+        <span class="token string">'sqs'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'sqs'</span><span class="token punctuation">,</span>
+            <span class="token string">'key'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'AWS_ACCESS_KEY_ID'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'secret'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'AWS_SECRET_ACCESS_KEY'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'prefix'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'SQS_PREFIX'</span><span class="token punctuation">,</span> 'https<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//sqs.us-east-1.amazonaws.com/your-account-id'),</span>
+            <span class="token string">'queue'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'SQS_QUEUE'</span><span class="token punctuation">,</span> <span class="token string">'your-queue-name'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'region'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'AWS_DEFAULT_REGION'</span><span class="token punctuation">,</span> <span class="token string">'us-east-1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+        <span class="token string">'redis'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'redis'</span><span class="token punctuation">,</span>
+            <span class="token string">'connection'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'default'</span><span class="token punctuation">,</span>
+            <span class="token string">'queue'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'REDIS_QUEUE'</span><span class="token punctuation">,</span> <span class="token string">'default'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'retry_after'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">90</span><span class="token punctuation">,</span>
+            <span class="token string">'block_for'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+    <span class="token comment" spellcheck="true">/*
+    |--------------------------------------------------------------------------
+    | 失败队列的处理
+    |--------------------------------------------------------------------------
+    |
+        | 队列失败后可以记录下来，以便 Debug 的操作。一般性都选择存储在 MySQL 当中。
+    |
+    */</span>
+
+    <span class="token string">'failed'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+        <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'QUEUE_FAILED_DRIVER'</span><span class="token punctuation">,</span> <span class="token string">'database'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'database'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'DB_CONNECTION'</span><span class="token punctuation">,</span> <span class="token string">'mysql'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'table'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'failed_jobs'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">driver</td>
+<td align="center">驱动的程序</td>
+</tr>
+<tr>
+<td align="center">connection</td>
+<td align="center">连接程序</td>
+</tr>
+<tr>
+<td align="center">queue</td>
+<td align="center">队列名称</td>
+</tr>
+<tr>
+<td align="center">retry_after</td>
+<td align="center">指定在重试正在处理的任务之前，队列连接应等待多少秒，如果任务已经处理了 90 秒而没有被删除，那么它将被释放回队列</td>
+</tr>
+<tr>
+<td align="center">block_for</td>
+<td align="center">阻塞，将block_for 设置为 0  将导致队列  workers  一直阻塞，直到某一个任务变得可用。这还能防止在下一个任务被处理之前处理诸如  SIGTERM  之类的信号</td>
+</tr>
+</tbody></table>
+<p>下面是我遇到过的问题，注意一下，如果不知道的话确实比较搞人，本地一切正常，Push 到线上后却无法执行，不知道原因的话，就非常之难受了，我已经难受过一次了，切记切记。唯一改变的就是 Queue，连接 Redis 集群，队列名称就必须包含一个 <a href="https://redis.io/topics/cluster-spec#keys-hash-tags" target="_blank" rel="noopener">key hash tag</a>。这是为了确保一个给定队列的所有 Redis 键都被放在同一个哈希槽。</p>
 <pre class="line-numbers language-php"><code class="language-php"><span class="token shell-comment comment"># redis 集群版本配置</span>
 <span class="token string">'redis'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
     <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'redis'</span><span class="token punctuation">,</span>
     <span class="token string">'connection'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'queue'</span><span class="token punctuation">,</span>
     <span class="token string">'queue'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'{default}'</span><span class="token punctuation">,</span>
     <span class="token string">'retry_after'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">90</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>唯一改变的就是 queue，连接 redis 集群，那么你的队列名称就必须包含一个 <a href="https://redis.io/topics/cluster-spec#keys-hash-tags" target="_blank" rel="noopener">key hash tag</a>。这是为了确保一个给定队列的所有 Redis 键都被放在同一个哈希槽。</p>
+      <span class="token string">'block_for'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以上配置都是针对 <code>config/queue.php</code>配置，在配置好队列以后，可用在 <code>config/database.php</code>配置 Redis 的驱动，当然也可用使用默认的配置。</p>
 <pre class="line-numbers language-php"><code class="language-php">    <span class="token string">'redis'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
 
@@ -451,16 +546,15 @@
             <span class="token string">'database'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'REDIS_CACHE_DB'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token punctuation">]</span><span class="token punctuation">,</span>
 
-        <span class="token string">'queue'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span> <span class="token shell-comment comment"># 这里新建的 queue 那么就对应上 “连接驱动里的谁”</span>
+        <span class="token string">'queue'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span> <span class="token shell-comment comment"># 这里新建的 queue 那么就对应上 “队列名称”</span>
             <span class="token string">'host'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'REDIS_HOST'</span><span class="token punctuation">,</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
             <span class="token string">'password'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'REDIS_PASSWORD'</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
             <span class="token string">'port'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'REDIS_PORT'</span><span class="token punctuation">,</span> <span class="token number">6379</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
             <span class="token string">'database'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'REDIS_DB'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         <span class="token punctuation">]</span><span class="token punctuation">,</span>
     <span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>config/database.php</code>里面的 redis 驱动可用使用默认，也可以自己在配置，看个人项目而定。</p>
-<h3 id="生成任务类"><a href="#生成任务类" class="headerlink" title="生成任务类"></a>生成任务类</h3><pre class="line-numbers language-bash"><code class="language-bash">php artisan make:job Name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>执行以上命令，会在项目目录下 <code>app\jobs</code>生成创建的队列任务类。</p>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><p>创建一个队列的任务类，直接使用 artisan 命令即可快速的创建一个队列任务类。执行以下命令，会在项目目录下 <code>app\jobs</code>生成创建的队列任务类。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">php artisan make:job JobName<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
 <span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Jobs</span><span class="token punctuation">;</span>
@@ -474,6 +568,20 @@
 <span class="token keyword">class</span> <span class="token class-name">Name</span> <span class="token keyword">implements</span> <span class="token class-name">ShouldQueue</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">use</span> <span class="token package">Dispatchable</span><span class="token punctuation">,</span> InteractsWithQueue<span class="token punctuation">,</span> Queueable<span class="token punctuation">,</span> SerializesModels<span class="token punctuation">;</span>
+
+      <span class="token comment" spellcheck="true">/**
+    * 任务可以尝试的最大次数。
+    *
+    * @var int
+    */</span>
+    <span class="token keyword">public</span> <span class="token variable">$tries</span> <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+    * 任务可以执行的最大秒数 (超时时间)。
+    *
+    * @var int
+    */</span>
+    <span class="token keyword">public</span> <span class="token variable">$timeout</span> <span class="token operator">=</span> <span class="token number">120</span><span class="token punctuation">;</span>
 
     <span class="token comment" spellcheck="true">/**
      * Create a new job instance.
@@ -503,15 +611,16 @@
     <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// failed 会捕捉全局异常（不管系统还是你自己抛出的全局异常），也就是出现异常了，这里可以处理出现异常的逻辑，比如一些业务场景下，出现全局异常了，我们会给用户发一份邮件...</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>队列可以理解为缓存的 HTTP 请求处理，用户的 TCP 链接早已断开，所以队列当中无法使用 return ，在队列当中错误的处理只有异常，当然同步的队列除外。</p>
+<p>队列可以理解为缓存的 HTTP 请求处理，用户的 TCP 链接早已断开，而我们的 PHP 只所以还在跑是因为一个进程管理工具，守护管理着我们的进程。Supervisor 就是一个我们最常用的进程管理工具，通过 Supervisor  运行 PHP ，从而实现了异步的操作，功劳全部都在 Supervisor 上面，当然进程管理的工具很多选择适合公司项目而定。</p>
 </blockquote>
 <h3 id="调用队列"><a href="#调用队列" class="headerlink" title="调用队列"></a>调用队列</h3><p>这里只说简单的操作，其他复杂操作可以咨询阅读文档。</p>
 <pre class="line-numbers language-php"><code class="language-php"><span class="token comment" spellcheck="true">// 这个任务将被分发到默认队列</span>
 Job<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">// 这个任务将被分发到默认队列-使用此方法时，队列任务将不会排队，并立即在当前进程中运行</span>
+<span class="token comment" spellcheck="true">// 同步驱动无法指定驱动和指定队列,当然队列也可以有执行的优先级，下面会说。</span>
 Job<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">dispatchNow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">// 这个任务将被分发到指定的驱动当中</span>
@@ -523,73 +632,111 @@ Job<span class="token punctuation">:</span><span class="token punctuation">:</sp
 <span class="token comment" spellcheck="true">// 这个任务将分发到指定的驱动当中指定的队列当中</span>
 Job<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">onConnection</span><span class="token punctuation">(</span><span class="token string">'驱动'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">onQueue</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token shell-comment comment"># 同步驱动无法指定驱动和指定队列,当然队列也可以有执行的优先级，下面会说。</span>
-
-<span class="token shell-comment comment"># 比较实用的延迟队列，如做订单的一些列操作，延迟10分钟，注意：Amazon SQS 队列服务最大延迟 15 分钟的时间。</span>
-Job<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">delay</span><span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">addMinutes</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token shell-comment comment"># 以上都是代码调用队列</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="守护进程程序"><a href="#守护进程程序" class="headerlink" title="守护进程程序"></a>守护进程程序</h3><p>Supervisor (<a href="http://supervisord.org/" target="_blank" rel="noopener">http://supervisord.org</a>) 是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。</p>
+<span class="token comment" spellcheck="true">// 比较实用的延迟队列，如做订单的一些列操作，延迟10分钟，注意：Amazon SQS 队列服务最大延迟 15 分钟的时间。</span>
+Job<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">delay</span><span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">addMinutes</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>Supervisor (<a href="http://supervisord.org/" target="_blank" rel="noopener">http://supervisord.org</a>) 是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 Supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。</p>
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> supervisor<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>当安装完成之后会在 <code>/etc/supervisor</code>文件目录当中，此时不需要去修改任何的配置文件。</p>
-<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> /etc/supervisor/conf.d
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token punctuation">[</span>program<span class="token punctuation">:</span>queue<span class="token punctuation">]</span> <span class="token comment" spellcheck="true"># 程序的名字，在 Supervisor 中可以用这个名字来管理该程序。</span>
+process_name=%(program_name)s_%(process_num)02d <span class="token comment" spellcheck="true"># 进程的名称与进程的 ID</span>
+command=/usr/local/bin/php /var/www/html/artisan queue<span class="token punctuation">:</span>work redis <span class="token punctuation">-</span><span class="token punctuation">-</span>quiet <span class="token punctuation">-</span><span class="token punctuation">-</span>delay=3 <span class="token punctuation">-</span><span class="token punctuation">-</span>sleep=3 <span class="token punctuation">-</span><span class="token punctuation">-</span>tries=3 <span class="token comment" spellcheck="true"># 启动执行的命令，记住这里是命令，使用绝对路径</span>
+autostart=true <span class="token comment" spellcheck="true"># 启动的时候也自动启动</span>
+autorestart=true <span class="token comment" spellcheck="true"># 程序异常退出后自动重启</span>
+user=root <span class="token comment" spellcheck="true"># 那个用户来启动</span>
+numprocs=8 <span class="token comment" spellcheck="true"># 进程的数量</span>
+redirect_stderr=true <span class="token comment" spellcheck="true"># 把 stderr 重定向到 stdout，默认 false</span>
+stdout_logfile=/etc/supervisor/redis.log <span class="token comment" spellcheck="true"># stdout 日志文件</span>
+stopwaitsecs=3600 <span class="token comment" spellcheck="true"># 一个强制kill的信号。默认为 10 秒</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 先读取配置文件</span>
+supervisord -c /etc/supervisor/supervisord.conf
 
-<span class="token function">touch</span> queue.conf
-
-<span class="token punctuation">[</span>program:queue<span class="token punctuation">]</span>
-process_name<span class="token operator">=</span>%<span class="token punctuation">(</span>program_name<span class="token punctuation">)</span>s_%<span class="token punctuation">(</span>process_num<span class="token punctuation">)</span>02d
-command<span class="token operator">=</span>/usr/local/bin/php /var/www/html/artisan queue:work redis --quiet --delay<span class="token operator">=</span>3 --sleep<span class="token operator">=</span>3 --tries<span class="token operator">=</span>3
-autostart<span class="token operator">=</span>true
-autorestart<span class="token operator">=</span>true
-user<span class="token operator">=</span>root
-numprocs<span class="token operator">=</span>8
-redirect_stderr<span class="token operator">=</span>true
-stdout_logfile<span class="token operator">=</span>/etc/supervisor/redis.log
-stopwaitsecs<span class="token operator">=</span>3600<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>需要注意几点：</p>
-<ul>
-<li>command  执行的全部必须绝对路径执行<ul>
-<li>不建议使用 queue:list 推荐使用 queue:work </li>
-<li>驱动 redis 或者其他自行定义</li>
-<li>sleep 当任务在队列中可用时，worker 将继续处理任务，中间没有任何延迟。然而， sleep 选项决定了如果没有新的 worker 可用，worker 将”sleep” 多长时间 (以秒为单位)。在休眠时，worker 将不处理任何新任务 —— 这些任务将在 worker 再次醒来后处理</li>
-<li>tries 指定任务可尝试的最大次数</li>
-</ul>
-</li>
-<li>user 需要更加当前用户而定</li>
-<li>numprocs 进程数量，我一直用的 8 个进程</li>
-<li>stdout_logfile 日志</li>
-</ul>
-<p>–quiet</p>
-<p>不输出任何内容，就不在需要 stdout_logfile</p>
-<p>–delay=3</p>
-<p>一个任务失败后，延迟多长时间后再重试，单位是秒。这个值的设定我个人建议不要太短，因为一个任务失败（比如网络原因），重试时间太短可能会出现连续失败的情况。</p>
-<p>–sleep=3</p>
-<p>去 Redis 中拿任务的时候，发现没有任务，休息多长时间，单位是秒。这个值的设定要看你的任务是否紧急，如果是那种非常紧急的任务，不能等待太长时间。</p>
-<p>–tries=3</p>
-<p>定义失败任务最多重试次数。这个值的设定根据任务的重要程度来确定，一般 3 次比较适合。</p>
-<h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre class="line-numbers language-bash"><code class="language-bash">supervisord -c /etc/supervisor/supervisord.conf
-
+<span class="token comment" spellcheck="true"># 启动三件套</span>
 supervisorctl reread
 supervisorctl update
-supervisorctl start all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+supervisorctl start all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h4><pre class="line-numbers language-bash"><code class="language-bash">supervisorctl stop all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="Laravel-Queue"><a href="#Laravel-Queue" class="headerlink" title="Laravel Queue"></a>Laravel Queue</h4><p>关于 Laravel 队列的一些命令与参数的说明，另外现在不推荐使用 listen 来监听，推荐使用 work 来间提供队列。</p>
+<p>命令：</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">queue:failed</td>
+<td align="center">列出所有失败队列，要先保存失败队列才能使用</td>
+</tr>
+<tr>
+<td align="center">queue:failed-table</td>
+<td align="center">执行队列错误记录的迁移文件</td>
+</tr>
+<tr>
+<td align="center">queue:flush</td>
+<td align="center">刷新所有失败的队列作业</td>
+</tr>
+<tr>
+<td align="center">queue:forget</td>
+<td align="center">删除失败的队列作业</td>
+</tr>
+<tr>
+<td align="center">queue:listen</td>
+<td align="center">监听队列（本地开发可使用，线上不推荐使用）</td>
+</tr>
+<tr>
+<td align="center">queue:restart</td>
+<td align="center">重新启动队列工作程序守护程序（每次修改队列代码后必执行）</td>
+</tr>
+<tr>
+<td align="center">queue:retry</td>
+<td align="center">重试失败的队列作业</td>
+</tr>
+<tr>
+<td align="center">queue:table</td>
+<td align="center">生成队列失败记录的数据库表创建迁移文件</td>
+</tr>
+<tr>
+<td align="center">queue:work</td>
+<td align="center">监听队列（推荐使用）</td>
+</tr>
+</tbody></table>
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">–quiet</td>
+<td align="center">不输出任何内容，就是执行成功与否都不会记录在 stdout_logfile 当中</td>
+</tr>
+<tr>
+<td align="center">–sleep</td>
+<td align="center">进程休眠的时间，单位秒，这个是最重要的下面会说明为啥重要</td>
+</tr>
+<tr>
+<td align="center">–queue</td>
+<td align="center">队列执行的优先级，越前面越优先执行</td>
+</tr>
+<tr>
+<td align="center">–tries</td>
+<td align="center">队列失败最大的重试数量</td>
+</tr>
+<tr>
+<td align="center">–timeout</td>
+<td align="center">任务执行最大执行的时间（超时时间），单位秒</td>
+</tr>
+</tbody></table>
 <blockquote>
-<p>注意，修改了队列那么一定要重启！！</p>
+<p>关于队列基本知道这些就够用了，但是 8.X 新增了不少特性，以后有机会在更新，现在还没使用到就先不提了。其他更多细节官方文档链接：<a href="https://learnku.com/docs/laravel/6.x/queues/5168#supervisor-configuration" target="_blank" rel="noopener">点我跳转</a>。</p>
 </blockquote>
-<h4 id="失败队列"><a href="#失败队列" class="headerlink" title="失败队列"></a>失败队列</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 查看失败队列</span>
-php artisan queue:failed
-
-+----+------------+--------+---------------------------+---------------------+
-<span class="token operator">|</span> ID <span class="token operator">|</span> Connection <span class="token operator">|</span> Queue  <span class="token operator">|</span> Class                     <span class="token operator">|</span> Failed At           <span class="token operator">|</span>
-+----+------------+--------+---------------------------+---------------------+
-<span class="token operator">|</span> 3  <span class="token operator">|</span> redis      <span class="token operator">|</span> dbInfo <span class="token operator">|</span> App\Jobs\SearchInfoRecord <span class="token operator">|</span> 2020-09-24 07:17:55 <span class="token operator">|</span>
-<span class="token operator">|</span> 2  <span class="token operator">|</span> redis      <span class="token operator">|</span> dbInfo <span class="token operator">|</span> App\Jobs\SearchInfoRecord <span class="token operator">|</span> 2020-09-24 07:15:43 <span class="token operator">|</span>
-<span class="token operator">|</span> 1  <span class="token operator">|</span> redis      <span class="token operator">|</span> dbInfo <span class="token operator">|</span> App\Jobs\SearchInfoRecord <span class="token operator">|</span> 2020-09-24 07:12:42 <span class="token operator">|</span>
-+----+------------+--------+---------------------------+---------------------+
-
-<span class="token comment" spellcheck="true"># 记录失败队列</span>
-php artisan queue:failed-table
-php artisan migrate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="进程管理-1"><a href="#进程管理-1" class="headerlink" title="进程管理"></a>进程管理</h3><p>上面说过了这玩意干啥滴，下面介绍一些细节上面的东西，上面 Laravel 队列当中有个特别让人注意的地方，sleep 为啥说这个特别让人注意呢。</p>
+<p>Supervisor 有一个必须的参数 startsecs 在启动后多少秒没有异常退出就表示正常的启动，默认为 1 秒。简单点来说，启动之后如果 1 秒都没到就退出执行了那么就表示异常，此时 Supervisor 就是报错，启动的 Supervisor 主进程就会挂逼。</p>
+<p>在使用到了进程想一个问题，PHP 代码执行不到 1 秒就完成了退出了那么此时就是错误，还有进程它们是并行去执行 PHP 脚本，如果处理的数据并发有要求，那么肯定不可能同一时间就放所有进程去跑 PHP 脚本。Laravel 的队列也是使用到了锁，当这个进程去跑特定的一个队列时，第二个进程也进来了，此时这个进程获取不到锁，那么就进不去核心业务逻辑的代码，就马上会退出，其速度估计毫秒或者微妙之间就完成了，但是 Supervisor 的 startsecs 默认是 1 秒，1 秒都没有它就认为异常了，那么主进程就挂逼了，所以有个 sleep 的机制。这也是为啥说 sleep 非常重要了。</p>
+<p>这也是我最近写多进程并发跑脚本发现的一个问题，踩了不少坑，如果有人也遇到这个问题了，可以看看 startsecs  这个参数的含义。多进程并发执行脚本，不依赖 PHP 的多进程扩展，依赖 Supervisor 来完成操作，点我跳转。</p>
 
             </div>
             <hr/>
@@ -960,7 +1107,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">96.8k</span>&nbsp;字
+                class="white-color">99.7k</span>&nbsp;字
             
             
             

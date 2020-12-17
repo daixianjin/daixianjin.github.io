@@ -1,0 +1,1195 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="PHP 多进程定时任务, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="description" content="一个后端小菜鸟的进击之路">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>PHP 多进程定时任务 | 道法自然</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/my.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">道法自然</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">道法自然</div>
+        <div class="logo-desc">
+            
+            一个后端小菜鸟的进击之路
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/cZgm4M.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">PHP 多进程定时任务</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/PHP/" class="post-category">
+                                PHP
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-12-17
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-12-17
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    6 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>PHP 实现多进程的方式很多，PHP 的扩展 pcntl 与 posix 双剑客。Workerman 也是的多进程也是基于这二个双剑客去实现滴，当然更为强大的 Swoole 就不需要它们了。最近项目有个需求，多进程定时去执行某一个任务，要求是精确到秒，定时任务写的还是比较多，首先想到的是 Crontab 虽然只能精确到分，但是利用 shell 脚本也可以实现秒级别的定时执行，但是想了下还需要多任务就算了吧，最终还是选定了 Supervisor 来实现多进程，关于 Laravel 如何实现定时任务，<a href="https://daixianjin.github.io/2019/10/24/Laravel-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">点我跳转</a>。</p>
+<h3 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h3><h3 id="Supervisor"><a href="#Supervisor" class="headerlink" title="Supervisor"></a>Supervisor</h3><p>关于 Supervisor 是什么也不过多介绍了，<a href="https://www.restran.net/2015/10/04/supervisord-tutorial/" target="_blank" rel="noopener">点我跳转</a>，有详细的说明，对于 Supervisor 不是很熟悉也看下这篇文章熟悉熟悉，也可以<a href="https://daixianjin.github.io/2020/06/02/Laravel-%E9%98%9F%E5%88%97/#toc-heading-5">点我跳转</a>，也有介绍 Supervisor 的使用与一些需要注意的地方。</p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token punctuation">[</span>program<span class="token punctuation">:</span>task<span class="token punctuation">]</span>
+process_name=%(program_name)s_%(process_num)02d
+command=/usr/bin/php /app/artisan batch<span class="token punctuation">:</span>store <span class="token punctuation">-</span><span class="token punctuation">-</span>id=%(process_num)02d <span class="token punctuation">-</span><span class="token punctuation">-</span>max=1
+autostart=true
+autorestart=true
+user=root
+numprocs=8 <span class="token comment" spellcheck="true"># 进程数量</span>
+redirect_stderr=true
+stdout_logfile=/etc/supervisor/store.log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>就这么简单，一个多进程的任务就算创建完成了，是不是非常简单。创建一个多进程的任务就是这么简单，但是如何管理好进程就是一件非常考人的问题了。我这里选择使用的 Redis 锁来管理进程。另外有个特别的注意点，那就是 Supervisor 的一个参数：startsecs 在启动后多少秒没有异常退出就表示正常的启动，默认为 1 秒。简单点来说，启动之后如果 1 秒都没到就退出执行了那么就表示异常，此时 Supervisor 就是报错，启动的 Supervisor 主进程就会挂逼。</p>
+<p>在使用到了进程想一个问题，PHP 代码执行不到 1 秒就完成了退出了那么此时就是错误，还有进程它们是并行去执行 PHP 脚本，如果处理的数据并发有要求，那么肯定不可能同一时间就放所有进程去跑 PHP 脚本。Laravel 的队列也是使用到了锁，当这个进程去跑特定的一个队列时，第二个进程也进来了，此时这个进程获取不到锁，那么就进不去核心业务逻辑的代码，就马上会退出，其速度估计毫秒或者微妙之间就完成了，但是 Supervisor 的 startsecs 默认是 1 秒，1 秒都没有它就认为异常了，那么主进程就挂逼了，所以有个 sleep 的机制。这也是为啥说 sleep 非常重要了。</p>
+<p>这也是我最近写多进程并发跑脚本发现的一个问题，踩了不少坑，如果有人也遇到这个问题了，可以看看 startsecs  这个参数的含义。多进程并发执行脚本，不依赖 PHP 的多进程扩展，依赖 Supervisor 来完成操作，点我跳转。</p>
+<h3 id="Redis-锁"><a href="#Redis-锁" class="headerlink" title="Redis 锁"></a>Redis 锁</h3><pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Services</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">Redis</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">LockService</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * Redis
+     * */</span>
+    <span class="token keyword">protected</span> <span class="token variable">$redis</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Token
+     * */</span>
+    <span class="token keyword">protected</span> <span class="token variable">$token</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * prefix
+     */</span>
+    <span class="token keyword">protected</span> <span class="token variable">$prefix</span> <span class="token operator">=</span> <span class="token string">'redis-lock-'</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * value
+     * */</span>
+    <span class="token keyword">protected</span> <span class="token keyword">const</span> <span class="token constant">VALUE</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 服务初始化,单机锁
+     * @param Redis|null $redis
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span>Redis <span class="token variable">$redis</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">redis</span> <span class="token operator">=</span> <span class="token variable">$redis</span> <span class="token operator">?</span><span class="token punctuation">:</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createRedis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 创建 Redis 实例
+     *
+     * @return Redis
+     */</span>
+    <span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function">createRedis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> Redis
+    <span class="token punctuation">{</span>
+        <span class="token variable">$redis</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Redis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token variable">$redis</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token string">'database.redis.default.host'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">config</span><span class="token punctuation">(</span><span class="token string">'database.redis.default.port'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$redis</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">auth</span><span class="token punctuation">(</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token string">'database.redis.default.password'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token variable">$redis</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 加锁
+     *
+     * @param string $key
+     * @param int $ttl
+     * @param int $retry
+     * @return bool
+     */</span>
+    <span class="token keyword">public</span>  <span class="token keyword">function</span> <span class="token function">lock</span><span class="token punctuation">(</span>string <span class="token variable">$key</span><span class="token punctuation">,</span>int <span class="token variable">$ttl</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>int <span class="token variable">$retry</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> bool
+    <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">redis</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">set</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">prefix</span> <span class="token punctuation">.</span> <span class="token variable">$key</span><span class="token punctuation">,</span>self<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">VALUE</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'NX'</span><span class="token punctuation">,</span> <span class="token string">'EX'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$ttl</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">elseif</span> <span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">redis</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">ttl</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">prefix</span> <span class="token punctuation">.</span> <span class="token variable">$key</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 以防出现死锁</span>
+                <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">redis</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">expire</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">prefix</span> <span class="token punctuation">.</span> <span class="token variable">$key</span><span class="token punctuation">,</span><span class="token variable">$ttl</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$retry</span><span class="token operator">--</span> <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token function">usleep</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 解锁
+     *
+     * @param string $key
+     *
+     * @return bool
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">unlock</span><span class="token punctuation">(</span>string <span class="token variable">$key</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> bool
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">redis</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">prefix</span> <span class="token punctuation">.</span> <span class="token variable">$key</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">redis</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">multi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">redis</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">del</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">prefix</span> <span class="token punctuation">.</span> <span class="token variable">$key</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">redis</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="开始任务"><a href="#开始任务" class="headerlink" title="开始任务"></a>开始任务</h3><p>任务模板自定义，因为使用了 Laravel 那么就使用 Laravel 的 command 来创建任务的模板。</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Console<span class="token punctuation">\</span>Commands</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Console<span class="token punctuation">\</span>Command</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Services<span class="token punctuation">\</span>MultiProgressService</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">BatchSearchTask</span> <span class="token keyword">extends</span> <span class="token class-name">Command</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */</span>
+    <span class="token keyword">protected</span> <span class="token variable">$signature</span> <span class="token operator">=</span> 'batch<span class="token punctuation">:</span>search
+        <span class="token punctuation">{</span><span class="token operator">--</span>id<span class="token operator">=</span>      <span class="token punctuation">:</span> 当前编号<span class="token punctuation">}</span>
+        <span class="token punctuation">{</span><span class="token operator">--</span>max<span class="token operator">=</span>     <span class="token punctuation">:</span> 最大线程<span class="token punctuation">}</span>
+        '<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * The console command description.
+     *
+     * @var string
+     */</span>
+    <span class="token keyword">protected</span> <span class="token variable">$description</span> <span class="token operator">=</span> <span class="token string">'batch mode data search'</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Create a new command instance.
+     *
+     * @return void
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">parent</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">__construct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Execute the console command.
+     *
+     * @return mixed
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">handle</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 初始化进程</span>
+        <span class="token variable">$service</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MultiProgressService</span><span class="token punctuation">(</span>
+            <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">option</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token number">00</span><span class="token punctuation">,</span>
+            <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">option</span><span class="token punctuation">(</span><span class="token string">'max'</span><span class="token punctuation">)</span> <span class="token operator">?</span><span class="token operator">?</span> <span class="token number">8</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 开始任务</span>
+        <span class="token variable">$service</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">start</span><span class="token punctuation">(</span><span class="token string">'search'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="处理任务"><a href="#处理任务" class="headerlink" title="处理任务"></a>处理任务</h3><pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Services</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">Carbon<span class="token punctuation">\</span>Carbon</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Webpatser<span class="token punctuation">\</span>Uuid<span class="token punctuation">\</span>Uuid</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Support<span class="token punctuation">\</span>Facades<span class="token punctuation">\</span>DB</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Support<span class="token punctuation">\</span>Facades<span class="token punctuation">\</span>Log</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Facades<span class="token punctuation">\</span>UserBatchSearchNumber</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Facades<span class="token punctuation">\</span>UserBatchSearchRecording</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Services<span class="token punctuation">\</span>V1<span class="token punctuation">\</span>Front<span class="token punctuation">\</span>SingleModeService</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MultiProgressService</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/**
+     * 任务编号
+     *
+     * @var int
+     */</span>
+    <span class="token keyword">protected</span> <span class="token variable">$id</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 最大进程
+     *
+     * @var int
+     */</span>
+    <span class="token keyword">protected</span> <span class="token variable">$max</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 单次服务
+     * */</span>
+    <span class="token keyword">protected</span> <span class="token variable">$single</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 锁服务
+     * */</span>
+    <span class="token keyword">protected</span> <span class="token variable">$lock</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 初始化服务
+     *
+     * @param int $id
+     * @param int $max
+     * */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span>int <span class="token variable">$id</span><span class="token punctuation">,</span>int <span class="token variable">$max</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">id</span> <span class="token operator">=</span> <span class="token variable">$id</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">max</span> <span class="token operator">=</span> <span class="token variable">$max</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">lock</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LockService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">single</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SingleModeService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * 开始任务
+     * @param string $drive
+     * @param int $ttl
+     * @return bool
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">start</span><span class="token punctuation">(</span>string <span class="token variable">$drive</span> <span class="token operator">=</span> <span class="token string">'store'</span><span class="token punctuation">,</span><span class="token variable">$ttl</span> <span class="token operator">=</span> <span class="token number">600</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> bool
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 超过规定的进程数不做任何处理就返回</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">id</span> <span class="token operator">>=</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">max</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token function">usleep</span><span class="token punctuation">(</span><span class="token number">1000</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// sleep 1 秒，因为 Supervisor 的 startsecs 默认就是一秒</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+          <span class="token comment" spellcheck="true">// 记录当前进程与驱动，作为 Key</span>
+        <span class="token variable">$name</span> <span class="token operator">=</span> <span class="token function">sprintf</span><span class="token punctuation">(</span><span class="token string">'task:%03d:%s'</span><span class="token punctuation">,</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">id</span><span class="token punctuation">,</span> <span class="token variable">$drive</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 加锁成功进入逻辑执行</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">lock</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">,</span><span class="token variable">$ttl</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                              <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">search</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">lock</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 执行完之后解锁</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token punctuation">\</span>Exception</span> <span class="token variable">$e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Log<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">channel</span><span class="token punctuation">(</span><span class="token string">'task'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token variable">$drive</span><span class="token punctuation">,</span><span class="token punctuation">[</span>
+                <span class="token string">'line'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$e</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'message'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$e</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'code'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$e</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'file'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$e</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'progress_id'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">id</span><span class="token punctuation">,</span>
+                <span class="token string">'max_progress_number'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">max</span><span class="token punctuation">,</span>
+                <span class="token string">'lock_name'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$name</span><span class="token punctuation">,</span>
+                <span class="token string">'is_unlock'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">lock</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// 悲观的情况下,因为 Supervisor 执行延时最低 1 秒需要验证进程是否还在运行，如果不是在运行那么会 Error，锁定 1 秒钟。</span>
+        <span class="token function">usleep</span><span class="token punctuation">(</span><span class="token number">1000</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>…未完待续</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">道法自然</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://daixianjin.github.io/2020/12/17/PHP-多进程任务/">https://daixianjin.github.io/2020/12/17/PHP-多进程任务/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">道法自然</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '1ba192f17fa97b79e2f8',
+        clientSecret: '141c79b0d56b6d05fbf84eabc1263790c39cbd9f',
+        repo: 'daixianjin.github.io',
+        owner: 'daixianjin',
+        admin: "daixianjin",
+        id: '2020-12-17T22-33-26',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/12/17/PHP-多进程任务/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/cZgm4M.png" class="responsive-img" alt="PHP 多进程定时任务">
+                        
+                        <span class="card-title">PHP 多进程定时任务</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘要PHP 实现多进程的方式很多，PHP 的扩展 pcntl 与 posix 双剑客。Workerman 也是的多进程也是基于这二个双剑客去实现滴，当然更为强大的 Swoole 就不需要它们了。最近项目有个需求，多进程定时去执行某一个任务，
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/PHP/" class="post-category">
+                                    PHP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/04/AWS-奇妙之旅/">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/sH4Ejm.jpg" class="responsive-img" alt="AWS 奇妙之旅">
+                        
+                        <span class="card-title">AWS 奇妙之旅</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            摘要AWS 不用过多的介绍，也是现目前世界云计算机行业老大，比阿里占有率还要高一些。当然我相信不久的将来，世界第一肯定还是咱国家的，这是必然的无需去质疑什么！
+架构公司项目比较大型，并且水平也比较高端。对于一些服务上，架构师给出了一套，La
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/网络/" class="post-category">
+                                    网络
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/网络/">
+                        <span class="chip bg-color">网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">道法自然</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">99.7k</span>&nbsp;字
+            
+            
+            
+            
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "08";
+                    var startDate = "1";
+                    var startHour = "14";
+                    var startMinute = "14";
+                    var startSecond = "37";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/daixianjin" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:boyi6868@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=562275977" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 562275977" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/materialize/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/aos/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
