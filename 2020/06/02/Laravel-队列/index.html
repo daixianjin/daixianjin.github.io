@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-17
+                    2020-12-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    2.8k
                 </div>
                 
 
@@ -650,11 +650,20 @@ stopwaitsecs=3600 <span class="token comment" spellcheck="true"># 一个强制ki
 <h4 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h4><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 先读取配置文件</span>
 supervisord -c /etc/supervisor/supervisord.conf
 
-<span class="token comment" spellcheck="true"># 启动三件套</span>
+<span class="token comment" spellcheck="true"># 读取有更新（增加）的配置文件，不会启动新添加的程序</span>
 supervisorctl reread
+
+<span class="token comment" spellcheck="true"># 重启配置文件修改过的程序</span>
 supervisorctl update
-supervisorctl start all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h4><pre class="line-numbers language-bash"><code class="language-bash">supervisorctl stop all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<span class="token comment" spellcheck="true"># 启动</span>
+supervisorctl start all
+
+<span class="token comment" spellcheck="true"># 查看状态</span>
+supervisorctl status
+
+<span class="token comment" spellcheck="true"># 停止</span>
+supervisorctl stop all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="Laravel-Queue"><a href="#Laravel-Queue" class="headerlink" title="Laravel Queue"></a>Laravel Queue</h4><p>关于 Laravel 队列的一些命令与参数的说明，另外现在不推荐使用 listen 来监听，推荐使用 work 来间提供队列。</p>
 <p>命令：</p>
 <table>
@@ -712,6 +721,10 @@ supervisorctl start all<span aria-hidden="true" class="line-numbers-rows"><span>
 <tbody><tr>
 <td align="center">–quiet</td>
 <td align="center">不输出任何内容，就是执行成功与否都不会记录在 stdout_logfile 当中</td>
+</tr>
+<tr>
+<td align="center">–delay=3</td>
+<td align="center">任务失败后延时多久重试，单位秒</td>
 </tr>
 <tr>
 <td align="center">–sleep</td>
