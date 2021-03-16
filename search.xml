@@ -29,19 +29,6 @@
     
     
     <entry>
-      <title>Laravel 权限管理扩展包</title>
-      <link href="/2021/01/26/Laravel-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95%E5%8C%85/"/>
-      <url>/2021/01/26/Laravel-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%89%A9%E5%B1%95%E5%8C%85/</url>
-      
-        <content type="html"><![CDATA[<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>该程序包发布 <code>config/permission.php</code>文件。如果您已经拥有该名称的文件，则必须重命名或删除它。</p><pre class="line-numbers language-bash"><code class="language-bash">composer require spatie/laravel-permission<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>生成迁移文件和配置文件，生成了迁移文件之后别忘记执行迁移文件，也可以根据项目需求自定义字段。</p><pre class="line-numbers language-bash"><code class="language-bash">php artisan vendor:publish --provider<span class="token operator">=</span><span class="token string">"Spatie\Permission\PermissionServiceProvider"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>如果使用了 UUID 作为用户的主键，那么相对应的就得更改迁移文件里面的字段：<a href="https://spatie.be/docs/laravel-permission/v3/advanced-usage/uuid" target="_blank" rel="noopener">点我看 UUID 详情</a></p><h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><p>首先，将<code>Spatie\Permission\Traits\HasRoles</code>特征添加到 <code>User</code>模型中：</p><pre class="line-numbers language-php"><code class="language-php"><span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Foundation<span class="token punctuation">\</span>Auth<span class="token punctuation">\</span>User</span> <span class="token keyword">as</span> Authenticatable<span class="token punctuation">;</span><span class="token keyword">use</span> <span class="token package">Spatie<span class="token punctuation">\</span>Permission<span class="token punctuation">\</span>Traits<span class="token punctuation">\</span>HasRoles</span><span class="token punctuation">;</span><span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token keyword">extends</span> <span class="token class-name">Authenticatable</span><span class="token punctuation">{</span>    <span class="token keyword">use</span> <span class="token package">HasRoles</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// ...</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>PHP 循环引用的坑</title>
       <link href="/2021/01/14/PHP-%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E7%9A%84%E5%9D%91/"/>
       <url>/2021/01/14/PHP-%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E7%9A%84%E5%9D%91/</url>
