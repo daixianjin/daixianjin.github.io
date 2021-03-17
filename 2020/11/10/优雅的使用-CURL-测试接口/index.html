@@ -224,7 +224,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/bU3W22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/TFkBN2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -378,7 +378,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-10
+                    2021-03-17
                 </div>
                 
 
@@ -478,8 +478,8 @@
 <li>如果就是总耗时很长，那么就得需要优化接口了，当然真的很长，那么就得考虑异步或者采用别的方式去处理这个接口了，原则上是不能任由这个 CURL 阻塞我们的 FPM ，这是非常不好的一种情况。当然设置超时时间与连接超时时间是非常有必要的操作！</li>
 </ul>
 <h3 id="Linux-CURL-获取详细"><a href="#Linux-CURL-获取详细" class="headerlink" title="Linux CURL 获取详细"></a>Linux CURL 获取详细</h3><p>除了我们自身写 PHP 代码去获取这些信息，我们可以直接使用 Linux 提供的 CURL 去获取详细，当然我不推荐去记 CURL 的各种参数传参，这样其实没太大的必要，我们只需要简单去使用即可，推荐使用第三方工具来获取 CURL 的代码，这里我使用的 PostMan ，当然这样是这样类似的工具，基本都携带这样功能。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/Czgtd1.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/NwTOvB.png" alt></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/IxVCLx.jpg" alt></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/vBab9o.jpg" alt></p>
 <pre class="line-numbers language-bash"><code class="language-bash">curl --location --request POST <span class="token string">'http://xxxxxxxx \
 --header '</span>Content-Type: application/json<span class="token string">' \
 --data-raw '</span><span class="token punctuation">{</span><span class="token string">"title"</span>:<span class="token punctuation">{</span><span class="token string">"text"</span>:<span class="token punctuation">{</span><span class="token string">"text_string"</span><span class="token keyword">:</span><span class="token string">"Example: Nike"</span><span class="token punctuation">}</span>,<span class="token string">"primary_class"</span><span class="token keyword">:</span><span class="token string">"000"</span>,<span class="token string">"goods_class"</span>:<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"class"</span><span class="token keyword">:</span><span class="token string">"028"</span>,<span class="token string">"name"</span><span class="token keyword">:</span><span class="token string">"Shoes"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span>,<span class="token string">"descriptions"</span>:<span class="token punctuation">[</span><span class="token punctuation">]</span>,<span class="token string">"images"</span>:<span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"image"</span>:<span class="token punctuation">{</span><span class="token string">"url"</span><span class="token keyword">:</span><span class="token string">"https://d184lx3qhrkc3e.cloudfront.net/spmvp/1604902363930.jpg"</span>,<span class="token string">"size"</span>:<span class="token punctuation">{</span><span class="token string">"width"</span>:130,<span class="token string">"height"</span>:110<span class="token punctuation">}</span>,<span class="token string">"aois"</span>:<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span>'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -493,7 +493,7 @@
 <p>测试百度用例：</p>
 <pre class="line-numbers language-bash"><code class="language-bash">curl --location --request GET <span class="token string">'www.baidu.com'</span> \
 -w <span class="token string">'\n 解析时间： %{time_namelookup}\n 连接时间： %{time_connect}\n 第一字节响应时间： %{time_starttransfer}\n 所有字节响应时间：%{time_total}\n'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/Xmlf2M.png" alt></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/FZmSSm.jpg" alt></p>
 <blockquote>
 <p>总结：在遇到 CURL 非常耗时时，应当正确的选择处理方式（异步，修改接口逻辑，采用别的架构方式去实现），CURL 阻塞了，那么 FPM 的一个 work 也相当于阻塞了，这是对项目非常不好的一个地方，这也是我觉得应该注意的一个项目优化地方。</p>
 </blockquote>
@@ -631,31 +631,33 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/12/Golang-字符串函数详解/">
+                <a href="/2020/11/27/PHP-8/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/jnuwag.jpg" class="responsive-img" alt="Golang-字符串函数详解">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/097GVP.jpg" class="responsive-img" alt="PHP 8">
                         
-                        <span class="card-title">Golang-字符串函数详解</span>
+                        <span class="card-title">PHP 8</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            基本了解跟 PHP 一样，Go 也为我们准备了很多系统函数，把我们常使用的功能都已经给我封装好了，非常的利于我们开发。下面介绍的都是属于开发中常用的字符串函数。
-len - 字符串长度统计字符串长度和数组长度，按字节，注意 Go 的编码统一
+                            摘要2020 年 11 月 26 日，PHP 8 版本正式发布了，比计划发布的时间提前了一周，给开发组人员点赞！PHP 8 让 PHP 更加伟大！生命不息，研发不止，生命不息，学习不止！
+
+新特性…未完待续
+
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-12
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-27
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Golang-学习笔记/" class="post-category">
-                                    Golang-学习笔记
+                            <a href="/categories/PHP/" class="post-category">
+                                    PHP
                                 </a>
                             
                             
@@ -665,8 +667,8 @@ len - 字符串长度统计字符串长度和数组长度，按字节，注意 G
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Golang/">
-                        <span class="chip bg-color">Golang</span>
+                    <a href="/tags/PHP/">
+                        <span class="chip bg-color">PHP</span>
                     </a>
                     
                 </div>
@@ -683,7 +685,7 @@ len - 字符串长度统计字符串长度和数组长度，按字节，注意 G
                 <a href="/2020/11/10/缓存跨域验证/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/R0dEf0.jpg" class="responsive-img" alt="缓存跨域验证">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/yOLW48.jpg" class="responsive-img" alt="缓存跨域验证">
                         
                         <span class="card-title">缓存跨域验证</span>
                     </div>
@@ -869,7 +871,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103k</span>&nbsp;字
+                class="white-color">91.5k</span>&nbsp;字
             
             
             

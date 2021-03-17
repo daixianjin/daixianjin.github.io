@@ -224,7 +224,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/w6PXF5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/haApNO.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -378,7 +378,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-11
+                    2021-03-17
                 </div>
                 
 
@@ -407,44 +407,45 @@
 <p>反正我个人观点 - 不懂：百度 + 谷歌 + 动手 + 问人 = 答案！</p>
 </blockquote>
 <h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p>我感觉这是非常重要的一个环节，一定要先了解目录结构才能更好的去使用，</p>
-<pre><code>├── build                      # 构建相关
-├── mock                       # 项目mock 模拟数据
-├── plop-templates             # 基本模板
-├── public                     # 静态资源
-│   │── favicon.ico            # favicon图标
-│   └── index.html             # html模板
-├── src                        # 源代码
-│   ├── api                    # 所有请求
-│   ├── assets                 # 主题 字体等静态资源
-│   ├── components             # 全局公用组件
-│   ├── directive              # 全局指令
-│   ├── filters                # 全局 filter
-│   ├── icons                  # 项目所有 svg icons
-│   ├── lang                   # 国际化 language
-│   ├── layout                 # 全局 layout
-│   ├── router                 # 路由
-│   ├── store                  # 全局 store管理
-│   ├── styles                 # 全局样式
-│   ├── utils                  # 全局公用方法
-│   ├── vendor                 # 公用vendor
-│   ├── views                  # views 所有页面
-│   ├── App.vue                # 入口页面
-│   ├── main.js                # 入口文件 加载组件 初始化等
-│   └── permission.js          # 权限管理
-├── tests                      # 测试
-├── .env.xxx                   # 环境变量配置
-├── .eslintrc.js               # eslint 配置项
-├── .babelrc                   # babel-loader 配置
-├── .travis.yml                # 自动化CI配置
-├── vue.config.js              # vue-cli 配置
-├── postcss.config.js          # postcss 配置
-└── package.json               # package.json</code></pre><h5 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h5><ul>
+<pre class="line-numbers language-yaml"><code class="language-yaml">├── build                      <span class="token comment" spellcheck="true"># 构建相关</span>
+├── mock                       <span class="token comment" spellcheck="true"># 项目mock 模拟数据</span>
+├── plop<span class="token punctuation">-</span>templates             <span class="token comment" spellcheck="true"># 基本模板</span>
+├── public                     <span class="token comment" spellcheck="true"># 静态资源</span>
+│   │── favicon.ico            <span class="token comment" spellcheck="true"># favicon图标</span>
+│   └── index.html             <span class="token comment" spellcheck="true"># html模板</span>
+├── src                        <span class="token comment" spellcheck="true"># 源代码</span>
+│   ├── api                    <span class="token comment" spellcheck="true"># 所有请求</span>
+│   ├── assets                 <span class="token comment" spellcheck="true"># 主题 字体等静态资源</span>
+│   ├── components             <span class="token comment" spellcheck="true"># 全局公用组件</span>
+│   ├── directive              <span class="token comment" spellcheck="true"># 全局指令</span>
+│   ├── filters                <span class="token comment" spellcheck="true"># 全局 filter</span>
+│   ├── icons                  <span class="token comment" spellcheck="true"># 项目所有 svg icons</span>
+│   ├── lang                   <span class="token comment" spellcheck="true"># 国际化 language</span>
+│   ├── layout                 <span class="token comment" spellcheck="true"># 全局 layout</span>
+│   ├── router                 <span class="token comment" spellcheck="true"># 路由</span>
+│   ├── store                  <span class="token comment" spellcheck="true"># 全局 store管理</span>
+│   ├── styles                 <span class="token comment" spellcheck="true"># 全局样式</span>
+│   ├── utils                  <span class="token comment" spellcheck="true"># 全局公用方法</span>
+│   ├── vendor                 <span class="token comment" spellcheck="true"># 公用vendor</span>
+│   ├── views                  <span class="token comment" spellcheck="true"># views 所有页面</span>
+│   ├── App.vue                <span class="token comment" spellcheck="true"># 入口页面</span>
+│   ├── main.js                <span class="token comment" spellcheck="true"># 入口文件 加载组件 初始化等</span>
+│   └── permission.js          <span class="token comment" spellcheck="true"># 权限管理</span>
+├── tests                      <span class="token comment" spellcheck="true"># 测试</span>
+├── .env.xxx                   <span class="token comment" spellcheck="true"># 环境变量配置</span>
+├── .eslintrc.js               <span class="token comment" spellcheck="true"># eslint 配置项</span>
+├── .babelrc                   <span class="token comment" spellcheck="true"># babel-loader 配置</span>
+├── .travis.yml                <span class="token comment" spellcheck="true"># 自动化CI配置</span>
+├── vue.config.js              <span class="token comment" spellcheck="true"># vue-cli 配置</span>
+├── postcss.config.js          <span class="token comment" spellcheck="true"># postcss 配置</span>
+└── package.json               <span class="token comment" spellcheck="true"># package.json</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h5><ul>
 <li>集成版本： <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a></li>
 <li>基础版本：<a href="https://github.com/PanJiaChen/vue-admin-template" target="_blank" rel="noopener">vue-admin-template</a></li>
 </ul>
 <p>当然不止这二个版本，还有别的版本，现目前使用的就是集成版本，集成和基础感觉都大同小异。</p>
 <h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><p><code>src/router</code>就是存放路由的地方，在入口文件 main.js 会加载路由。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/8siL2i.png" alt></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/OOOc9N.jpg" alt></p>
 <p>可以看见，router 下面有 modules 和 index.js ，index.js 应该是路由的入口，modules 应该属于分组路由。</p>
 <p>大概的了解下，index.js 路由的加载，路由这块看不懂就非常恼火。</p>
 <pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 没有权限要求的基本页面，可以访问所有角色，相当于公共的路由</span>
@@ -460,33 +461,34 @@
   <span class="token punctuation">{</span> path<span class="token punctuation">:</span> <span class="token string">'*'</span><span class="token punctuation">,</span> redirect<span class="token punctuation">:</span> <span class="token string">'/404'</span><span class="token punctuation">,</span> hidden<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span>
 <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>路由配置项：</p>
-<pre><code>// 当设置 true 的时候该路由不会在侧边栏出现 如401，login等页面，或者如一些编辑页面/edit/1
-hidden: true // (默认 false)
+<pre class="line-numbers language-yaml"><code class="language-yaml">// 当设置 true 的时候该路由不会在侧边栏出现 如401，login等页面，或者如一些编辑页面/edit/1
+<span class="token key atrule">hidden</span><span class="token punctuation">:</span> true // (默认 false)
 
 //当设置 noRedirect 的时候该路由在面包屑导航中不可被点击
-redirect: &#39;noRedirect&#39;
+<span class="token key atrule">redirect</span><span class="token punctuation">:</span> <span class="token string">'noRedirect'</span>
 
-// 当你一个路由下面的 children 声明的路由大于1个时，自动会变成嵌套的模式--如组件页面
-// 只有一个时，会将那个子路由当做根路由显示在侧边栏--如引导页面
+// 当你一个路由下面的 children 声明的路由大于1个时，自动会变成嵌套的模式<span class="token punctuation">-</span><span class="token punctuation">-</span>如组件页面
+// 只有一个时，会将那个子路由当做根路由显示在侧边栏<span class="token punctuation">-</span><span class="token punctuation">-</span>如引导页面
 // 若你想不管路由下面的 children 声明的个数都显示你的根路由
-// 你可以设置 alwaysShow: true，这样它就会忽略之前定义的规则，一直显示根路由
-alwaysShow: true
+// 你可以设置 alwaysShow<span class="token punctuation">:</span> true，这样它就会忽略之前定义的规则，一直显示根路由
+<span class="token key atrule">alwaysShow</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
 
-name: &#39;router-name&#39; // 设定路由的名字，一定要填写不然使用&lt;keep-alive&gt;时会出现各种问题
+<span class="token key atrule">name</span><span class="token punctuation">:</span> 'router<span class="token punctuation">-</span>name' // 设定路由的名字，一定要填写不然使用&lt;keep<span class="token punctuation">-</span>alive<span class="token punctuation">></span>时会出现各种问题
 
-meta: {
-  roles: [&#39;admin&#39;, &#39;editor&#39;] // 设置该路由进入的权限，支持多个权限叠加
-  title: &#39;title&#39; // 设置该路由在侧边栏和面包屑中展示的名字
-  icon: &#39;svg-name&#39; // 设置该路由的图标，支持 svg-class，也支持 el-icon-x element-ui 的 icon
-  noCache: true // 如果设置为true，则不会被 &lt;keep-alive&gt; 缓存(默认 false)
-  breadcrumb: false //  如果设置为false，则不会在breadcrumb面包屑中显示(默认 true)
-  affix: true // 若果设置为true，它则会固定在tags-view中(默认 false)
+<span class="token key atrule">meta</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token key atrule">roles</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'admin'</span><span class="token punctuation">,</span> <span class="token string">'editor'</span><span class="token punctuation">]</span> // 设置该路由进入的权限，支持多个权限叠加
+  <span class="token key atrule">title</span><span class="token punctuation">:</span> 'title' // 设置该路由在侧边栏和面包屑中展示的名字
+  <span class="token key atrule">icon</span><span class="token punctuation">:</span> 'svg<span class="token punctuation">-</span>name' // 设置该路由的图标，支持 svg<span class="token punctuation">-</span>class，也支持 el<span class="token punctuation">-</span>icon<span class="token punctuation">-</span>x element<span class="token punctuation">-</span>ui 的 icon
+  <span class="token key atrule">noCache</span><span class="token punctuation">:</span> true // 如果设置为true，则不会被 &lt;keep<span class="token punctuation">-</span>alive<span class="token punctuation">></span> 缓存(默认 false)
+  <span class="token key atrule">breadcrumb</span><span class="token punctuation">:</span> false //  如果设置为false，则不会在breadcrumb面包屑中显示(默认 true)
+  <span class="token key atrule">affix</span><span class="token punctuation">:</span> true // 若果设置为true，它则会固定在tags<span class="token punctuation">-</span>view中(默认 false)
 
   // 当路由设置了该属性，则会高亮相对应的侧边栏。
   // 这在某些场景非常有用，比如：一个文章的列表页路由为：/article/list
   // 点击文章进入文章详情页，这时候路由为/article/1，但你想在侧边栏高亮文章列表的路由，就可以进行如下设置
-  activeMenu: &#39;/article/list&#39;
-}</code></pre><p>示例：</p>
+  <span class="token key atrule">activeMenu</span><span class="token punctuation">:</span> <span class="token string">'/article/list'</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>示例：</p>
 <pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
   path<span class="token operator">:</span> '/permission'<span class="token punctuation">,</span>
   component<span class="token operator">:</span> Layout<span class="token punctuation">,</span>
@@ -754,7 +756,7 @@ service<span class="token punctuation">.</span>interceptors<span class="token pu
 <p>简单的介绍了下 generateRoutes 当中，<code>src/store/modules/permission.js</code> 还存在另外二个方法，用来验证权限和 filter 过滤匹配，不过目前我用不到也不去搞了。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>真心不容易，非常不容易，查查资料自己搞搞总算是大概明白了。说真话，在我开始记录这篇文章时，我是压根不懂！到现在基本明白了，正是应征我的个人观点：不懂：百度 + 谷歌 + 动手 + 问人 = 答案！我靠，我第一次写到能首尾呼应，很强！哈哈哈哈哈啊哈哈！！！</p>
 <p>这个图感觉很好：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/20200528091630375.png" alt></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/ShnhnN.png" alt></p>
 <blockquote>
 <p>参考文章：</p>
 <p><a href="https://blog.csdn.net/hanguofei/article/details/106396581" target="_blank" rel="noopener">vue-element-admin登录流程梳理</a></p>
@@ -893,31 +895,30 @@ service<span class="token punctuation">.</span>interceptors<span class="token pu
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/09/16/Golang学习笔记-你好Golang/">
+                <a href="/2020/09/21/MySQL-分析-SQL-性能/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/qUbbdd.jpg" class="responsive-img" alt="Golang-环境搭建">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/OnfJER.jpg" class="responsive-img" alt="MySQL-分析 SQL 性能">
                         
-                        <span class="card-title">Golang-环境搭建</span>
+                        <span class="card-title">MySQL-分析 SQL 性能</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要Go 是一门全新的语言。尽管它从现有的语言中借鉴了许多理念，但其与众不同的特性， 使得使用 Go 编程在本质上就不同于其它语言。做为 PHP 开发人员，第二门语言选 Go 的同撩还是比较多，从此可以论证 Go 还是非常值得学习！
-语言特
+                            摘要分析 SQL 语句性能是每个项目都必定经历的一个阶段，分析 SQL 可以依靠 MySQL 自身提供的功能帮助我们分析 SQL 当然也有第三方工具，看个人习惯于熟悉程度而定。慢查询日志和 profiles 都是 MySQL 自身提供的 S
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-21
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Golang-学习笔记/" class="post-category">
-                                    Golang-学习笔记
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
                                 </a>
                             
                             
@@ -927,8 +928,8 @@ service<span class="token punctuation">.</span>interceptors<span class="token pu
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Golang/">
-                        <span class="chip bg-color">Golang</span>
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
@@ -1129,7 +1130,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103k</span>&nbsp;字
+                class="white-color">91.5k</span>&nbsp;字
             
             
             

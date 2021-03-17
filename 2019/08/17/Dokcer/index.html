@@ -224,7 +224,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1_wMPze4ZzIgJNmlmG9Ta2Eg.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/IFp8hb.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -378,7 +378,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-10
+                    2021-03-17
                 </div>
                 
 
@@ -425,7 +425,7 @@
 <p>虚拟机虽然可以隔离出很多“子电脑”，但占用空间更大，启动更慢，虚拟机软件可能还要花钱（例如 VMWare ）。</p>
 <p>而容器技术恰好没有这些缺点。它不需要虚拟出整个操作系统，只需要虚拟一个小规模的环境（类似“沙箱”）。</p>
 <p>它启动时间很快，几秒钟就能完成。而且，它对资源的利用率很高（一台主机可以同时运行几千个 Docker 容器）。此外，它占的空间很小，虚拟机一般要几 GB 到几十 GB 的空间，而容器只需要 MB 级甚至 KB 级。</p>
-<p><img src="https://i.loli.net/2020/01/15/cz6OW7Kum9NXCZH.png" alt="2020-01-15_12-03.png"></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/G4vPLj.jpg" alt></p>
 <p>正因为如此，容器技术受到了热烈的欢迎和追捧，发展迅速。</p>
 <p>Docker 技术的三大核心概念，分别是：</p>
 <ul>
@@ -505,57 +505,60 @@
 <td align="center">映射文件，宿主机容器文件同步</td>
 </tr>
 </tbody></table>
-<h3 id="安装-Docker-ce"><a href="#安装-Docker-ce" class="headerlink" title="安装 Docker-ce"></a>安装 Docker-ce</h3><h4 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h4><pre><code>1、若安装过先删除，若无忽略
-sudo apt-get remove docker docker-engine docker.io
+<h3 id="安装-Docker-ce"><a href="#安装-Docker-ce" class="headerlink" title="安装 Docker-ce"></a>安装 Docker-ce</h3><h4 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h4><pre class="line-numbers language-yaml"><code class="language-yaml">1、若安装过先删除，若无忽略
+sudo apt<span class="token punctuation">-</span>get remove docker docker<span class="token punctuation">-</span>engine docker.io
 
 2、安装扩展
-sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
+sudo apt<span class="token punctuation">-</span>get install apt<span class="token punctuation">-</span>transport<span class="token punctuation">-</span>https ca<span class="token punctuation">-</span>certificates curl gnupg2 software<span class="token punctuation">-</span>properties<span class="token punctuation">-</span>common
 
 3、信任 GPG
-curl -fsSL https://mirrors.huaweicloud.com/docker-ce/linux/debian/gpg | sudo apt-key add -
+curl <span class="token punctuation">-</span>fsSL https<span class="token punctuation">:</span>//mirrors.huaweicloud.com/docker<span class="token punctuation">-</span>ce/linux/debian/gpg <span class="token punctuation">|</span> sudo apt<span class="token punctuation">-</span>key add <span class="token punctuation">-</span>
 
 4、添加仓库
-sudo add-apt-repository &quot;deb [arch=amd64] https://mirrors.huaweicloud.com/docker-ce/linux/debian $(lsb_release -cs) stable&quot;
+sudo add<span class="token punctuation">-</span>apt<span class="token punctuation">-</span>repository "deb <span class="token punctuation">[</span>arch=amd64<span class="token punctuation">]</span> https<span class="token punctuation">:</span>//mirrors.huaweicloud.com/docker<span class="token punctuation">-</span>ce/linux/debian $(lsb_release <span class="token punctuation">-</span>cs) stable"
 
 5、安装
-apt install docker-ce
+apt install docker<span class="token punctuation">-</span>ce
 
 6、以上还没安装好，那肯定要这样了
-wget https://mirrors.huaweicloud.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+wget https<span class="token punctuation">:</span>//mirrors.huaweicloud.com/docker<span class="token punctuation">-</span>ce/linux/centos/7/x86_64/edge/Packages/containerd.io<span class="token punctuation">-</span>1.2.6<span class="token punctuation">-</span>3.3.el7.x86_64.rpm
 
-apt install containerd.io-1.2.6-3.3.el7.x86_64.rpm
-apt install docker-ce</code></pre><h4 id="centos"><a href="#centos" class="headerlink" title="centos"></a>centos</h4><pre><code>1、若安装过先删除，若无忽略
-sudo yum remove docker docker-common docker-selinux docker-engine
+apt install containerd.io<span class="token punctuation">-</span>1.2.6<span class="token punctuation">-</span>3.3.el7.x86_64.rpm
+apt install docker<span class="token punctuation">-</span>ce<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="centos"><a href="#centos" class="headerlink" title="centos"></a>centos</h4><pre class="line-numbers language-yaml"><code class="language-yaml">1、若安装过先删除，若无忽略
+sudo yum remove docker docker<span class="token punctuation">-</span>common docker<span class="token punctuation">-</span>selinux docker<span class="token punctuation">-</span>engine
 
 2、安装扩展
-sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+sudo yum install <span class="token punctuation">-</span>y yum<span class="token punctuation">-</span>utils device<span class="token punctuation">-</span>mapper<span class="token punctuation">-</span>persistent<span class="token punctuation">-</span>data lvm2
 
 3、下载 repo 文件
-wget -O /etc/yum.repos.d/docker-ce.repo https://mirrors.huaweicloud.com/docker-ce/linux/centos/docker-ce.repo
+wget <span class="token punctuation">-</span>O /etc/yum.repos.d/docker<span class="token punctuation">-</span>ce.repo https<span class="token punctuation">:</span>//mirrors.huaweicloud.com/docker<span class="token punctuation">-</span>ce/linux/centos/docker<span class="token punctuation">-</span>ce.repo
 
 4、软件仓库地址替换为：
-sudo sed -i &#39;s+download.docker.com+mirrors.huaweicloud.com/docker-ce+&#39; /etc/yum.repos.d/docker-ce.repo
+sudo sed <span class="token punctuation">-</span>i 's+download.docker.com+mirrors.huaweicloud.com/docker<span class="token punctuation">-</span>ce+' /etc/yum.repos.d/docker<span class="token punctuation">-</span>ce.repo
 
 5、更新索引文件并安装
 sudo yum makecache fast
-sudo yum install docker-ce
+sudo yum install docker<span class="token punctuation">-</span>ce
 
 6、以上还没安装好，那肯定要这样了
-wget https://mirrors.huaweicloud.com/docker-ce/linux/centos/7/x86_64/edge/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+wget https<span class="token punctuation">:</span>//mirrors.huaweicloud.com/docker<span class="token punctuation">-</span>ce/linux/centos/7/x86_64/edge/Packages/containerd.io<span class="token punctuation">-</span>1.2.6<span class="token punctuation">-</span>3.3.el7.x86_64.rpm
 
-yum install containerd.io-1.2.6-3.3.el7.x86_64.rpm
-yum install docker-ce</code></pre><h4 id="dockerhub-国内源"><a href="#dockerhub-国内源" class="headerlink" title="dockerhub 国内源"></a>dockerhub 国内源</h4><pre><code>1、编辑配置文件
+yum install containerd.io<span class="token punctuation">-</span>1.2.6<span class="token punctuation">-</span>3.3.el7.x86_64.rpm
+yum install docker<span class="token punctuation">-</span>ce<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="dockerhub-国内源"><a href="#dockerhub-国内源" class="headerlink" title="dockerhub 国内源"></a>dockerhub 国内源</h4><pre class="line-numbers language-yaml"><code class="language-yaml">1、编辑配置文件
 vim /etc/docker/daemon.json
 
 2、添加中科大源
-{
-  &quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn/&quot;]
-}
+<span class="token punctuation">{</span>
+  <span class="token key atrule">"registry-mirrors"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"https://docker.mirrors.ustc.edu.cn/"</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
 
-# 如果 etc/docker 下不存在 daemon.json，新建一个即可
+<span class="token comment" spellcheck="true"># 如果 etc/docker 下不存在 daemon.json，新建一个即可</span>
 
 3、重启 docker
-systemctl restart docker</code></pre><h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><p>最开始使用容器，容器之间的互联都是使用 <code>--link</code>现在不在推荐使用。随着 Docker 网络的完善，强烈建议大家将容器加入自定义的 Docker 网络来连接多个容器，而不是使用 <code>--link</code> 参数。</p>
+systemctl restart docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><p>最开始使用容器，容器之间的互联都是使用 <code>--link</code>现在不在推荐使用。随着 Docker 网络的完善，强烈建议大家将容器加入自定义的 Docker 网络来连接多个容器，而不是使用 <code>--link</code> 参数。</p>
 <p>查看网络：</p>
 <pre class="line-numbers language-bash"><code class="language-bash">docker network <span class="token function">ls</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
@@ -565,7 +568,9 @@ systemctl restart docker</code></pre><h3 id="容器互联"><a href="#容器互�
 </ul>
 <p>创建新网络：</p>
 <pre class="line-numbers language-bash"><code class="language-bash">docker network create -d bridge name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="MySQL-安装"><a href="#MySQL-安装" class="headerlink" title="MySQL 安装"></a>MySQL 安装</h3><h4 id="1、从-Dockerhub-拉取-MySQL-镜像"><a href="#1、从-Dockerhub-拉取-MySQL-镜像" class="headerlink" title="1、从 Dockerhub 拉取 MySQL 镜像"></a>1、从 Dockerhub 拉取 MySQL 镜像</h4><pre><code>docker pull mysql</code></pre><h4 id="2、创建容器"><a href="#2、创建容器" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code>docker run -p 3306:3306 --name mysql --network name -v /xxx:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=root -d --privileged=true mysql</code></pre><table>
+<h3 id="MySQL-安装"><a href="#MySQL-安装" class="headerlink" title="MySQL 安装"></a>MySQL 安装</h3><h4 id="1、从-Dockerhub-拉取-MySQL-镜像"><a href="#1、从-Dockerhub-拉取-MySQL-镜像" class="headerlink" title="1、从 Dockerhub 拉取 MySQL 镜像"></a>1、从 Dockerhub 拉取 MySQL 镜像</h4><pre class="line-numbers language-bash"><code class="language-bash">docker pull mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="2、创建容器"><a href="#2、创建容器" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre class="line-numbers language-bash"><code class="language-bash">docker run -p 3306:3306 --name mysql --network name -v /xxx:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD<span class="token operator">=</span>root -d --privileged<span class="token operator">=</span>true mysql<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -601,28 +606,31 @@ systemctl restart docker</code></pre><h3 id="容器互联"><a href="#容器互�
 <td align="center">可能会碰到权限问题，需要加参数</td>
 </tr>
 </tbody></table>
-<h4 id="3、基本配置"><a href="#3、基本配置" class="headerlink" title="3、基本配置"></a>3、基本配置</h4><pre><code># 进入容器
-docker exec -it mysql bash 
+<h4 id="3、基本配置"><a href="#3、基本配置" class="headerlink" title="3、基本配置"></a>3、基本配置</h4><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 进入容器</span>
+docker exec <span class="token punctuation">-</span>it mysql bash 
 
-# 更换软件源，中科大源
-sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+<span class="token comment" spellcheck="true"># 更换软件源，中科大源</span>
+sed <span class="token punctuation">-</span>i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 apt update
 
-# 修改密码认证 mysql 8 加密方式改变了
-mysql&gt;ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;
-mysql&gt;flush privileges;
+<span class="token comment" spellcheck="true"># 修改密码认证 mysql 8 加密方式改变了</span>
+mysql<span class="token punctuation">></span>ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
+mysql<span class="token punctuation">></span>flush privileges;
 
-# 如果需要创建一个帐号，并且赋予权限，不需要忽略
-mysql&gt;create user &#39;用户名&#39;@&#39;访问主机&#39; identified by &#39;密码&#39;;
-mysql&gt;grant 权限 on *.* to &#39;帐号&#39;@&#39;%&#39; WITH GRANT OPTION;
+<span class="token comment" spellcheck="true"># 如果需要创建一个帐号，并且赋予权限，不需要忽略</span>
+mysql<span class="token punctuation">></span>create user '用户名'@'访问主机' identified by '密码';
+mysql<span class="token punctuation">></span>grant 权限 on *.* to '帐号'@'%' WITH GRANT OPTION;
 
-# 修改 /etc/mysql/conf.d 下面的 mysql.cnf 添加以下配置，没有就创建 mysql.cnf
-[mysqld]
+<span class="token comment" spellcheck="true"># 修改 /etc/mysql/conf.d 下面的 mysql.cnf 添加以下配置，没有就创建 mysql.cnf</span>
+<span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
 port=3306
 default_authentication_plugin=mysql_native_password
 
-# 重启容器
-docker restart mysql</code></pre><h3 id="PHP-FPM-安装"><a href="#PHP-FPM-安装" class="headerlink" title="PHP-FPM 安装"></a>PHP-FPM 安装</h3><h4 id="1、从-Dockerhub-拉取-PHP-镜像"><a href="#1、从-Dockerhub-拉取-PHP-镜像" class="headerlink" title="1、从 Dockerhub 拉取 PHP 镜像"></a>1、从 Dockerhub 拉取 PHP 镜像</h4><pre><code>docker pull php:fpm</code></pre><h4 id="2、创建容器-1"><a href="#2、创建容器-1" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code>docker run --name php -p 9000:9000 --network name -v /宿主机存放代码的目录:/var/www/html -it -d php:fpm</code></pre><table>
+<span class="token comment" spellcheck="true"># 重启容器</span>
+docker restart mysql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="PHP-FPM-安装"><a href="#PHP-FPM-安装" class="headerlink" title="PHP-FPM 安装"></a>PHP-FPM 安装</h3><h4 id="1、从-Dockerhub-拉取-PHP-镜像"><a href="#1、从-Dockerhub-拉取-PHP-镜像" class="headerlink" title="1、从 Dockerhub 拉取 PHP 镜像"></a>1、从 Dockerhub 拉取 PHP 镜像</h4><pre class="line-numbers language-bash"><code class="language-bash">docker pull php:fpm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="2、创建容器-1"><a href="#2、创建容器-1" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre class="line-numbers language-bash"><code class="language-bash">docker run --name php -p 9000:9000 --network name -v /宿主机存放代码的目录:/var/www/html -it -d php:fpm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -658,34 +666,37 @@ docker restart mysql</code></pre><h3 id="PHP-FPM-安装"><a href="#PHP-FPM-安�
 <td align="center">后台运行容器</td>
 </tr>
 </tbody></table>
-<h4 id="3、基本配置-1"><a href="#3、基本配置-1" class="headerlink" title="3、基本配置"></a>3、基本配置</h4><pre><code># 进入容器
-docker exec -it php bash
+<h4 id="3、基本配置-1"><a href="#3、基本配置-1" class="headerlink" title="3、基本配置"></a>3、基本配置</h4><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 进入容器</span>
+docker exec <span class="token punctuation">-</span>it php bash
 
-# 中科大源,然后下载需要的软件
-sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+<span class="token comment" spellcheck="true"># 中科大源,然后下载需要的软件</span>
+sed <span class="token punctuation">-</span>i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 apt update
 
-# Composer 安装
-1、curl -sS https://getcomposer.org/installer | php
+<span class="token comment" spellcheck="true"># Composer 安装</span>
+1、curl <span class="token punctuation">-</span>sS https<span class="token punctuation">:</span>//getcomposer.org/installer <span class="token punctuation">|</span> php
 2、mv composer.phar /usr/local/bin/composer
-3、composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+3、composer config <span class="token punctuation">-</span>g repo.packagist composer https<span class="token punctuation">:</span>//mirrors.aliyun.com/composer/
 
-# 修改 /usr/local/etc/php-fpm.conf include 路径
-include=/usr/local/etc/php-fpm.d/*.conf
+<span class="token comment" spellcheck="true"># 修改 /usr/local/etc/php-fpm.conf include 路径</span>
+include=/usr/local/etc/php<span class="token punctuation">-</span>fpm.d/*.conf
 
-# 开启扩展命令
-/usr/local/bin/docker-php-ext-install mysqli
+<span class="token comment" spellcheck="true"># 开启扩展命令</span>
+/usr/local/bin/docker<span class="token punctuation">-</span>php<span class="token punctuation">-</span>ext<span class="token punctuation">-</span>install mysqli
 
-# 常见的一些扩展可以这样安装了，没有的就得自己下载安装了。下载扩展到 /usr/src/php/ext 目录当中,注意：如果没有 /usr/src/php/ext 别慌执行一下 /usr/local/bin/docker-php-ext-install 一个没有的扩展，然后文件夹就会有了，每次安装好扩展之后 php 自动删除！
+<span class="token comment" spellcheck="true"># 常见的一些扩展可以这样安装了，没有的就得自己下载安装了。下载扩展到 /usr/src/php/ext 目录当中,注意：如果没有 /usr/src/php/ext 别慌执行一下 /usr/local/bin/docker-php-ext-install 一个没有的扩展，然后文件夹就会有了，每次安装好扩展之后 php 自动删除！</span>
 
-# 关闭扩展命令
-docker-php-ext-enable mysqli
+<span class="token comment" spellcheck="true"># 关闭扩展命令</span>
+docker<span class="token punctuation">-</span>php<span class="token punctuation">-</span>ext<span class="token punctuation">-</span>enable mysqli
 
-# php.ini
+<span class="token comment" spellcheck="true"># php.ini</span>
 这个镜像给我们打包的配置文件，分开发和生产二个配置文件，在 /usr/local/etc/php 当中
 
-# 重启容器
-docker restart php</code></pre><h3 id="Nginx-安装"><a href="#Nginx-安装" class="headerlink" title="Nginx 安装"></a>Nginx 安装</h3><h4 id="1、从-Dockerhub-拉取-Nginx-镜像"><a href="#1、从-Dockerhub-拉取-Nginx-镜像" class="headerlink" title="1、从 Dockerhub 拉取 Nginx 镜像"></a>1、从 Dockerhub 拉取 Nginx 镜像</h4><pre><code>docker pull nginx</code></pre><h4 id="2、创建容器-2"><a href="#2、创建容器-2" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre><code>docker run --name nginx -p 80:80 --network name -v /宿主机存放代码的目录:/usr/share/nginx/html -d nginx</code></pre><table>
+<span class="token comment" spellcheck="true"># 重启容器</span>
+docker restart php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Nginx-安装"><a href="#Nginx-安装" class="headerlink" title="Nginx 安装"></a>Nginx 安装</h3><h4 id="1、从-Dockerhub-拉取-Nginx-镜像"><a href="#1、从-Dockerhub-拉取-Nginx-镜像" class="headerlink" title="1、从 Dockerhub 拉取 Nginx 镜像"></a>1、从 Dockerhub 拉取 Nginx 镜像</h4><pre class="line-numbers language-bash"><code class="language-bash">docker pull nginx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="2、创建容器-2"><a href="#2、创建容器-2" class="headerlink" title="2、创建容器"></a>2、创建容器</h4><pre class="line-numbers language-bash"><code class="language-bash">docker run --name nginx -p 80:80 --network name -v /宿主机存放代码的目录:/usr/share/nginx/html -d nginx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
 <thead>
 <tr>
 <th align="center">命令</th>
@@ -717,65 +728,68 @@ docker restart php</code></pre><h3 id="Nginx-安装"><a href="#Nginx-安装" cla
 <td align="center">后台运行容器</td>
 </tr>
 </tbody></table>
-<h4 id="3、基本配置-2"><a href="#3、基本配置-2" class="headerlink" title="3、基本配置"></a>3、基本配置</h4><pre><code># 中科大源,然后下载需要的软件
-sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+<h4 id="3、基本配置-2"><a href="#3、基本配置-2" class="headerlink" title="3、基本配置"></a>3、基本配置</h4><pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 中科大源,然后下载需要的软件</span>
+sed <span class="token punctuation">-</span>i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 apt update
 
-# 贴上我的配置，Nginx 配置文件所在目录 /etc/nginx
-server {
-    # 监听端口
+<span class="token comment" spellcheck="true"># 贴上我的配置，Nginx 配置文件所在目录 /etc/nginx</span>
+server <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true"># 监听端口</span>
     listen       80;
 
-    # 域名
+    <span class="token comment" spellcheck="true"># 域名</span>
     server_name  dev.test;
 
-    # 程序目录
+    <span class="token comment" spellcheck="true"># 程序目录</span>
     root   /usr/share/nginx/html/dao/public;
 
-    # 默认访问
+    <span class="token comment" spellcheck="true"># 默认访问</span>
     index  index.php;
 
-    # 字符集编码
-    charset utf-8;
+    <span class="token comment" spellcheck="true"># 字符集编码</span>
+    charset utf<span class="token punctuation">-</span>8;
 
-    # 错误日志
+    <span class="token comment" spellcheck="true"># 错误日志</span>
     access_log  /var/log/nginx/app.access.log  main;
 
-    # 默认请求 正则匹配
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
+    <span class="token comment" spellcheck="true"># 默认请求 正则匹配</span>
+    location / <span class="token punctuation">{</span>
+        try_files $uri $uri/ /index.php<span class="token punctuation">?</span>$query_string;
+    <span class="token punctuation">}</span>
 
-    # 正则匹配到 PHP 文件请求 ，扔给 FastCGI 
-    location ~ \.php$ {
+    <span class="token comment" spellcheck="true"># 正则匹配到 PHP 文件请求 ，扔给 FastCGI </span>
+    location ~ \.php$ <span class="token punctuation">{</span>
         root           /var/www/html/dao/public;
-        fastcgi_pass   php-fpm:9000;
+        fastcgi_pass   php<span class="token punctuation">-</span>fpm<span class="token punctuation">:</span>9000;
         fastcgi_index  index.php;
         include        fastcgi_params;
         fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    }
-}
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-# 重启 nginx
-docker restart nginx</code></pre><h3 id="memcached"><a href="#memcached" class="headerlink" title="memcached"></a>memcached</h3><pre><code>docker pull memcached
+<span class="token comment" spellcheck="true"># 重启 nginx</span>
+docker restart nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="memcached"><a href="#memcached" class="headerlink" title="memcached"></a>memcached</h3><pre class="line-numbers language-yaml"><code class="language-yaml">docker pull memcached
 
-#实例容器,启动memcached：
-docker run --name memcached -p 11211:11211 -m 64m -d memcached
+<span class="token comment" spellcheck="true">#实例容器,启动memcached：</span>
+docker run <span class="token punctuation">-</span><span class="token punctuation">-</span>name memcached <span class="token punctuation">-</span>p 11211<span class="token punctuation">:</span>11211 <span class="token punctuation">-</span>m 64m <span class="token punctuation">-</span>d memcached
 
-# 中科大源,然后下载需要的软件
-sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+<span class="token comment" spellcheck="true"># 中科大源,然后下载需要的软件</span>
+sed <span class="token punctuation">-</span>i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 apt update
 
-#安装 memcached 的时候会去少依赖，根据下面评论安装即可搞定</code></pre><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><pre><code>docker pull redis
+<span class="token comment" spellcheck="true">#安装 memcached 的时候会去少依赖，根据下面评论安装即可搞定</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><pre class="line-numbers language-yaml"><code class="language-yaml">docker pull redis
 
-#实例容器,启动redis
-docker run --name redis -p 6379:6379 --network name -d redis redis-server --appendonly yes --requirepass &quot;mypassword&quot;
+<span class="token comment" spellcheck="true">#实例容器,启动redis</span>
+docker run <span class="token punctuation">-</span><span class="token punctuation">-</span>name redis <span class="token punctuation">-</span>p 6379<span class="token punctuation">:</span>6379 <span class="token punctuation">-</span><span class="token punctuation">-</span>network name <span class="token punctuation">-</span>d redis redis<span class="token punctuation">-</span>server <span class="token punctuation">-</span><span class="token punctuation">-</span>appendonly yes <span class="token punctuation">-</span><span class="token punctuation">-</span>requirepass "mypassword"
 
-# 中科大源,然后下载需要的软件
-sed -i &#39;s/deb.debian.org/mirrors.ustc.edu.cn/g&#39; /etc/apt/sources.list
+<span class="token comment" spellcheck="true"># 中科大源,然后下载需要的软件</span>
+sed <span class="token punctuation">-</span>i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 apt update
 
-# redis5以后 没有配置文件，需要自己去 redis 官方下载一个想对应的版本把里面的配置文件复制出来</code></pre><p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/eHkRhu.png" alt></p>
+<span class="token comment" spellcheck="true"># redis5以后 没有配置文件，需要自己去 redis 官方下载一个想对应的版本把里面的配置文件复制出来</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/7dbsIA.jpg" alt></p>
 <h3 id="踩坑的路"><a href="#踩坑的路" class="headerlink" title="踩坑的路"></a>踩坑的路</h3><p>细心成就王者，这句话不是没有道理的呀！</p>
 <h4 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h4><p>在之前也一直没有去执行过 Laravel 的 migrate 命令。今天在想要写一个朋友给的项目的时候，需要创建表，夸夸一顿操作。结果就是：<code>could not find driver</code></p>
 <p>找不到驱动，下意识的就去看 <code>config/database.php</code>配置文件去了，认真的检查了一遍没有问题啊！然后又去<code>.env</code>看连接的信息是否哪里有问题，没问题啊！！！心里又在想是不是扩展没打开，马上 exec 到 Dokcer 的容器当中 PHP -m 查看 PDO 相关的扩展是不是没有。（其实问题已经出现了）</p>
@@ -784,7 +798,7 @@ apt update
 <h4 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h4><p>今天又跳坑里面了，自己想答一个 MySQL 的读写分离，创建了一个容器，绑定了端口 3307 结果第三方软件一直连接不上。</p>
 <p>宿主机绑定了 3307 端口，但是 MySQL 忘记修改端口了，MySQL 默认使用的 3306。</p>
 <h4 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h4><p>今天在线上搭建了 Dcoker 的环境，全部搭好后，Git 拉了代码，因为是忽略 Composer 的所以需要自己安装，在我本地容器里面安装 Composer 异常简单，直接执行上面的三个命令即可，可线上的容器里面 Curl 死活不行，最终没办法只能下载包安装了。</p>
-<pre><code>1、到 composer 官方下载一个版本的包，通过 git 上传到服务器上面去
+<pre class="line-numbers language-yaml"><code class="language-yaml">1、到 composer 官方下载一个版本的包，通过 git 上传到服务器上面去
 
 2、进入容器，找到刚上传的包 
 mv composer.phar /usr/local/bin/composer
@@ -794,7 +808,9 @@ chmod 777 /usr/local/bin/composer
 
 4、安装，会出现 git token 问题，复制连接，到 github 设置 token
 
-5、安装 git ，解决问题</code></pre><h4 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h4><p>最近在搞公司的 Dokcerfile 因为没接触过 Dockerfile 不太了解吃了个大亏，在 Dockerfile 当中 CMD 是创建容器就启动的命令，相当于初始化当然 CMD 命令只能有一个而不能有多个。</p>
+5、安装 git ，解决问题<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h4><p>最近在搞公司的 Dokcerfile 因为没接触过 Dockerfile 不太了解吃了个大亏，在 Dockerfile 当中 CMD 是创建容器就启动的命令，相当于初始化当然 CMD 命令只能有一个而不能有多个。</p>
+<h4 id="问题五"><a href="#问题五" class="headerlink" title="问题五"></a>问题五</h4><p>上限的项目，端口能不开放的都不要开放，最近就是线上的服务器，9000 端口为开发的，结果着了挖矿病毒 <code>kdevtmpfsi</code>啥都不做，CPU 100% 一点点不会下降。所以为了安全起见，能不对外开发的端口都关闭掉！</p>
 
             </div>
             <hr/>
@@ -985,7 +1001,7 @@ CGICGI 是 Web 服务器运
                 <a href="/2019/08/12/会话技术/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/v2-d5348466fc7e6169119ae1c38604019b_1200x500.jpg" class="responsive-img" alt="会话技术">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/gPRSXT.jpg" class="responsive-img" alt="会话技术">
                         
                         <span class="card-title">会话技术</span>
                     </div>
@@ -1169,7 +1185,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103k</span>&nbsp;字
+                class="white-color">91.5k</span>&nbsp;字
             
             
             

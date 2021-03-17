@@ -224,7 +224,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/下载.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/qKocRF.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2021-03-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    8 分
                 </div>
                 
 
@@ -421,27 +421,28 @@
 <p>PEAR 能做的事情，Composer 都能做（包括安装 PECL 拓展），部分还能做得更好。Composer 默认把包安装在项目目录下，普通用户就能正常使用（ Composer 官方建议不要以 root 身份执行 Composer 命令）；鼓励遵循最佳实践（即大名鼎鼎的 PSR 规范，详情见 PHP-FIG 官网<a href="https://www.php-fig.org/" target="_blank" rel="noopener">https://www.php-fig.org</a>），极大的推动 PHP 社区编码风格的规范化；Composer 是去中心化的平台，任何人均可发布代码包；发布包无需评审，包的质量由用户投票决定…作为 PEAR 的继任者，Composer 的表现经受住了社区的考验，并成为事实上的依赖管理标准工具。</p>
 <p>Composer 目前已经形成庞大的生态，在数量上，Composer 的包远超 PEAR 。由于任何人均可自由发布包且无需评审，Composer 生态中的包可能存在代码质量参差不齐、代码风格各异、后门漏洞等隐忧。另外 Composer 的依赖管理以项目为单位，一台机器上可能多次安装同一个包。但瑕不掩瑜，总体而言，Composer 极大的改变了 PHP 的开发生态，促进了代码交流和社区发展。</p>
 <h3 id="Composer-用法"><a href="#Composer-用法" class="headerlink" title="Composer 用法"></a>Composer 用法</h3><p>Composer 为管理的项目的依赖而生，项目中的 composer.json 文件是其工作的依据。该文件中最重要的部分是 require 部分，该部分告诉 Composer 期望安装的<strong>包及其版本</strong>，例如：</p>
-<pre><code>{
-    &quot;name&quot;: &quot;tinywan/easy-live&quot;,
-    &quot;description&quot;: &quot;nginx live module&quot;,
-    &quot;type&quot;: &quot;library&quot;,
-    &quot;license&quot;: &quot;MIT&quot;,
-    &quot;authors&quot;: [
-        {
-            &quot;name&quot;: &quot;Tinywan&quot;,
-            &quot;email&quot;: &quot;756684177@qq.com&quot;
-        }
-    ],
-    &quot;require&quot;: {
-        &quot;php&quot;: &quot;&gt;=7.0&quot;
-    },
-    &quot;autoload&quot;: {
-        &quot;psr-4&quot;: {
-            &quot;live\\&quot;: &quot;src&quot;
-        }
-    }
-}</code></pre><p>用 Lravel 的 composer.json  演示：</p>
-<p><img src="https://i.loli.net/2020/02/16/7aY8NL5EqGxQ3yh.png" alt="2020-02-16_13-43.png"></p>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"tinywan/easy-live"</span><span class="token punctuation">,</span>
+    <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"nginx live module"</span><span class="token punctuation">,</span>
+    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"library"</span><span class="token punctuation">,</span>
+    <span class="token property">"license"</span><span class="token operator">:</span> <span class="token string">"MIT"</span><span class="token punctuation">,</span>
+    <span class="token property">"authors"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Tinywan"</span><span class="token punctuation">,</span>
+            <span class="token property">"email"</span><span class="token operator">:</span> <span class="token string">"756684177@qq.com"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"require"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"php"</span><span class="token operator">:</span> <span class="token string">">=7.0"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"autoload"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"psr-4"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"live\\"</span><span class="token operator">:</span> <span class="token string">"src"</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>用 Lravel 的 composer.json  演示：</p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/EMOeiZ.jpg" alt></p>
 <p> 然后运行 composer install 命令，Composer 会自动分析依赖，安装最合适的包到 vendor 目录下。加 -v (-vv, -vvv)选项会打印命令执行过程中的详细信息。安装完毕后，vendor 目录下会生成 autoload.php 文件。在项目的入口文件中包含此文件： <strong>require DIR . “/vendor/autoload.php”</strong>;，接下来便可在项目的任何地方引用依赖包中的接口和类。</p>
 <p>除 install 命令，Composer 提供了许多其他命令管理依赖。常用的命令场景包括：查找依赖、引入依赖、安装依赖、更新依赖。分别对应的命令是：</p>
 <table>
@@ -482,30 +483,34 @@
 </tbody></table>
 <h3 id="Composer-加速"><a href="#Composer-加速" class="headerlink" title="Composer 加速"></a>Composer 加速</h3><p>有的时候会因为各种原因，我们使用 Composer 的时候回感觉安装的特别慢，网络问题是一个方面，我们可以使用一些国内的镜像来解决网络的问题，但是依然有些慢，因为 Composer 是单进程方式下载的，也就是说 Composer 安装完一个依赖，才回去下载并安装另一个依赖，任何网络问题都会让这个进程卡主。那么有没有一种方法让 Composer 并发下载所有依赖呢，这样整体安装速度不就会快很多吗？</p>
 <p><a href="https://github.com/hirak/prestissimo" target="_blank" rel="noopener">hirak/prestissimo</a> 就是利用这个思路来加速 Composer 的，看一下这个包的描述 ——composer parallel install plugin （Composer 并行安装插件）。</p>
-<pre><code>composer global require hirak/prestissimo</code></pre><p>切换国内阿里云镜像</p>
+<pre class="line-numbers language-bash"><code class="language-bash">composer global require hirak/prestissimo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>切换国内阿里云镜像</p>
 <p><a href="https://developer.aliyun.com/composer" target="_blank" rel="noopener">https://developer.aliyun.com/composer</a></p>
-<pre><code>composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/</code></pre><h3 id="Composer-加载机制"><a href="#Composer-加载机制" class="headerlink" title="Composer 加载机制"></a>Composer 加载机制</h3><p>使用 Composer 最大的好处是只需最开始 require 一个 autoload.php 文件，就可以 new 你所需要的类了，不再需要传统的方式 A 文件内各种 include 跳到 B 文件又各种 include，非常头疼。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="Composer-加载机制"><a href="#Composer-加载机制" class="headerlink" title="Composer 加载机制"></a>Composer 加载机制</h3><p>使用 Composer 最大的好处是只需最开始 require 一个 autoload.php 文件，就可以 new 你所需要的类了，不再需要传统的方式 A 文件内各种 include 跳到 B 文件又各种 include，非常头疼。</p>
 <p>Composer 的核心就是二个函数：spl_autoload_register 与 require_once</p>
 <p>spl_autoload_register — 注册给定的函数作为 __autoload 的实现</p>
 <p><strong>说明</strong></p>
-<pre><code>spl_autoload_register ([ callable $autoload_function [, bool $throw = true [, bool $prepend = false ]]] ) : bool</code></pre><p>将函数注册到 SPL __autoload 函数队列中。如果该队列中的函数尚未激活，则激活它们。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">spl_autoload_register (<span class="token punctuation">[</span> callable $autoload_function <span class="token punctuation">[</span><span class="token punctuation">,</span> bool $throw = true <span class="token punctuation">[</span><span class="token punctuation">,</span> bool $prepend = false <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span> ) <span class="token punctuation">:</span> bool<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>将函数注册到 SPL __autoload 函数队列中。如果该队列中的函数尚未激活，则激活它们。</p>
 <p>如果在你的程序中已经实现了<a href="https://www.php.net/manual/zh/function.autoload.php" target="_blank" rel="noopener">__autoload()</a> 函数，它必须显式注册到<a href="https://www.php.net/manual/zh/function.autoload.php" target="_blank" rel="noopener">__autoload()</a> 队列中。因为  <strong>spl_autoload_register()</strong> 函数会将 Zend Engine 中的<a href="https://www.php.net/manual/zh/function.autoload.php" target="_blank" rel="noopener">__autoload()</a> 函数取代为 <a href="https://www.php.net/manual/zh/function.spl-autoload.php" target="_blank" rel="noopener">spl_autoload()</a> 或<a href="https://www.php.net/manual/zh/function.spl-autoload-call.php" target="_blank" rel="noopener">spl_autoload_call()</a>。</p>
 <p>如果需要多条 autoload 函数，<strong>spl_autoload_register()</strong> 满足了此类需求。 它实际上创建了 autoload 函数的队列，按定义时的顺序逐个执行。相比之下， <a href="https://www.php.net/manual/zh/function.autoload.php" target="_blank" rel="noopener">__autoload()</a> 只可以定义一次。</p>
 <p>注意：__autoload() 函数在 PHP7.2 以后就不支持了。综合起来该用那个明白来吧。</p>
 <p>一个简单的自动加载：</p>
-<pre><code>// loadclass函数不具备自动加载类的功能
-function loadclass($classname){
-    $filename = &quot;./class/&quot;.$classname.&quot;.class.php&quot;;
-    if(is_file($filename)){
-        include $filename;
-    }
-}
-// spl_autoload_register()函数让这个 loadclass 具备了自动加载类的功能
-spl_autoload_register(&quot;loadclass&quot;);</code></pre><p>不使用 Composer 的代码执行会比使用 Composer 的代码执行更快，Composer 是自动加载，尽管是不用的库。这个效率毕竟大概是在几十ms的差距。我们可以优化自动加载，做一个项目 Composer 优化提速。</p>
-<pre class="line-numbers language-php"><code class="language-php">composer dumpautoload <span class="token operator">-</span>o<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token comment" spellcheck="true">// loadclass函数不具备自动加载类的功能</span>
+<span class="token keyword">function</span> <span class="token function">loadclass</span><span class="token punctuation">(</span><span class="token variable">$classname</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token variable">$filename</span> <span class="token operator">=</span> <span class="token string">"./class/"</span><span class="token punctuation">.</span><span class="token variable">$classname</span><span class="token punctuation">.</span><span class="token string">".class.php"</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">is_file</span><span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">include</span> <span class="token variable">$filename</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// spl_autoload_register()函数让这个 loadclass 具备了自动加载类的功能</span>
+<span class="token function">spl_autoload_register</span><span class="token punctuation">(</span><span class="token string">"loadclass"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>不使用 Composer 的代码执行会比使用 Composer 的代码执行更快，Composer 是自动加载，尽管是不用的库。这个效率毕竟大概是在几十ms的差距。我们可以优化自动加载，做一个项目 Composer 优化提速。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">composer dumpautoload -o<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>此命令不止针对于 Laravel 程序，适用于所有使用 <code>composer</code> 来构建的程序。此命令会把 <code>PSR-0</code> 和 <code>PSR-4</code> 转换为一个类映射表，来提高类的加载速度。</p>
 <p>当然作为 艺术家的框架，Laravel 也为我们提供了 Composer 的优化处理</p>
-<pre class="line-numbers language-php"><code class="language-php"><span class="token shell-comment comment"># 官方解释：缓存框架引导文件</span>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 官方解释：缓存框架引导文件</span>
 php artisan optimize<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <blockquote>
 <p>参考地址</p>
@@ -883,7 +888,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103k</span>&nbsp;字
+                class="white-color">91.5k</span>&nbsp;字
             
             
             

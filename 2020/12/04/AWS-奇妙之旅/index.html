@@ -224,7 +224,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/sH4Ejm.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/ejPZlW.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-12-04
+                    2021-03-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    664
+                    653
                 </div>
                 
 
@@ -406,17 +406,15 @@
 <h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>公司项目比较大型，并且水平也比较高端。对于一些服务上，架构师给出了一套，Lambda 函数与其它服务（如：s3，sqs 等等）触发机制。这套服务架构，依赖于 AWS 的 Lambad 与其它各式的服务，互相搭配操作（Lambda 是什么呢？<a href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/welcome.html" target="_blank" rel="noopener">点击我马上明白！</a>）使用这样架构的好处在于，对于一些高消耗的功能可以单独做一个处理，而无需在走本身的后台去操作，切扩展性与灵活性比较高。但是有一个缺点，开一个 Lambda 肯定是要钱的嘛（项目做起来服务器的钱肯定不会缺的！）我觉得只有这么一个缺点，其他问题都可以我们自己摸索学习去解决。</p>
 <h3 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h3><p>最新的一个需求通过 S3 触发一个 Lambda 函数，Lambda 函数中做一些核心的处理。在这里做一个演示的示例：</p>
 <p>进入 Lambda 创建一个函数</p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/85L4jW.png" alt></p>
-<p>就一个注意点，创建时选择自己要操作的语言即可，其他默认操作。</p>
-<p>![](/Users/daixianjin/Library/Application Support/typora-user-images/image-20201204153601091.png)</p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/zSpKcW.jpg" alt>就一个注意点，创建时选择自己要操作的语言即可，其他默认操作。</p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/blUln2.jpg" alt></p>
 <p>进入函数的配置，添加触发器，注意选择函数搭配的服务来定。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/C6eltK.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/Xhm0j6.png" alt></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/Kgd7pe.jpg" alt></p>
 <p>如相当于的服务有事件，那么需要去设置自己需要的事件，我这里拿 s3 举例说明。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/wposhX.png" alt></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/rcznqU.jpg" alt></p>
 <p>进入存储桶，选择属性，然后会看见，刚才 Lambda 绑定的触发，而我们只需要修改自己需要的事件即可。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/45YNMB.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages@master/uPic/mtSLMV.png" alt></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/OQ196v.jpg" alt></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/Tqllez.jpg" alt></p>
 <p>完整的一个 Lambda 与 服务之间的互动就是如此，但是需要记住一个问题，你的 Lambda 与 服务如果不在一个账号里面，那么就需要使用 VPC 的一个操作（具体如何我也不清楚，非常难，他们操作成功过，以后问了我会更新多个账号互联的一个操作）当操作完成之后就是开始撸代码了，这个看个人使用的语言，<a href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/lambda-golang.html" target="_blank" rel="noopener">最好还是先看文档</a>。</p>
 <p>我这里使用的 Go </p>
 <pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">package</span> main
@@ -811,7 +809,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103k</span>&nbsp;字
+                class="white-color">91.5k</span>&nbsp;字
             
             
             
