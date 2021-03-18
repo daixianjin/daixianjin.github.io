@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-模型过滤, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="模型过滤, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-模型过滤 | 道法自然</title>
+    <title>模型过滤 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/RaX7EN.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-模型过滤</h1>
+                    <h1 class="description center-align post-title">模型过滤</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel-扩展包/">
-                                <span class="chip bg-color">Laravel-扩展包</span>
+                            <a href="/tags/Laravel/">
+                                <span class="chip bg-color">Laravel</span>
                             </a>
                         
                     </div>
@@ -378,7 +378,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-08-17
+                    2021-03-18
                 </div>
                 
 
@@ -402,99 +402,99 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在一个项目当中，列表数据的搜索往往是比较常见的一种功能，也是一个难处理的功能，反正我觉得特别难处理。一个列表搜索可能就会写很多，也可以越加越多，特别难复用之后代码越来越多的冗余。我在的处理比较笨，那就在一个服务层里面写上所有可能用到的搜索条件，以下是代码的展示（请勿嘲笑）：</p>
-<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>  
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在一个项目当中，列表数据的搜索往往是比较常见的一种功能，也是一个难处理的功能，反正我觉得特别难处理。一个列表搜索可能就会写很多，也可以越加越多，特别难复用之后代码越来越多的冗余。我在的处理比较笨，那就在一个服务层里面写上所有可能用到的搜索条件，以下是代码的展示（请勿嘲笑）</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
-        <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">searchService</span><span class="token punctuation">(</span>object <span class="token variable">$query</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">searchService</span><span class="token punctuation">(</span>object <span class="token variable">$query</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token variable">$page</span>  <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'page'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$limit</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'limit'</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$query</span> <span class="token operator">=</span> <span class="token variable">$query</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$mobile</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'mobile'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token variable">$page</span>  <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'page'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token variable">$limit</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'limit'</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token variable">$query</span> <span class="token operator">=</span> <span class="token variable">$query</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'mobile'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$mobile</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$mobile</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'mobile'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'mobile'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$mobile</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$inviteMobile</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'invite_mobile'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'id'</span> <span class="token operator">=</span><span class="token operator">></span> User<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token string">'mobile'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$inviteMobile</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">id</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$inviteMobile</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'invite_mobile'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'id'</span> <span class="token operator">=</span><span class="token operator">></span> User<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                    <span class="token string">'mobile'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$inviteMobile</span>
-                <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">id</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$address</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'address'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'address'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$address</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$address</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'address'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'address'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$address</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$erhAddress</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'eth_address'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'eth_address'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$erhAddress</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$erhAddress</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'eth_address'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'eth_address'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$erhAddress</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$googleKey</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'google_key'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'google_key'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$googleKey</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$googleKey</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'google_key'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'google_key'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$googleKey</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$googleStatus</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'google_status'</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'google_status'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$googleStatus</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$googleStatus</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'google_status'</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'google_status'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$googleStatus</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$nickname</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'nickname'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'nickname'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$nickname</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$nickname</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'nickname'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'nickname'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$nickname</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$identity</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'user_identity'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'user_identity'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$identity</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$identity</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'user_identity'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'user_identity'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$identity</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$inviteCode</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'invite_code'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'invite_code'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$inviteCode</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$inviteCode</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'invite_code'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'invite_code'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$inviteCode</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$status</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'status'</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token string">'status'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$status</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">in_array</span><span class="token punctuation">(</span><span class="token variable">$status</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'status'</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">where</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
-                <span class="token string">'status'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$status</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$time</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$time</span> <span class="token operator">=</span> <span class="token function">explode</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$time</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token function">ApiExceptionError</span><span class="token punctuation">(</span><span class="token string">'日期错误'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$endTime</span> <span class="token operator">=</span> <span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'00:00:00'</span> <span class="token operator">?</span> <span class="token string">'23:59:59'</span> <span class="token punctuation">:</span> <span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">whereDate</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'>='</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token operator">-</span><span class="token operator">></span><span class="token function">whereDate</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'&lt;='</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token operator">-</span><span class="token operator">></span><span class="token function">whereTime</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'>='</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token operator">-</span><span class="token operator">></span><span class="token function">whereTime</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'&lt;='</span><span class="token punctuation">,</span><span class="token variable">$endTime</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$time</span> <span class="token operator">=</span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token variable">$time</span> <span class="token operator">=</span> <span class="token function">explode</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$time</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token function">ApiExceptionError</span><span class="token punctuation">(</span><span class="token string">'日期错误'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token variable">$endTime</span> <span class="token operator">=</span> <span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'00:00:00'</span> <span class="token operator">?</span> <span class="token string">'23:59:59'</span> <span class="token punctuation">:</span> <span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">whereDate</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'>='</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-                <span class="token operator">-</span><span class="token operator">></span><span class="token function">whereDate</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'&lt;='</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-                <span class="token operator">-</span><span class="token operator">></span><span class="token function">whereTime</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'>='</span><span class="token punctuation">,</span><span class="token variable">$time</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-                <span class="token operator">-</span><span class="token operator">></span><span class="token function">whereTime</span><span class="token punctuation">(</span><span class="token string">'created_at'</span><span class="token punctuation">,</span><span class="token string">'&lt;='</span><span class="token punctuation">,</span><span class="token variable">$endTime</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 此次省略 N 个
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 此次省略 N 个
 
         <span class="token keyword">return</span> <span class="token variable">$query</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">paginate</span><span class="token punctuation">(</span><span class="token variable">$limit</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'*'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'page'</span><span class="token punctuation">,</span> <span class="token variable">$page</span><span class="token punctuation">)</span>
             <span class="token operator">-</span><span class="token operator">></span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1094,8 +1094,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel-扩展包/">
-                                    <span class="chip bg-color">Laravel-扩展包</span>
+                                <a href="/tags/Laravel/">
+                                    <span class="chip bg-color">Laravel</span>
                                 </a>
                             
                         </div>
@@ -1221,9 +1221,9 @@
                 <a href="/2020/07/28/MySQL-唯一索引与NULL/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1495798711725561.png" class="responsive-img" alt="MySQL-唯一索引与 NULL">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1495798711725561.png" class="responsive-img" alt="MySQL 唯一索引与NULL">
                         
-                        <span class="card-title">MySQL-唯一索引与 NULL</span>
+                        <span class="card-title">MySQL 唯一索引与NULL</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1405,7 +1405,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.5k</span>&nbsp;字
+                class="white-color">89.7k</span>&nbsp;字
             
             
             

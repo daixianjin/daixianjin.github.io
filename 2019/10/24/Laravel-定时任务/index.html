@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-定时任务, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Laravel 定时任务, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-定时任务 | 道法自然</title>
+    <title>Laravel 定时任务 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/fTsOSy.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-定时任务</h1>
+                    <h1 class="description center-align post-title">Laravel 定时任务</h1>
                 </div>
             </div>
         </div>
@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    552
+                    521
                 </div>
                 
 
@@ -405,56 +405,60 @@
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在我们项目当中，有时候需要定时去处理一些特定的业务。过去，你可能需要在服务器上为每一个调度任务去创建 Cron 入口。但是这种方式很快会变得不友好，因为这些任务调度不在源代码中，并且你每次都需要通过 SSH 链接登录到服务器中才能增加 Cron 入口。</p>
 <p>Laravel 命令行调度器允许你在 Laravel 中对命令调度进行清晰流畅的定义。且使用这个任务调度器时，你只需要在你的服务器上创建单个 Cron 入口。你的任务调度在 <code>app/Console/Kernel.php</code> 的 <code>schedule</code> 方法中进行定义。</p>
 <h3 id="Kernel-php"><a href="#Kernel-php" class="headerlink" title="Kernel.php"></a>Kernel.php</h3><p>不管我们是使用定时任务或者其他需要终端执行的程序，在 Laravel 当中都要在 <code>app\console\kernel.php</code>当中的 commands 引入我们自定义的 artisan 命令类，schedule 执行我们的定时任务。</p>
-<pre><code># 加载 artisan 自定义命令类
-protected $commands = [
-        // 引入自定义的终端命令类
-    ];    
-# 执行 定时任务    
-protected function schedule(Schedule $schedule)
-{
-    # 简单使用
-    $schedule-&gt;call(function(){
-        Log::info(&#39;记录的日志&#39;,[&#39;ip&#39; =&gt; request()-&gt;path()]);
-    })-&gt;daily();
-    $schedule-&gt;call(&#39;App\Services\xxxService@index&#39;)-&gt;everyMinute();
-    # 执行 command
-    $schedule-&gt;command(&#39;order:start&#39;)
-              -&gt;hourly();
-}
-# 注册 artisan 执行的命令，对应的也就是我们 routes 下面的 console.php
-protected function commands()
-{
-    $this-&gt;load(__DIR__.&#39;/Commands&#39;);
+<pre class="line-numbers language-php"><code class="language-php"><span class="token shell-comment comment"># 加载 artisan 自定义命令类</span>
+<span class="token keyword">protected</span> <span class="token variable">$commands</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token comment" spellcheck="true">// 引入自定义的终端命令类</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>    
+<span class="token shell-comment comment"># 执行 定时任务    </span>
+<span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function">schedule</span><span class="token punctuation">(</span>Schedule <span class="token variable">$schedule</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token shell-comment comment"># 简单使用</span>
+    <span class="token variable">$schedule</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Log<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">'记录的日志'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'ip'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">path</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">daily</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$schedule</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'App\Services\xxxService@index'</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">everyMinute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token shell-comment comment"># 执行 command</span>
+    <span class="token variable">$schedule</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">command</span><span class="token punctuation">(</span><span class="token string">'order:start'</span><span class="token punctuation">)</span>
+              <span class="token operator">-</span><span class="token operator">></span><span class="token function">hourly</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token shell-comment comment"># 注册 artisan 执行的命令，对应的也就是我们 routes 下面的 console.php</span>
+<span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function">commands</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">load</span><span class="token punctuation">(</span><span class="token constant">__DIR__</span><span class="token punctuation">.</span><span class="token string">'/Commands'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    require base_path(&#39;routes/console.php&#39;);
-}</code></pre><blockquote>
+    <span class="token keyword">require</span> <span class="token function">base_path</span><span class="token punctuation">(</span><span class="token string">'routes/console.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>在 Laravel 5.5 版本以后，无需在 commands 引入。</p>
 </blockquote>
-<h3 id="创建-Command"><a href="#创建-Command" class="headerlink" title="创建 Command"></a>创建 Command</h3><pre><code>php artisan make:command AddOrderCount</code></pre><p>当创建完成 command 之后，按自己需求修改 command</p>
-<pre><code>class OrderCount extends Command
-{
-    // 执行的 artisan 命令
-    protected $signature = &#39;order:start&#39;;
-    // artisan 命令的描述
-    protected $description = &#39;day order count data&#39;;
+<h3 id="创建-Command"><a href="#创建-Command" class="headerlink" title="创建 Command"></a>创建 Command</h3><pre class="line-numbers language-bash"><code class="language-bash">php artisan make:command AddOrderCount<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>当创建完成 command 之后，按自己需求修改 command</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token keyword">class</span> <span class="token class-name">OrderCount</span> <span class="token keyword">extends</span> <span class="token class-name">Command</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 执行的 artisan 命令</span>
+    <span class="token keyword">protected</span> <span class="token variable">$signature</span> <span class="token operator">=</span> <span class="token string">'order:start'</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// artisan 命令的描述</span>
+    <span class="token keyword">protected</span> <span class="token variable">$description</span> <span class="token operator">=</span> <span class="token string">'day order count data'</span><span class="token punctuation">;</span>
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    // 这里即可执行 业务逻辑的处理
-    public function handle()
-    {
-        // 要执行的 处理业务逻辑
-    }
-}</code></pre><h3 id="执行-Crontab"><a href="#执行-Crontab" class="headerlink" title="执行 Crontab"></a>执行 Crontab</h3><pre><code>1、创建 crontab 执行的文件
-echo &quot;* * * * * /usr/local/bin/php /var/www/html/vpay/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1&quot; &gt; order.txt
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">__construct</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">parent</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">__construct</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 这里即可执行 业务逻辑的处理</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">handle</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 要执行的 处理业务逻辑</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="执行-Crontab"><a href="#执行-Crontab" class="headerlink" title="执行 Crontab"></a>执行 Crontab</h3><pre class="line-numbers language-yaml"><code class="language-yaml">1、创建 crontab 执行的文件
+echo "* * * * * /usr/local/bin/php /var/www/html/vpay/artisan schedule<span class="token punctuation">:</span>run <span class="token punctuation">></span><span class="token punctuation">></span> /dev/null 2<span class="token punctuation">></span><span class="token important">&amp;1</span>" <span class="token punctuation">></span> order.txt
 2、添加到 crontab 当中
 crontab order.txt
 3、开启 crontab
-crontabl -l 
+crontabl <span class="token punctuation">-</span>l 
 4、关闭 crontab 全部清除
-crontabl -r</code></pre><blockquote>
+crontabl <span class="token punctuation">-</span>r<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>在 Linux 创建一个 Crontab 执行文件时，所有的执行命令加上绝对路径！</p>
 </blockquote>
 
@@ -594,9 +598,9 @@ crontabl -r</code></pre><blockquote>
                 <a href="/2019/11/14/PHP-RSA对称加密解密/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/800595_YUT9XJ3EP373F4D.png" class="responsive-img" alt="PHP-RSA加密解密">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/800595_YUT9XJ3EP373F4D.png" class="responsive-img" alt="PHP RSA加密解密">
                         
-                        <span class="card-title">PHP-RSA加密解密</span>
+                        <span class="card-title">PHP RSA加密解密</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -639,23 +643,27 @@ crontabl -r</code></pre><blockquote>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/11/Laravel-本地语言包/">
+                <a href="/2019/09/26/Laravel-Fractal/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-本地语言包">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/Sfku6y.jpg" class="responsive-img" alt="Laravel Fractal">
                         
-                        <span class="card-title">Laravel-本地语言包</span>
+                        <span class="card-title">Laravel Fractal</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要Laravel 自身的语言包为英文，我们本地化开发都希望为中文，当然也有不需要中文的这个看自己项目的选择行来说，我做的项目一般都是本地化。所以本地化是不可缺少的一块。今天的主角就是 [caouecs/laravel-lang] ,支持 
+                            摘要我们想返回的数据做格式化一般情况下我们就在逻辑层当中操作，这样复用性很差基本就是复制粘贴。使用了  Fractal 之后我们就可以统一一些数据返回的规范，复用性非常高。
+
+PHP 领域广受欢迎的 API 数据输出格式转换器
+
+支持 单个
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-26
                             </span>
                         <span class="publish-author">
                             
@@ -672,8 +680,8 @@ crontabl -r</code></pre><blockquote>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -826,7 +834,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.5k</span>&nbsp;字
+                class="white-color">89.7k</span>&nbsp;字
             
             
             

@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-Fractal, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Laravel Fractal, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-Fractal | 道法自然</title>
+    <title>Laravel Fractal | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/Sfku6y.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-Fractal</h1>
+                    <h1 class="description center-align post-title">Laravel Fractal</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel-扩展包/">
-                                <span class="chip bg-color">Laravel-扩展包</span>
+                            <a href="/tags/Laravel/">
+                                <span class="chip bg-color">Laravel</span>
                             </a>
                         
                     </div>
@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    599
+                    578
                 </div>
                 
 
@@ -403,7 +403,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>我们想返回的数据做格式化一般情况下我们就在逻辑层当中操作，这样复用性很差基本就是复制粘贴。使用了  Fractal 之后我们就可以统一一些数据返回的规范，复用性非常高。</p>
-<p><img src="https://i.loli.net/2019/09/26/Dy7bAWSHLeExzot.png" alt></p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/mX2SUN.jpg" alt></p>
 <p><strong>PHP 领域广受欢迎的 API 数据输出格式转换器</strong></p>
 <ul>
 <li>支持 <code>单个对象</code> 或者 <code>集合对象</code> 的格式化</li>
@@ -420,82 +420,87 @@
 <li>不建议过多进行数据格式化，直接输出完整对象，尽量用对象来替代数组</li>
 <li>特别的字段值计算可以封装为对象的方法</li>
 </ul>
-<h3 id="原生使用"><a href="#原生使用" class="headerlink" title="原生使用"></a><strong>原生使用</strong></h3><pre><code>class MyTransformer extends League\Fractal\TransformerAbstract
-{
-    # normalize主逻辑
-    public function transform($object){
-        return [
-            &#39;id&#39; =&gt; $object-&gt;id,
-            &#39;name&#39; =&gt; $object-&gt;name,
-        ];
-    }
+<h3 id="原生使用"><a href="#原生使用" class="headerlink" title="原生使用"></a><strong>原生使用</strong></h3><pre class="line-numbers language-php"><code class="language-php"><span class="token keyword">class</span> <span class="token class-name">MyTransformer</span> <span class="token keyword">extends</span> <span class="token class-name">League<span class="token punctuation">\</span>Fractal<span class="token punctuation">\</span>TransformerAbstract</span>
+<span class="token punctuation">{</span>
+    <span class="token shell-comment comment"># normalize主逻辑</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">transform</span><span class="token punctuation">(</span><span class="token variable">$object</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span>
+            <span class="token string">'id'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$object</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">id</span><span class="token punctuation">,</span>
+            <span class="token string">'name'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$object</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">name</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    ## include特性 ##
-    ## 使用前需要检测include参数：$manager-&gt;parseIncludes($_GET[&#39;include&#39;]);
-    protected $defaultIncludes = []; #声明需要默认include的资源
-    protected $availableIncludes = [tag]; #声明可选include资源
-    public function includeTag($object){
-        $tag = $object-&gt;tag;
-        return $this-&gt;item($tag, new TagTransformer);  #包含单对象
-        #return $this-&gt;collection($tags, new TagTransformer); #包含集合对象
-    }
-}
+    <span class="token shell-comment comment">## include特性 ##</span>
+    <span class="token shell-comment comment">## 使用前需要检测include参数：$manager->parseIncludes($_GET[</span><span class="token string">'include'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">protected</span> <span class="token variable">$defaultIncludes</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token shell-comment comment">#声明需要默认include的资源</span>
+    <span class="token keyword">protected</span> <span class="token variable">$availableIncludes</span> <span class="token operator">=</span> <span class="token punctuation">[</span>tag<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token shell-comment comment">#声明可选include资源</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">includeTag</span><span class="token punctuation">(</span><span class="token variable">$object</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token variable">$tag</span> <span class="token operator">=</span> <span class="token variable">$object</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">tag</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">item</span><span class="token punctuation">(</span><span class="token variable">$tag</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">TagTransformer</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token shell-comment comment">#包含单对象</span>
+        <span class="token shell-comment comment">#return $this->collection($tags, new TagTransformer); #包含集合对象</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-$itemResource = new \Fractal\Resource\Item(
-    $object,
-    League\Fractal\TransformerAbstract $myTransformer
-);
-$collectionResource = new \Fractal\Resource\Collection(
-    $objects,
-    League\Fractal\TransformerAbstract $myTransformer
-);
+<span class="token variable">$itemResource</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token punctuation">\</span>Fractal<span class="token punctuation">\</span>Resource<span class="token punctuation">\</span>Item</span><span class="token punctuation">(</span>
+    <span class="token variable">$object</span><span class="token punctuation">,</span>
+    League\<span class="token package">Fractal<span class="token punctuation">\</span>TransformerAbstract</span> <span class="token variable">$myTransformer</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$collectionResource</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token punctuation">\</span>Fractal<span class="token punctuation">\</span>Resource<span class="token punctuation">\</span>Collection</span><span class="token punctuation">(</span>
+    <span class="token variable">$objects</span><span class="token punctuation">,</span>
+    League\<span class="token package">Fractal<span class="token punctuation">\</span>TransformerAbstract</span> <span class="token variable">$myTransformer</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-$manager = new League\Fractal\Manager();
-$manager = $manager-&gt;createData($itemResource|$collectionResource)-&gt;toArray|toJson(); #transformer转换数据
-# 可以进一步使用serializer在toArray()输出前调整数据结构</code></pre><h3 id="Laravel-下-Fractal-使用"><a href="#Laravel-下-Fractal-使用" class="headerlink" title="Laravel 下 Fractal 使用"></a>Laravel 下 Fractal 使用</h3><p>1、Composer 引入</p>
-<pre><code>composer require league/fractal</code></pre><p>2、创建自定义数据处理文件</p>
-<pre><code>&lt;?php
+<span class="token variable">$manager</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">League<span class="token punctuation">\</span>Fractal<span class="token punctuation">\</span>Manager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$manager</span> <span class="token operator">=</span> <span class="token variable">$manager</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createData</span><span class="token punctuation">(</span><span class="token variable">$itemResource</span><span class="token operator">|</span><span class="token variable">$collectionResource</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">toArray</span><span class="token operator">|</span><span class="token function">toJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token shell-comment comment">#transformer转换数据</span>
+<span class="token shell-comment comment"># 可以进一步使用serializer在toArray()输出前调整数据结构</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Laravel-下-Fractal-使用"><a href="#Laravel-下-Fractal-使用" class="headerlink" title="Laravel 下 Fractal 使用"></a>Laravel 下 Fractal 使用</h3><p>Composer 引入</p>
+<pre class="line-numbers language-bash"><code class="language-bash">composer require league/fractal<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>创建自定义数据处理文件</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
-namespace App\Http\DataResponse;
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>DataResponse</span><span class="token punctuation">;</span>
 
-use App\Http\Model\User;
-use League\Fractal\TransformerAbstract;
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Model<span class="token punctuation">\</span>User</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">League<span class="token punctuation">\</span>Fractal<span class="token punctuation">\</span>TransformerAbstract</span><span class="token punctuation">;</span>
 
-class UserDataResponse extends TransformerAbstract
-{
-   public function transform(User $user)
-   {
-       return [
-           &#39;id&#39; =&gt; $user-&gt;id,
-           &#39;mobile&#39; =&gt; $user-&gt;mobile,
-           &#39;nickname&#39; =&gt; $user-&gt;nickname,
-           &#39;avatar&#39; =&gt; $user-&gt;avatar,
-           &#39;updated_at&#39; =&gt; (string)$user-&gt;updated_at,
-           &#39;created_at&#39; =&gt; (string)$user-&gt;created_at,
-       ];
-   }
-}</code></pre><p>3、集合对象序列化</p>
-<pre><code> # 需要 use 
- use App\Http\DataResponse\UserDataResponse;
- use League\Fractal\Manager;
- use League\Fractal\Resource\Collection;
+<span class="token keyword">class</span> <span class="token class-name">UserDataResponse</span> <span class="token keyword">extends</span> <span class="token class-name">TransformerAbstract</span>
+<span class="token punctuation">{</span>
+   <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">transform</span><span class="token punctuation">(</span>User <span class="token variable">$user</span><span class="token punctuation">)</span>
+   <span class="token punctuation">{</span>
+       <span class="token keyword">return</span> <span class="token punctuation">[</span>
+           <span class="token string">'id'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$user</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">id</span><span class="token punctuation">,</span>
+           <span class="token string">'mobile'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$user</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">mobile</span><span class="token punctuation">,</span>
+           <span class="token string">'nickname'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$user</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">nickname</span><span class="token punctuation">,</span>
+           <span class="token string">'avatar'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$user</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">avatar</span><span class="token punctuation">,</span>
+           <span class="token string">'updated_at'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>string<span class="token punctuation">)</span><span class="token variable">$user</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">updated_at</span><span class="token punctuation">,</span>
+           <span class="token string">'created_at'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>string<span class="token punctuation">)</span><span class="token variable">$user</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">created_at</span><span class="token punctuation">,</span>
+       <span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>集合对象序列化</p>
+<pre class="line-numbers language-php"><code class="language-php"> <span class="token shell-comment comment"># 需要 use </span>
+ <span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>DataResponse<span class="token punctuation">\</span>UserDataResponse</span><span class="token punctuation">;</span>
+ <span class="token keyword">use</span> <span class="token package">League<span class="token punctuation">\</span>Fractal<span class="token punctuation">\</span>Manager</span><span class="token punctuation">;</span>
+ <span class="token keyword">use</span> <span class="token package">League<span class="token punctuation">\</span>Fractal<span class="token punctuation">\</span>Resource<span class="token punctuation">\</span>Collection</span><span class="token punctuation">;</span>
 
- # 正常使用
- $fractal = new Manager();
- $users = new collection(User::all(), new UserDataResponse());
- $users = $fractal-&gt;createData($users)-&gt;toArray();
- return $users;</code></pre><p>4、单个对象序列化</p>
-<pre><code> # 需要 use 
- use App\Http\DataResponse\UserDataResponse;
- use League\Fractal\Manager;
- use League\Fractal\Resource\Item;
+ <span class="token shell-comment comment"># 正常使用</span>
+ <span class="token variable">$fractal</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Manager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token variable">$users</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">collection</span><span class="token punctuation">(</span>User<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">UserDataResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token variable">$users</span> <span class="token operator">=</span> <span class="token variable">$fractal</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createData</span><span class="token punctuation">(</span><span class="token variable">$users</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">return</span> <span class="token variable">$users</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>单个对象序列化</p>
+<pre class="line-numbers language-php"><code class="language-php"> <span class="token shell-comment comment"># 需要 use </span>
+ <span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>DataResponse<span class="token punctuation">\</span>UserDataResponse</span><span class="token punctuation">;</span>
+ <span class="token keyword">use</span> <span class="token package">League<span class="token punctuation">\</span>Fractal<span class="token punctuation">\</span>Manager</span><span class="token punctuation">;</span>
+ <span class="token keyword">use</span> <span class="token package">League<span class="token punctuation">\</span>Fractal<span class="token punctuation">\</span>Resource<span class="token punctuation">\</span>Item</span><span class="token punctuation">;</span>
 
- # 正常使用
- $fractal = new Manager();
- $users = new Item(auth()-&gt;user(), new UserDataResponse());
- $users = $fractal-&gt;createData($users)-&gt;toArray();
- return $users;</code></pre><blockquote>
-<p>参考地址：</p>
+ <span class="token shell-comment comment"># 正常使用</span>
+ <span class="token variable">$fractal</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Manager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token variable">$users</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span><span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">UserDataResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token variable">$users</span> <span class="token operator">=</span> <span class="token variable">$fractal</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">createData</span><span class="token punctuation">(</span><span class="token variable">$users</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">return</span> <span class="token variable">$users</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>参考地址：高版本已经不需要使用扩展包了，使用 Eloquent: API 资源 已经完全可以了</p>
 <p><a href="https://my.oschina.net/u/2400083/blog/988715" target="_blank" rel="noopener">https://my.oschina.net/u/2400083/blog/988715</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/25554084" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25554084</a></p>
 </blockquote>
@@ -562,8 +567,8 @@ class UserDataResponse extends TransformerAbstract
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel-扩展包/">
-                                    <span class="chip bg-color">Laravel-扩展包</span>
+                                <a href="/tags/Laravel/">
+                                    <span class="chip bg-color">Laravel</span>
                                 </a>
                             
                         </div>
@@ -633,23 +638,23 @@ class UserDataResponse extends TransformerAbstract
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/11/Laravel-本地语言包/">
+                <a href="/2019/10/24/Laravel-定时任务/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-本地语言包">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/fTsOSy.jpg" class="responsive-img" alt="Laravel 定时任务">
                         
-                        <span class="card-title">Laravel-本地语言包</span>
+                        <span class="card-title">Laravel 定时任务</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要Laravel 自身的语言包为英文，我们本地化开发都希望为中文，当然也有不需要中文的这个看自己项目的选择行来说，我做的项目一般都是本地化。所以本地化是不可缺少的一块。今天的主角就是 [caouecs/laravel-lang] ,支持 
+                            摘要在我们项目当中，有时候需要定时去处理一些特定的业务。过去，你可能需要在服务器上为每一个调度任务去创建 Cron 入口。但是这种方式很快会变得不友好，因为这些任务调度不在源代码中，并且你每次都需要通过 SSH 链接登录到服务器中才能增加 
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-11
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-10-24
                         </span>
                         <span class="publish-author">
                             
@@ -666,8 +671,8 @@ class UserDataResponse extends TransformerAbstract
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -684,18 +689,17 @@ class UserDataResponse extends TransformerAbstract
                 <a href="/2019/09/18/Laravel-JWT/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-JWT">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/UAKSKB.jpg" class="responsive-img" alt="Laravel JWT">
                         
-                        <span class="card-title">Laravel-JWT</span>
+                        <span class="card-title">Laravel JWT</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要
-JWT 是 JSON Web Token 的缩写，是一个非常轻巧的规范，这个规范允许我们使用 JWT 在用户和服务器之间传递安全可靠的信息。
+                            摘要JWT 是 JSON Web Token 的缩写，是一个非常轻巧的规范，这个规范允许我们使用 JWT 在用户和服务器之间传递安全可靠的信息。
 
-JWT 由头部（header）、载荷（payload）与签名（signature）组成，一
+JWT 由头部（header）、载荷（payload）与签名（signature）组成，一个
                         
                     </div>
                     <div class="publish-info">
@@ -717,8 +721,8 @@ JWT 由头部（header）、载荷（payload）与签名（signature）组成，
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -871,7 +875,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.5k</span>&nbsp;字
+                class="white-color">89.7k</span>&nbsp;字
             
             
             

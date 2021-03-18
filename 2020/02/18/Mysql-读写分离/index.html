@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Mysql-读写分离, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Mysql 读写分离, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Mysql-读写分离 | 道法自然</title>
+    <title>Mysql 读写分离 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -229,7 +229,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Mysql-读写分离</h1>
+                    <h1 class="description center-align post-title">Mysql 读写分离</h1>
                 </div>
             </div>
         </div>
@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    924
                 </div>
                 
 
@@ -411,37 +411,37 @@
 <li>增量备份</li>
 </ul>
 <p>二进制日志包括两类文件：二进制日志索引文件（文件名后缀为.index）用于记录所有的二进制文件，二进制日志文件（文件名后缀为.00000*）记录数据库所有的 DDL 和 DML (除了数据查询语句)语句事件。</p>
-<h3 id="主数据库"><a href="#主数据库" class="headerlink" title="主数据库"></a>主数据库</h3><pre><code>1、修改 Mysql 配置文件  注：Mysql 5.7.2 以后没有默认配置了，一切配置需要自行配置
+<h3 id="主数据库"><a href="#主数据库" class="headerlink" title="主数据库"></a>主数据库</h3><pre class="line-numbers language-yaml"><code class="language-yaml">1、修改 Mysql 配置文件  注：Mysql 5.7.2 以后没有默认配置了，一切配置需要自行配置
 
 vim /etc/mysql/my.cnf
-server-id=1           # 服务器唯一ID
-log-bin=mysql-bin     # mysql-bin日志前缀，可自定义
-binlog-do-db=db1,db2  # 需要同步的库
-binlog-ignore-db=db1,db2 # 忽略不同步的库
+server<span class="token punctuation">-</span>id=1           <span class="token comment" spellcheck="true"># 服务器唯一ID</span>
+log<span class="token punctuation">-</span>bin=mysql<span class="token punctuation">-</span>bin     <span class="token comment" spellcheck="true"># mysql-bin日志前缀，可自定义</span>
+binlog<span class="token punctuation">-</span>do<span class="token punctuation">-</span>db=db1<span class="token punctuation">,</span>db2  <span class="token comment" spellcheck="true"># 需要同步的库</span>
+binlog<span class="token punctuation">-</span>ignore<span class="token punctuation">-</span>db=db1<span class="token punctuation">,</span>db2 <span class="token comment" spellcheck="true"># 忽略不同步的库</span>
 
 binlog 两参数2选1 都不写全部同步
 
-2、查询 bin-log 是否开启
-show variables like &#39;%log_bin%&#39;;
+2、查询 bin<span class="token punctuation">-</span>log 是否开启
+show variables like '%log_bin%';
 
-+---------------------------------+--------------------------------+
-| Variable_name                   | Value                          |
-+---------------------------------+--------------------------------+
-| log_bin                         | ON                             |
-| log_bin_basename                | /var/lib/mysql/mysql-bin       |
-| log_bin_index                   | /var/lib/mysql/mysql-bin.index |
-| log_bin_trust_function_creators | OFF                            |
-| log_bin_use_v1_row_events       | OFF                            |
-| sql_log_bin                     | ON                             |
-+---------------------------------+--------------------------------+
++<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span><span class="token punctuation">-</span>+
+<span class="token punctuation">|</span> Variable_name                   <span class="token punctuation">|</span> Value                          <span class="token punctuation">|</span>
++<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span><span class="token punctuation">-</span>+
+<span class="token punctuation">|</span> log_bin                         <span class="token punctuation">|</span> ON                             <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> log_bin_basename                <span class="token punctuation">|</span> /var/lib/mysql/mysql<span class="token punctuation">-</span>bin       <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> log_bin_index                   <span class="token punctuation">|</span> /var/lib/mysql/mysql<span class="token punctuation">-</span>bin.index <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> log_bin_trust_function_creators <span class="token punctuation">|</span> OFF                            <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> log_bin_use_v1_row_events       <span class="token punctuation">|</span> OFF                            <span class="token punctuation">|</span>
+<span class="token punctuation">|</span> sql_log_bin                     <span class="token punctuation">|</span> ON                             <span class="token punctuation">|</span>
++<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span><span class="token punctuation">-</span>+
 6 rows in set (0.01 sec)
 
 3、在主服务器上建立帐户并授权
 
-# 以下为 5.x 版本 创建用户并且授权
-grant  replication slave  on *.*  to &#39;daofaziran&#39;@&#39;%&#39; identified by &#39;654321&#39;;
+<span class="token comment" spellcheck="true"># 以下为 5.x 版本 创建用户并且授权</span>
+grant  replication slave  on *.*  to 'daofaziran'@'%' identified by '654321';
 
-# 以下为 8 版本 创建用户并且授权
+<span class="token comment" spellcheck="true"># 以下为 8 版本 创建用户并且授权</span>
 create user ‘daofaziran’@‘%’ identified by ‘123456’;
 grant all privileges on *.* to ‘daofaziran’@’%’ with grant option; 
 flush privileges;
@@ -449,86 +449,90 @@ flush privileges;
 4、查看状态
 show master status;
 
-# File 和 Position 要记录好
-+------------------+----------+--------------+------------------+-------------------+
-| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
-+------------------+----------+--------------+------------------+-------------------+
-| mysql-bin.000001 |      155 | wangzhuan    |                  |                   |
-+------------------+----------+--------------+------------------+-------------------+
-1 row in set (0.00 sec)</code></pre><h3 id="从数据库"><a href="#从数据库" class="headerlink" title="从数据库"></a>从数据库</h3><pre><code>1、修改 Mysql 配置文件 
+<span class="token comment" spellcheck="true"># File 和 Position 要记录好</span>
++<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span><span class="token punctuation">-</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span>+
+<span class="token punctuation">|</span> File             <span class="token punctuation">|</span> Position <span class="token punctuation">|</span> Binlog_Do_DB <span class="token punctuation">|</span> Binlog_Ignore_DB <span class="token punctuation">|</span> Executed_Gtid_Set <span class="token punctuation">|</span>
++<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span><span class="token punctuation">-</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span>+
+<span class="token punctuation">|</span> mysql<span class="token punctuation">-</span>bin.000001 <span class="token punctuation">|</span>      155 <span class="token punctuation">|</span> wangzhuan    <span class="token punctuation">|</span>                  <span class="token punctuation">|</span>                   <span class="token punctuation">|</span>
++<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span><span class="token punctuation">-</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span>+<span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">---</span><span class="token punctuation">-</span>+
+1 row in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="从数据库"><a href="#从数据库" class="headerlink" title="从数据库"></a>从数据库</h3><pre class="line-numbers language-yaml"><code class="language-yaml">1、修改 Mysql 配置文件 
 
 vim /etc/mysql/my.cnf
-server-id=2           # 服务器唯一ID
-log-bin=mysql-bin     # mysql-bin日志前缀
+server<span class="token punctuation">-</span>id=2           <span class="token comment" spellcheck="true"># 服务器唯一ID</span>
+log<span class="token punctuation">-</span>bin=mysql<span class="token punctuation">-</span>bin     <span class="token comment" spellcheck="true"># mysql-bin日志前缀</span>
 
 以下可选参数：
-replicate-do-db=db1,db2
-replicate-ignore-db=db1,db2
+replicate<span class="token punctuation">-</span>do<span class="token punctuation">-</span>db=db1<span class="token punctuation">,</span>db2
+replicate<span class="token punctuation">-</span>ignore<span class="token punctuation">-</span>db=db1<span class="token punctuation">,</span>db2
 
 2、进入mysql
 
 stop slave; 
 
 CHANGE MASTER TO
-  # 主服务器地址
-  MASTER_HOST=&#39;192.168.1.6&#39;,
-  # 主服务器账号
-  MASTER_USER=&#39;daofaziran&#39;,
-  # 主服务器密码
-  MASTER_PASSWORD=&#39;123456&#39;,
-  # 主服务器端口
-  MASTER_PORT=3306,
-  # 主服务器 binlog 日志文件名,对应的 show master status 的 File
-  MASTER_LOG_FILE=&#39;mysql-bin.000002&#39;,
-  # 主服务器日志记录起点位置，对应的  show master status 的 Position
-  MASTER_LOG_POS=155,
-  # 连接重试次数
+  <span class="token comment" spellcheck="true"># 主服务器地址</span>
+  MASTER_HOST='192.168.1.6'<span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true"># 主服务器账号</span>
+  MASTER_USER='daofaziran'<span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true"># 主服务器密码</span>
+  MASTER_PASSWORD='123456'<span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true"># 主服务器端口</span>
+  MASTER_PORT=3306<span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true"># 主服务器 binlog 日志文件名,对应的 show master status 的 File</span>
+  MASTER_LOG_FILE='mysql<span class="token punctuation">-</span>bin.000002'<span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true"># 主服务器日志记录起点位置，对应的  show master status 的 Position</span>
+  MASTER_LOG_POS=155<span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true"># 连接重试次数</span>
   MASTER_CONNECT_RETRY=10;
 
 start slave;
 
-# 查看是否配置成功
+<span class="token comment" spellcheck="true"># 查看是否配置成功</span>
 show slave status;
 
-Slave_IO_Running:Yes 
+Slave_IO_Running<span class="token punctuation">:</span>Yes 
 此进程负责从服务器从主服务器上读取binlog 日志，并写入从服务器上的中继日志。 
-Slave_SQL_Running:Yes 
+Slave_SQL_Running<span class="token punctuation">:</span>Yes 
 此进程负责读取并且执行中继日志中的binlog日志， 
-注：以上两个都为yes则表明成功</code></pre><p>binlog 日志操作的常用命令</p>
-<pre><code># 执行该命令，就会产生一个新的 log-bin 日志
+注：以上两个都为yes则表明成功<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>binlog 日志操作的常用命令</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 执行该命令，就会产生一个新的 log-bin 日志</span>
 flush logs;
-# 清空所有的log-bin日志，并产生一个新的 log-bin 日志
+<span class="token comment" spellcheck="true"># 清空所有的log-bin日志，并产生一个新的 log-bin 日志</span>
 reset master;
-#查看最后（新）的一个 log-bin 日志
-show master status;</code></pre><h3 id="Laravel-读写分离"><a href="#Laravel-读写分离" class="headerlink" title="Laravel 读写分离"></a>Laravel 读写分离</h3><pre><code>        &#39;mysql&#39; =&gt; [
-            &#39;driver&#39; =&gt; &#39;mysql&#39;,
-            &#39;read&#39; =&gt; [
-                &#39;host&#39; =&gt; &#39;192.168.1.6&#39;,
-                &#39;port&#39; =&gt; &#39;3307&#39;,
-                &#39;password&#39; =&gt; &#39;root&#39;
-            ],
-            &#39;write&#39; =&gt; [
-                &#39;host&#39; =&gt; &#39;192.168.1.6&#39;,
-                &#39;port&#39; =&gt; &#39;3306&#39;,
-                &#39;password&#39; =&gt; &#39;root&#39;
-            ],
-            &#39;url&#39; =&gt; env(&#39;DATABASE_URL&#39;),
-//            &#39;host&#39; =&gt; env(&#39;DB_HOST&#39;, &#39;127.0.0.1&#39;),
-//            &#39;port&#39; =&gt; env(&#39;DB_PORT&#39;, &#39;3306&#39;),
-            &#39;database&#39; =&gt; env(&#39;DB_DATABASE&#39;, &#39;forge&#39;),
-            &#39;username&#39; =&gt; env(&#39;DB_USERNAME&#39;, &#39;forge&#39;),
-//            &#39;password&#39; =&gt; env(&#39;DB_PASSWORD&#39;, &#39;&#39;),
-            &#39;unix_socket&#39; =&gt; env(&#39;DB_SOCKET&#39;, &#39;&#39;),
-            &#39;charset&#39; =&gt; &#39;utf8mb4&#39;,
-            &#39;collation&#39; =&gt; &#39;utf8mb4_unicode_ci&#39;,
-            &#39;prefix&#39; =&gt; &#39;&#39;,
-            &#39;prefix_indexes&#39; =&gt; true,
-            &#39;strict&#39; =&gt; true,
-            &#39;engine&#39; =&gt; null,
-            &#39;options&#39; =&gt; extension_loaded(&#39;pdo_mysql&#39;) ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA =&gt; env(&#39;MYSQL_ATTR_SSL_CA&#39;),
-            ]) : [],
-        ],</code></pre><blockquote>
+<span class="token comment" spellcheck="true">#查看最后（新）的一个 log-bin 日志</span>
+show master status;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Laravel-读写分离"><a href="#Laravel-读写分离" class="headerlink" title="Laravel 读写分离"></a>Laravel 读写分离</h3><pre class="line-numbers language-php"><code class="language-php">        <span class="token string">'mysql'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'mysql'</span><span class="token punctuation">,</span>
+            <span class="token string">'read'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+                <span class="token string">'host'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'192.168.1.6'</span><span class="token punctuation">,</span>
+                <span class="token string">'port'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'3307'</span><span class="token punctuation">,</span>
+                <span class="token string">'password'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'root'</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'write'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+                <span class="token string">'host'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'192.168.1.6'</span><span class="token punctuation">,</span>
+                <span class="token string">'port'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'3306'</span><span class="token punctuation">,</span>
+                <span class="token string">'password'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'root'</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'url'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'DATABASE_URL'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token comment" spellcheck="true">//            'host' => env('DB_HOST', '127.0.0.1'),</span>
+<span class="token comment" spellcheck="true">//            'port' => env('DB_PORT', '3306'),</span>
+            <span class="token string">'database'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'DB_DATABASE'</span><span class="token punctuation">,</span> <span class="token string">'forge'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'username'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'DB_USERNAME'</span><span class="token punctuation">,</span> <span class="token string">'forge'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token comment" spellcheck="true">//            'password' => env('DB_PASSWORD', ''),</span>
+            <span class="token string">'unix_socket'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'DB_SOCKET'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'charset'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'utf8mb4'</span><span class="token punctuation">,</span>
+            <span class="token string">'collation'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'utf8mb4_unicode_ci'</span><span class="token punctuation">,</span>
+            <span class="token string">'prefix'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">''</span><span class="token punctuation">,</span>
+            <span class="token string">'prefix_indexes'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token string">'strict'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token string">'engine'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+            <span class="token string">'options'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">extension_loaded</span><span class="token punctuation">(</span><span class="token string">'pdo_mysql'</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token function">array_filter</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+                <span class="token constant">PDO</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">MYSQL_ATTR_SSL_CA</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'MYSQL_ATTR_SSL_CA'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>参考地址：</p>
 <p><a href="https://blog.51cto.com/zhongliang/2152917" target="_blank" rel="noopener">https://blog.51cto.com/zhongliang/2152917</a></p>
 <p><a href="https://www.cnblogs.com/chenhaoyu/p/10773988.html" target="_blank" rel="noopener">https://www.cnblogs.com/chenhaoyu/p/10773988.html</a></p>
@@ -718,9 +722,9 @@ show master status;</code></pre><h3 id="Laravel-读写分离"><a href="#Laravel-
                 <a href="/2020/01/16/Laravel-OSS/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-OSS">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/sa2L6N.jpg" class="responsive-img" alt="Laravel OSS">
                         
-                        <span class="card-title">Laravel-OSS</span>
+                        <span class="card-title">Laravel OSS</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -748,8 +752,8 @@ show master status;</code></pre><h3 id="Laravel-读写分离"><a href="#Laravel-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -902,7 +906,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.5k</span>&nbsp;字
+                class="white-color">89.7k</span>&nbsp;字
             
             
             

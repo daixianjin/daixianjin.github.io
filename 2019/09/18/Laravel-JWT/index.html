@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-JWT, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Laravel JWT, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-JWT | 道法自然</title>
+    <title>Laravel JWT | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/UAKSKB.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-JWT</h1>
+                    <h1 class="description center-align post-title">Laravel JWT</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel-扩展包/">
-                                <span class="chip bg-color">Laravel-扩展包</span>
+                            <a href="/tags/Laravel/">
+                                <span class="chip bg-color">Laravel</span>
                             </a>
                         
                     </div>
@@ -378,21 +378,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    4 分
                 </div>
                 
 
@@ -402,11 +402,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><blockquote>
-<p><a href="https://jwt.io/" target="_blank" rel="noopener">JWT</a> 是 JSON Web Token 的缩写，是一个非常轻巧的规范，这个规范允许我们使用 JWT 在用户和服务器之间传递安全可靠的信息。</p>
-</blockquote>
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p><a href="https://jwt.io/" target="_blank" rel="noopener">JWT</a> 是 JSON Web Token 的缩写，是一个非常轻巧的规范，这个规范允许我们使用 JWT 在用户和服务器之间传递安全可靠的信息。</p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/UAKSKB.jpg" alt></p>
 <p>JWT 由头部（header）、载荷（payload）与签名（signature）组成，一个 JWT 类似下面这样：</p>
-<pre class="line-numbers language-‘"><code class="language-‘">{
+<pre class="line-numbers language-yaml‘"><code class="language-yaml‘">{
     "typ":"JWT",
     "alg":"HS256"
 }
@@ -427,106 +426,113 @@ signature<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 </ul>
 <p>用户 id，过期时间等数据都保存在 Token 中了，所以并不需要将 Token 保存在服务器中，客户端请求的时候在 Header 中携带 Token，服务器获取 Token 后，进行 <code>base64_decode</code> 即可获取数据进行校验，由于已经有了签名，所以不用担心数据被篡改。</p>
 <p><strong>加密 Token 解密</strong></p>
-<p><img src="https://i.loli.net/2019/11/17/jXCUve2W8xqMGpO.png" alt></p>
-<blockquote>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/wcNLo5.jpg" alt></p>
 <p>JWT 最后是通过 Base64 编码的，也就是说，它可以被翻译回原来的样子来的。所以不要在 JWT 中存放一些敏感信息。</p>
-</blockquote>
-<h3 id="安装-jwt-auth"><a href="#安装-jwt-auth" class="headerlink" title="安装 jwt-auth"></a>安装 jwt-auth</h3><pre><code>$ composer require tymon/jwt-auth</code></pre><p>安装完成后，我们需要设置一下 JWT 的 secret，这个 secret 很重要，用于最后的签名，更换这个 secret 会导致之前生成的所有 token 无效。</p>
-<pre><code>$ php artisan jwt:secret</code></pre><p>可以看到在 .env 文件中，增加了一行 <code>JWT_SECRET</code>。</p>
+<h3 id="安装-jwt-auth"><a href="#安装-jwt-auth" class="headerlink" title="安装 jwt-auth"></a>安装 jwt-auth</h3><pre class="line-numbers language-bash"><code class="language-bash">composer require tymon/jwt-auth<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装完成后，我们需要设置一下 JWT 的 secret，这个 secret 很重要，用于最后的签名，更换这个 secret 会导致之前生成的所有 token 无效。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">php artisan jwt:secret<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>可以看到在 .env 文件中，增加了一行 <code>JWT_SECRET</code>。</p>
 <p><strong>Laravel 5.5 版本以上不需要在添加服务提供者。</strong></p>
-<h3 id="发布配置"><a href="#发布配置" class="headerlink" title="发布配置"></a>发布配置</h3><pre><code>php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&quot;</code></pre><p>您现在应该有一个<code>config/jwt.php</code>文件，允许您配置此程序包的基础知识。</p>
+<h3 id="发布配置"><a href="#发布配置" class="headerlink" title="发布配置"></a>发布配置</h3><pre class="line-numbers language-bash"><code class="language-bash">php artisan vendor:publish --provider<span class="token operator">=</span><span class="token string">"Tymon\JWTAuth\Providers\LaravelServiceProvider"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>您现在应该有一个<code>config/jwt.php</code>文件，允许您配置此程序包的基础知识。</p>
 <p>修改 <code>config/auth.php</code>，将 <code>api guard</code> 的 <code>driver</code> 改为 <code>jwt</code>。</p>
 <p><em>config/auth.php</em></p>
-<pre><code>&#39;guards&#39; =&gt; [
-    &#39;web&#39; =&gt; [
-        &#39;driver&#39; =&gt; &#39;session&#39;,
-        &#39;provider&#39; =&gt; &#39;users&#39;,
-    ],
+<pre class="line-numbers language-php"><code class="language-php"><span class="token string">'guards'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+    <span class="token string">'web'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+        <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'session'</span><span class="token punctuation">,</span>
+        <span class="token string">'provider'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'users'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
 
-    &#39;api&#39; =&gt; [
-        &#39;driver&#39; =&gt; &#39;jwt&#39;,
-        &#39;provider&#39; =&gt; &#39;users&#39;,
-    ],
-],
-# 注意一下模型的服务提供者，默认使用的 app\user 
-&#39;providers&#39; =&gt; [
-    &#39;users&#39; =&gt; [
-        &#39;driver&#39; =&gt; &#39;eloquent&#39;,
-        &#39;model&#39; =&gt; App\Http\Model\User::class,
-    ],</code></pre><p>如果使用了 Dingo API 修改 <code>config/api.php</code>，auth 中增加 JWT 相关的配置</p>
+    <span class="token string">'api'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+        <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'jwt'</span><span class="token punctuation">,</span>
+        <span class="token string">'provider'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'users'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token shell-comment comment"># 注意一下模型的服务提供者，默认使用的 app\user </span>
+<span class="token string">'providers'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+    <span class="token string">'users'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+        <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'eloquent'</span><span class="token punctuation">,</span>
+        <span class="token string">'model'</span> <span class="token operator">=</span><span class="token operator">></span> App\<span class="token package">Http<span class="token punctuation">\</span>Model<span class="token punctuation">\</span>User</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果使用了 Dingo API 修改 <code>config/api.php</code>，auth 中增加 JWT 相关的配置</p>
 <p><em>config/api.php</em></p>
-<pre><code>&#39;auth&#39; =&gt; [
-    &#39;jwt&#39; =&gt; &#39;Dingo\Api\Auth\Provider\JWT&#39;,
-],</code></pre><p>user 模型需要继承 <code>Tymon\JWTAuth\Contracts\JWTSubject</code> 接口，并实现接口的两个方法 getJWTIdentifier () 和 getJWTCustomClaims ()。</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token string">'auth'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+    <span class="token string">'jwt'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'Dingo\Api\Auth\Provider\JWT'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>user 模型需要继承 <code>Tymon\JWTAuth\Contracts\JWTSubject</code> 接口，并实现接口的两个方法 getJWTIdentifier () 和 getJWTCustomClaims ()。</p>
 <p><em>app\Models\User.php</em></p>
-<pre><code>&lt;?php
+<pre class="line-numbers language-php"><code class="language-php"><span class="token delimiter">&lt;?php</span>
 
-namespace App\Models;
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Models</span><span class="token punctuation">;</span>
 
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+<span class="token keyword">use</span> <span class="token package">Tymon<span class="token punctuation">\</span>JWTAuth<span class="token punctuation">\</span>Contracts<span class="token punctuation">\</span>JWTSubject</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Notifications<span class="token punctuation">\</span>Notifiable</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Foundation<span class="token punctuation">\</span>Auth<span class="token punctuation">\</span>User</span> <span class="token keyword">as</span> Authenticatable<span class="token punctuation">;</span>
 
-class User extends Authenticatable implements JWTSubject
-{
-    use Notifiable;
-    public function getJWTIdentifier()
-    {
-        return $this-&gt;getKey();
-    }
+<span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token keyword">extends</span> <span class="token class-name">Authenticatable</span> <span class="token keyword">implements</span> <span class="token class-name">JWTSubject</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">use</span> <span class="token package">Notifiable</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">getJWTIdentifier</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
-}</code></pre><p>getJWTIdentifier 返回了 User 的 id，getJWTCustomClaims 是我们需要额外再 JWT 载荷中增加的自定义内容，这里返回空数组。</p>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">getJWTCustomClaims</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>getJWTIdentifier 返回了 User 的 id，getJWTCustomClaims 是我们需要额外再 JWT 载荷中增加的自定义内容，这里返回空数组。</p>
 <p><code>jwt-auth</code> 有两个重要的参数，可以在 <code>config/jwt.php</code> 中进行设置</p>
 <ul>
 <li>JWT_TTL 生成的 token 在多少分钟后过期，默认 60 分钟</li>
 <li>JWT_REFRESH_TTL 生成的 token，在多少分钟内，可以刷新获取一个新 token，默认 20160 分钟，14 天。</li>
 </ul>
 <p>这里需要理解一下 JWT 的过期和刷新机制，过期很好理解，超过了这个时间，token 就无效了。刷新时间一般比过期时间长，只要在这个刷新时间内，即使 token 过期了， 依然可以换取一个新的 token，以达到应用长期可用，不需要重新登录的目的。</p>
-<h3 id="助手函数"><a href="#助手函数" class="headerlink" title="助手函数"></a>助手函数</h3><pre><code>// 尝试通过某些凭据对用户进行身份验证
-$token = auth()-&gt;attempt($request);
-// 获取当前经过身份验证的用户。
-$result = auth()-&gt;user();
-// 注销用户-这将使当前令牌无效并取消验证用户的身份
-auth()-&gt;logout(); Token 可以继续使用直到 exp 过期
-auth()-&gt;logout(true);  马上把当前的 Token 永久性的加入黑名单
-// 刷新令牌，这会使当前令牌无效
-auth()-&gt;resfresh();
-auth()-&gt;resfresh(true,true); 将 true 作为第一个参数传递，以强制将令牌永久性列入黑名单。第二个参数将重置新令牌的声明
-// 使令牌无效（将其添加到黑名单）
-auth()-&gt;invalidate();
-auth()-&gt;invalidate(true); 马上把当前的 Token 永久性的加入黑名单
-// 判断当前用户是否登录
-auth()-&gt;check();</code></pre><h3 id="多用户验证"><a href="#多用户验证" class="headerlink" title="多用户验证"></a>多用户验证</h3><p>1、创建 Admin 模型，其他操作与 User 一致</p>
-<pre><code>php artisan make:model Admin</code></pre><p>2、修改<code>config\auth.php</code>配置</p>
-<pre><code> &#39;guards&#39; =&gt; [
-        &#39;admin&#39; =&gt; [
-            &#39;driver&#39; =&gt; &#39;jwt&#39;,
-            &#39;provider&#39; =&gt; &#39;admins&#39;,
-        ],
+<h3 id="助手函数"><a href="#助手函数" class="headerlink" title="助手函数"></a>助手函数</h3><pre class="line-numbers language-php"><code class="language-php"><span class="token comment" spellcheck="true">// 尝试通过某些凭据对用户进行身份验证</span>
+<span class="token variable">$token</span> <span class="token operator">=</span> <span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">attempt</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 获取当前经过身份验证的用户。</span>
+<span class="token variable">$result</span> <span class="token operator">=</span> <span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 注销用户-这将使当前令牌无效并取消验证用户的身份</span>
+<span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> Token 可以继续使用直到 exp 过期
+<span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">logout</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  马上把当前的 Token 永久性的加入黑名单
+<span class="token comment" spellcheck="true">// 刷新令牌，这会使当前令牌无效</span>
+<span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">resfresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">resfresh</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 将 <span class="token boolean">true</span> 作为第一个参数传递，以强制将令牌永久性列入黑名单。第二个参数将重置新令牌的声明
+<span class="token comment" spellcheck="true">// 使令牌无效（将其添加到黑名单）</span>
+<span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">invalidate</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 马上把当前的 Token 永久性的加入黑名单
+<span class="token comment" spellcheck="true">// 判断当前用户是否登录</span>
+<span class="token function">auth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">check</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="多用户验证"><a href="#多用户验证" class="headerlink" title="多用户验证"></a>多用户验证</h3><p>1、创建 Admin 模型，其他操作与 User 一致</p>
+<pre class="line-numbers language-bash"><code class="language-bash">php artisan make:model Admin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>2、修改<code>config\auth.php</code>配置</p>
+<pre class="line-numbers language-php"><code class="language-php"> <span class="token string">'guards'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+        <span class="token string">'admin'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'jwt'</span><span class="token punctuation">,</span>
+            <span class="token string">'provider'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'admins'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
 
-        &#39;api&#39; =&gt; [
-            &#39;driver&#39; =&gt; &#39;jwt&#39;,
-            &#39;provider&#39; =&gt; &#39;users&#39;,
-            &#39;hash&#39; =&gt; false,
-        ],
-    ],
+        <span class="token string">'api'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'jwt'</span><span class="token punctuation">,</span>
+            <span class="token string">'provider'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'users'</span><span class="token punctuation">,</span>
+            <span class="token string">'hash'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
 
- &#39;providers&#39; =&gt; [
-        &#39;users&#39; =&gt; [
-            &#39;driver&#39; =&gt; &#39;eloquent&#39;,
-            &#39;model&#39; =&gt; App\Http\Model\User::class,
-        ],
+ <span class="token string">'providers'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+        <span class="token string">'users'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'eloquent'</span><span class="token punctuation">,</span>
+            <span class="token string">'model'</span> <span class="token operator">=</span><span class="token operator">></span> App\<span class="token package">Http<span class="token punctuation">\</span>Model<span class="token punctuation">\</span>User</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
 
-        &#39;admins&#39; =&gt; [
-            &#39;driver&#39; =&gt; &#39;eloquent&#39;,
-            &#39;model&#39; =&gt; App\Http\Model\Admin::class,
-        ],
-    ],    
-</code></pre><blockquote>
+        <span class="token string">'admins'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'driver'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'eloquent'</span><span class="token punctuation">,</span>
+            <span class="token string">'model'</span> <span class="token operator">=</span><span class="token operator">></span> App\<span class="token package">Http<span class="token punctuation">\</span>Model<span class="token punctuation">\</span>Admin</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>    
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>JWT 超级详细的讲解博文：<a href="https://learnku.com/articles/10885/full-use-of-jwt#d08bfb" target="_blank" rel="noopener">https://learnku.com/articles/10885/full-use-of-jwt#d08bfb</a></p>
 <p>JWT 官方使用手册：<a href="https://jwt-auth.readthedocs.io/en/develop/" target="_blank" rel="noopener">https://jwt-auth.readthedocs.io/en/develop/</a></p>
 </blockquote>
@@ -593,8 +599,8 @@ auth()-&gt;check();</code></pre><h3 id="多用户验证"><a href="#多用户验�
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel-扩展包/">
-                                    <span class="chip bg-color">Laravel-扩展包</span>
+                                <a href="/tags/Laravel/">
+                                    <span class="chip bg-color">Laravel</span>
                                 </a>
                             
                         </div>
@@ -667,9 +673,9 @@ auth()-&gt;check();</code></pre><h3 id="多用户验证"><a href="#多用户验�
                 <a href="/2019/09/26/Laravel-Fractal/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-Fractal">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/Sfku6y.jpg" class="responsive-img" alt="Laravel Fractal">
                         
-                        <span class="card-title">Laravel-Fractal</span>
+                        <span class="card-title">Laravel Fractal</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -701,8 +707,8 @@ PHP 领域广受欢迎的 API 数据输出格式转换器
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -719,9 +725,9 @@ PHP 领域广受欢迎的 API 数据输出格式转换器
                 <a href="/2019/09/09/Laravel-第三方登录/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-第三方登录">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/75ml0w.jpg" class="responsive-img" alt="第三方登录">
                         
-                        <span class="card-title">Laravel-第三方登录</span>
+                        <span class="card-title">第三方登录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -749,8 +755,8 @@ PHP 领域广受欢迎的 API 数据输出格式转换器
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -903,7 +909,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.5k</span>&nbsp;字
+                class="white-color">89.7k</span>&nbsp;字
             
             
             

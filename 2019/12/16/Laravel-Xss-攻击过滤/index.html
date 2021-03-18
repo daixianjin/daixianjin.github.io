@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-XSS 攻击过滤, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Laravel XSS 攻击过滤, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-XSS 攻击过滤 | 道法自然</title>
+    <title>Laravel XSS 攻击过滤 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/gDUeiz.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-XSS 攻击过滤</h1>
+                    <h1 class="description center-align post-title">Laravel XSS 攻击过滤</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel-扩展包/">
-                                <span class="chip bg-color">Laravel-扩展包</span>
+                            <a href="/tags/Laravel/">
+                                <span class="chip bg-color">Laravel</span>
                             </a>
                         
                     </div>
@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    528
+                    511
                 </div>
                 
 
@@ -403,37 +403,49 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>XSS 攻击，XSS 是跨站脚本攻击(Cross Site Scripting)，为不和层叠样式表(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为XSS。恶意攻击者往 Web 页面里插入恶意 Script 代码，当用户浏览该页之时，嵌入其中 Web 里面的 Script 代码会被执行，从而达到恶意攻击用户的目的。它总是让我们头痛，目前还不是很了解，毕竟前端的知识欠缺，看过一篇文章说“越了解 XSS 越不知道该如何去防范”。目前来说所认知的 XSS 就是前端的 JS 搞事情，那么好在数据处理时候我们过滤掉黑名单的前端标记。</p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/gDUeiz.jpg" alt></p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><a href="https://packagist.org/packages/mews/purifier" target="_blank" rel="noopener">mews/purifier</a></p>
-<pre><code>composer require mews/purifier</code></pre><p>再次提示一次，在 Laravel 5.5 版本之后不需要在添加服务提供者，都是自动发现。</p>
-<h3 id="发布配置"><a href="#发布配置" class="headerlink" title="发布配置"></a>发布配置</h3><pre><code>$ php artisan vendor:publish --provider=&quot;Mews\Purifier\PurifierServiceProvider&quot;</code></pre><p>此时 <code>config/purifier.php</code> 就会出现在你的 config 目录当中。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">composer require mews/purifier<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>再次提示一次，在 Laravel 5.5 版本之后不需要在添加服务提供者，都是自动发现。</p>
+<h3 id="发布配置"><a href="#发布配置" class="headerlink" title="发布配置"></a>发布配置</h3><pre class="line-numbers language-bash"><code class="language-bash">$ php artisan vendor:publish --provider<span class="token operator">=</span><span class="token string">"Mews\Purifier\PurifierServiceProvider"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>此时 <code>config/purifier.php</code> 就会出现在你的 config 目录当中。</p>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>使用 purifier 非常的简单</p>
-<pre><code>clean(request()-&gt;input(&#39;content&#39;))</code></pre><p>注意：我们可以使用的标记在 <code>config/purifier.php</code> HTML.Allowed 配置当中</p>
-<pre><code># 以下是默认的允许的标记
-&#39;HTML.Allowed&#39;             =&gt; &#39;div,b,strong,i,em,u,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src]&#39;,</code></pre><p>在我们使用 clean 过滤我们的参数之后，默认自动段落的也就是说数据会自动加上 “ P “  标记</p>
+<pre class="line-numbers language-bash"><code class="language-bash">clean<span class="token punctuation">(</span>request<span class="token punctuation">(</span><span class="token punctuation">)</span>-<span class="token operator">></span>input<span class="token punctuation">(</span><span class="token string">'content'</span><span class="token punctuation">))</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注意：我们可以使用的标记在 <code>config/purifier.php</code> HTML.Allowed 配置当中</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 以下是默认的允许的标记</span>
+'HTML.Allowed'             =<span class="token punctuation">></span> 'div<span class="token punctuation">,</span>b<span class="token punctuation">,</span>strong<span class="token punctuation">,</span>i<span class="token punctuation">,</span>em<span class="token punctuation">,</span>u<span class="token punctuation">,</span>a<span class="token punctuation">[</span>href<span class="token punctuation">|</span>title<span class="token punctuation">]</span><span class="token punctuation">,</span>ul<span class="token punctuation">,</span>ol<span class="token punctuation">,</span>li<span class="token punctuation">,</span>p<span class="token punctuation">[</span>style<span class="token punctuation">]</span><span class="token punctuation">,</span>br<span class="token punctuation">,</span>span<span class="token punctuation">[</span>style<span class="token punctuation">]</span><span class="token punctuation">,</span>img<span class="token punctuation">[</span>width<span class="token punctuation">|</span>height<span class="token punctuation">|</span>alt<span class="token punctuation">|</span>src<span class="token punctuation">]</span>'<span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>在我们使用 clean 过滤我们的参数之后，默认自动段落的也就是说数据会自动加上 “ P “  标记</p>
 <p><img src="https://i.loli.net/2019/12/16/S1ZVk3yHJfFig9E.png" alt></p>
 <p>如果不需要加上 “ P “  标记，那么我们需要把配置文件当中的 AutoFormat.AutoParagraph 改为 false</p>
-<pre><code>&#39;AutoFormat.AutoParagraph&#39; =&gt; false,</code></pre><p><img src="https://i.loli.net/2019/12/16/bGkTYjigILOsC4d.png" alt></p>
+<pre class="line-numbers language-yaml"><code class="language-yaml">'AutoFormat.AutoParagraph' =<span class="token punctuation">></span> false<span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/cGZeyS.jpg" alt></p>
 <p>回到最开始，我们在 HTML.Allowed 允许的情况下，那么我们 HTML 标记就不会被过滤掉</p>
 <p><img src="https://i.loli.net/2019/12/16/oK68RCm3THeYdAS.png" alt></p>
-<h3 id="使用中间件全局过滤"><a href="#使用中间件全局过滤" class="headerlink" title="使用中间件全局过滤"></a>使用中间件全局过滤</h3><pre><code># 创建中间件
-php artisan make:middleware ApiXssClean
+<h3 id="使用中间件全局过滤"><a href="#使用中间件全局过滤" class="headerlink" title="使用中间件全局过滤"></a>使用中间件全局过滤</h3><pre class="line-numbers language-bash"><code class="language-bash">php artisan make:middleware ApiXssClean<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>代码的实现：</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">handle</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">,</span> Closure <span class="token variable">$next</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token variable">$input</span> <span class="token operator">=</span> <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-public function handle($request, Closure $next)
-{
-    $input = $request-&gt;all();
-    array_walk_recursive($input,function(&amp;$input) {
-        $input = is_string($input) ? trim(clean($input)) : $input;
-    });
-    $request-&gt;merge($input);
-    return $next($request);
-}</code></pre><p><img src="https://i.loli.net/2019/12/16/QXW8ULvFlen7MOx.png" alt></p>
+    <span class="token function">array_walk_recursive</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token variable">$input</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token variable">$input</span> <span class="token operator">=</span> <span class="token function">is_string</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token function">trim</span><span class="token punctuation">(</span><span class="token function">clean</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token variable">$input</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">merge</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token variable">$next</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://i.loli.net/2019/12/16/QXW8ULvFlen7MOx.png" alt></p>
 <h3 id="使用-PHP-函数-暴力过滤"><a href="#使用-PHP-函数-暴力过滤" class="headerlink" title="使用 PHP 函数 暴力过滤"></a>使用 PHP 函数 暴力过滤</h3><p>strip_tags — 从字符串中去除 HTML 和 PHP 标记</p>
-<pre><code># 效果与上面一致
-$input = $request-&gt;all();
-array_walk_recursive($input,function(&amp;$input) {
-    $input = strip_tags($input);
-});
-$request-&gt;merge($input);</code></pre>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token shell-comment comment"># 效果与上面一致</span>
+<span class="token variable">$input</span> <span class="token operator">=</span> <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">array_walk_recursive</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token variable">$input</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token variable">$input</span> <span class="token operator">=</span> <span class="token function">strip_tags</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">merge</span><span class="token punctuation">(</span><span class="token variable">$input</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr/>
 
@@ -496,8 +508,8 @@ $request-&gt;merge($input);</code></pre>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel-扩展包/">
-                                    <span class="chip bg-color">Laravel-扩展包</span>
+                                <a href="/tags/Laravel/">
+                                    <span class="chip bg-color">Laravel</span>
                                 </a>
                             
                         </div>
@@ -618,9 +630,9 @@ $request-&gt;merge($input);</code></pre>
                 <a href="/2019/11/18/Laravel-Goog验证/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-Google 验证">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/TXGNNF.jpg" class="responsive-img" alt="Laravel Google 验证">
                         
-                        <span class="card-title">Laravel-Google 验证</span>
+                        <span class="card-title">Laravel Google 验证</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -648,8 +660,8 @@ $request-&gt;merge($input);</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -802,7 +814,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.5k</span>&nbsp;字
+                class="white-color">89.7k</span>&nbsp;字
             
             
             

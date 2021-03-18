@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-阿里云短信, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="阿里云短信, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-阿里云短信 | 道法自然</title>
+    <title>阿里云短信 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/jPogWZ.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-阿里云短信</h1>
+                    <h1 class="description center-align post-title">阿里云短信</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel-扩展包/">
-                                <span class="chip bg-color">Laravel-扩展包</span>
+                            <a href="/tags/Laravel/">
+                                <span class="chip bg-color">Laravel</span>
                             </a>
                         
                     </div>
@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    600
+                    523
                 </div>
                 
 
@@ -412,50 +412,51 @@
 <li>自动轮询选择可用的服务商</li>
 <li>更多等你去发现与改进…</li>
 </ol>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><a href="https://packagist.org/packages/overtrue/easy-sms" target="_blank" rel="noopener">EasySms</a> </p>
-<pre><code>$ composer require overtrue/easy-sms</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>以下以阿里云为例子，我们可以在 config 目录当中新建一个 aliyun.php 配置文件，当然也可以直接使用。</p>
-<pre><code>return [
-    &#39;aliyun&#39; =&gt; [
-        // HTTP 请求的超时时间（秒）
-        &#39;timeout&#39; =&gt; 5.0,
-        // 默认发送配置
-        &#39;default&#39; =&gt; [
-            // 网关调用策略，默认：顺序调用
-            &#39;strategy&#39; =&gt; \Overtrue\EasySms\Strategies\OrderStrategy::class,
-            // 默认可用的发送网关
-            &#39;gateways&#39; =&gt; [
-                &#39;aliyun&#39;,
-            ],
-        ],
-        // 可用的网关配置
-        &#39;gateways&#39; =&gt; [
-            &#39;errorlog&#39; =&gt; [
-                &#39;file&#39; =&gt; &#39;/tmp/easy-sms.log&#39;,
-            ],
-            &#39;aliyun&#39; =&gt; [
-                &#39;access_key_id&#39; =&gt; env(&#39;ACCESS_KEY_ID&#39;),
-                &#39;access_key_secret&#39; =&gt; env(&#39;ACCESS_KEY_SECRET&#39;),
-                &#39;sign_name&#39; =&gt; env(&#39;SIGN_NAME&#39;),// 阿里云的签名
-            ],
-        ],
-    ],
-    &#39;template&#39; =&gt; env(&#39;ALIYUN_TEMPLATE&#39;),// 阿里云的模板 ID
-];</code></pre><pre><code>use Overtrue\EasySms\EasySms;
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code>composer require overtrue/easy-sms</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>以下以阿里云为例子，我们可以在 config 目录当中新建一个 aliyun.php 配置文件，当然也可以直接使用。</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token keyword">return</span> <span class="token punctuation">[</span>
+    <span class="token string">'aliyun'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+        <span class="token comment" spellcheck="true">// HTTP 请求的超时时间（秒）</span>
+        <span class="token string">'timeout'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token number">5.0</span><span class="token punctuation">,</span>
+        <span class="token comment" spellcheck="true">// 默认发送配置</span>
+        <span class="token string">'default'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token comment" spellcheck="true">// 网关调用策略，默认：顺序调用</span>
+            <span class="token string">'strategy'</span> <span class="token operator">=</span><span class="token operator">></span> \<span class="token package">Overtrue<span class="token punctuation">\</span>EasySms<span class="token punctuation">\</span>Strategies<span class="token punctuation">\</span>OrderStrategy</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+            <span class="token comment" spellcheck="true">// 默认可用的发送网关</span>
+            <span class="token string">'gateways'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+                <span class="token string">'aliyun'</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token comment" spellcheck="true">// 可用的网关配置</span>
+        <span class="token string">'gateways'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'errorlog'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+                <span class="token string">'file'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">'/tmp/easy-sms.log'</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token string">'aliyun'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+                <span class="token string">'access_key_id'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'ACCESS_KEY_ID'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'access_key_secret'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'ACCESS_KEY_SECRET'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token string">'sign_name'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'SIGN_NAME'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// 阿里云的签名</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'template'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'ALIYUN_TEMPLATE'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// 阿里云的模板 ID</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token keyword">use</span> <span class="token package">Overtrue<span class="token punctuation">\</span>EasySms<span class="token punctuation">\</span>EasySms</span><span class="token punctuation">;</span>
 
-$easySms = new EasySms(config(&#39;aliyun.aliyun&#39;));
-$code = str_pad(random_int(1, 999999), 6, 0, STR_PAD_LEFT);
-try{
-    $result = $easySms-&gt;send(‘手机号码’, [
-        &#39;template&#39; =&gt; config(&#39;aliyun.template&#39;), // 模板 ID
-        &#39;data&#39; =&gt; [
-            &#39;number&#39; =&gt; $code // data 里面传递的就是你的模板变量，
-        ],
-    ],[&#39;aliyun&#39;]);
-     }catch (\GuzzleHttp\Exception\ClientException $exception){
-         $response = $exception-&gt;getResponse();
-         $result = json_decode($response-&gt;getBody()-&gt;getContents(), true);
-         return $this-&gt;response-&gt;errorInternal($result[&#39;msg&#39;]??&#39;短信发送异常&#39;);
-     }</code></pre><p>正常的流程情况下如果出现发送失败或者别的错误，可以找到包 overtrue/easy-sms/src/Gateways  下面，因为我目前使用的 阿里云那么我的就是 AliyunGateway.php 找到 send 在 result 返回之前打印一下就可以看到错误。这里的错误也是阿里云服务错误，而不是程序的错误。</p>
+<span class="token variable">$easySms</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EasySms</span><span class="token punctuation">(</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token string">'aliyun.aliyun'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$code</span> <span class="token operator">=</span> <span class="token function">str_pad</span><span class="token punctuation">(</span><span class="token function">random_int</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">999999</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">STR_PAD_LEFT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">try</span><span class="token punctuation">{</span>
+    <span class="token variable">$result</span> <span class="token operator">=</span> <span class="token variable">$easySms</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">send</span><span class="token punctuation">(</span>‘手机号码’<span class="token punctuation">,</span> <span class="token punctuation">[</span>
+        <span class="token string">'template'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">config</span><span class="token punctuation">(</span><span class="token string">'aliyun.template'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 模板 ID</span>
+        <span class="token string">'data'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+            <span class="token string">'number'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token variable">$code</span> <span class="token comment" spellcheck="true">// data 里面传递的就是你的模板变量，</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'aliyun'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name"><span class="token punctuation">\</span>GuzzleHttp<span class="token punctuation">\</span>Exception<span class="token punctuation">\</span>ClientException</span> <span class="token variable">$exception</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+         <span class="token variable">$response</span> <span class="token operator">=</span> <span class="token variable">$exception</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token variable">$result</span> <span class="token operator">=</span> <span class="token function">json_decode</span><span class="token punctuation">(</span><span class="token variable">$response</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getContents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">response</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">errorInternal</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">[</span><span class="token string">'msg'</span><span class="token punctuation">]</span><span class="token operator">?</span><span class="token operator">?</span><span class="token string">'短信发送异常'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>正常的流程情况下如果出现发送失败或者别的错误，可以找到包 overtrue/easy-sms/src/Gateways  下面，因为我目前使用的 阿里云那么我的就是 AliyunGateway.php 找到 send 在 result 返回之前打印一下就可以看到错误。这里的错误也是阿里云服务错误，而不是程序的错误。</p>
 
             </div>
             <hr/>
@@ -519,8 +520,8 @@ try{
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel-扩展包/">
-                                    <span class="chip bg-color">Laravel-扩展包</span>
+                                <a href="/tags/Laravel/">
+                                    <span class="chip bg-color">Laravel</span>
                                 </a>
                             
                         </div>
@@ -593,9 +594,9 @@ try{
                 <a href="/2020/01/16/Laravel-OSS/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-OSS">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/sa2L6N.jpg" class="responsive-img" alt="Laravel OSS">
                         
-                        <span class="card-title">Laravel-OSS</span>
+                        <span class="card-title">Laravel OSS</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -623,8 +624,8 @@ try{
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -825,7 +826,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.5k</span>&nbsp;字
+                class="white-color">89.7k</span>&nbsp;字
             
             
             

@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-第三方登录, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="第三方登录, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-第三方登录 | 道法自然</title>
+    <title>第三方登录 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/75ml0w.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-第三方登录</h1>
+                    <h1 class="description center-align post-title">第三方登录</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel-扩展包/">
-                                <span class="chip bg-color">Laravel-扩展包</span>
+                            <a href="/tags/Laravel/">
+                                <span class="chip bg-color">Laravel</span>
                             </a>
                         
                     </div>
@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    567
+                    480
                 </div>
                 
 
@@ -403,55 +403,63 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>所谓的第三方登录，就是利用用户在第三方平台上已有的账号来快速完成自己应用的登录或者注册的功能，常用的协议为 OAuth 2.0，基本上每个 APP，都会集成微信，微博等第三方登录，方便用户快速的登录并开始使用。当然需要看一下 <a href>Socialite 社会化登录</a>能更好的使用第三方包。</p>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/75ml0w.jpg" alt></p>
 <h3 id="微信登录"><a href="#微信登录" class="headerlink" title="微信登录"></a>微信登录</h3><p>登录登录的流程图：</p>
-<p><img src="https://i.loli.net/2019/09/12/DkGyJ3gdxB8r7vC.png" alt></p>
-<h4 id="1、获取临时票据-CODE"><a href="#1、获取临时票据-CODE" class="headerlink" title="1、获取临时票据 CODE"></a>1、获取临时票据 CODE</h4><pre><code>https://open.weixin.qq.com/connect/oauth2/authorize?appid=自己的APPID&amp;redirect_uri=自己的网址&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=STATE#wechat_redirect</code></pre><p><img src="https://i.loli.net/2019/09/12/coS8U54QW6FBkn7.png" alt></p>
-<h4 id="2、获取-access-token-与-open-id"><a href="#2、获取-access-token-与-open-id" class="headerlink" title="2、获取 access_token 与 open_id"></a>2、获取 access_token 与 open_id</h4><pre><code>https://api.weixin.qq.com/sns/oauth2/access_token?appid=自己的APPID&amp;secret=自己的AppSecret&amp;code=获取的CODE&amp;grant_type=authorization_code</code></pre><p><img src="https://i.loli.net/2019/09/12/vMzCp2Nq5BDiX6k.png" alt></p>
-<h4 id="3、获取个人信息"><a href="#3、获取个人信息" class="headerlink" title="3、获取个人信息"></a>3、获取个人信息</h4><pre><code>https://api.weixin.qq.com/sns/userinfo?access_token=自己的access_token&amp;openid=OPENID&amp;lang=zh_CN</code></pre><pre><code>{
-    &quot;openid&quot;: &quot;xxxxxxxxxxx&quot;,
-    &quot;nickname&quot;: &quot;哪吒大战假老练&quot;,
-    &quot;sex&quot;: 1,
-    &quot;language&quot;: &quot;zh_CN&quot;,
-    &quot;city&quot;: &quot;资阳&quot;,
-    &quot;province&quot;: &quot;四川&quot;,
-    &quot;country&quot;: &quot;中国&quot;,
-    &quot;headimgurl&quot;: &quot;&quot;,
-    &quot;privilege&quot;: []
-}</code></pre><h3 id="扩展包"><a href="#扩展包" class="headerlink" title="扩展包"></a>扩展包</h3><p><a href="https://socialiteproviders.netlify.com/" target="_blank" rel="noopener">Socialite Providers</a> 超级多的第三方开箱就用包。只要使用的 OAuth 2.0 协议的第三方登录，都可以用同样的方法去实现登录。</p>
-<h4 id="1、install"><a href="#1、install" class="headerlink" title="1、install"></a>1、install</h4><pre><code>$ composer require socialiteproviders/weixin</code></pre><p>Laravel 5.5 版本以上不需要在<code>confi/app.php</code>添加服务提供者，Laravel 会自动发现包</p>
-<h4 id="2、事件监听器"><a href="#2、事件监听器" class="headerlink" title="2、事件监听器"></a>2、事件监听器</h4><p>在<code>app/Providers/EventServiceProvider</code>当中的 <code>listen[]</code>添加</p>
-<pre><code>/**
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/MuvzS0.jpg" alt></p>
+<h4 id="获取临时票据-CODE"><a href="#获取临时票据-CODE" class="headerlink" title="获取临时票据 CODE"></a>获取临时票据 CODE</h4><pre class="line-numbers language-yaml"><code class="language-yaml">https<span class="token punctuation">:</span>//open.weixin.qq.com/connect/oauth2/authorize<span class="token punctuation">?</span>appid=自己的APPID<span class="token important">&amp;redirect_uri</span>=自己的网址<span class="token important">&amp;response_type</span>=code<span class="token important">&amp;scope</span>=snsapi_userinfo<span class="token important">&amp;state</span>=STATE<span class="token comment" spellcheck="true">#wechat_redirect</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/4jUJEX.jpg" alt></p>
+<h4 id="获取-access-token-与-open-id"><a href="#获取-access-token-与-open-id" class="headerlink" title="获取 access_token 与 open_id"></a>获取 access_token 与 open_id</h4><pre class="line-numbers language-yaml"><code class="language-yaml">https<span class="token punctuation">:</span>//api.weixin.qq.com/sns/oauth2/access_token<span class="token punctuation">?</span>appid=自己的APPID<span class="token important">&amp;secret</span>=自己的AppSecret<span class="token important">&amp;code</span>=获取的CODE<span class="token important">&amp;grant_type</span>=authorization_code<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://i.loli.net/2019/09/12/vMzCp2Nq5BDiX6k.png" alt></p>
+<h4 id="获取个人信息"><a href="#获取个人信息" class="headerlink" title="获取个人信息"></a>获取个人信息</h4><pre class="line-numbers language-yaml"><code class="language-yaml">https<span class="token punctuation">:</span>//api.weixin.qq.com/sns/userinfo<span class="token punctuation">?</span>access_token=自己的access_token<span class="token important">&amp;openid</span>=OPENID<span class="token important">&amp;lang</span>=zh_CN<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"openid"</span><span class="token operator">:</span> <span class="token string">"xxxxxxxxxxx"</span><span class="token punctuation">,</span>
+    <span class="token property">"nickname"</span><span class="token operator">:</span> <span class="token string">"哪吒大战假老练"</span><span class="token punctuation">,</span>
+    <span class="token property">"sex"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">"language"</span><span class="token operator">:</span> <span class="token string">"zh_CN"</span><span class="token punctuation">,</span>
+    <span class="token property">"city"</span><span class="token operator">:</span> <span class="token string">"资阳"</span><span class="token punctuation">,</span>
+    <span class="token property">"province"</span><span class="token operator">:</span> <span class="token string">"四川"</span><span class="token punctuation">,</span>
+    <span class="token property">"country"</span><span class="token operator">:</span> <span class="token string">"中国"</span><span class="token punctuation">,</span>
+    <span class="token property">"headimgurl"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+    <span class="token property">"privilege"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="扩展包"><a href="#扩展包" class="headerlink" title="扩展包"></a>扩展包</h3><p><a href="https://socialiteproviders.netlify.com/" target="_blank" rel="noopener">Socialite Providers</a> 超级多的第三方开箱就用包。只要使用的 OAuth 2.0 协议的第三方登录，都可以用同样的方法去实现登录。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre class="line-numbers language-bash"><code class="language-bash">composer require socialiteproviders/weixin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Laravel 5.5 版本以上不需要在<code>confi/app.php</code>添加服务提供者，Laravel 会自动发现包</p>
+<h4 id="事件监听器"><a href="#事件监听器" class="headerlink" title="事件监听器"></a>事件监听器</h4><p>在<code>app/Providers/EventServiceProvider</code>当中的 <code>listen[]</code>添加</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token comment" spellcheck="true">/**
  * The event handler mappings for the application.
  *
  * @var array
- */
-protected $listen = [
-    \SocialiteProviders\Manager\SocialiteWasCalled::class =&gt; [
-        // add your listeners (aka providers) here
-        &#39;SocialiteProviders\\Weixin\\WeixinExtendSocialite@handle&#39;,
-    ],
-];</code></pre><h4 id="3、配置设置"><a href="#3、配置设置" class="headerlink" title="3、配置设置"></a>3、配置设置</h4><p>添加到<code>config/services.php</code></p>
-<pre><code>&#39;weixin&#39; =&gt; [
-    &#39;client_id&#39; =&gt; env(&#39;WEIXIN_KEY&#39;),
-    &#39;client_secret&#39; =&gt; env(&#39;WEIXIN_SECRET&#39;),
-    &#39;redirect&#39; =&gt; env(&#39;WEIXIN_REDIRECT_URI&#39;)
-],</code></pre><h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><pre><code>$user = Socialite::driver(&#39;Weixin&#39;)-&gt;user();
-$accessTokenResponseBody = $user-&gt;accessTokenResponseBody;</code></pre><p>简单的使用</p>
-<pre><code>        # 加载驱动
-        $driver = Socialite::driver($type);
-        if ($request-&gt;code)
-        {
-            # 获得 access_token 和 open_id
-            $token = $driver-&gt;getAccessTokenResponse($request-&gt;code)[&#39;access_token&#39;];
-        }else{
-            $token = $request-&gt;access_token;
-            # 设置 open_id
-            $driver-&gt;setOpenId($request-&gt;open_id);
-        }
-        # 获取用户信息
-        $result = $driver-&gt;userFromToken($token);
-        # 获取 unionid 只有在用户将公众号绑定到微信开放平台帐号后，才会出现 unionid 字段
-        $unionid = $result-&gt;offsetExists(&#39;unionid&#39;) ? $result-&gt;offsetGet(&#39;unionid&#39;) : null;</code></pre><p>核心源码在于<code>vendor/socialiteproviders/weixin/Provider.php</code></p>
+ */</span>
+<span class="token keyword">protected</span> <span class="token variable">$listen</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+    \<span class="token package">SocialiteProviders<span class="token punctuation">\</span>Manager<span class="token punctuation">\</span>SocialiteWasCalled</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token keyword">class</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+        <span class="token comment" spellcheck="true">// add your listeners (aka providers) here</span>
+        <span class="token string">'SocialiteProviders\\Weixin\\WeixinExtendSocialite@handle'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="配置设置"><a href="#配置设置" class="headerlink" title="配置设置"></a>配置设置</h4><p>添加到<code>config/services.php</code></p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token string">'weixin'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>
+    <span class="token string">'client_id'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'WEIXIN_KEY'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">'client_secret'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'WEIXIN_SECRET'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">'redirect'</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">'WEIXIN_REDIRECT_URI'</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h4><p>核心源码在于<code>vendor/socialiteproviders/weixin/Provider.php</code></p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token shell-comment comment"># 加载驱动</span>
+<span class="token variable">$driver</span> <span class="token operator">=</span> Socialite<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">driver</span><span class="token punctuation">(</span><span class="token variable">$type</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">code</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token shell-comment comment"># 获得 access_token 和 open_id</span>
+<span class="token variable">$token</span> <span class="token operator">=</span> <span class="token variable">$driver</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getAccessTokenResponse</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">code</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'access_token'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token variable">$token</span> <span class="token operator">=</span> <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">access_token</span><span class="token punctuation">;</span>
+<span class="token shell-comment comment"># 设置 open_id</span>
+<span class="token variable">$driver</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">setOpenId</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token property">open_id</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token shell-comment comment"># 获取用户信息</span>
+<span class="token variable">$result</span> <span class="token operator">=</span> <span class="token variable">$driver</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">userFromToken</span><span class="token punctuation">(</span><span class="token variable">$token</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token shell-comment comment"># 获取 unionid 只有在用户将公众号绑定到微信开放平台帐号后，才会出现 unionid 字段</span>
+<span class="token variable">$unionid</span> <span class="token operator">=</span> <span class="token variable">$result</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">offsetExists</span><span class="token punctuation">(</span><span class="token string">'unionid'</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token variable">$result</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">offsetGet</span><span class="token punctuation">(</span><span class="token string">'unionid'</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -515,8 +523,8 @@ $accessTokenResponseBody = $user-&gt;accessTokenResponseBody;</code></pre><p>简
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel-扩展包/">
-                                    <span class="chip bg-color">Laravel-扩展包</span>
+                                <a href="/tags/Laravel/">
+                                    <span class="chip bg-color">Laravel</span>
                                 </a>
                             
                         </div>
@@ -589,18 +597,17 @@ $accessTokenResponseBody = $user-&gt;accessTokenResponseBody;</code></pre><p>简
                 <a href="/2019/09/18/Laravel-JWT/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-JWT">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/UAKSKB.jpg" class="responsive-img" alt="Laravel JWT">
                         
-                        <span class="card-title">Laravel-JWT</span>
+                        <span class="card-title">Laravel JWT</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要
-JWT 是 JSON Web Token 的缩写，是一个非常轻巧的规范，这个规范允许我们使用 JWT 在用户和服务器之间传递安全可靠的信息。
+                            摘要JWT 是 JSON Web Token 的缩写，是一个非常轻巧的规范，这个规范允许我们使用 JWT 在用户和服务器之间传递安全可靠的信息。
 
-JWT 由头部（header）、载荷（payload）与签名（signature）组成，一
+JWT 由头部（header）、载荷（payload）与签名（signature）组成，一个
                         
                     </div>
                     <div class="publish-info">
@@ -622,8 +629,8 @@ JWT 由头部（header）、载荷（payload）与签名（signature）组成，
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -637,23 +644,24 @@ JWT 由头部（header）、载荷（payload）与签名（signature）组成，
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/08/Laravel-DingoApi/">
+                <a href="/2019/09/07/Laravel-日志操作/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-DingoApi">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/kjCV7I.jpg" class="responsive-img" alt="Laravel 日志操作">
                         
-                        <span class="card-title">Laravel-DingoApi</span>
+                        <span class="card-title">Laravel 日志操作</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            摘要dingo/api 是一个 Lumen 和 Laravel 都可用的 RestFul 工具包，帮助我们快速的开始构建 RestFul Api。我们的目的是教会大家如何快速的搭建并使用这个包，更多的功能，还需要你仔细阅读 DingoApi
+                            摘要为了帮助你更多的了解应用程序中到底发生了什么，Laravel 提供了强大的日志服务，允许你将日志消息、系统错误日志记录到文件，甚至使用 Slack 通知到你的整个团队。
+在 Laravel 框架中，Laravel 使用 Monolog 
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-07
                             </span>
                         <span class="publish-author">
                             
@@ -670,8 +678,8 @@ JWT 由头部（header）、载荷（payload）与签名（signature）组成，
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -824,7 +832,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.5k</span>&nbsp;字
+                class="white-color">89.7k</span>&nbsp;字
             
             
             

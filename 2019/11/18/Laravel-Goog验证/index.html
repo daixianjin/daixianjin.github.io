@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-Google 验证, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Laravel Google 验证, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-Google 验证 | 道法自然</title>
+    <title>Laravel Google 验证 | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/TXGNNF.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-Google 验证</h1>
+                    <h1 class="description center-align post-title">Laravel Google 验证</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel-扩展包/">
-                                <span class="chip bg-color">Laravel-扩展包</span>
+                            <a href="/tags/Laravel/">
+                                <span class="chip bg-color">Laravel</span>
                             </a>
                         
                     </div>
@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    449
+                    435
                 </div>
                 
 
@@ -404,40 +404,51 @@
             <div id="articleContent">
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>对于一些项目敏感操作来说验证用户都是属于必备的一个环节，当然验证的方式很多，确实很多！Google 验证，在我看来是验证当中的一种不错的选择，毕竟一次操作终身可行，而且 Google 自身就帮我们处理好了验证码有效期。（每30秒刷新一次），签名算法安全可靠！Laravel 做为 PHP 目前使用率最高的框架，当然也有他的 Google 验证扩展包。</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><a href="https://packagist.org/packages/pragmarx/" target="_blank" rel="noopener">pragmarx/</a>google2fa-laravel</p>
-<pre><code># 扩展 Imagick 开启
-composer require pragmarx/google2fa-laravel</code></pre><p><a href="https://packagist.org/packages/bacon/" target="_blank" rel="noopener">bacon/</a>bacon-qr-code</p>
-<pre><code># 扩展 iconv 开启
-# dasprid/enum
-composer require bacon/bacon-qr-code</code></pre><h4 id="安装-Imagick-扩展"><a href="#安装-Imagick-扩展" class="headerlink" title="安装 Imagick 扩展"></a>安装 Imagick 扩展</h4><pre><code>apt-get install imagemagick
-convert -version 使用这个命令检测是否安装成功，如果成功的话会有imagemagick版本号。
-apt-get install libmagickwand-dev</code></pre><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>生成 Google2FA 配置文件，文件存在位置 config/google2fa.php，命令如下：</p>
-<pre><code>php artisan vendor:publish --provider=&quot;PragmaRX\Google2FALaravel\ServiceProvider&quot;</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>生成 Secret Key</p>
-<pre><code>use PragmaRX\Google2FA\Google2FA;
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 扩展 Imagick 开启</span>
+composer require pragmarx/google2fa<span class="token punctuation">-</span>laravel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><a href="https://packagist.org/packages/bacon/" target="_blank" rel="noopener">bacon/</a>bacon-qr-code</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 扩展 iconv 开启</span>
+<span class="token comment" spellcheck="true"># dasprid/enum</span>
+composer require bacon/bacon<span class="token punctuation">-</span>qr<span class="token punctuation">-</span>code<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="安装-Imagick-扩展"><a href="#安装-Imagick-扩展" class="headerlink" title="安装 Imagick 扩展"></a>安装 Imagick 扩展</h4><pre class="line-numbers language-yaml"><code class="language-yaml">apt<span class="token punctuation">-</span>get install imagemagick
+convert <span class="token punctuation">-</span>version 使用这个命令检测是否安装成功，如果成功的话会有imagemagick版本号。
+apt<span class="token punctuation">-</span>get install libmagickwand<span class="token punctuation">-</span>dev<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>生成 Google2FA 配置文件，文件存在位置 config/google2fa.php，命令如下：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">php artisan vendor:publish --provider<span class="token operator">=</span><span class="token string">"PragmaRX\Google2FALaravel\ServiceProvider"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>生成 Secret Key</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token keyword">use</span> <span class="token package">PragmaRX<span class="token punctuation">\</span>Google2FA<span class="token punctuation">\</span>Google2FA</span><span class="token punctuation">;</span>
 
-$google2fa = new Google2FA();
-$secretKey = $google2fa-&gt;generateSecretKey(64);
+<span class="token variable">$google2fa</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Google2FA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$secretKey</span> <span class="token operator">=</span> <span class="token variable">$google2fa</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">generateSecretKey</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-# 这里的 Key 就是我们需要验证的 Key</code></pre><p>获取二维码地址</p>
-<pre><code>$company = &#39;&#39;; // 公司名称
-$holder = &#39;&#39;; // 用户标示，可以是邮箱或者名称等
-$qrcodeUrl = $google2fa-&gt;getQRCodeUrl($company, $holder, $secretKey);</code></pre><p>生成二维码图片</p>
-<pre><code>// 图片路径
-$filePath = sha1($secretKey) .&#39;.png&#39;;
+<span class="token shell-comment comment"># 这里的 Key 就是我们需要验证的 Key</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>获取二维码地址</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token variable">$company</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 公司名称</span>
+<span class="token variable">$holder</span> <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 用户标示，可以是邮箱或者名称等</span>
+<span class="token variable">$qrcodeUrl</span> <span class="token operator">=</span> <span class="token variable">$google2fa</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getQRCodeUrl</span><span class="token punctuation">(</span><span class="token variable">$company</span><span class="token punctuation">,</span> <span class="token variable">$holder</span><span class="token punctuation">,</span> <span class="token variable">$secretKey</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>生成二维码图片</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token comment" spellcheck="true">// 图片路径</span>
+<span class="token variable">$filePath</span> <span class="token operator">=</span> <span class="token function">sha1</span><span class="token punctuation">(</span><span class="token variable">$secretKey</span><span class="token punctuation">)</span> <span class="token punctuation">.</span><span class="token string">'.png'</span><span class="token punctuation">;</span>
 
-// 生成图片
-$renderer = new ImageRenderer(
-   new RendererStyle(200),
-   new ImagickImageBackEnd()
-);
-$writer = new Writer($renderer);
-$writer-&gt;writeFile($qrcodeUrl, $filePath);</code></pre><p><img src="https://i.loli.net/2019/11/18/hTlsNIDrVp5qmFz.png" alt></p>
+<span class="token comment" spellcheck="true">// 生成图片</span>
+<span class="token variable">$renderer</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ImageRenderer</span><span class="token punctuation">(</span>
+   <span class="token keyword">new</span> <span class="token class-name">RendererStyle</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+   <span class="token keyword">new</span> <span class="token class-name">ImagickImageBackEnd</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$writer</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Writer</span><span class="token punctuation">(</span><span class="token variable">$renderer</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$writer</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">writeFile</span><span class="token punctuation">(</span><span class="token variable">$qrcodeUrl</span><span class="token punctuation">,</span> <span class="token variable">$filePath</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/8DKkkC.jpg" alt></p>
 <p>最后，通过使用 Google Authenticator 应用程序来扫描二维码，扫描完毕之后，就会生成一组 6 位的数字密码。</p>
-<h3 id="身份验证"><a href="#身份验证" class="headerlink" title="身份验证"></a>身份验证</h3><pre><code>$google2fa = new Google2FA();
-$verify = $google2fa-&gt;verifyKey($secretKey, $request-&gt;input(&#39;code&#39;));
-if ($verify) {
-    return true;  // 验证成功
-}
-return false;</code></pre><blockquote>
+<h3 id="身份验证"><a href="#身份验证" class="headerlink" title="身份验证"></a>身份验证</h3><pre class="line-numbers language-php"><code class="language-php"><span class="token variable">$google2fa</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Google2FA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token variable">$verify</span> <span class="token operator">=</span> <span class="token variable">$google2fa</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">verifyKey</span><span class="token punctuation">(</span><span class="token variable">$secretKey</span><span class="token punctuation">,</span> <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">input</span><span class="token punctuation">(</span><span class="token string">'code'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$verify</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 验证成功</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
 <p>参考地址：</p>
 <p><a href="https://www.raymondwu.net/2018/05/14/Laravel-利用Google2FA实现双因子认证/" target="_blank" rel="noopener">https://www.raymondwu.net/2018/05/14/Laravel-%E5%88%A9%E7%94%A8Google2FA%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%9B%A0%E5%AD%90%E8%AE%A4%E8%AF%81/</a></p>
 </blockquote>
@@ -504,8 +515,8 @@ return false;</code></pre><blockquote>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel-扩展包/">
-                                    <span class="chip bg-color">Laravel-扩展包</span>
+                                <a href="/tags/Laravel/">
+                                    <span class="chip bg-color">Laravel</span>
                                 </a>
                             
                         </div>
@@ -578,9 +589,9 @@ return false;</code></pre><blockquote>
                 <a href="/2019/12/16/Laravel-Xss-攻击过滤/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-XSS 攻击过滤">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/gDUeiz.jpg" class="responsive-img" alt="Laravel XSS 攻击过滤">
                         
-                        <span class="card-title">Laravel-XSS 攻击过滤</span>
+                        <span class="card-title">Laravel XSS 攻击过滤</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -608,8 +619,8 @@ return false;</code></pre><blockquote>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -626,9 +637,9 @@ return false;</code></pre><blockquote>
                 <a href="/2019/11/14/PHP-RSA对称加密解密/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/800595_YUT9XJ3EP373F4D.png" class="responsive-img" alt="PHP-RSA加密解密">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/800595_YUT9XJ3EP373F4D.png" class="responsive-img" alt="PHP RSA加密解密">
                         
-                        <span class="card-title">PHP-RSA加密解密</span>
+                        <span class="card-title">PHP RSA加密解密</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -810,7 +821,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.5k</span>&nbsp;字
+                class="white-color">89.7k</span>&nbsp;字
             
             
             

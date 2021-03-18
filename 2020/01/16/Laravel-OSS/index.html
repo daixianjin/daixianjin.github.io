@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Laravel-OSS, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Laravel OSS, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Laravel-OSS | 道法自然</title>
+    <title>Laravel OSS | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/sa2L6N.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Laravel-OSS</h1>
+                    <h1 class="description center-align post-title">Laravel OSS</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Laravel-扩展包/">
-                                <span class="chip bg-color">Laravel-扩展包</span>
+                            <a href="/tags/Laravel/">
+                                <span class="chip bg-color">Laravel</span>
                             </a>
                         
                     </div>
@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-24
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    258
+                    251
                 </div>
                 
 
@@ -404,18 +404,17 @@
             <div id="articleContent">
                 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在项目当中，我们一般不会选择本地服务器存储访问资源，这样对于服务器来说的话也比较消耗资源。而第三方的存储服务器就可以帮我们解决这个问题。阿里云对象存储服务，简称 OSS，是一种面向海量数据规模的分布式存储服务，具有稳定、可靠、安全、低成本的特点，能够提供十一个九的数据可靠性。 OSS 提供与平台无关的 RESTful API 接口，您可以在互联网任何位置存储和访问。 OSS 的容量和处理能力弹性扩展，并提供多种存储类型供您选择，全面优化存储成本。</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p> aliyuncs/<a href="https://packagist.org/packages/aliyuncs/oss-sdk-php" target="_blank" rel="noopener">oss-sdk-php</a></p>
-<pre><code>$ composer require aliyuncs/oss-sdk-php</code></pre><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>上传文件</p>
-<pre><code>use OSS\OssClient;
-use OSS\Core\OssException;
+<pre class="line-numbers language-bash"><code class="language-bash">composer require aliyuncs/oss-sdk-php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>上传文件</p>
+<pre class="line-numbers language-php"><code class="language-php"><span class="token keyword">use</span> <span class="token package">OSS<span class="token punctuation">\</span>OssClient</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">OSS<span class="token punctuation">\</span>Core<span class="token punctuation">\</span>OssException</span><span class="token punctuation">;</span>
 
-ry{
-     $oss = new OssClient(id,key,endpoint)
-    $result = $oss-&gt;uploadFile(bucket, 保存到 oss 的路径,上传文件的路径);
-} catch(OssException $e) {
-    ApiExceptionError(&#39;上传失败,请重新上传&#39;);
-}</code></pre><blockquote>
-<p>未完代续</p>
-</blockquote>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+     <span class="token variable">$oss</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">OssClient</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span>key<span class="token punctuation">,</span>endpoint<span class="token punctuation">)</span>
+    <span class="token variable">$result</span> <span class="token operator">=</span> <span class="token variable">$oss</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">uploadFile</span><span class="token punctuation">(</span>bucket<span class="token punctuation">,</span> 保存到 oss 的路径<span class="token punctuation">,</span>上传文件的路径<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>OssException <span class="token variable">$e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">ApiExceptionError</span><span class="token punctuation">(</span><span class="token string">'上传失败,请重新上传'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -479,8 +478,8 @@ ry{
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Laravel-扩展包/">
-                                    <span class="chip bg-color">Laravel-扩展包</span>
+                                <a href="/tags/Laravel/">
+                                    <span class="chip bg-color">Laravel</span>
                                 </a>
                             
                         </div>
@@ -553,9 +552,9 @@ ry{
                 <a href="/2020/02/18/Mysql-读写分离/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1495798711725561.png" class="responsive-img" alt="Mysql-读写分离">
+                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/1495798711725561.png" class="responsive-img" alt="Mysql 读写分离">
                         
-                        <span class="card-title">Mysql-读写分离</span>
+                        <span class="card-title">Mysql 读写分离</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -601,9 +600,9 @@ ry{
                 <a href="/2020/01/16/Laravel-阿里云短信/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/MyImages/images.png" class="responsive-img" alt="Laravel-阿里云短信">
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/jPogWZ.jpg" class="responsive-img" alt="阿里云短信">
                         
-                        <span class="card-title">Laravel-阿里云短信</span>
+                        <span class="card-title">阿里云短信</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -631,8 +630,8 @@ ry{
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Laravel-扩展包/">
-                        <span class="chip bg-color">Laravel-扩展包</span>
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
                     </a>
                     
                 </div>
@@ -785,7 +784,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">91.5k</span>&nbsp;字
+                class="white-color">89.7k</span>&nbsp;字
             
             
             
