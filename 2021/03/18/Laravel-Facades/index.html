@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="404, php，laravel，go，linux，git，mysql，docker，后端">
+    <meta name="keywords" content="Laravel Facades, php，laravel，go，linux，git，mysql，docker，后端">
     <meta name="description" content="一个后端小菜鸟的进击之路">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>404 | 道法自然</title>
+    <title>Laravel Facades | 道法自然</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/libs/awesome/css/all.css">
@@ -224,12 +224,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/wNSaZR.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">404</h1>
+                    <h1 class="description center-align post-title">Laravel Facades</h1>
                 </div>
             </div>
         </div>
@@ -344,12 +344,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Laravel/">
+                                <span class="chip bg-color">Laravel</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Laravel/" class="post-category">
+                                Laravel
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -358,21 +371,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-19
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2019-09-01
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    321
                 </div>
                 
 
@@ -389,7 +402,50 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>使用 Laravel 框架必不可少的会用到它很多强大的门面类（Facades），门面提供了一个“静态”接口到服务容器中绑定的类。Laravel 内置了很多门面，你可能在不知道的情况下正在使用它们。</p>
+<p>Laravel 的门面作为服务容器中的底层类的 “静态代理”，相比于传统静态方法，在维护时能够提供更加易于测试、更加灵活的、简明且富有表现力的语法。</p>
+<p>门面就是一个提供访问容器中对象的类。该机制原理由 Facade 类实现，Laravel 自带的门面，以及创建的自定义门面，都会继承自 Illuminate\Support\Facades\Facade 基类。门面类只需要实现一个方法：getFacadeAccessor。正是 getFacadeAccessor 方法定义了从容器中解析什么，然后 Facade 基类使用魔术方法 __callStatic () 从你的门面中调用解析对象。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>1、在 app 目录下新建一个 Facades 目录作为门面，之后所有自定义的门面都放到这个目录当中</p>
+<p>2、创建一个服务提供者</p>
+<pre class="line-numbers language-PHP"><code class="language-PHP"><?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class FacadeServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        foreach (glob(app_path('Facades') . '/*') as $file)
+        {
+            $facade = '\App\Facades\\' . basename($file,'.php');
+
+            $classFacadeInfo = $facade::classFacadeInfo();
+
+            $repo = '\App\Repositories\Eloquent\\' . $classFacadeInfo['class'] . 'Repository';
+
+            $this->app->singleton($classFacadeInfo['facade_accessor'], function () use ($repo) {
+                return new $repo;
+            });
+
+            $this->app->alias($facade,$classFacadeInfo['class']);
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>3、注册服务提供者，在 config\app.php</p>
+<pre class="line-numbers language-PHP"><code class="language-PHP">    'providers' => [
+        /*
+         * Application Service Providers...
+         */
+        App\Providers\FacadeServiceProvider::class,
+    ],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr/>
 
@@ -414,7 +470,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://daixianjin.github.io/404.html">https://daixianjin.github.io/404.html</a>
+                    <a href="https://daixianjin.github.io/2021/03/18/Laravel-Facades/">https://daixianjin.github.io/2021/03/18/Laravel-Facades/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -451,7 +507,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/Laravel/">
+                                    <span class="chip bg-color">Laravel</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -491,7 +551,7 @@
         repo: 'daixianjin.github.io',
         owner: 'daixianjin',
         admin: "daixianjin",
-        id: '2019-07-19T16-41-10',
+        id: '2021-03-18T21-59-50',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -520,34 +580,46 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/404.html">
+                <a href="/2021/03/18/Laravel-Facades/">
                     <div class="card-image">
                         
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/wNSaZR.jpg" class="responsive-img" alt="Laravel Facades">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/featureimages/8.jpg" class="responsive-img" alt="404">
-                        
-                        <span class="card-title">404</span>
+                        <span class="card-title">Laravel Facades</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            摘要使用 Laravel 框架必不可少的会用到它很多强大的门面类（Facades），门面提供了一个“静态”接口到服务容器中绑定的类。Laravel 内置了很多门面，你可能在不知道的情况下正在使用它们。
+Laravel 的门面作为服务容器中的
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-18
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            道法自然
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Laravel/" class="post-category">
+                                    Laravel
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Laravel/">
+                        <span class="chip bg-color">Laravel</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -555,37 +627,47 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/404.html">
+                <a href="/2021/03/17/滑块验证码/">
                     <div class="card-image">
                         
+                        <img src="https://gitee.com/fengcheche520/my-drawing-bed/raw/master/uPic/8tAjGv.jpg" class="responsive-img" alt="滑块验证码">
                         
-                        <img src="https://cdn.jsdelivr.net/gh/daixianjin/daixianjin.github.io@v1.2/medias/featureimages/8.jpg" class="responsive-img" alt="404">
-                        
-                        <span class="card-title">404</span>
+                        <span class="card-title">滑块验证码</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            摘要对于一个 Web 项目来说，验证码属于必须打交道的一个环节。验证码的扩展包可以说，一搜一大片。在前台来说，我比较喜欢 mews/captcha 简单易使用。对于后台来说，那非  pragmarx/google2fa 莫属了，强大安全不易
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-17
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            道法自然
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/PHP/" class="post-category">
+                                    PHP
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PHP/">
+                        <span class="chip bg-color">PHP</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>

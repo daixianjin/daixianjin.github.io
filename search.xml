@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Laravel Facades</title>
+      <link href="/2021/03/18/Laravel-Facades/"/>
+      <url>/2021/03/18/Laravel-Facades/</url>
+      
+        <content type="html"><![CDATA[<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>使用 Laravel 框架必不可少的会用到它很多强大的门面类（Facades），门面提供了一个“静态”接口到服务容器中绑定的类。Laravel 内置了很多门面，你可能在不知道的情况下正在使用它们。</p><p>Laravel 的门面作为服务容器中的底层类的 “静态代理”，相比于传统静态方法，在维护时能够提供更加易于测试、更加灵活的、简明且富有表现力的语法。</p><p>门面就是一个提供访问容器中对象的类。该机制原理由 Facade 类实现，Laravel 自带的门面，以及创建的自定义门面，都会继承自 Illuminate\Support\Facades\Facade 基类。门面类只需要实现一个方法：getFacadeAccessor。正是 getFacadeAccessor 方法定义了从容器中解析什么，然后 Facade 基类使用魔术方法 __callStatic () 从你的门面中调用解析对象。</p><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>1、在 app 目录下新建一个 Facades 目录作为门面，之后所有自定义的门面都放到这个目录当中</p><p>2、创建一个服务提供者</p><pre class="line-numbers language-PHP"><code class="language-PHP"><?phpnamespace App\Providers;use Illuminate\Support\ServiceProvider;class FacadeServiceProvider extends ServiceProvider{    /**     * Register services.     *     * @return void     */    public function register()    {        foreach (glob(app_path('Facades') . '/*') as $file)        {            $facade = '\App\Facades\\' . basename($file,'.php');            $classFacadeInfo = $facade::classFacadeInfo();            $repo = '\App\Repositories\Eloquent\\' . $classFacadeInfo['class'] . 'Repository';            $this->app->singleton($classFacadeInfo['facade_accessor'], function () use ($repo) {                return new $repo;            });            $this->app->alias($facade,$classFacadeInfo['class']);        }    }}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>3、注册服务提供者，在 config\app.php</p><pre class="line-numbers language-PHP"><code class="language-PHP">    'providers' => [        /*         * Application Service Providers...         */        App\Providers\FacadeServiceProvider::class,    ],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Laravel </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Laravel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>滑块验证码</title>
       <link href="/2021/03/17/%E6%BB%91%E5%9D%97%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
       <url>/2021/03/17/%E6%BB%91%E5%9D%97%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
